@@ -1,0 +1,41 @@
+# ===========================================================================
+#  RELOJ AUTOMÁTICO — GitHub Actions
+#  Corre el script cada día y crea las tarjetas del día en Trello.
+# ===========================================================================
+name: Crear tarjetas Trello del día
+
+# --- CUÁNDO SE EJECUTA ---
+on:
+  schedule:
+    # Cron en horario UTC. Perú es UTC-5.
+    # "30 11 * * 1-5" = 11:30 UTC = 6:30 a.m. Perú, de lunes a viernes.
+    - cron: "30 11 * * 1-5"
+  # Permite también dispararlo a mano desde la pestaña Actions (botón "Run workflow").
+  workflow_dispatch:
+
+jobs:
+  crear-tarjetas:
+    runs-on: ubuntu-latest
+    steps:
+      # 1) Descarga tu repositorio (script + Excel) al servidor temporal
+      - name: Descargar el proyecto
+        uses: actions/checkout@v4
+
+      # 2) Instala Python
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # 3) Instala las dependencias
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      # 4) Ejecuta el script para la fecha de HOY.
+      #    Las credenciales llegan desde GitHub Secrets (no están en el código).
+      - name: Crear tarjetas del día
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          RUTA_EXCEL: "5__LPS_PLANNING_REV_9.xlsx"
+        run: python crear_tarjetas.py --fecha hoy
