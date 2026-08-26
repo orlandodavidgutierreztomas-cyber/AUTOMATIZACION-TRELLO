@@ -1,0 +1,10 @@
+# NUNCA subir credenciales
+config.py
+*.env
+.env
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/

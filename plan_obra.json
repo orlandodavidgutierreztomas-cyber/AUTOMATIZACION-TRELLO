@@ -1,0 +1,8684 @@
+[
+ {
+  "fecha": "2026-08-12",
+  "sector": "1CS1",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-12",
+  "sector": "1CS1",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-13",
+  "sector": "1CS1",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-13",
+  "sector": "1CS2",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-13",
+  "sector": "1CS2",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-14",
+  "sector": "1CS1",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-14",
+  "sector": "1CS2",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-14",
+  "sector": "1CS3",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-14",
+  "sector": "1CS3",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-17",
+  "sector": "1CS1",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-17",
+  "sector": "1CS1",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-17",
+  "sector": "1CS2",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-17",
+  "sector": "1CS3",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-17",
+  "sector": "1CS4",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-17",
+  "sector": "1CS4",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS1",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS2",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS2",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS3",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS4",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS5",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-18",
+  "sector": "1CS5",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS1",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS2",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS3",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS3",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS4",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS5",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS6",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-19",
+  "sector": "1CS6",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS1",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS1",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS11",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS11",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS2",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS3",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS4",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS4",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS5",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-20",
+  "sector": "1CS6",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS1",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS11",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS12",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS12",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS2",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS2",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS3",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS4",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS5",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS5",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-21",
+  "sector": "1CS6",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS1",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS11",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS12",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS13",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS13",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS2",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS3",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS3",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS4",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS5",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS6",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-24",
+  "sector": "1CS6",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS1",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS11",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS11",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS12",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS13",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS14",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS14",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS2",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS3",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS4",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS4",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS5",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-25",
+  "sector": "1CS6",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS11",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS12",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS12",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS13",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS14",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS15",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS15",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS2",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS3",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS4",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS5",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS5",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1CS6",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1PS1",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-26",
+  "sector": "1PS1",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS11",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS12",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS13",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS13",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS14",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS15",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS3",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS4",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS5",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS6",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS6",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS7",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1CS7",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1PS2",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-27",
+  "sector": "1PS2",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS11",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS11",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS12",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS13",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS14",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS14",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS15",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS4",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS5",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS6",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS7",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS8",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1CS8",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1PS1",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1PS3",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-28",
+  "sector": "1PS3",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS10",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS10",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS11",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS12",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS12",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS13",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS14",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS15",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS15",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS5",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS6",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS7",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1CS8",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS1",
+  "actividad": "ACERO BASE ESCALERA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO BASE ESCALERA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS1",
+  "actividad": "CONCRETO BASE ESCALERA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS2",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS4",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-08-31",
+  "sector": "1PS4",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS10",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS11",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS12",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS13",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS13",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS14",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS15",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS16",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS16",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS6",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS7",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS7",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1CS8",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS1",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO 1ER TRAMO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS3",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS5",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-01",
+  "sector": "1PS5",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS10",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS11",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS12",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS13",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS14",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS14",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS15",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS16",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS17",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS17",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS7",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS8",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1CS8",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS1",
+  "actividad": "ACERO 1ER TRAMO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS19",
+  "actividad": "TRAZO Y REPLANTEO DE COL",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS19",
+  "actividad": "ENCOFRADO DE COL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS2",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS4",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS6",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-02",
+  "sector": "1PS6",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS10",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS10",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS12",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS13",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS14",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS15",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS15",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS16",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS17",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS18",
+  "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS18",
+  "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS7",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1CS8",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS1",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS1",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS1",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO 2DO TRAMO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS11",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS11",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS19",
+  "actividad": "CONCRETO DE COL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS20",
+  "actividad": "TRAZO Y REPLANTEO DE COL",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS20",
+  "actividad": "ENCOFRADO DE COL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS3",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS5",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-03",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS10",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS13",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS14",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS15",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS16",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS16",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS17",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS18",
+  "actividad": "ENCOFRADO DE FALSA ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS7",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS7",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1CS8",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS1",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS1",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS1",
+  "actividad": "ACERO 2DO TRAMO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS12",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS12",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS19",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS2",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS2",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS2",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS20",
+  "actividad": "CONCRETO DE COL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS21",
+  "actividad": "TRAZO Y REPLANTEO DE COL",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS21",
+  "actividad": "ENCOFRADO DE COL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS4",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-04",
+  "sector": "1PS6",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS10",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS14",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS15",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS16",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS17",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS17",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS18",
+  "actividad": "CONCRETO EN FALSA ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS7",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS8",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1CS8",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS1",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS1",
+  "actividad": "CONCRETO EN ESCALERA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS11",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS19",
+  "actividad": "ACERO DE VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS2",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS2",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS20",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS21",
+  "actividad": "CONCRETO DE COL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS22",
+  "actividad": "TRAZO Y REPLANTEO DE COL",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS22",
+  "actividad": "ENCOFRADO DE COL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS3",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS3",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS3",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS5",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS6",
+  "actividad": "ACERO BASE ESCALERA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO BASE ESCALERA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS6",
+  "actividad": "CONCRETO BASE ESCALERA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS9",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-07",
+  "sector": "1PS9",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS10",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS10",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS15",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS16",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS17",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS18",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS18",
+  "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS7",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1CS8",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS12",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS19",
+  "actividad": "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS2",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS20",
+  "actividad": "ACERO DE VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS21",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS22",
+  "actividad": "CONCRETO DE COL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS23",
+  "actividad": "TRAZO Y REPLANTEO DE COL",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS23",
+  "actividad": "ENCOFRADO DE COL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS3",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS3",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS4",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS4",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS4",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS6",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO 1ER TRAMO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "2PS1",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-08",
+  "sector": "2PS1",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS10",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS16",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS16",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS17",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS18",
+  "actividad": "ACERO INFERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS7",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1CS8",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS11",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS19",
+  "actividad": "ACERO DE LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS20",
+  "actividad": "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS21",
+  "actividad": "ACERO DE VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS22",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS23",
+  "actividad": "CONCRETO DE COL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS3",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS4",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS4",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS5",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS5",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS5",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS6",
+  "actividad": "ACERO 1ER TRAMO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "1PS9",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "2PS1",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "2PS2",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-09",
+  "sector": "2PS2",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1CS10",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1CS16",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1CS17",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1CS17",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1CS18",
+  "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1CS8",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS12",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS19",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS19",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS19",
+  "actividad": "ACERO VERTICAL DE SARDINEL",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS20",
+  "actividad": "ACERO DE LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS21",
+  "actividad": "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS22",
+  "actividad": "ACERO DE VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS23",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS4",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS5",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS5",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS6",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS6",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS6",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO 2DO TRAMO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "2PS1",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "2PS2",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "2PS3",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-10",
+  "sector": "2PS3",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1CS10",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1CS16",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1CS17",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1CS18",
+  "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1CS18",
+  "actividad": "ACERO SUPERIOR EN ZAPATAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS11",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS11",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS11",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS19",
+  "actividad": "CONCRETO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS20",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS20",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS20",
+  "actividad": "ACERO VERTICAL DE SARDINEL",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS21",
+  "actividad": "ACERO DE LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS22",
+  "actividad": "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS23",
+  "actividad": "ACERO DE VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS5",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS6",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS6",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS6",
+  "actividad": "ACERO 2DO TRAMO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "1PS9",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "2PS1",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "2PS2",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "2PS3",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "2PS4",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-11",
+  "sector": "2PS4",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1CS16",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1CS17",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1CS18",
+  "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS11",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS11",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS12",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS12",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS12",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS20",
+  "actividad": "CONCRETO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS21",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS21",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS21",
+  "actividad": "ACERO VERTICAL DE SARDINEL",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS22",
+  "actividad": "ACERO DE LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS23",
+  "actividad": "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS6",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS6",
+  "actividad": "CONCRETO EN ESCALERA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "2PS1",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "2PS2",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "2PS3",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "2PS4",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "2PS5",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-14",
+  "sector": "2PS5",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1CS17",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1CS18",
+  "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS1",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS11",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS12",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS12",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS21",
+  "actividad": "CONCRETO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS22",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS22",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS22",
+  "actividad": "ACERO VERTICAL DE SARDINEL",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS23",
+  "actividad": "ACERO DE LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS9",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS9",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "1PS9",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS1",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS2",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS3",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS4",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS5",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS6",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-15",
+  "sector": "2PS6",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1CS18",
+  "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS1",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS1",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS12",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS13",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS13",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS2",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS22",
+  "actividad": "CONCRETO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS23",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS23",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS23",
+  "actividad": "ACERO VERTICAL DE SARDINEL",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS9",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "1PS9",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS1",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS1",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS1",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS2",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS3",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS4",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS5",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-16",
+  "sector": "2PS6",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS1",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS1",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS14",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS14",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS2",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS2",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS23",
+  "actividad": "CONCRETO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS3",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "1PS9",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS1",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS1",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS1",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS2",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS2",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS2",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS3",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS4",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS5",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-17",
+  "sector": "2PS6",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS1",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS13",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS15",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS15",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS2",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS2",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS3",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS3",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "1PS4",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS1",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS2",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS2",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS2",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS3",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS3",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS3",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS4",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS5",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-18",
+  "sector": "2PS6",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS1",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS14",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS19",
+  "actividad": "ENCOFRADO DE SARDINEL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS2",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS3",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS3",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS4",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS4",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS5",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS7",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "1PS7",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS2",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS3",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS3",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS3",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS4",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS4",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS4",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS5",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-21",
+  "sector": "2PS6",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS1",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS13",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS15",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS19",
+  "actividad": "CONCRETO DE SARDINEL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS2",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS20",
+  "actividad": "ENCOFRADO DE SARDINEL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS3",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS4",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS4",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS5",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS5",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS6",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS8",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "1PS8",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS3",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS4",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS4",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS4",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS5",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS5",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS5",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-22",
+  "sector": "2PS6",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS1",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS1",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS10",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS10",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS11",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS14",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS19",
+  "actividad": "TARRAJEO DE FONDO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS2",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS20",
+  "actividad": "CONCRETO DE SARDINEL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS21",
+  "actividad": "ENCOFRADO DE SARDINEL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS3",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS4",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS5",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS5",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS6",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS6",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS7",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS4",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS5",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS5",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS5",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS6",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS6",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-23",
+  "sector": "2PS6",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS1",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS11",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS11",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS12",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS13",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS13",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS13",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS15",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS16",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS16",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS19",
+  "actividad": "TARRAJEO DE COLUMNAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS2",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS2",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS20",
+  "actividad": "TARRAJEO DE FONDO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS21",
+  "actividad": "CONCRETO DE SARDINEL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS22",
+  "actividad": "ENCOFRADO DE SARDINEL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS3",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS4",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS5",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS6",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS6",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "1PS8",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "2PS5",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "2PS6",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "2PS6",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-24",
+  "sector": "2PS6",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS1",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS1",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS1",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS10",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS11",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS11",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS12",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS12",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS13",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS13",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS14",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS14",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS14",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS17",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS17",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS19",
+  "actividad": "INS. BARANDA Y PASAMANOS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS2",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS20",
+  "actividad": "TARRAJEO DE COLUMNAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS21",
+  "actividad": "TARRAJEO DE FONDO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS22",
+  "actividad": "CONCRETO DE SARDINEL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS23",
+  "actividad": "ENCOFRADO DE SARDINEL",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS3",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS3",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS4",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS5",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS6",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS7",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "1PS9",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-25",
+  "sector": "2PS6",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS1",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS11",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS12",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS12",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS13",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS14",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS14",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS15",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS15",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS15",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS16",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS18",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS18",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS2",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS2",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS2",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS20",
+  "actividad": "INS. BARANDA Y PASAMANOS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS21",
+  "actividad": "TARRAJEO DE COLUMNAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS22",
+  "actividad": "TARRAJEO DE FONDO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS23",
+  "actividad": "CONCRETO DE SARDINEL",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS3",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS4",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS4",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS5",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS6",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS8",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS9",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-28",
+  "sector": "1PS9",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS1",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS10",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS11",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS12",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS14",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS15",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS15",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS17",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS2",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS21",
+  "actividad": "INS. BARANDA Y PASAMANOS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS22",
+  "actividad": "TARRAJEO DE COLUMNAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS23",
+  "actividad": "TARRAJEO DE FONDO PARA TABLERO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS3",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS3",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS3",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS4",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS5",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS5",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS6",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS7",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS7",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS7",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS9",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "1PS9",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "2PS13",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-29",
+  "sector": "2PS13",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS1",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS11",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS12",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS15",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS16",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS18",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS2",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS22",
+  "actividad": "INS. BARANDA Y PASAMANOS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS23",
+  "actividad": "TARRAJEO DE COLUMNAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS3",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS4",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS4",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS4",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS5",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS6",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS6",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS7",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS7",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS8",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS8",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS8",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "1PS9",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "2PS13",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "2PS14",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-09-30",
+  "sector": "2PS14",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS1",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS10",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS10",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS10",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS11",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS11",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS12",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS17",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS2",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS23",
+  "actividad": "INS. BARANDA Y PASAMANOS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS3",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS4",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS5",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS5",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS5",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS6",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS7",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS8",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS8",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "1PS9",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "2PS13",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "2PS14",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "2PS15",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-01",
+  "sector": "2PS15",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS1",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS10",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS10",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS11",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS12",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS12",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS16",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS16",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS16",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS18",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS2",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS3",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS4",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS5",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS6",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS6",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS6",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS8",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "1PS9",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "2PS1",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "2PS13",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "2PS14",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-02",
+  "sector": "2PS15",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS1",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS10",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS11",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS11",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS11",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS12",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS16",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS16",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS17",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS17",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS17",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS2",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS3",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS4",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS6",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS6",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS9",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "1PS9",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "2PS1",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "2PS13",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "2PS14",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "2PS15",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-05",
+  "sector": "2PS2",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS1",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS11",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS12",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS12",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS12",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS13",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS16",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS17",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS17",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS18",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS18",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS18",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS2",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS3",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS4",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS5",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS6",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "1PS9",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS1",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS1",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS13",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS14",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS15",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS2",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-06",
+  "sector": "2PS3",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS1",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS11",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS12",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS13",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS13",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS14",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS17",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS18",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS18",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS2",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS3",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS4",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS5",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS6",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS9",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS9",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "1PS9",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS1",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS1",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS13",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS13",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS13",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS14",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS15",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS16",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS16",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS2",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS2",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS3",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-07",
+  "sector": "2PS4",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS1",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS11",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS12",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS13",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS13",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS14",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS14",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS15",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS18",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS2",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS3",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS4",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS5",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS6",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "1PS9",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS1",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS1",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS1",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS13",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS13",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS13",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS14",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS14",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS14",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS15",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS16",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS17",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS17",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS2",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS2",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS3",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS3",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS4",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-08",
+  "sector": "2PS5",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS1",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS11",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS12",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS13",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS14",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS14",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS15",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS15",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS2",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS3",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS4",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS5",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS6",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS7",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "1PS9",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS1",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS13",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS14",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS14",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS14",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS15",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS15",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS15",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS16",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS17",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS18",
+  "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS18",
+  "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS2",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS2",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS2",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS3",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS3",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS4",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS4",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS5",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-09",
+  "sector": "2PS6",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS11",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS12",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS13",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS14",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS15",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS15",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS2",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS3",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS4",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS5",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS6",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS7",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS7",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS8",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "1PS9",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS1",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS14",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS15",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS15",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS15",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS16",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS17",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS18",
+  "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS2",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS3",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS3",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS3",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS4",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS4",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS5",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS5",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-12",
+  "sector": "2PS6",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS10",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS11",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS12",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS13",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS14",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS15",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS3",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS4",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS5",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS6",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS7",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS7",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS8",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS8",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "1PS9",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS1",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS15",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS16",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS17",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS18",
+  "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS2",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS3",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS4",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS4",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS4",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS5",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS5",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS6",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-13",
+  "sector": "2PS6",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS10",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS10",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS11",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS12",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS13",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS13",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS14",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS15",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS16",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS4",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS5",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS6",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS7",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS8",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS8",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "1PS9",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS1",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS16",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS17",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS18",
+  "actividad": "ENCOFRADO DE FONDO DE VIGA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS2",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS3",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS4",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS5",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS5",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS5",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS6",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-14",
+  "sector": "2PS6",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS10",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS10",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS11",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS12",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS13",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS14",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS14",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS15",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS16",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS16",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS17",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS5",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS6",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS7",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS8",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "1PS9",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS1",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS16",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS16",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS16",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS17",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS18",
+  "actividad": "ACERO EN VIGAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS2",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS3",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS4",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS5",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS6",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS6",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-15",
+  "sector": "2PS6",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS10",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS11",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS12",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS13",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS13",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS13",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS14",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS15",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS15",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS16",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS16",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS17",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS17",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS18",
+  "actividad": "DESENCOFRADO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS6",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS7",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS8",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "1PS9",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS1",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS16",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS16",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS16",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS17",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS17",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS17",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS18",
+  "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS2",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS3",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS4",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS5",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-16",
+  "sector": "2PS6",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS10",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS11",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS12",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS13",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS14",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS14",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS14",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS15",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS16",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS17",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS17",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS18",
+  "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS18",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS7",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS7",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS8",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "1PS9",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS1",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS16",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS17",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS17",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS17",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS18",
+  "actividad": "LADRILLO PARA TECHO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS18",
+  "actividad": "II.SS EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS18",
+  "actividad": "ACERO EN LOSA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS2",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS3",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS4",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS5",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-19",
+  "sector": "2PS6",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS10",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS12",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS13",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS14",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS15",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS15",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS15",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS16",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS17",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS18",
+  "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS18",
+  "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS7",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS8",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS8",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "1PS9",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS1",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS17",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS18",
+  "actividad": "II.EE EN LOSA",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS18",
+  "actividad": "ENCOFRADO FRISO DE LOSA",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS18",
+  "actividad": "ACERO DE TEMPERATURA",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS2",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS3",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS4",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS5",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-20",
+  "sector": "2PS6",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS10",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS10",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS13",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS14",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS15",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS16",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS17",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS18",
+  "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS7",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS7",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS7",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS8",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "1PS9",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS1",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS18",
+  "actividad": "CONCRETO EN LOSA",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS2",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS3",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS4",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS5",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-21",
+  "sector": "2PS6",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS10",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS13",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS14",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS15",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS16",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS16",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS17",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS18",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS7",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS8",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS8",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "1PS8",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "2PS1",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "2PS2",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "2PS3",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "2PS4",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "2PS5",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-22",
+  "sector": "2PS6",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS10",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS10",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS10",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS13",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS14",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS15",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS16",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS17",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS17",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS18",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS7",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "1PS8",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "2PS2",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "2PS3",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "2PS4",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "2PS5",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-23",
+  "sector": "2PS6",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS10",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS13",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS14",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS15",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS16",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS16",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS16",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS17",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS18",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS18",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS7",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "1PS8",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "2PS13",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "2PS3",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "2PS4",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "2PS5",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-26",
+  "sector": "2PS6",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS10",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS13",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS14",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS15",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS16",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS17",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS17",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS17",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS18",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS7",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "1PS8",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "2PS13",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "2PS13",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "2PS14",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "2PS4",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "2PS5",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-27",
+  "sector": "2PS6",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS10",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS13",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS14",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS15",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS16",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS17",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS18",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS18",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS18",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS7",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "1PS8",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS13",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS13",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS14",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS14",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS15",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS5",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-28",
+  "sector": "2PS6",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS10",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS13",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS14",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS15",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS16",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS17",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS18",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS7",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "1PS8",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS13",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS13",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS13",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS14",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS14",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS15",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS15",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-29",
+  "sector": "2PS6",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS10",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS13",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS14",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS15",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS16",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS17",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS18",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS7",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "1PS8",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "2PS13",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "2PS14",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "2PS14",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "2PS14",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "2PS15",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-10-30",
+  "sector": "2PS15",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS10",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS14",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS15",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS16",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS17",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS18",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS7",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "1PS8",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "2PS13",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "2PS14",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "2PS15",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "2PS15",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-02",
+  "sector": "2PS15",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS10",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS15",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS16",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS17",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS18",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS7",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "1PS8",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "2PS13",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "2PS14",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "2PS15",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "2PS16",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-03",
+  "sector": "2PS17",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "1PS10",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "1PS16",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "1PS17",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "1PS18",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "1PS7",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "1PS8",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS13",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS14",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS15",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS16",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS16",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS17",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-04",
+  "sector": "2PS18",
+  "actividad": "ASENTADO LADRILLO (H1)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "1PS10",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "1PS16",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "1PS17",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "1PS18",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "1PS8",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS13",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS14",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS15",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS16",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS16",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS17",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS17",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-05",
+  "sector": "2PS18",
+  "actividad": "ASENTADO LADRILLO (H2)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "1PS10",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "1PS16",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "1PS17",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "1PS18",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS13",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS14",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS15",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS16",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS16",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS16",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS17",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS17",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS18",
+  "actividad": "ACERO EN COLUMNETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-06",
+  "sector": "2PS18",
+  "actividad": "II.EE EN MURO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "1PS16",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "1PS17",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "1PS18",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS13",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS14",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS15",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS16",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS17",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS17",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS17",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS18",
+  "actividad": "ENCOFRADO DE COLUMNETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-09",
+  "sector": "2PS18",
+  "actividad": "CONCRETO EN COLUMNETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "1PS17",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "1PS18",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS13",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS14",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS15",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS16",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS17",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS18",
+  "actividad": "ACERO EN VIGUETAS",
+  "tipo": "ACERO"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS18",
+  "actividad": "ENCOFRADO DE VIGUETAS",
+  "tipo": "ENCOFRADO"
+ },
+ {
+  "fecha": "2026-11-10",
+  "sector": "2PS18",
+  "actividad": "CONCRETO EN VIGUETAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "1PS18",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "2PS13",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "2PS14",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "2PS15",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "2PS16",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "2PS17",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-11",
+  "sector": "2PS18",
+  "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-12",
+  "sector": "2PS13",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-12",
+  "sector": "2PS14",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-12",
+  "sector": "2PS15",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-12",
+  "sector": "2PS16",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-12",
+  "sector": "2PS17",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-12",
+  "sector": "2PS18",
+  "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-13",
+  "sector": "2PS14",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-13",
+  "sector": "2PS15",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-13",
+  "sector": "2PS16",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-13",
+  "sector": "2PS17",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-13",
+  "sector": "2PS18",
+  "actividad": "TARRAJEO CIELORASO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-16",
+  "sector": "2PS15",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-16",
+  "sector": "2PS16",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-16",
+  "sector": "2PS17",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-16",
+  "sector": "2PS18",
+  "actividad": "RELLENO A NIVEL DE FALSO PISO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-17",
+  "sector": "2PS16",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-17",
+  "sector": "2PS17",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-17",
+  "sector": "2PS18",
+  "actividad": "CONCRETO FALSO PISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-18",
+  "sector": "2PS16",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-18",
+  "sector": "2PS17",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-18",
+  "sector": "2PS18",
+  "actividad": "CONCRETO CONTRAPISO",
+  "tipo": "CONCRETO"
+ },
+ {
+  "fecha": "2026-11-19",
+  "sector": "2PS16",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-19",
+  "sector": "2PS17",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-19",
+  "sector": "2PS18",
+  "actividad": "ACABADO DE PISO (PORCELANATO)",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-20",
+  "sector": "2PS16",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-20",
+  "sector": "2PS17",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-20",
+  "sector": "2PS18",
+  "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-23",
+  "sector": "2PS17",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-23",
+  "sector": "2PS18",
+  "actividad": "PUERTAS",
+  "tipo": "VARIOS"
+ },
+ {
+  "fecha": "2026-11-24",
+  "sector": "2PS18",
+  "actividad": "VENTAS",
+  "tipo": "VARIOS"
+ }
+]
