@@ -154,8 +154,15 @@ Este es el punto clave: **la hora no vive en el código**.
 GitHub solo acepta un `cron:` fijo dentro del archivo del workflow, así que ahí la
 hora sería intocable sin editar código. Por eso el workflow se **despierta cada
 media hora** dentro de una franja amplia, y un **portero** (`trello_auto/portero.py`)
-deja pasar **una sola corrida al día**: la que cae en la hora configurada. Esa hora
-está en `horario.json`, que se edita desde el navegador.
+solo deja pasar las citas que caen en la ventana que abre a la hora configurada.
+Esa hora está en `horario.json`, que se edita desde el navegador.
+
+Los `cron` están puestos en los **minutos 7 y 37, nunca en punto ni a la media**:
+GitHub retrasa o descarta las tareas programadas cuando tiene carga, y las horas
+en punto son las más congestionadas. Por lo mismo la ventana del portero es ancha
+(90 min por defecto): si una cita se pierde, la siguiente todavía sirve. Que entren
+dos corridas no hace daño — crear tarjetas no duplica nada, y el cierre no
+encuentra nada que mover la segunda vez.
 
 ### Opción A — el botón (recomendado)
 
@@ -293,7 +300,7 @@ Todo se resuelve por prioridad: **variable de entorno** → **`horario.json`** �
 | `DIAS_HABILES` | `1-5` | Días que corre (1 = lunes) |
 | `CRITERIO_CIERRE` | `checklist` | `checklist` / `auto` / `marcada` |
 | `COPIAR_DE_PLANTILLA` | `checklists,labels` | Qué partes de la plantilla se copian |
-| `VENTANA_MIN` | `35` | Tolerancia del portero, en minutos |
+| `VENTANA_MIN` | `90` | Tolerancia del portero, en minutos |
 
 Los **nombres de listas** se resuelven por **palabra clave** (sin acentos ni
 emojis), así que siguen funcionando aunque renombres una lista en Trello:

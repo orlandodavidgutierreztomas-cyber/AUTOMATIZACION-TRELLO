@@ -81,9 +81,14 @@ HORA_CIERRE  = _get("HORA_CIERRE", "20:00")     # a qué hora corre el cierre de
 
 DIAS_HABILES = _get("DIAS_HABILES", "1-5")      # 1=lunes … 7=domingo ("1-5", "1,3,5")
 
-# Tolerancia del "portero" horario: si el reloj de GitHub se atrasa, la corrida
-# sigue siendo válida dentro de esta ventana (en minutos) después de la hora.
-VENTANA_MIN  = int(_get("VENTANA_MIN", "35"))
+# Tolerancia del "portero" horario, en minutos: la corrida sigue siendo válida
+# dentro de esta ventana después de la hora configurada.
+#
+# Es ancha a propósito. GitHub retrasa —y a veces descarta— las tareas
+# programadas cuando tiene carga, así que una ventana corta puede dejarte un día
+# sin tarjetas. Y no hay riesgo en que pasen varias corridas: crear tarjetas no
+# duplica ninguna, y el cierre no encuentra nada que mover la segunda vez.
+VENTANA_MIN  = int(_get("VENTANA_MIN", "90"))
 
 # ---------------------------------------------------------------------------
 # LISTAS DEL TABLERO — se buscan por PALABRA CLAVE

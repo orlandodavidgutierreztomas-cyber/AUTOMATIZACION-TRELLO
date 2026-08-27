@@ -12,10 +12,12 @@ name: 2. Cierre del dia
 
 on:
   schedule:
-    # Cada 30 min de 21:00 a 23:30 UTC (16:00-18:30 Peru) ...
-    - cron: "0,30 21-23 * * 1-5"
-    # ... y de 00:00 a 04:30 UTC del dia siguiente (19:00-23:30 Peru).
-    - cron: "0,30 0-4 * * 2-6"
+    # Cada 30 min de 21:07 a 23:37 UTC (16:07-18:37 Peru) ...
+    - cron: "7,37 21-23 * * 1-5"
+    # ... y de 00:07 a 04:37 UTC del dia siguiente (19:07-23:37 Peru).
+    - cron: "7,37 0-4 * * 2-6"
+    # Minutos 7 y 37 a proposito: GitHub descarta tareas programadas en punto
+    # y a la media, que son las horas de mayor congestion.
 
   workflow_dispatch:
     inputs:

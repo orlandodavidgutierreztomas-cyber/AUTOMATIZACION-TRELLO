@@ -14,10 +14,17 @@ name: 1. Crear tarjetas del dia
 
 on:
   schedule:
-    # Cada 30 min entre 09:00 y 17:30 UTC, de lunes a viernes.
-    # Eso cubre cualquier hora de creacion entre las 04:00 y las 12:30 en Peru.
-    # El portero deja pasar UNA sola corrida: la de la hora configurada.
-    - cron: "0,30 9-17 * * 1-5"
+    # Cada 30 min entre las 09:07 y las 17:37 UTC, de lunes a viernes.
+    # Cubre cualquier hora de creacion entre las 04:00 y las 12:30 en Peru.
+    #
+    # OJO con los minutos 7 y 37: GitHub retrasa o DESCARTA las tareas
+    # programadas cuando hay mucha carga, y la hora en punto (:00) y la media
+    # (:30) son los momentos de mayor congestion. Por eso NO se programa ahi.
+    #
+    # El portero deja pasar las citas de la ventana que abre a la hora
+    # configurada. Si GitHub dispara varias, no pasa nada: crear tarjetas es
+    # idempotente y la segunda corrida no duplica ninguna.
+    - cron: "7,37 9-17 * * 1-5"
 
   workflow_dispatch:
     inputs:

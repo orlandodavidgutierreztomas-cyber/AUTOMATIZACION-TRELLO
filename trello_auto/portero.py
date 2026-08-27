@@ -14,8 +14,8 @@ al codigo, editarlo y hacer commit.
 LA SOLUCION
 -----------
 El workflow se despierta cada media hora dentro de una franja amplia, y este
-portero deja pasar UNA sola corrida al dia: la primera que cae dentro de la
-ventana que empieza a la hora configurada (`HORA_CREAR` / `HORA_CIERRE`).
+portero solo deja pasar las citas que caen en la ventana que abre a la hora
+configurada (`HORA_CREAR` / `HORA_CIERRE`); el resto del dia se apaga solo.
 
 Esa hora vive en `horario.json` (o en una Variable del repositorio), y se
 cambia desde el navegador con el workflow "Cambiar horario" -> Run workflow.
