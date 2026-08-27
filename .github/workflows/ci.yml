@@ -1,0 +1,47 @@
+# ===========================================================================
+#  CI - revisa que el proyecto siga sano en cada cambio.
+#  No toca Trello: solo prueba la logica y lee el cronograma.
+# ===========================================================================
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
+
+      - name: Revisar el estilo del codigo
+        run: ruff check trello_auto tests
+
+      - name: Pruebas
+        run: pytest -q
+
+      - name: Ensayo en seco del cronograma (sin tocar Trello)
+        run: python -m trello_auto.crear_tarjetas --fecha 2026-08-27 --dry-run
+
+      - name: Validar horario.json
+        run: python -m trello_auto.guardar_horario --ver

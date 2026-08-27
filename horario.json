@@ -1,0 +1,8 @@
+{
+  "HORA_CREAR": "06:30",
+  "HORA_CIERRE": "20:00",
+  "HORA_INICIO": "07:00",
+  "HORA_FIN": "17:00",
+  "DIAS_HABILES": "1-5",
+  "TZ_OBRA": "America/Lima"
+}
