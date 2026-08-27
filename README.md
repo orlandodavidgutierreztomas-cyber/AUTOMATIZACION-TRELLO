@@ -47,8 +47,9 @@ la columna del día que le toca. El script:
    `PLANTILLA_…`). El emparejamiento se hace **leyendo el tablero en vivo**,
    comparando nombres sin acentos ni emojis — sin ningún ID escrito en el código.
 4. **Crea la tarjeta** `SECTOR — ACTIVIDAD — DD/MM/AAAA` en la lista del día correcta:
-   - **copiando de la plantilla** su **descripción** y **todos sus checklists** con
-     sus ítems (vía `idCardSource` + `keepFromSource=checklists` de la API de Trello);
+   - **copiando de la plantilla** su **descripción**, **todos sus checklists** con
+     sus ítems y sus **etiquetas** (vía `idCardSource` + `keepFromSource` de la API
+     de Trello);
    - con **hora de inicio** (`HORA_INICIO`) y **hora de fin** (`HORA_FIN`) de ese día,
      en la hora local de la obra (por defecto 07:00 → 17:00, `America/Lima`).
 
@@ -79,6 +80,20 @@ al tablero, sin checklist, contará como no cumplida.
 
 También puedes elegir otro criterio en cada corrida manual, desde el botón
 *Run workflow* (déjalo en `configurado` para usar el de siempre).
+
+### Qué se copia de la plantilla, y qué no
+
+La API de Trello obliga a **listar** qué partes traer al duplicar una tarjeta: lo
+que no se pide, no se copia. Eso se controla con `COPIAR_DE_PLANTILLA`, que por
+defecto vale `checklists,labels`. Puedes añadir `members`, `attachments`,
+`comments`, `stickers`, `customFields`, o poner `all` para traer todo.
+
+**No pongas `due` ni `start`**: las fechas las calcula el script con el horario del
+día, no las hereda de la plantilla. La **descripción** se copia siempre, aparte.
+
+Así, todo lo que quieras que lleven las tarjetas —ítems de calidad, etiquetas de
+color, el texto de la descripción— se edita **en la plantilla dentro de Trello**, y
+rige desde el día siguiente sin tocar el código ni subir nada a GitHub.
 
 > ⚠ Los ítems de `CHECKLIST_POR_TIPO` que trae el repo son **genéricos, para no
 > dejar tarjetas sin control**. Reemplázalos por tu plantilla real de calidad
@@ -277,6 +292,7 @@ Todo se resuelve por prioridad: **variable de entorno** → **`horario.json`** �
 | `HORA_CREAR` / `HORA_CIERRE` | `06:30` / `20:00` | Hora de cada automatización |
 | `DIAS_HABILES` | `1-5` | Días que corre (1 = lunes) |
 | `CRITERIO_CIERRE` | `checklist` | `checklist` / `auto` / `marcada` |
+| `COPIAR_DE_PLANTILLA` | `checklists,labels` | Qué partes de la plantilla se copian |
 | `VENTANA_MIN` | `35` | Tolerancia del portero, en minutos |
 
 Los **nombres de listas** se resuelven por **palabra clave** (sin acentos ni

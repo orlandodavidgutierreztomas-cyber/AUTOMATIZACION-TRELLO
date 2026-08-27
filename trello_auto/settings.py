@@ -115,6 +115,20 @@ TIPOS = ("ACERO", "ENCOFRADO", "CONCRETO", "VARIOS")
 CRITERIO_CIERRE = _get("CRITERIO_CIERRE", "checklist").lower()
 
 # ---------------------------------------------------------------------------
+# QUÉ SE COPIA DE LA TARJETA PLANTILLA
+# La API de Trello obliga a decir qué partes traer al duplicar una tarjeta:
+# lo que no se pide, no se copia. Valores válidos, separados por coma:
+#   checklists · labels · members · attachments · comments · stickers
+#   customFields  (o "all" para traer absolutamente todo)
+#
+# OJO: no incluyas "due" ni "start" — las fechas las pone el script con el
+# horario del día (HORA_INICIO / HORA_FIN), no las de la plantilla.
+#
+# La descripción se copia siempre, aparte (no es parte de esta lista).
+# ---------------------------------------------------------------------------
+COPIAR_DE_PLANTILLA = _get("COPIAR_DE_PLANTILLA", "checklists,labels")
+
+# ---------------------------------------------------------------------------
 # CHECKLIST DE RESPALDO, por tipo de trabajo.
 # Solo se usa cuando la actividad TODAVÍA NO tiene tarjeta PLANTILLA en el
 # tablero. Si la plantilla existe, se copian sus checklists reales tal cual.

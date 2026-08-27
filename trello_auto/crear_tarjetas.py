@@ -14,7 +14,10 @@ una FECHA dada y, por cada uno, crea en Trello una tarjeta que:
 
   - Se llama  "[SECTOR] - [ACTIVIDAD] - DD/MM/AAAA".
   - COPIA de la tarjeta PLANTILLA del tablero (las que viven en las listas
-    "PLANTILLA_..."):  su DESCRIPCION  y  todos sus CHECKLISTS con sus items.
+    "PLANTILLA_..."):  su DESCRIPCION, todos sus CHECKLISTS con sus items, y
+    sus ETIQUETAS. Que partes se copian se controla con
+    settings.COPIAR_DE_PLANTILLA (la API de Trello exige listarlas: lo que no
+    se pide, no se copia).
   - Lleva HORA DE INICIO y HORA DE FIN (rango de fechas de Trello), tomadas
     de la configuracion (HORA_INICIO / HORA_FIN, hora local de la obra).
   - Se coloca en la lista del dia correcta segun el tipo de trabajo
@@ -237,7 +240,7 @@ def main() -> int:
             if pl:
                 # Copia descripcion y TODOS los checklists desde la plantilla.
                 params["idCardSource"] = pl["id"]
-                params["keepFromSource"] = "checklists"
+                params["keepFromSource"] = config.COPIAR_DE_PLANTILLA
                 params["desc"] = pl["desc"]
             else:
                 params["desc"] = descripcion_generada(t, fecha_txt)
