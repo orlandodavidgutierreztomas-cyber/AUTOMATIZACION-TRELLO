@@ -7,8 +7,8 @@ tablero real.
 
 import pytest
 
-from trello_auto import ajustes
-from trello_auto.cierre import esta_terminada
+from trello_auto import ajustes, horario
+from trello_auto.cierre import esta_terminada, origenes_de_la_fase
 from trello_auto.distribuir import partes_del_nombre
 from trello_auto.trello import (
     actividad_de_plantilla,
@@ -193,3 +193,42 @@ def test_de_la_plantilla_se_copian_checklists_y_etiquetas():
     assert "checklists" in partes and "labels" in partes
     # Las fechas las pone el robot con el horario del dia, nunca la plantilla.
     assert "due" not in partes and "start" not in partes
+
+
+# --- el cierre en dos fases -------------------------------------------------
+def test_la_fase_de_gracia_solo_barre_las_listas_del_dia():
+    """En el fin de jornada NO se toca la lista de gracia: es el destino."""
+    origenes = origenes_de_la_fase("gracia")
+    assert ajustes.LISTA_POR_CERRAR not in origenes
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_de_familia(familia) in origenes
+
+
+def test_el_cierre_final_barre_primero_la_lista_de_gracia():
+    origenes = origenes_de_la_fase("final")
+    assert origenes[0] == ajustes.LISTA_POR_CERRAR
+    # Y tambien las del dia, por si la fase de gracia no llego a correr
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_de_familia(familia) in origenes
+
+
+def test_una_tarjeta_incompleta_sobrevive_a_la_fase_de_gracia():
+    """El caso que motiva el margen: al fin de jornada le falta un item, y
+    todavia se puede salvar antes del cierre definitivo."""
+    a_medias = _card(items=["complete", "incomplete"])
+    assert esta_terminada(a_medias, "checklist") is False   # -> va a gracia
+    # El especialista marca el item que faltaba durante el margen...
+    completada = _card(items=["complete", "complete"])
+    assert esta_terminada(completada, "checklist") is True   # -> culmina
+
+
+def test_el_cierre_final_tiene_su_propio_reloj():
+    assert "cierre_final" in ajustes.TAREAS
+    hora_gracia = ajustes.hora_de("cierre")
+    hora_final = ajustes.hora_de("cierre_final")
+    horario.parse_hhmm(hora_gracia)
+    horario.parse_hhmm(hora_final)
+    # El definitivo va DESPUES del fin de jornada: si no, no hay margen.
+    assert hora_final > hora_gracia, (
+        f"el cierre definitivo ({hora_final}) debe ir despues del fin de "
+        f"jornada ({hora_gracia}), o el margen de gracia no existe")

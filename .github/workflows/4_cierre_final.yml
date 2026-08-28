@@ -1,5 +1,5 @@
 # ===========================================================================
-#  ROBOT 3 - Cierre del dia (fase de gracia)
+#  ROBOT 4 - Cierre definitivo del dia
 # ---------------------------------------------------------------------------
 #  LA HORA NO SE CAMBIA AQUI. El cron de abajo solo despierta el proceso cada
 #  media hora; quien decide si de verdad toca ejecutar es el PORTERO, que lee
@@ -11,12 +11,12 @@
 #  Este cron es la RED DE SEGURIDAD; el reloj puntual es el servicio externo,
 #  que dispara este mismo workflow por la API a la hora configurada.
 # ===========================================================================
-name: 3. Cierre del dia (margen de gracia)
+name: 4. Cierre definitivo
 
 on:
   schedule:
-    - cron: "7,37 20-23 * * 1-5"
-    - cron: "7,37 0-4 * * 2-6"
+    - cron: "7,37 22-23 * * 1-5"
+    - cron: "7,37 0-6 * * 2-6"
   workflow_dispatch:
     inputs:
       criterio:
@@ -32,14 +32,14 @@ on:
         type: boolean
 
 concurrency:
-  group: cierre
+  group: cierre-final
   cancel-in-progress: false
 
 permissions:
   contents: read
 
 jobs:
-  cierre:
+  cierre_final:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -59,11 +59,11 @@ jobs:
         if: github.event_name == 'schedule'
         env:
           TZ_OBRA: ${{ vars.TZ_OBRA }}
-          HORA_CIERRE: ${{ vars.HORA_CIERRE }}
+          HORA_CIERRE_FINAL: ${{ vars.HORA_CIERRE_FINAL }}
           DIAS_HABILES: ${{ vars.DIAS_HABILES }}
-        run: python -m trello_auto.portero --tarea cierre
+        run: python -m trello_auto.portero --tarea cierre_final
 
-      - name: Cierre del dia (gracia)
+      - name: Cierre definitivo
         if: github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true'
         env:
           TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
@@ -74,7 +74,7 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
-          ARGS=(--fase gracia)
+          ARGS=(--fase final)
           if [ -n "${CRITERIO:-}" ] && [ "$CRITERIO" != "configurado" ]; then
             ARGS+=(--criterio "$CRITERIO")
           fi

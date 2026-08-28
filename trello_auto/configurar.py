@@ -16,9 +16,10 @@ QUE SE PUEDE CAMBIAR
   Horas de la jornada   --jornada-inicio 07:00   --jornada-fin 18:30
     (se escriben DENTRO de cada tarjeta de Trello)
 
-  Horas de los robots   --hora-preparar 18:00    --hora-cierre 19:00
-                        --hora-distribuir 05:00  --hora-reporte 15:00
-                        --hora-archivar 21:00
+  Horas de los robots   --hora-preparar 18:00    --hora-distribuir 05:00
+                        --hora-cierre 18:30      (fin de jornada: a gracia)
+                        --hora-cierre-final 21:00 (definitivo: a no cumplidas)
+                        --hora-reporte 15:00     --hora-archivar 22:00
     (despiertan a cada automatizacion; no salen en ninguna tarjeta)
 
   Dias habiles          --dias 1-5
@@ -49,6 +50,7 @@ CAMPOS = [
     ("hora_preparar", "HORA_PREPARAR", "relojes.preparar.hora", "hora"),
     ("hora_distribuir", "HORA_DISTRIBUIR", "relojes.distribuir.hora", "hora"),
     ("hora_cierre", "HORA_CIERRE", "relojes.cierre.hora", "hora"),
+    ("hora_cierre_final", "HORA_CIERRE_FINAL", "relojes.cierre_final.hora", "hora"),
     ("hora_reporte", "HORA_REPORTE", "relojes.reporte.hora", "hora"),
     ("hora_archivar", "HORA_ARCHIVAR", "relojes.archivar.hora", "hora"),
     ("dias", "DIAS_HABILES", "relojes.*.dias", "dias"),

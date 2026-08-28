@@ -21,7 +21,7 @@
     "fin": "17:00"
   },
   "relojes": {
-    "_ayuda": "Estas horas DESPIERTAN A CADA ROBOT. No aparecen en ninguna tarjeta. dias: 1=lunes ... 7=domingo.",
+    "_ayuda": "Estas horas DESPIERTAN A CADA ROBOT. No aparecen en ninguna tarjeta. dias: 1=lunes ... 7=domingo. El cierre va en DOS FASES: a la hora de 'cierre' lo pendiente pasa a la lista de gracia (T. POR CERRAR) y a la de 'cierre_final' lo que siga sin marcar pasa a NO CUMPLIDAS.",
     "preparar": {
       "hora": "18:00",
       "dias": "1-5"
@@ -32,6 +32,10 @@
     },
     "cierre": {
       "hora": "18:00",
+      "dias": "1-5"
+    },
+    "cierre_final": {
+      "hora": "21:00",
       "dias": "1-5"
     },
     "reporte": {
@@ -45,7 +49,7 @@
   },
   "ventana_minutos": 90,
   "listas": {
-    "_ayuda": "Se buscan por PALABRA CLAVE: funcionan aunque la lista tenga emojis, acentos o espacios de mas.",
+    "_ayuda": "Se buscan por PALABRA CLAVE: funcionan aunque la lista tenga emojis, acentos o espacios de mas. 'por_cerrar' es la lista de GRACIA: ahi esperan las tarjetas sin terminar entre el fin de jornada y el cierre definitivo, para dar margen a los especialistas.",
     "espera": "ESPERA",
     "por_cerrar": "T. POR CERRAR",
     "culminado": "CULMINADO",

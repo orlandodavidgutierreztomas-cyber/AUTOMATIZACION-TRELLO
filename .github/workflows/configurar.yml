@@ -31,15 +31,19 @@ on:
         required: false
         default: ""
       hora_cierre:
-        description: "ROBOT 3 · hora del cierre (HH:MM)"
+        description: "ROBOT 3 · fin de jornada, lo pendiente pasa a gracia (HH:MM)"
+        required: false
+        default: ""
+      hora_cierre_final:
+        description: "ROBOT 4 · cierre definitivo, lo pendiente pasa a no cumplidas (HH:MM)"
         required: false
         default: ""
       hora_reporte:
-        description: "ROBOT 4 · hora del reporte automatico (HH:MM)"
+        description: "ROBOT 5 · hora del reporte automatico (HH:MM)"
         required: false
         default: ""
       hora_archivar:
-        description: "ROBOT 5 · hora del archivado (HH:MM)"
+        description: "ROBOT 6 · hora del archivado (HH:MM)"
         required: false
         default: ""
       dias:
@@ -98,6 +102,7 @@ jobs:
           HORA_PREPARAR: ${{ inputs.hora_preparar }}
           HORA_DISTRIBUIR: ${{ inputs.hora_distribuir }}
           HORA_CIERRE: ${{ inputs.hora_cierre }}
+          HORA_CIERRE_FINAL: ${{ inputs.hora_cierre_final }}
           HORA_REPORTE: ${{ inputs.hora_reporte }}
           HORA_ARCHIVAR: ${{ inputs.hora_archivar }}
           DIAS_HABILES: ${{ inputs.dias }}

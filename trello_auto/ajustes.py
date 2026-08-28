@@ -110,7 +110,8 @@ HORA_FIN = _env("HORA_FIN", dato("jornada.fin", "17:00"))
 # ---------------------------------------------------------------------------
 # RELOJES — despiertan a cada robot
 # ---------------------------------------------------------------------------
-TAREAS = ("preparar", "distribuir", "cierre", "reporte", "archivar")
+TAREAS = ("preparar", "distribuir", "cierre", "cierre_final",
+          "reporte", "archivar")
 
 
 def hora_de(tarea: str) -> str:
@@ -131,6 +132,8 @@ VENTANA_MIN = int(_env("VENTANA_MIN", dato("ventana_minutos", 90)))
 # ---------------------------------------------------------------------------
 LISTA_ESPERA = _env("LISTA_ESPERA", dato("listas.espera", "ESPERA"))
 LISTA_POR_CERRAR = _env("LISTA_POR_CERRAR", dato("listas.por_cerrar", ""))
+# ^ lista de GRACIA: donde esperan las tarjetas sin terminar entre el fin
+#   de jornada y el cierre definitivo.
 LISTA_CULMINADO = _env("LISTA_CULMINADO", dato("listas.culminado", "CULMINADO"))
 LISTA_NO_CUMPLIDAS = _env("LISTA_NO_CUMPLIDAS", dato("listas.no_cumplidas", "NO CUMPLIDAS"))
 

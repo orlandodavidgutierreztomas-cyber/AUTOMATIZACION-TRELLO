@@ -2,7 +2,7 @@
 
 [![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
-Cinco robots que llevan solos el tablero de una obra: leen el cronograma
+Seis robots que llevan solos el tablero de una obra: leen el cronograma
 (Last Planner), crean las tarjetas del día copiando tus plantillas de control
 de calidad, las reparten, evalúan al cierre quién cumplió, sacan el reporte y
 archivan lo terminado.
@@ -23,9 +23,10 @@ computadora encendida.
 |---|---|---|---|
 | 1 | **Preparar** | la tarde anterior | Lee el cronograma de **mañana** y crea las tarjetas en `ESPERA`, copiando la plantilla de cada actividad |
 | 2 | **Distribuir** | de madrugada | Vacía `ESPERA` repartiendo cada tarjeta a su lista del día según su familia |
-| 3 | **Cierre** | al terminar la jornada | Checklist completo → `CULMINADO`; le falta algo → `NO CUMPLIDAS` |
-| 4 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y escribe el corte |
-| 5 | **Archivar** | al final del día | Archiva lo culminado y deja el tablero limpio |
+| 3 | **Cierre (gracia)** | al terminar la jornada | Completo → `CULMINADO`; pendiente → `T. POR CERRAR` |
+| 4 | **Cierre definitivo** | unas horas después | Lo que alcanzó a marcarse → `CULMINADO`; el resto → `NO CUMPLIDAS` |
+| 5 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y escribe el corte |
+| 6 | **Archivar** | al final del día | Archiva lo culminado y deja el tablero limpio |
 
 Preparar la víspera es lo que hace que el tablero de hoy no se ensucie con lo
 de mañana, y que si el cronograma trae una sorpresa haya toda la tarde para verla.
@@ -58,6 +59,24 @@ descripción generada, para no dejarla fuera del plan.
 
 ---
 
+## El cierre va en dos fases, con margen de gracia
+
+Cuando termina la jornada los especialistas siguen ocupados. Mandar al saco de
+"no cumplidas" una tarjeta a la que solo le faltaba marcar un ítem sería injusto
+y ensuciaría la estadística. Por eso el cierre no es un solo golpe:
+
+**Fase 1 — al fin de jornada.** Se recorren las listas del día. Lo que está
+completo va a `CULMINADO`; **lo pendiente va a `T. POR CERRAR`**, no a no
+cumplidas. Las listas del día quedan limpias y todo lo que falta queda a la
+vista, en un solo sitio.
+
+**Fase 2 — el cierre definitivo, unas horas después.** Se barre la lista de
+gracia. Lo que alcanzaron a marcar durante el margen va a `CULMINADO`; lo que
+sigue sin marcar, ahora sí, a `T. NO CUMPLIDAS`. Ahí se calcula el PPC del día.
+
+La fase 2 barre también las listas del día, por si la fase 1 no llegó a correr:
+así nada se queda atrás.
+
 ## Cuándo cuenta como terminada
 
 Manda el **control de calidad**, no la marca de "completa" de Trello.
@@ -79,8 +98,9 @@ el equipo en Trello. No ejecuta nada.
 
 **RELOJES** — despiertan a cada robot. No aparecen en ninguna tarjeta.
 
-Dales margen entre ellas: si la jornada vence a las 18:30, el cierre a las 19:00.
-Si no, a alguien le mueven la tarjeta mientras aún está marcando su checklist.
+Un horario que funciona: jornada hasta las 18:30, cierre de gracia a las 18:30
+(lo pendiente pasa a esperar), cierre definitivo a las 21:00 (tres horas de
+margen para marcar), archivado a las 22:00.
 
 ### Cambiarlas sin tocar el código
 
@@ -213,7 +233,8 @@ cp config.example.py config.py     # y pon tus credenciales
 ```bash
 python -m trello_auto.preparar --fecha manana --dry-run
 python -m trello_auto.distribuir --dry-run
-python -m trello_auto.cierre --dry-run
+python -m trello_auto.cierre --dry-run                 # fase de gracia
+python -m trello_auto.cierre --fase final --dry-run   # cierre definitivo
 python -m trello_auto.reporte --alcance todo
 python -m trello_auto.archivar --dry-run
 python -m trello_auto.sincronizar
@@ -225,7 +246,7 @@ python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 44 pruebas, ninguna toca Trello
+pytest -q                          # 48 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
@@ -241,7 +262,7 @@ ruff check trello_auto tests
 | `trello_auto/cronograma.py` | Lee el Excel (o el respaldo JSON) y clasifica |
 | `trello_auto/trello.py` | Cliente de la API, plantillas y conteo de checklists |
 | `trello_auto/horario.py` | Zonas horarias, conversiones y el portero |
-| `trello_auto/preparar.py` … `archivar.py` | Los cinco robots |
+| `trello_auto/preparar.py` … `archivar.py` | Los seis robots |
 | `trello_auto/reporte.py` · `tablero.py` | El corte y el dashboard web |
 | `trello_auto/sincronizar.py` · `configurar.py` | Los dos botones de gestión |
 | `data/` | El cronograma y su respaldo |
