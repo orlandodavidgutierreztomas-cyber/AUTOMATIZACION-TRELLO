@@ -7,7 +7,13 @@ import pytest
 
 from trello_auto import horario
 from trello_auto.excel import clasificar_tipo
-from trello_auto.trello import buscar_lista, construir_indice_plantillas, normalizar
+from trello_auto.trello import (
+    actividad_de_plantilla,
+    buscar_lista,
+    construir_indice_plantillas,
+    es_plantilla,
+    normalizar,
+)
 
 
 # --- clasificación de actividades ------------------------------------------
@@ -45,22 +51,54 @@ def test_buscar_lista_por_palabra_clave():
 
 
 # --- índice de plantillas ---------------------------------------------------
-def test_indice_de_plantillas():
+def test_una_tarjeta_es_plantilla_por_su_nombre():
+    assert es_plantilla("📐 PLANTILLA — TRAZO Y REPLANTEO") is True
+    assert es_plantilla("PLANTILA - ACERO INFERIOR EN ZAPATAS") is True   # una sola L
+    assert es_plantilla("PLANTILLAS: CONCRETO EN FALSA ZAPATA") is True   # plural
+    # Una tarjeta del día NUNCA debe confundirse con una plantilla.
+    assert es_plantilla("1CS1 — ACERO INFERIOR EN ZAPATAS — 27/08/2026") is False
+
+
+def test_la_clave_es_la_actividad_sin_la_marca():
+    clave = actividad_de_plantilla("📐 PLANTILLA — TRAZO Y REPLANTEO DE SOBRECIMIENTOS")
+    assert clave == "TRAZO Y REPLANTEO DE SOBRECIMIENTOS"
+    clave = actividad_de_plantilla("PLANTILA - ACERO INFERIOR EN ZAPATAS")
+    assert clave == "ACERO INFERIOR EN ZAPATAS"
+
+
+def test_indice_no_depende_del_nombre_de_la_lista():
+    """Caso real del tablero: el encabezado dice PLANTILA (una L) pero las
+    tarjetas dicen PLANTILLA. Antes se perdía la lista entera."""
     listas = [
-        {"id": "L1", "name": "PLANTILLA_ACERO 📐"},
-        {"id": "L2", "name": "T. DEL DÍA ACERO"},
+        {"id": "L1", "name": "📐 PLANTILA. TRAZO Y REPLANTEO"},   # errata real
+        {"id": "L2", "name": "T. DEL DÍA VARIOS-⬛⬛⬛"},
     ]
     cards = [
-        {"id": "C1", "idList": "L1", "name": "PLANTILLA — ACERO EN ZAPATAS",
-         "desc": "chequeo"},
-        {"id": "C2", "idList": "L2", "name": "1CS1 — ACERO EN ZAPATAS — 26/08/2026",
-         "desc": ""},
+        {"id": "C1", "idList": "L1", "desc": "protocolo",
+         "name": "📐 PLANTILLA — TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS"},
+        {"id": "C2", "idList": "L2", "desc": "",
+         "name": "1PS2 — TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS — 27/08/2026"},
     ]
-    indice = construir_indice_plantillas(listas, cards, "PLANTILL")
-    assert list(indice) == ["ACERO EN ZAPATAS"]
-    assert indice["ACERO EN ZAPATAS"]["id"] == "C1"
-    # la tarjeta del día NO entra al índice
-    assert normalizar("1CS1 — ACERO EN ZAPATAS — 26/08/2026") not in indice
+    indice = construir_indice_plantillas(cards, listas, "PLANTIL")
+    assert list(indice) == ["TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS"]
+    assert indice["TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS"]["id"] == "C1"
+
+
+def test_la_lista_marcada_sigue_valiendo_como_apoyo():
+    """Una tarjeta sin la marca en su nombre, pero dentro de una lista de
+    plantillas, se sigue indexando."""
+    listas = [{"id": "L1", "name": "PLANTILLA_CONCRETO"}]
+    cards = [{"id": "C1", "idList": "L1", "name": "CONCRETO EN FALSA ZAPATA", "desc": ""}]
+    indice = construir_indice_plantillas(cards, listas, "PLANTIL")
+    assert list(indice) == ["CONCRETO EN FALSA ZAPATA"]
+
+
+def test_sin_listas_solo_manda_el_nombre_de_la_tarjeta():
+    cards = [
+        {"id": "C1", "idList": "X", "name": "PLANTILLA — ACERO EN ZAPATAS", "desc": ""},
+        {"id": "C2", "idList": "X", "name": "1CS1 — ACERO EN ZAPATAS — 26/08/2026", "desc": ""},
+    ]
+    assert list(construir_indice_plantillas(cards)) == ["ACERO EN ZAPATAS"]
 
 
 # --- horas ------------------------------------------------------------------

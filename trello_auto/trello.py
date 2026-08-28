@@ -32,6 +32,11 @@ def normalizar(texto: str) -> str:
     return re.sub(r"\s+", " ", t).strip().upper()
 
 
+# Marca que declara plantilla a una tarjeta. Tolera "PLANTILLA", "PLANTILA"
+# (con una sola L) y sus plurales, ya normalizados a MAYUSCULAS sin simbolos.
+MARCA_PLANTILLA = re.compile(r"\bPLANTIL[A-Z]*\b")
+
+
 class ErrorTrello(RuntimeError):
     pass
 
@@ -128,24 +133,56 @@ def nombre_de_lista(listas: list, list_id: str) -> str:
     return "(desconocida)"
 
 
-def construir_indice_plantillas(listas: list, cards: list, clave_plantillas: str) -> dict:
+def es_plantilla(nombre: str) -> bool:
+    """True si el NOMBRE de la tarjeta la declara plantilla.
+
+    Tolera las variantes reales que aparecen en un tablero de verdad:
+    "PLANTILLA", "PLANTILA" (con una sola L), "PLANTILLAS", con emojis,
+    guiones o dos puntos delante. Lo unico que importa es la palabra.
+    """
+    return bool(MARCA_PLANTILLA.search(normalizar(nombre)))
+
+
+def actividad_de_plantilla(nombre: str) -> str:
+    """Nombre de la actividad que representa una plantilla.
+
+    Le quita la marca "PLANTILLA" y deja el resto normalizado, que es la
+    clave con la que se compara contra la actividad del cronograma.
+
+    "PLANTILLA - ACERO INFERIOR EN ZAPATAS"  ->  "ACERO INFERIOR EN ZAPATAS"
+    """
+    limpio = MARCA_PLANTILLA.sub(" ", normalizar(nombre))
+    return re.sub(r"\s+", " ", limpio).strip()
+
+
+def construir_indice_plantillas(cards: list, listas: list = None,
+                                clave_plantillas: str = None) -> dict:
     """{actividad_normalizada: {'id':..., 'desc':..., 'nombre':...}}
 
-    Recorre las tarjetas que viven en listas cuyo nombre contiene la palabra
-    clave de plantillas (p. ej. "PLANTILLA_ACERO") y las indexa por el nombre
-    de la actividad, quitando la palabra "PLANTILLA", emojis y guiones.
+    Una tarjeta cuenta como PLANTILLA si SU PROPIO NOMBRE lo dice. No depende
+    del nombre de la lista donde viva: asi una errata en el encabezado de una
+    columna (p. ej. "PLANTILA" en vez de "PLANTILLA") no deja fuera a las
+    plantillas que contiene, y las listas se pueden reorganizar con libertad.
 
-    El emparejamiento se hace LEYENDO EL TABLERO EN VIVO: no hay ningun id
-    escrito en el codigo, asi que al agregar una plantilla nueva al tablero
-    el script la usa automaticamente en la siguiente corrida.
+    Como apoyo, si se pasan `listas` y `clave_plantillas`, tambien se indexan
+    las tarjetas que vivan en una lista marcada aunque su nombre no lo diga.
+
+    Todo se resuelve LEYENDO EL TABLERO EN VIVO: no hay ningun id escrito en
+    el codigo, asi que una plantilla nueva se usa sola en la corrida siguiente.
     """
-    clave = normalizar(clave_plantillas)
-    ids_plantilla = {l["id"] for l in listas if clave in normalizar(l["name"])}
+    ids_lista_plantilla = set()
+    if listas and clave_plantillas:
+        clave = normalizar(clave_plantillas)
+        ids_lista_plantilla = {l["id"] for l in listas
+                               if clave and clave in normalizar(l["name"])}
+
     indice = {}
     for c in cards:
-        if c.get("idList") not in ids_plantilla:
+        por_nombre = es_plantilla(c["name"])
+        por_lista = c.get("idList") in ids_lista_plantilla
+        if not (por_nombre or por_lista):
             continue
-        actividad = normalizar(re.sub(r"PLANTILLA", " ", c["name"], flags=re.I))
+        actividad = actividad_de_plantilla(c["name"])
         if actividad:
             indice[actividad] = {
                 "id": c["id"],

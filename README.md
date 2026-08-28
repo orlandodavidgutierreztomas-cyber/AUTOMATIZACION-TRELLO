@@ -43,9 +43,12 @@ la columna del día que le toca. El script:
 1. **Ubica la columna** de la fecha pedida y toma las actividades con sector ese día.
 2. **Clasifica** cada una por tipo de trabajo (Acero / Encofrado / Concreto / Varios)
    según el nombre de la actividad.
-3. **Busca su tarjeta PLANTILLA** en el tablero (las que viven en las listas
-   `PLANTILLA_…`). El emparejamiento se hace **leyendo el tablero en vivo**,
-   comparando nombres sin acentos ni emojis — sin ningún ID escrito en el código.
+3. **Busca su tarjeta PLANTILLA** en el tablero. Una tarjeta es plantilla porque
+   **su propio nombre lo dice** (`PLANTILLA — ACERO EN ZAPATAS`), viva en la lista
+   que viva: así una errata en el encabezado de una columna no deja fuera a las
+   plantillas que contiene. Tolera `PLANTILA`, `PLANTILLAS`, emojis y guiones. El
+   emparejamiento se hace **leyendo el tablero en vivo**, comparando nombres sin
+   acentos ni símbolos — sin ningún ID escrito en el código.
 4. **Crea la tarjeta** `SECTOR — ACTIVIDAD — DD/MM/AAAA` en la lista del día correcta:
    - **copiando de la plantilla** su **descripción**, **todos sus checklists** con
      sus ítems y sus **etiquetas** (vía `idCardSource` + `keepFromSource` de la API

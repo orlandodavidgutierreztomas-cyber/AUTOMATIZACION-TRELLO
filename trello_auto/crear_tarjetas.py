@@ -13,8 +13,8 @@ Lee la hoja "01_MAESTRO" del Excel, detecta que SECTOR hace que ACTIVIDAD en
 una FECHA dada y, por cada uno, crea en Trello una tarjeta que:
 
   - Se llama  "[SECTOR] - [ACTIVIDAD] - DD/MM/AAAA".
-  - COPIA de la tarjeta PLANTILLA del tablero (las que viven en las listas
-    "PLANTILLA_..."):  su DESCRIPCION, todos sus CHECKLISTS con sus items, y
+  - COPIA de la tarjeta PLANTILLA del tablero (las que llevan la palabra
+    PLANTILLA en su nombre):  su DESCRIPCION, sus CHECKLISTS con sus items, y
     sus ETIQUETAS. Que partes se copian se controla con
     settings.COPIAR_DE_PLANTILLA (la API de Trello exige listarlas: lo que no
     se pide, no se copia).
@@ -177,7 +177,7 @@ def main() -> int:
         listas = tr.listas(config.BOARD_ID)
         cards = tr.tarjetas(config.BOARD_ID)
         existentes = {c["name"] for c in cards}
-        plantillas = construir_indice_plantillas(listas, cards, config.CLAVE_PLANTILLAS)
+        plantillas = construir_indice_plantillas(cards, listas, config.CLAVE_PLANTILLAS)
         print(f"Tablero leido: {len(listas)} listas, {len(cards)} tarjetas, "
               f"{len(plantillas)} plantillas detectadas.")
     else:
