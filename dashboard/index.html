@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Control diario · CONSTRUCCION DE AULAS</title>
+<style>
+  :root {
+    --fondo:#f5f6f8; --panel:#ffffff; --borde:#e3e6ea; --texto:#1b2733;
+    --suave:#65727f; --acento:#1f4e79; --ok:#1e7a4b; --alerta:#b3261e;
+    --aviso:#b06a00; --barra:#dfe4ea;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo:#12161b; --panel:#1a2027; --borde:#2b333d; --texto:#e7ecf2;
+      --suave:#9aa7b4; --acento:#7fb3e8; --ok:#5cc98d; --alerta:#ff8a80;
+      --aviso:#f0b45e; --barra:#2b333d;
+    }
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; padding:24px; background:var(--fondo); color:var(--texto);
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .envoltura { max-width:1200px; margin:0 auto; }
+  header { margin-bottom:22px; }
+  h1 { font-size:22px; margin:0 0 4px; letter-spacing:-.01em; }
+  .sub { color:var(--suave); font-size:13.5px; }
+  .rejilla { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); margin-bottom:22px; }
+  .tarjeta { background:var(--panel); border:1px solid var(--borde); border-radius:10px; padding:16px 18px; }
+  .kpi .n { font-size:30px; font-weight:650; letter-spacing:-.02em; }
+  .kpi .r { color:var(--suave); font-size:12.5px; text-transform:uppercase; letter-spacing:.05em; margin-top:2px; }
+  .kpi .pie { font-size:12.5px; color:var(--suave); margin-top:6px; }
+  .alerta .n { color:var(--alerta); } .ok .n { color:var(--ok); } .aviso .n { color:var(--aviso); }
+  h2 { font-size:14px; text-transform:uppercase; letter-spacing:.06em; color:var(--suave);
+       margin:0 0 14px; font-weight:600; }
+  .paneles { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); margin-bottom:22px; }
+  .fila { display:grid; grid-template-columns:104px 1fr 46px; align-items:center; gap:10px; margin-bottom:9px; font-size:13.5px; }
+  .pista { background:var(--barra); border-radius:4px; height:9px; overflow:hidden; }
+  .relleno { height:100%; border-radius:4px; background:var(--acento); }
+  .num { text-align:right; font-variant-numeric:tabular-nums; color:var(--suave); }
+  .tabla-caja { background:var(--panel); border:1px solid var(--borde); border-radius:10px; overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--borde); white-space:nowrap; }
+  th { color:var(--suave); font-weight:600; font-size:12px; text-transform:uppercase;
+        letter-spacing:.04em; position:sticky; top:0; background:var(--panel); }
+  tr:last-child td { border-bottom:none; }
+  td.n { text-align:right; font-variant-numeric:tabular-nums; }
+  .act { white-space:normal; min-width:260px; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:999px; font-size:11.5px;
+           border:1px solid var(--borde); color:var(--suave); }
+  .vieja { color:var(--alerta); font-weight:600; }
+  a { color:var(--acento); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  footer { margin-top:22px; color:var(--suave); font-size:12.5px; }
+  .vacio { padding:40px; text-align:center; color:var(--suave); }
+</style>
+</head>
+<body>
+<div class="envoltura">
+<header>
+  <h1>CONSTRUCCION DE AULAS</h1>
+  <div class="sub">Corte del 27/08/2026 07:00 · hora de obra (America/Lima) · alcance: dia</div>
+</header>
+
+<div class="rejilla"><div class="tarjeta kpi "><div class="n">16</div><div class="r">Tarjetas en el corte</div><div class="pie">0 con el checklist completo</div></div><div class="tarjeta kpi alerta"><div class="n">183</div><div class="r">Checks pendientes</div><div class="pie">de 307 en total</div></div><div class="tarjeta kpi aviso"><div class="n">40%</div><div class="r">Avance del control</div><div class="pie">items de calidad ya marcados</div></div><div class="tarjeta kpi alerta"><div class="n">10</div><div class="r">Tarjetas atrasadas</div><div class="pie">vencieron antes de hoy</div></div></div>
+
+<div class="paneles">
+  <div class="tarjeta">
+    <h2>Checks pendientes por responsable</h2>
+    <div class="fila"><span>Calidad</span><span class="pista"><span class="relleno" style="width:100.0%"></span></span><span class="num">62</span></div><div class="fila"><span>Estructuras</span><span class="pista"><span class="relleno" style="width:58.1%"></span></span><span class="num">36</span></div><div class="fila"><span>Campo</span><span class="pista"><span class="relleno" style="width:51.6%"></span></span><span class="num">32</span></div><div class="fila"><span>Ambiental</span><span class="pista"><span class="relleno" style="width:38.7%"></span></span><span class="num">24</span></div><div class="fila"><span>Seguridad</span><span class="pista"><span class="relleno" style="width:32.3%"></span></span><span class="num">20</span></div><div class="fila"><span>BIM</span><span class="pista"><span class="relleno" style="width:14.5%"></span></span><span class="num">9</span></div>
+  </div>
+  <div class="tarjeta">
+    <h2>Checks pendientes por familia</h2>
+    <div class="fila"><span>Acero</span><span class="pista"><span class="relleno" style="width:100.0%"></span></span><span class="num">62</span></div><div class="fila"><span>Encofrado</span><span class="pista"><span class="relleno" style="width:67.7%"></span></span><span class="num">42</span></div><div class="fila"><span>Excavacion</span><span class="pista"><span class="relleno" style="width:50.0%"></span></span><span class="num">31</span></div><div class="fila"><span>Concreto</span><span class="pista"><span class="relleno" style="width:43.5%"></span></span><span class="num">27</span></div><div class="fila"><span>Relleno</span><span class="pista"><span class="relleno" style="width:21.0%"></span></span><span class="num">13</span></div><div class="fila"><span>Trazo</span><span class="pista"><span class="relleno" style="width:12.9%"></span></span><span class="num">8</span></div>
+  </div>
+</div>
+
+<div class="tarjeta" style="margin-bottom:22px">
+  <h2>Antiguedad de las tarjetas</h2>
+  <div class="fila"><span>Vence hoy (0 dias)</span><span class="pista"><span class="relleno" style="width:60.0%"></span></span><span class="num">6</span></div><div class="fila"><span>Vencida 1 dia</span><span class="pista"><span class="relleno" style="width:100.0%"></span></span><span class="num">10</span></div>
+</div>
+
+<h2>Detalle de tarjetas</h2>
+<div class="tabla-caja"><table><thead><tr><th>Sector</th><th>Actividad</th><th>Familia</th><th>Vence</th><th>EST</th><th>CAL</th><th>CAMP</th><th>AMB</th><th>BIM</th><th>SSOMA</th><th>Pend.</th><th>Total</th><th>Dias</th><th>Lista</th><th>Estado</th><th></th></tr></thead><tbody><tr><td>1PS2</td><td class="act">COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS</td><td><span class="pill">Acero</span></td><td>2026-08-27 18:30</td><td class="n">5</td><td class="n">5</td><td class="n">5</td><td class="n">2</td><td class="n">4</td><td class="n">5</td><td class="n">26</td><td class="n">26</td><td class="n">0</td><td>T. DEL DIA</td><td><span class="pill">EN JUEGO</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS7</td><td class="act">EXCAVACION DE CIMENTACIONES</td><td><span class="pill">Excavacion</span></td><td>2026-08-27 18:30</td><td class="n">4</td><td class="n">4</td><td class="n">6</td><td class="n">2</td><td class="n">2</td><td class="n">3</td><td class="n">21</td><td class="n">21</td><td class="n">0</td><td>T. DEL DIA</td><td><span class="pill">EN JUEGO</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS14</td><td class="act">CONCRETO EN FALSA ZAPATA</td><td><span class="pill">Concreto</span></td><td>2026-08-27 18:30</td><td class="n">3</td><td class="n">5</td><td class="n">7</td><td class="n">2</td><td class="n">1</td><td class="n">3</td><td class="n">21</td><td class="n">21</td><td class="n">0</td><td>T. DEL DIA</td><td><span class="pill">EN JUEGO</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1PS1</td><td class="act">ENCOFRADO DE COLUMNAS Y PLACAS</td><td><span class="pill">Encofrado</span></td><td>2026-08-27 18:30</td><td class="n">3</td><td class="n">8</td><td class="n">6</td><td class="n">1</td><td class="n">·</td><td class="n">2</td><td class="n">20</td><td class="n">20</td><td class="n">0</td><td>T. DEL DIA</td><td><span class="pill">EN JUEGO</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS12</td><td class="act">ACERO INFERIOR EN ZAPATAS</td><td><span class="pill">Acero</span></td><td>2026-08-27 18:30</td><td class="n">7</td><td class="n">4</td><td class="n">1</td><td class="n">2</td><td class="n">·</td><td class="n">·</td><td class="n">14</td><td class="n">18</td><td class="n">0</td><td>T. DEL DIA</td><td><span class="pill">EN JUEGO</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS3</td><td class="act">RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA</td><td><span class="pill">Relleno</span></td><td>2026-08-27 18:30</td><td class="n">·</td><td class="n">6</td><td class="n">4</td><td class="n">1</td><td class="n">·</td><td class="n">2</td><td class="n">13</td><td class="n">13</td><td class="n">0</td><td>T. DEL DIA</td><td><span class="pill">EN JUEGO</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS14</td><td class="act">ENCOFRADO DE FALSA ZAPATA</td><td><span class="pill">Encofrado</span></td><td>2026-08-26 18:30</td><td class="n">3</td><td class="n">7</td><td class="n">2</td><td class="n">1</td><td class="n">·</td><td class="n">·</td><td class="n">13</td><td class="n">18</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS15</td><td class="act">EXCAVACION DE CIMENTACIONES</td><td><span class="pill">Excavacion</span></td><td>2026-08-26 18:30</td><td class="n">4</td><td class="n">4</td><td class="n">·</td><td class="n">·</td><td class="n">2</td><td class="n">·</td><td class="n">10</td><td class="n">21</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS4</td><td class="act">ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACION</td><td><span class="pill">Encofrado</span></td><td>2026-08-26 18:30</td><td class="n">3</td><td class="n">5</td><td class="n">·</td><td class="n">1</td><td class="n">·</td><td class="n">·</td><td class="n">9</td><td class="n">17</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS15</td><td class="act">TRAZO Y REPLANTEO PARA EXCAVACION DE CIMENTACIONES</td><td><span class="pill">Trazo</span></td><td>2026-08-26 18:30</td><td class="n">3</td><td class="n">5</td><td class="n">·</td><td class="n">·</td><td class="n">·</td><td class="n">·</td><td class="n">8</td><td class="n">11</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1PS1</td><td class="act">COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS</td><td><span class="pill">Acero</span></td><td>2026-08-26 18:30</td><td class="n">·</td><td class="n">·</td><td class="n">·</td><td class="n">2</td><td class="n">·</td><td class="n">5</td><td class="n">7</td><td class="n">26</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS11</td><td class="act">ACERO INFERIOR EN ZAPATAS</td><td><span class="pill">Acero</span></td><td>2026-08-26 18:30</td><td class="n">·</td><td class="n">4</td><td class="n">1</td><td class="n">2</td><td class="n">·</td><td class="n">·</td><td class="n">7</td><td class="n">18</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS13</td><td class="act">CONCRETO EN FALSA ZAPATA</td><td><span class="pill">Concreto</span></td><td>2026-08-26 18:30</td><td class="n">·</td><td class="n">5</td><td class="n">·</td><td class="n">1</td><td class="n">·</td><td class="n">·</td><td class="n">6</td><td class="n">21</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS5</td><td class="act">ACERO SUPERIOR EN ZAPATAS</td><td><span class="pill">Acero</span></td><td>2026-08-26 18:30</td><td class="n">1</td><td class="n">·</td><td class="n">·</td><td class="n">3</td><td class="n">·</td><td class="n">·</td><td class="n">4</td><td class="n">22</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS5</td><td class="act">ACERO DE VIGA DE CIMENTACION</td><td><span class="pill">Acero</span></td><td>2026-08-26 18:30</td><td class="n">·</td><td class="n">·</td><td class="n">·</td><td class="n">2</td><td class="n">·</td><td class="n">·</td><td class="n">2</td><td class="n">18</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr><tr><td>1CS6</td><td class="act">ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES</td><td><span class="pill">Acero</span></td><td>2026-08-26 18:30</td><td class="n">·</td><td class="n">·</td><td class="n">·</td><td class="n">2</td><td class="n">·</td><td class="n">·</td><td class="n">2</td><td class="n">16</td><td class="n vieja">1</td><td>T. POR CERRAR</td><td><span class="pill">POR CERRAR</span></td><td><a href="https://trello.com/c/ejemplo" target="_blank" rel="noopener">abrir</a></td></tr></tbody></table></div>
+
+<footer>
+  Generado automaticamente el 27/08/2026 a las 07:00. Los checks pendientes salen de los
+  items sin marcar de cada checklist de Trello.
+</footer>
+</div>
+</body>
+</html>

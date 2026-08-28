@@ -16,3 +16,6 @@ venv/
 .DS_Store
 Thumbs.db
 ~$*.xlsx
+
+# Archivos de trabajo sueltos en la raiz (el dashboard vive en dashboard/)
+/TAREAS_PENDINTES_ACUMULADAS.xlsx

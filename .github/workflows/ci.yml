@@ -41,7 +41,10 @@ jobs:
         run: pytest -q
 
       - name: Ensayo en seco del cronograma (sin tocar Trello)
-        run: python -m trello_auto.crear_tarjetas --fecha 2026-08-27 --dry-run
+        run: python -m trello_auto.preparar --fecha 2026-08-28 --dry-run
 
-      - name: Validar horario.json
-        run: python -m trello_auto.guardar_horario --ver
+      - name: Validar la configuracion
+        run: python -m trello_auto.configurar --ver
+
+      - name: Sincronizar en seco (lee el Excel entero)
+        run: python -m trello_auto.sincronizar --dry-run

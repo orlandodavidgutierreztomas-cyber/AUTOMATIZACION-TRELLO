@@ -1,0 +1,540 @@
+{
+  "_ayuda": "Una fila por actividad del cronograma. 'familia' agrupa para el reporte y 'lista' dice a que lista del dia va la tarjeta. Llega pre-rellenado por palabras clave: corrige solo lo que este mal, y se respetara en las proximas sincronizaciones. 'tiene_plantilla' es informativo: dice si esa actividad ya tiene su tarjeta PLANTILLA en el tablero.",
+  "listas_del_tablero": [],
+  "familias_disponibles": [
+    "Acero",
+    "Encofrado",
+    "Concreto",
+    "Trazo",
+    "Relleno",
+    "Excavacion",
+    "Varios"
+  ],
+  "actividades": {
+    "ENCOFRADO DE FONDO DE VIGA": {
+      "actividad": "ENCOFRADO DE FONDO DE VIGA",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 35,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO FRISO DE LOSA": {
+      "actividad": "ENCOFRADO FRISO DE LOSA",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 35,
+      "tiene_plantilla": false
+    },
+    "II EE EN LOSA": {
+      "actividad": "II.EE EN LOSA",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 35,
+      "tiene_plantilla": false
+    },
+    "ACABADO DE PISO PORCELANATO": {
+      "actividad": "ACABADO DE PISO (PORCELANATO)",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ACERO DE TEMPERATURA": {
+      "actividad": "ACERO DE TEMPERATURA",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ACERO EN COLUMNETAS": {
+      "actividad": "ACERO EN COLUMNETAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ACERO EN LOSA": {
+      "actividad": "ACERO EN LOSA",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ACERO EN VIGAS": {
+      "actividad": "ACERO EN VIGAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ACERO EN VIGUETAS": {
+      "actividad": "ACERO EN VIGUETAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ASENTADO LADRILLO H2": {
+      "actividad": "ASENTADO LADRILLO (H2)",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "COLOCACION DE CONTRAZOCALO ZOCALO": {
+      "actividad": "COLOCACION DE CONTRAZOCALO/ ZOCALO",
+      "familia": "Trazo",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS": {
+      "actividad": "COMPLETADO DE ESTRIBOS EN COLUMNAS Y PLACAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "CONCRETO CONTRAPISO": {
+      "actividad": "CONCRETO CONTRAPISO",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "CONCRETO DE COLUMNAS Y PLACAS": {
+      "actividad": "CONCRETO DE COLUMNAS Y PLACAS",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "CONCRETO EN COLUMNETAS": {
+      "actividad": "CONCRETO EN COLUMNETAS",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "CONCRETO EN LOSA": {
+      "actividad": "CONCRETO EN LOSA",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "CONCRETO EN VIGUETAS": {
+      "actividad": "CONCRETO EN VIGUETAS",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "CONCRETO FALSO PISO": {
+      "actividad": "CONCRETO FALSO PISO",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE COLUMNAS Y PLACAS": {
+      "actividad": "ENCOFRADO DE COLUMNAS Y PLACAS",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE COLUMNETAS": {
+      "actividad": "ENCOFRADO DE COLUMNETAS",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE VIGUETAS": {
+      "actividad": "ENCOFRADO DE VIGUETAS",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO LOSAS Y CARTERA DE VIGAS": {
+      "actividad": "ENCOFRADO LOSAS Y CARTERA DE VIGAS",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "II EE EN MURO": {
+      "actividad": "II.EE EN MURO",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "II SS EN LOSA": {
+      "actividad": "II.SS EN LOSA",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "LADRILLO PARA TECHO": {
+      "actividad": "LADRILLO PARA TECHO",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "PUERTAS": {
+      "actividad": "PUERTAS",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "RELLENO A NIVEL DE FALSO PISO": {
+      "actividad": "RELLENO A NIVEL DE FALSO PISO",
+      "familia": "Relleno",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "TARRAJEO CIELORASO": {
+      "actividad": "TARRAJEO CIELORASO",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "TARRAJEO DE COLUMNAS Y VIGAS": {
+      "actividad": "TARRAJEO DE COLUMNAS Y VIGAS",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "TARRAJEO DE MUROS COL VIG": {
+      "actividad": "TARRAJEO DE MUROS (COL, VIG)",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS": {
+      "actividad": "TRAZO Y REPLANTEO DE COLUMNAS Y PLACAS",
+      "familia": "Trazo",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "VENTAS": {
+      "actividad": "VENTAS",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 30,
+      "tiene_plantilla": false
+    },
+    "ASENTADO LADRILLO H1": {
+      "actividad": "ASENTADO LADRILLO (H1)",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 26,
+      "tiene_plantilla": false
+    },
+    "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO": {
+      "actividad": "ACERO HORIZONTAL EN SOBRECIMIENTO DE MURO",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA": {
+      "actividad": "ACERO HORIZONTAL SOBRECIMIENTO DE ZAPATA",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "CONCRETO DE SOBRECIMIENTO DE MURO": {
+      "actividad": "CONCRETO DE SOBRECIMIENTO DE MURO",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "CONCRETO DE SOBRECIMIENTO DE ZAPATA": {
+      "actividad": "CONCRETO DE SOBRECIMIENTO DE ZAPATA",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "DESENCOFRADO DE LOSA": {
+      "actividad": "DESENCOFRADO DE LOSA",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO EN SOBRECIMEINTO DE MURO": {
+      "actividad": "ENCOFRADO EN SOBRECIMEINTO DE MURO",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO SOBRECIMIENTO DE ZAPATA": {
+      "actividad": "ENCOFRADO SOBRECIMIENTO DE ZAPATA",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "RELLENO A NIVEL DE SOBRECIMIENTO 1ER PISO": {
+      "actividad": "RELLENO A NIVEL DE SOBRECIMIENTO (1ER PISO)",
+      "familia": "Relleno",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 18,
+      "tiene_plantilla": false
+    },
+    "ACERO DE VIGA DE CIMENTACION": {
+      "actividad": "ACERO DE VIGA DE CIMENTACIÓN",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "ACERO INFERIOR EN ZAPATAS": {
+      "actividad": "ACERO INFERIOR EN ZAPATAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "ACERO SUPERIOR EN ZAPATAS": {
+      "actividad": "ACERO SUPERIOR EN ZAPATAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES": {
+      "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "CONCRETO DE ZAPATA Y VIGA DE CIMENTACION": {
+      "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "CONCRETO EN FALSA ZAPATA": {
+      "actividad": "CONCRETO EN FALSA ZAPATA",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE FALSA ZAPATA": {
+      "actividad": "ENCOFRADO DE FALSA ZAPATA",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACION": {
+      "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "EXCAVACION DE CIMENTACIONES": {
+      "actividad": "EXCAVACIÓN DE CIMENTACIONES",
+      "familia": "Excavacion",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA": {
+      "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
+      "familia": "Relleno",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA": {
+      "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
+      "familia": "Relleno",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES": {
+      "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
+      "familia": "Trazo",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "TRAZO Y REPLANTEO PARA EXCAVACION DE CIMENTACIONES": {
+      "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
+      "familia": "Trazo",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 17,
+      "tiene_plantilla": false
+    },
+    "ACERO DE LOSA": {
+      "actividad": "ACERO DE LOSA",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "ACERO DE VIGAS": {
+      "actividad": "ACERO DE VIGAS",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "ACERO VERTICAL DE SARDINEL": {
+      "actividad": "ACERO VERTICAL DE SARDINEL",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "CONCRETO DE COL": {
+      "actividad": "CONCRETO DE COL",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "CONCRETO DE SARDINEL": {
+      "actividad": "CONCRETO DE SARDINEL",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "CONCRETO PARA TABLERO": {
+      "actividad": "CONCRETO PARA TABLERO",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE COL": {
+      "actividad": "ENCOFRADO DE COL",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS": {
+      "actividad": "ENCOFRADO DE LOSAS Y CARTERA DE VIGAS",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO DE SARDINEL": {
+      "actividad": "ENCOFRADO DE SARDINEL",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "INS BARANDA Y PASAMANOS": {
+      "actividad": "INS. BARANDA Y PASAMANOS",
+      "familia": "Varios",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "TARRAJEO DE COLUMNAS": {
+      "actividad": "TARRAJEO DE COLUMNAS",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "TARRAJEO DE FONDO PARA TABLERO": {
+      "actividad": "TARRAJEO DE FONDO PARA TABLERO",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "TRAZO Y REPLANTEO DE COL": {
+      "actividad": "TRAZO Y REPLANTEO DE COL",
+      "familia": "Trazo",
+      "lista": "T. DEL DIA VARIOS",
+      "veces_en_el_plan": 5,
+      "tiene_plantilla": false
+    },
+    "ACERO 1ER TRAMO": {
+      "actividad": "ACERO 1ER TRAMO",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "ACERO 2DO TRAMO": {
+      "actividad": "ACERO 2DO TRAMO",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "ACERO BASE ESCALERA": {
+      "actividad": "ACERO BASE ESCALERA",
+      "familia": "Acero",
+      "lista": "T. DEL DIA ACERO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "CONCRETO BASE ESCALERA": {
+      "actividad": "CONCRETO BASE ESCALERA",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "CONCRETO EN ESCALERA": {
+      "actividad": "CONCRETO EN ESCALERA",
+      "familia": "Concreto",
+      "lista": "T. DEL DIA CONCRETO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO 1ER TRAMO": {
+      "actividad": "ENCOFRADO 1ER TRAMO",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO 2DO TRAMO": {
+      "actividad": "ENCOFRADO 2DO TRAMO",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    },
+    "ENCOFRADO BASE ESCALERA": {
+      "actividad": "ENCOFRADO BASE ESCALERA",
+      "familia": "Encofrado",
+      "lista": "T. DEL DIA ENCOFRADO",
+      "veces_en_el_plan": 2,
+      "tiene_plantilla": false
+    }
+  }
+}

@@ -1,0 +1,85 @@
+# ===========================================================================
+#  ROBOT 2 - Distribuir a las listas del dia
+# ---------------------------------------------------------------------------
+#  LA HORA NO SE CAMBIA AQUI. El cron de abajo solo despierta el proceso cada
+#  media hora; quien decide si de verdad toca ejecutar es el PORTERO, que lee
+#  la hora de configuracion.json.
+#  Para cambiarla: Actions -> "Configurar" -> Run workflow.
+#
+#  Los minutos 7 y 37 son a proposito: GitHub retrasa o descarta las tareas
+#  programadas en punto y a la media, que son las horas de mayor congestion.
+#  Este cron es la RED DE SEGURIDAD; el reloj puntual es el servicio externo,
+#  que dispara este mismo workflow por la API a la hora configurada.
+# ===========================================================================
+name: 2. Distribuir a las listas del dia
+
+on:
+  schedule:
+    - cron: "7,37 8-16 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      solo_hoy:
+        description: "Repartir solo las tarjetas fechadas hoy"
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: "Solo mostrar que haria, sin tocar nada"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: distribuir
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  distribuir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # El portero solo interviene en las corridas automaticas de GitHub.
+      # Un disparo externo o manual se ejecuta siempre, sin preguntar la hora.
+      - name: Comprobar si toca ejecutar
+        id: portero
+        if: github.event_name == 'schedule'
+        env:
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          HORA_DISTRIBUIR: ${{ vars.HORA_DISTRIBUIR }}
+          DIAS_HABILES: ${{ vars.DIAS_HABILES }}
+        run: python -m trello_auto.portero --tarea distribuir
+
+      - name: Distribuir a las listas del dia
+        if: github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true'
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          BOARD_ID: ${{ vars.BOARD_ID }}
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          SOLO_HOY: ${{ inputs.solo_hoy }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "${SOLO_HOY:-}" = "true" ]; then ARGS+=(--solo-hoy); fi
+          if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
+          echo "python -m trello_auto.distribuir ${ARGS[@]+"${ARGS[@]}"}"
+          python -m trello_auto.distribuir ${ARGS[@]+"${ARGS[@]}"}
+
+      - name: No tocaba ejecutar
+        if: github.event_name == 'schedule' && steps.portero.outputs.ejecutar != 'true'
+        run: |
+          echo "Corrida omitida: ${{ steps.portero.outputs.motivo }}"
+          echo "Hora configurada: ${{ steps.portero.outputs.hora }}"

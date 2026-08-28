@@ -1,0 +1,133 @@
+# ===========================================================================
+#  CONFIGURAR - cambia las horas y la forma del Excel SIN tocar el codigo
+# ---------------------------------------------------------------------------
+#  Actions -> "Configurar" -> Run workflow -> escribe lo que quieras cambiar.
+#  Lo que dejes en blanco NO se toca. El workflow valida, guarda
+#  configuracion.json y hace el commit por ti.
+#
+#  HAY DOS CLASES DE HORA:
+#    JORNADA  -> se escribe DENTRO de cada tarjeta de Trello.
+#    ROBOTS   -> despierta a cada automatizacion. No sale en ninguna tarjeta.
+# ===========================================================================
+name: Configurar
+
+on:
+  workflow_dispatch:
+    inputs:
+      jornada_inicio:
+        description: "JORNADA · hora de inicio de cada tarjeta (HH:MM)"
+        required: false
+        default: ""
+      jornada_fin:
+        description: "JORNADA · hora de vencimiento de cada tarjeta (HH:MM)"
+        required: false
+        default: ""
+      hora_preparar:
+        description: "ROBOT 1 · hora a la que se preparan las de manana (HH:MM)"
+        required: false
+        default: ""
+      hora_distribuir:
+        description: "ROBOT 2 · hora del reparto a las listas del dia (HH:MM)"
+        required: false
+        default: ""
+      hora_cierre:
+        description: "ROBOT 3 · hora del cierre (HH:MM)"
+        required: false
+        default: ""
+      hora_reporte:
+        description: "ROBOT 4 · hora del reporte automatico (HH:MM)"
+        required: false
+        default: ""
+      hora_archivar:
+        description: "ROBOT 5 · hora del archivado (HH:MM)"
+        required: false
+        default: ""
+      dias:
+        description: 'Dias habiles de todos los robots (1=lunes ... 7=domingo, ej. "1-5")'
+        required: false
+        default: ""
+      criterio:
+        description: "Cuando cuenta como TERMINADA una tarjeta"
+        required: false
+        default: ""
+        type: choice
+        options: ["", checklist, auto, marcada]
+      hoja:
+        description: "EXCEL · nombre de la hoja del cronograma"
+        required: false
+        default: ""
+      fila_fechas:
+        description: "EXCEL · numero de fila donde estan las fechas"
+        required: false
+        default: ""
+      columna_actividad:
+        description: "EXCEL · letra de la columna con el nombre de la actividad"
+        required: false
+        default: ""
+      primera_fila_datos:
+        description: "EXCEL · primera fila con datos"
+        required: false
+        default: ""
+      tz:
+        description: 'Zona horaria de la obra (ej. "America/Lima")'
+        required: false
+        default: ""
+
+concurrency:
+  group: configurar
+
+permissions:
+  contents: write
+
+jobs:
+  configurar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar y guardar
+        id: guardar
+        env:
+          JORNADA_INICIO: ${{ inputs.jornada_inicio }}
+          JORNADA_FIN: ${{ inputs.jornada_fin }}
+          HORA_PREPARAR: ${{ inputs.hora_preparar }}
+          HORA_DISTRIBUIR: ${{ inputs.hora_distribuir }}
+          HORA_CIERRE: ${{ inputs.hora_cierre }}
+          HORA_REPORTE: ${{ inputs.hora_reporte }}
+          HORA_ARCHIVAR: ${{ inputs.hora_archivar }}
+          DIAS_HABILES: ${{ inputs.dias }}
+          CRITERIO_CIERRE: ${{ inputs.criterio }}
+          HOJA: ${{ inputs.hoja }}
+          FILA_FECHAS: ${{ inputs.fila_fechas }}
+          COLUMNA_ACTIVIDAD: ${{ inputs.columna_actividad }}
+          PRIMERA_FILA_DATOS: ${{ inputs.primera_fila_datos }}
+          TZ_OBRA: ${{ inputs.tz }}
+        run: python -m trello_auto.configurar
+
+      - name: Confirmar el cambio en el repositorio
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- configuracion.json; then
+            echo "No hubo cambios que guardar."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add configuracion.json
+          git commit -m "Configuracion: ${{ steps.guardar.outputs.resumen }}"
+          git push
+
+      - name: Resumen
+        run: |
+          {
+            echo "### Configuracion vigente"
+            echo ""
+            echo '```'
+            python -m trello_auto.configurar --ver
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

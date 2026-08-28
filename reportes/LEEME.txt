@@ -1,0 +1,3 @@
+# Aqui se acumulan los cortes de control que genera el robot 4.
+# ultimo.csv  -> el corte mas reciente (el que lee el Excel)
+# cortes.csv  -> el historico completo

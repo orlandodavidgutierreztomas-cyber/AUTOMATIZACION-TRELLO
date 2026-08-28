@@ -1,347 +1,261 @@
-# Automatización Trello — Construcción de Aulas
+# Control diario de obra — Trello + Last Planner
 
 [![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
-Crea automáticamente las tarjetas de cada día en Trello a partir del cronograma
-Excel (Last Planner System), **copiando la tarjeta PLANTILLA de cada actividad**
-desde el propio tablero (con su descripción y sus checklists), con **hora de
-inicio y hora de fin**, y al final de la jornada mueve cada tarjeta según su
-estado. Reproduce, sin intervención humana, lo que hoy se hace a mano.
+Cinco robots que llevan solos el tablero de una obra: leen el cronograma
+(Last Planner), crean las tarjetas del día copiando tus plantillas de control
+de calidad, las reparten, evalúan al cierre quién cumplió, sacan el reporte y
+archivan lo terminado.
 
-Todo corre en **GitHub Actions**: gratis, en la nube, sin depender de tu PC.
+Todo corre en **GitHub Actions**: gratis, en la nube, sin depender de ninguna
+computadora encendida.
 
-> **Las horas se cambian desde el navegador, con un botón.** No hay que entrar
-> al código nunca. Ver [Cambiar la hora](#-cambiar-la-hora-sin-tocar-el-código).
+> **Nada de esta obra está escrito en el código.** Todo lo particular —la forma
+> del Excel, las horas, las listas del tablero, las familias de trabajo— vive en
+> `configuracion.json` y `mapeo.json`, y se edita **desde el navegador**.
+> Para llevar el sistema a otra obra no se toca una línea de Python.
 
 ---
 
-## Contenido
+## El ciclo de un día
 
-| Ruta | Qué es |
+| # | Robot | Cuándo | Qué hace |
+|---|---|---|---|
+| 1 | **Preparar** | la tarde anterior | Lee el cronograma de **mañana** y crea las tarjetas en `ESPERA`, copiando la plantilla de cada actividad |
+| 2 | **Distribuir** | de madrugada | Vacía `ESPERA` repartiendo cada tarjeta a su lista del día según su familia |
+| 3 | **Cierre** | al terminar la jornada | Checklist completo → `CULMINADO`; le falta algo → `NO CUMPLIDAS` |
+| 4 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y escribe el corte |
+| 5 | **Archivar** | al final del día | Archiva lo culminado y deja el tablero limpio |
+
+Preparar la víspera es lo que hace que el tablero de hoy no se ensucie con lo
+de mañana, y que si el cronograma trae una sorpresa haya toda la tarde para verla.
+
+**Todos son idempotentes**: si un robot corre dos veces, la segunda no duplica
+ni rehace nada. Eso permite tener dos relojes sin riesgo.
+
+---
+
+## Cómo empareja cada tarjeta con su plantilla
+
+1. Del cronograma sale la actividad: `ACERO INFERIOR EN ZAPATAS`.
+2. Busca en el tablero una tarjeta que **lleve la palabra PLANTILLA en su nombre**
+   y se llame igual: `PLANTILLA — ACERO INFERIOR EN ZAPATAS`.
+3. La **duplica**: se lleva su descripción, todos sus checklists con sus ítems, y
+   sus etiquetas. Le pone nombre `SECTOR — ACTIVIDAD — DD/MM/AAAA` y el horario
+   de la jornada.
+
+Una tarjeta es plantilla **por su propio nombre**, viva en la lista que viva. Así
+una errata en el encabezado de una columna (`PLANTILA` con una sola L) no deja
+fuera a las plantillas que contiene. Tolera `PLANTILLA`, `PLANTILA`, plurales,
+emojis y guiones. La comparación ignora acentos, símbolos y mayúsculas.
+
+**Consecuencia práctica:** todo lo que quieras que lleven las tarjetas —ítems de
+calidad, etiquetas, el texto de la descripción— se edita **en la plantilla, dentro
+de Trello**, y rige al día siguiente. Sin tocar código ni subir nada.
+
+Si una actividad todavía no tiene plantilla, la tarjeta se crea igual con una
+descripción generada, para no dejarla fuera del plan.
+
+---
+
+## Cuándo cuenta como terminada
+
+Manda el **control de calidad**, no la marca de "completa" de Trello.
+
+| Criterio | Terminada si… |
 |---|---|
-| `trello_auto/crear_tarjetas.py` | **Automatización 1.** Lee el cronograma y crea las tarjetas del día en Trello. |
-| `trello_auto/cierre_del_dia.py` | **Automatización 2.** Al cierre, mueve lo terminado a *CULMINADO* y lo pendiente a *T. NO CUMPLIDAS*. |
-| `trello_auto/portero.py` | Decide si la corrida programada es la de la hora configurada. Es lo que permite cambiar la hora sin tocar el código. |
-| `trello_auto/guardar_horario.py` | Valida y guarda `horario.json` (lo usa el botón "Cambiar horario"). |
-| `trello_auto/settings.py` | Configuración efectiva (credenciales, listas, horas, checklists). |
-| `trello_auto/trello.py` | Cliente de la API de Trello (con reintentos). |
-| `trello_auto/excel.py` | Lectura de la hoja `01_MAESTRO` del cronograma. |
-| `horario.json` | **Las horas vigentes.** Lo escribe el workflow "Cambiar horario". |
-| `data/` | Cronograma (`.xlsx`) y su respaldo ya procesado (`plan_obra.json`). |
-| `.github/workflows/` | Los relojes automáticos y el CI. |
-| `tests/` | Pruebas automáticas (no tocan Trello). |
-| `config.example.py` | Plantilla de configuración local. Cópiala a `config.py`. |
+| `checklist` *(por defecto)* | **todos** los ítems de sus checklists están marcados |
+| `auto` | checklist completo **o** tarjeta marcada como completa |
+| `marcada` | solo la marca de Trello |
 
 ---
 
-## Cómo funciona
+## 🕐 Las dos clases de hora
 
-El Excel, en la hoja `01_MAESTRO`, tiene una fila de **fechas** y, por cada
-**actividad** (fila), el código de **sector** (`1CS6`, `2PS13`…) escrito justo en
-la columna del día que le toca. El script:
+Es la confusión más fácil de tener, y conviene tenerla clara:
 
-1. **Ubica la columna** de la fecha pedida y toma las actividades con sector ese día.
-2. **Clasifica** cada una por tipo de trabajo (Acero / Encofrado / Concreto / Varios)
-   según el nombre de la actividad.
-3. **Busca su tarjeta PLANTILLA** en el tablero. Una tarjeta es plantilla porque
-   **su propio nombre lo dice** (`PLANTILLA — ACERO EN ZAPATAS`), viva en la lista
-   que viva: así una errata en el encabezado de una columna no deja fuera a las
-   plantillas que contiene. Tolera `PLANTILA`, `PLANTILLAS`, emojis y guiones. El
-   emparejamiento se hace **leyendo el tablero en vivo**, comparando nombres sin
-   acentos ni símbolos — sin ningún ID escrito en el código.
-4. **Crea la tarjeta** `SECTOR — ACTIVIDAD — DD/MM/AAAA` en la lista del día correcta:
-   - **copiando de la plantilla** su **descripción**, **todos sus checklists** con
-     sus ítems y sus **etiquetas** (vía `idCardSource` + `keepFromSource` de la API
-     de Trello);
-   - con **hora de inicio** (`HORA_INICIO`) y **hora de fin** (`HORA_FIN`) de ese día,
-     en la hora local de la obra (por defecto 07:00 → 17:00, `America/Lima`).
+**JORNADA** — se escribe **dentro** de cada tarjeta. Es el `Vencimiento` que ve
+el equipo en Trello. No ejecuta nada.
 
-Si una actividad **todavía no tiene plantilla** (fases más avanzadas: losas,
-tarrajeos, acabados…), la tarjeta se crea igual, con una descripción generada y el
-**checklist de respaldo** de su tipo de trabajo (`settings.CHECKLIST_POR_TIPO`), para
-no dejarla sin control de calidad. En cuanto agregues esa plantilla al tablero, el
-script la usa automáticamente en la siguiente corrida.
+**RELOJES** — despiertan a cada robot. No aparecen en ninguna tarjeta.
 
-Es **idempotente**: si una tarjeta con ese nombre ya existe, no la duplica. Puedes
-correrlo las veces que quieras.
+Dales margen entre ellas: si la jornada vence a las 18:30, el cierre a las 19:00.
+Si no, a alguien le mueven la tarjeta mientras aún está marcando su checklist.
 
-### Cierre del día: cuándo cuenta como terminada
+### Cambiarlas sin tocar el código
 
-`cierre_del_dia.py` recorre las listas del día (y *EN EJECUCIÓN*) y mueve cada
-tarjeta a *CULMINADO* o a *T. NO CUMPLIDAS*. El criterio se configura con
-`CRITERIO_CIERRE`:
+**Actions → "Configurar" → Run workflow.** Escribes solo lo que quieras cambiar,
+el resto lo dejas en blanco. El workflow valida, guarda y hace el commit.
 
-| Criterio | Una tarjeta está terminada si… |
-|---|---|
-| `checklist` *(por defecto)* | **todos** los ítems de sus checklists están marcados. Manda el control de calidad: no basta con tildar la tarjeta, y si le falta un ítem (o no tiene checklist) se va a *NO CUMPLIDAS* |
-| `auto` | está marcada como completa **o** tiene su checklist 100% marcado |
-| `marcada` | está marcada como completa en Trello |
+Se puede cambiar: las dos horas de la jornada, las cinco horas de los robots,
+los días hábiles, la zona horaria, el criterio de cierre y **la forma del Excel**
+(hoja, fila de fechas, columna de actividades).
 
-Todas las tarjetas que crea la automatización llevan checklist —el de su plantilla,
-o el de respaldo—, así que siempre hay algo que evaluar. Una tarjeta agregada a mano
-al tablero, sin checklist, contará como no cumplida.
+### Los dos relojes
 
-También puedes elegir otro criterio en cada corrida manual, desde el botón
-*Run workflow* (déjalo en `configurado` para usar el de siempre).
+GitHub Actions **no es puntual**: retrasa y a veces descarta las tareas
+programadas. Por eso hay dos relojes apuntando a la misma hora:
 
-### Qué se copia de la plantilla, y qué no
+- Un **servicio de cron externo** dispara el workflow por la API. Ese es el
+  puntual, el que hace el trabajo.
+- El **cron de GitHub** es la red de seguridad. Cuando llega —tarde— se encuentra
+  el trabajo hecho y no repite nada.
 
-La API de Trello obliga a **listar** qué partes traer al duplicar una tarjeta: lo
-que no se pide, no se copia. Eso se controla con `COPIAR_DE_PLANTILLA`, que por
-defecto vale `checklists,labels`. Puedes añadir `members`, `attachments`,
-`comments`, `stickers`, `customFields`, o poner `all` para traer todo.
-
-**No pongas `due` ni `start`**: las fechas las calcula el script con el horario del
-día, no las hereda de la plantilla. La **descripción** se copia siempre, aparte.
-
-Así, todo lo que quieras que lleven las tarjetas —ítems de calidad, etiquetas de
-color, el texto de la descripción— se edita **en la plantilla dentro de Trello**, y
-rige desde el día siguiente sin tocar el código ni subir nada a GitHub.
-
-> ⚠ Los ítems de `CHECKLIST_POR_TIPO` que trae el repo son **genéricos, para no
-> dejar tarjetas sin control**. Reemplázalos por tu plantilla real de calidad
-> cuando la tengas — o, mejor, crea la tarjeta PLANTILLA en el tablero: siempre
-> gana la plantilla sobre el respaldo.
+Los cron están en los minutos **7 y 37**, nunca en punto ni a la media: son las
+horas de mayor congestión y GitHub descarta citas ahí. Y el "portero"
+(`trello_auto/portero.py`) deja pasar solo las citas dentro de una ventana de
+90 minutos desde la hora configurada, así que perder una cita no cuesta el día.
 
 ---
 
-## 🚀 Puesta en marcha en GitHub (una sola vez)
+## 📊 El reporte y los dos dashboards
 
-**1. Crea un repositorio PRIVADO** en GitHub (importante: privado, para que tu
-cronograma no quede público) y sube todo el contenido de esta carpeta.
+El reporte **solo lee**: puedes correrlo a mediodía, a las tres y antes del
+cierre. Cada corrida es un **corte** con su fecha y hora, y los cortes se
+acumulan. Repetir un corte en el mismo minuto lo reemplaza, no lo duplica.
 
-```bash
-git init
-git add .
-git commit -m "Automatización Trello de obra"
-git branch -M main
-git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
-git push -u origin main
+```
+--alcance dia            las listas del día (lo que está en juego hoy)
+--alcance no-cumplidas   la deuda acumulada
+--alcance todo           las dos cosas
 ```
 
-`config.py` no se sube nunca: lo bloquea `.gitignore`.
+Produce tres cosas:
 
-**2. Crea los Secrets** con tus credenciales (van cifrados):
-Repo → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+| Archivo | Para qué |
+|---|---|
+| `reportes/ultimo.csv` | El corte de ahora. Es lo que lee tu Excel |
+| `reportes/cortes.csv` | El histórico de todos los cortes: la película, no la foto |
+| `dashboard/index.html` | Dashboard web autocontenido |
+
+### El dashboard web
+
+Un solo archivo, con los datos dentro. Se puede publicar en GitHub Pages, verlo
+desde el celular, descargarlo, mandarlo por correo o abrirlo sin conexión — y
+sigue funcionando aunque el repositorio pase a privado.
+
+### El dashboard de Excel
+
+`dashboard/DASHBOARD_CONTROL.xlsx` conserva tus gráficos y tablas de apoyo, con
+tres arreglos para que aguante la automatización:
+
+- **Sin límite de filas.** Antes las fórmulas llegaban a la 201 y el corte 202
+  desaparecía en silencio. Ahora llegan a la 5000.
+- **La fecha de corte se calcula sola** (`DASHBOARD!F3`). Antes estaba escrita a
+  mano: si el reporte era de las tres de la tarde y F3 decía las siete de la
+  mañana, todas las antigüedades salían mal sin avisar.
+- **Las familias vienen de la configuración**, no escritas a mano.
+
+**Conectarlo (una vez):** Datos → Obtener datos → Desde web → pega la URL del
+`ultimo.csv` en bruto → cárgalo sobre la hoja `DATOS`. Después, cada vez que
+quieras datos frescos: **Actualizar todo**.
+
+Y esto resuelve lo de la PC apagada: el reporte siempre se guarda, tu PC no
+tiene que estar encendida ni recibir nada. Cuando la prendas y actualices, se
+trae **todos los cortes que se hicieron mientras estuvo apagada**. No se pierde
+ninguno y no hay que volver a ejecutar nada.
+
+> Si el repositorio pasa a privado, ese enlace deja de responder sin credencial.
+> Para que el dashboard siga actualizándose solo, deja los reportes en un repo
+> público aparte y el código en el privado.
+
+---
+
+## 🔄 Sincronizar
+
+**Actions → "Sincronizar cronograma y tablero" → Run workflow.** Apriétalo
+cuando subas una revisión nueva del Excel o crees plantillas o listas en Trello.
+
+Hace tres cosas y hace el commit por ti:
+
+1. Saca del Excel **todas las actividades distintas**.
+2. Vuelca el plan entero a `data/plan_obra.json`. Es el **respaldo**: si algún
+   día el Excel falta o se corrompe, los robots siguen corriendo con ese archivo.
+3. Lee el tablero y escribe `mapeo.json`, que dice a qué familia y a qué lista va
+   cada actividad. Llega **pre-rellenado** por palabras clave —para no mapear
+   decenas de actividades a mano— y **lo que corrijas se respeta** en las
+   sincronizaciones siguientes. También te deja a la vista los nombres reales de
+   tus listas, para que elijas de lo que existe.
+
+Lo que no case con ninguna palabra clave cae en la familia de descarte
+(`Varios`), nunca se queda sin destino ni se acumula donde no debe.
+
+---
+
+## 🚀 Puesta en marcha
+
+**1. Los Secrets.** Settings → Secrets and variables → Actions:
 
 | Nombre | Valor |
 |---|---|
 | `TRELLO_KEY` | tu API Key |
 | `TRELLO_TOKEN` | tu Token |
 
-Se obtienen gratis en <https://trello.com/power-ups/admin>: crea un Power-Up (o usa
-uno), copia la **API Key** y genera un **Token** con el enlace de esa misma página.
+Se obtienen gratis en <https://trello.com/power-ups/admin>.
 
-**3. Listo.** Los relojes ya están puestos:
+**2. Sube tu Excel** a `data/` y ajusta `configuracion.json → cronograma` con la
+forma que tenga (o hazlo desde el botón "Configurar").
 
-| Workflow | Corre solo | Qué hace |
-|---|---|---|
-| **1. Crear tarjetas del día** | 06:30, lunes a viernes | Crea las tarjetas del día |
-| **2. Cierre del día** | 20:00, lunes a viernes | Mueve lo terminado / pendiente |
-| **3. Cambiar horario** | solo a mano | Cambia las horas de todo lo anterior |
-| **CI** | en cada cambio | Revisa que el proyecto siga sano |
+**3. Sincroniza** una vez, para generar el mapeo y el respaldo.
 
-El `BOARD_ID` por defecto es `gzoZo6ip` (tablero "AULAS — CONTROL DIARIO"). Si
-alguna vez cambia de tablero, créalo como **Variable** del repo (no Secret) con
-el nombre `BOARD_ID`.
-
-**Costo:** gratis. Un repo privado incluye 2 000 minutos/mes de Actions; este
-proyecto usa del orden de 30–40 minutos al mes. No pide tarjeta de crédito.
+**4. Prueba en seco.** Cada robot tiene `dry_run` en su formulario: muestra qué
+haría sin tocar nada.
 
 ---
 
-## 🕐 Cambiar la hora sin tocar el código
-
-Este es el punto clave: **la hora no vive en el código**.
-
-GitHub solo acepta un `cron:` fijo dentro del archivo del workflow, así que ahí la
-hora sería intocable sin editar código. Por eso el workflow se **despierta cada
-media hora** dentro de una franja amplia, y un **portero** (`trello_auto/portero.py`)
-solo deja pasar las citas que caen en la ventana que abre a la hora configurada.
-Esa hora está en `horario.json`, que se edita desde el navegador.
-
-Los `cron` están puestos en los **minutos 7 y 37, nunca en punto ni a la media**:
-GitHub retrasa o descarta las tareas programadas cuando tiene carga, y las horas
-en punto son las más congestionadas. Por lo mismo la ventana del portero es ancha
-(90 min por defecto): si una cita se pierde, la siguiente todavía sirve. Que entren
-dos corridas no hace daño — crear tarjetas no duplica nada, y el cierre no
-encuentra nada que mover la segunda vez.
-
-### Opción A — el botón (recomendado)
-
-1. Repo → pestaña **Actions**.
-2. Workflow **"3. Cambiar horario"** → botón **Run workflow**.
-3. Escribe solo lo que quieras cambiar (lo demás, déjalo en blanco):
-
-   | Campo | Qué cambia | Ejemplo |
-   |---|---|---|
-   | `hora_crear` | a qué hora se **crean** las tarjetas | `07:00` |
-   | `hora_cierre` | a qué hora corre el **cierre** | `19:30` |
-   | `hora_inicio` | hora de **inicio** de cada tarjeta | `08:00` |
-   | `hora_fin` | hora de **fin / vencimiento** de cada tarjeta | `18:00` |
-   | `dias_habiles` | qué días corre (1 = lunes … 7 = domingo) | `1-5`, `1-6`, `1,3,5` |
-   | `tz_obra` | zona horaria de la obra | `America/Lima` |
-
-4. **Run workflow** verde. El workflow valida las horas, guarda `horario.json` y
-   hace el commit por ti. **Desde la siguiente corrida ya rige la hora nueva.**
-
-Si escribes una hora imposible (`25:00`) o una zona horaria que no existe, falla ahí
-mismo con un mensaje claro y no guarda nada.
-
-### Opción B — Variables del repositorio
-
-Settings → Secrets and variables → **Actions** → pestaña **Variables** →
-*New repository variable*. Las Variables **mandan por encima** de `horario.json`:
-
-`HORA_CREAR`, `HORA_CIERRE`, `HORA_INICIO`, `HORA_FIN`, `DIAS_HABILES`, `TZ_OBRA`,
-`BOARD_ID`.
-
-### Opción C — solo para una corrida
-
-En **"1. Crear tarjetas del día"** → *Run workflow*, los campos `hora_inicio` y
-`hora_fin` cambian el horario **solo de esa corrida**, sin guardar nada.
-
-### Sobre el cambio de horario (DST)
-
-Todo se calcula en la zona horaria de la obra (`TZ_OBRA`, por defecto
-`America/Lima`), nunca sumando "−5" a mano. Si la obra se mudara a una zona con
-horario de verano, basta con poner esa zona en `tz_obra` y el ajuste estacional lo
-hace solo.
-
-**Franjas que cubre el reloj**, sin tocar nada:
-
-- Crear tarjetas: cualquier hora entre las **04:00 y las 12:30**.
-- Cierre del día: cualquier hora entre las **16:00 y las 23:30**.
-
-Si alguna vez necesitas una hora fuera de esas franjas, es la única línea que se
-edita: el `cron:` del workflow correspondiente.
-
----
-
-## 🖱 Correr a mano, desde el navegador
-
-No hace falta tu PC ni la terminal. Repo → **Actions** → workflow → **Run workflow**:
-
-**1. Crear tarjetas del día**
-
-| Campo | Para qué |
-|---|---|
-| `fecha` | `AAAA-MM-DD` o `hoy` |
-| `fecha_fin` | opcional; corre cada día del rango (ej. toda la semana de un golpe) |
-| `tipo` | `TODOS`, `ACERO`, `ENCOFRADO`, `CONCRETO`, `VARIOS` |
-| `hora_inicio` / `hora_fin` | horario solo para esta corrida |
-| `dry_run` | muestra qué crearía **sin crear nada** |
-
-**2. Cierre del día**: `criterio` (`configurado` / `checklist` / `auto` / `marcada`) y
-`dry_run`, por si quieres forzar un cierre fuera de horario o ver antes qué movería.
-
-Cada corrida manual pesa lo mismo que la automática (~1 minuto) y queda su registro
-completo en el log.
-
----
-
-## 💻 Uso desde tu PC (opcional)
+## 💻 Desde tu PC (opcional)
 
 ```bash
 pip install -r requirements.txt
-cp config.example.py config.py       # y completa tus credenciales
+cp config.example.py config.py     # y pon tus credenciales
 ```
 
 ```bash
-# Ver qué crearía, sin crear nada:
-python crear_tarjetas.py --fecha 2026-08-27 --dry-run
-
-# Crear las de un día / las de hoy:
-python crear_tarjetas.py --fecha 2026-08-27
-python crear_tarjetas.py --fecha hoy
-
-# Toda la semana de un golpe:
-python crear_tarjetas.py --fecha 2026-08-26 --fecha-fin 2026-08-29
-
-# Solo un tipo de trabajo:
-python crear_tarjetas.py --fecha hoy --tipo CONCRETO
-python crear_tarjetas.py --fecha 2026-08-26 --fecha-fin 2026-09-04 --tipo ACERO
-
-# Con otro horario solo para esta corrida:
-python crear_tarjetas.py --fecha hoy --hora-inicio 08:00 --hora-fin 18:00
-
-# Cierre del día:
-python cierre_del_dia.py --dry-run
-python cierre_del_dia.py --criterio checklist
-
-# Ver o cambiar el horario guardado:
-python -m trello_auto.guardar_horario --ver
-python -m trello_auto.guardar_horario --hora-crear 07:00 --hora-fin 18:00
+python -m trello_auto.preparar --fecha manana --dry-run
+python -m trello_auto.distribuir --dry-run
+python -m trello_auto.cierre --dry-run
+python -m trello_auto.reporte --alcance todo
+python -m trello_auto.archivar --dry-run
+python -m trello_auto.sincronizar
+python -m trello_auto.configurar --ver
+python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
 ```
-
-Los `dry-run` **leen** el tablero (para decirte si cada actividad tiene plantilla)
-pero no escriben nada. Sin credenciales funcionan igual, solo con el cronograma.
 
 ### Pruebas
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q          # 26 pruebas, ninguna toca Trello
+pytest -q                          # 44 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
 ---
 
-## Configuración disponible
+## Qué hay en cada archivo
 
-Todo se resuelve por prioridad: **variable de entorno** → **`horario.json`** →
-**`config.py`** → valor por defecto.
-
-| Nombre | Por defecto | Qué es |
-|---|---|---|
-| `TRELLO_KEY`, `TRELLO_TOKEN` | — | Credenciales (Secrets en GitHub) |
-| `BOARD_ID` | `gzoZo6ip` | Tablero destino |
-| `RUTA_EXCEL` | `data/5__LPS_PLANNING_REV_9.xlsx` | Cronograma |
-| `TZ_OBRA` | `America/Lima` | Zona horaria de la obra |
-| `HORA_INICIO` / `HORA_FIN` | `07:00` / `17:00` | Jornada (inicio y fin de cada tarjeta) |
-| `HORA_CREAR` / `HORA_CIERRE` | `06:30` / `20:00` | Hora de cada automatización |
-| `DIAS_HABILES` | `1-5` | Días que corre (1 = lunes) |
-| `CRITERIO_CIERRE` | `checklist` | `checklist` / `auto` / `marcada` |
-| `COPIAR_DE_PLANTILLA` | `checklists,labels` | Qué partes de la plantilla se copian |
-| `VENTANA_MIN` | `90` | Tolerancia del portero, en minutos |
-
-Los **nombres de listas** se resuelven por **palabra clave** (sin acentos ni
-emojis), así que siguen funcionando aunque renombres una lista en Trello:
-`T. DEL DÍA ACERO- 🟦🟦🟦🟦🟦` se encuentra buscando `T. DEL DIA ACERO`.
+| Ruta | Qué es |
+|---|---|
+| `configuracion.json` | **Toda la obra.** Horas, listas, familias, responsables, forma del Excel |
+| `mapeo.json` | Actividad → familia → lista destino. Lo genera "Sincronizar" |
+| `trello_auto/ajustes.py` | Lee la configuración y la resuelve por prioridad |
+| `trello_auto/cronograma.py` | Lee el Excel (o el respaldo JSON) y clasifica |
+| `trello_auto/trello.py` | Cliente de la API, plantillas y conteo de checklists |
+| `trello_auto/horario.py` | Zonas horarias, conversiones y el portero |
+| `trello_auto/preparar.py` … `archivar.py` | Los cinco robots |
+| `trello_auto/reporte.py` · `tablero.py` | El corte y el dashboard web |
+| `trello_auto/sincronizar.py` · `configurar.py` | Los dos botones de gestión |
+| `data/` | El cronograma y su respaldo |
+| `reportes/` | Los cortes acumulados |
+| `dashboard/` | El Excel y el dashboard web |
 
 ---
 
-## Butler (alternativa sin código para el cierre)
+## Próximos pasos
 
-El movimiento "terminada → CULMINADO / no terminada → NO CUMPLIDAS" también se
-puede hacer **sin servidor**, con **Butler**, la automatización nativa y gratuita de
-Trello (menú del tablero → Automatización → Butler). Ejemplo de regla:
-
-> **Cada día a las 20:00**, en la lista "T. DEL DÍA ACERO…", mueve las tarjetas
-> marcadas como completas a "CULMINADO 🎯" y las no completas a
-> "T. NO CUMPLIDAS 🆘". (Repetir por cada lista del día.)
-
-Pero Butler **solo puede mirar la marca de "completa"**: no sabe leer el checklist
-ítem por ítem. Como aquí el cierre lo decide el control de calidad, `cierre_del_dia.py`
-es la opción que hace lo que necesitas; Butler queda como plan B.
-
----
-
-## Datos del cronograma actual
-
-- **1 447** tareas a lo largo de todo el plan.
-- **75** días con trabajo, del **12/08/2026** al **24/11/2026**.
-- **75** actividades distintas; **17** ya cubiertas por plantillas del tablero
-  (fase de cimentación, ~24 tarjetas plantilla).
-- Distribución por tipo: Varios 474 · Concreto 369 · Acero 305 · Encofrado 299.
-
----
-
-## Próximas mejoras
-
-- Crear las **plantillas restantes** (losas, tarrajeos, acabados) para que todo el
-  plan salga con su checklist real.
-- Asignar **responsable** por tarjeta según la cuadrilla (columna OPER/OFIC) →
-  habilita el recordatorio por persona.
-- **Etiquetas de color** por cuadrilla.
-- Adjuntar **metrado y rendimiento** (hoja PROPUESTA) en la descripción.
+- **Las plantillas que faltan.** Cada actividad sin plantilla sale sin su control
+  de calidad real. `mapeo.json` te dice exactamente cuáles faltan.
+- **PPC semanal.** El cierre ya calcula el cumplimiento del día; falta acumularlo
+  por semana, que es *la* métrica del Last Planner.
+- **Causas de no cumplimiento.** Saber *por qué* no se cumplió cierra el ciclo de
+  mejora. Se puede capturar con una etiqueta y contarlo en el reporte.
+- **Responsable por cuadrilla**, desde la columna OPER/OFIC del Excel.

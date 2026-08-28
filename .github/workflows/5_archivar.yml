@@ -1,0 +1,92 @@
+# ===========================================================================
+#  ROBOT 5 - Archivar lo culminado
+# ---------------------------------------------------------------------------
+#  LA HORA NO SE CAMBIA AQUI. El cron de abajo solo despierta el proceso cada
+#  media hora; quien decide si de verdad toca ejecutar es el PORTERO, que lee
+#  la hora de configuracion.json.
+#  Para cambiarla: Actions -> "Configurar" -> Run workflow.
+#
+#  Los minutos 7 y 37 son a proposito: GitHub retrasa o descarta las tareas
+#  programadas en punto y a la media, que son las horas de mayor congestion.
+#  Este cron es la RED DE SEGURIDAD; el reloj puntual es el servicio externo,
+#  que dispara este mismo workflow por la API a la hora configurada.
+# ===========================================================================
+name: 5. Archivar lo culminado
+
+on:
+  schedule:
+    - cron: "7,37 1-5 * * 2-6"
+    - cron: "7,37 22-23 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      incluir_no_cumplidas:
+        description: "Archivar tambien las no cumplidas"
+        required: false
+        default: false
+        type: boolean
+      antiguedad:
+        description: "Archivar solo lo vencido hace N dias o mas (vacio = todo)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Solo mostrar que haria, sin tocar nada"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: archivar
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  archivar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # El portero solo interviene en las corridas automaticas de GitHub.
+      # Un disparo externo o manual se ejecuta siempre, sin preguntar la hora.
+      - name: Comprobar si toca ejecutar
+        id: portero
+        if: github.event_name == 'schedule'
+        env:
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          HORA_ARCHIVAR: ${{ vars.HORA_ARCHIVAR }}
+          DIAS_HABILES: ${{ vars.DIAS_HABILES }}
+        run: python -m trello_auto.portero --tarea archivar
+
+      - name: Archivar lo culminado
+        if: github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true'
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          BOARD_ID: ${{ vars.BOARD_ID }}
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          INCLUIR: ${{ inputs.incluir_no_cumplidas }}
+          ANTIGUEDAD: ${{ inputs.antiguedad }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "${INCLUIR:-}" = "true" ]; then ARGS+=(--incluir-no-cumplidas); fi
+          if [ -n "${ANTIGUEDAD:-}" ]; then ARGS+=(--antiguedad "$ANTIGUEDAD"); fi
+          if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
+          echo "python -m trello_auto.archivar ${ARGS[@]+"${ARGS[@]}"}"
+          python -m trello_auto.archivar ${ARGS[@]+"${ARGS[@]}"}
+
+      - name: No tocaba ejecutar
+        if: github.event_name == 'schedule' && steps.portero.outputs.ejecutar != 'true'
+        run: |
+          echo "Corrida omitida: ${{ steps.portero.outputs.motivo }}"
+          echo "Hora configurada: ${{ steps.portero.outputs.hora }}"

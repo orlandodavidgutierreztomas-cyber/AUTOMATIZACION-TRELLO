@@ -1,66 +1,59 @@
 # ===========================================================================
-#  CIERRE DEL DIA  -  reloj automatico en GitHub Actions
+#  ROBOT 3 - Cierre del dia
 # ---------------------------------------------------------------------------
-#  Al final de la jornada mueve las tarjetas del dia:
-#    terminadas -> CULMINADO   ·   no terminadas -> NO CUMPLIDAS
+#  LA HORA NO SE CAMBIA AQUI. El cron de abajo solo despierta el proceso cada
+#  media hora; quien decide si de verdad toca ejecutar es el PORTERO, que lee
+#  la hora de configuracion.json.
+#  Para cambiarla: Actions -> "Configurar" -> Run workflow.
 #
-#  Igual que el otro workflow: el cron solo despierta el proceso; la hora real
-#  la decide el PORTERO leyendo horario.json (HORA_CIERRE).
-#  Para cambiarla usa el workflow "Cambiar horario" (Run workflow).
+#  Los minutos 7 y 37 son a proposito: GitHub retrasa o descarta las tareas
+#  programadas en punto y a la media, que son las horas de mayor congestion.
+#  Este cron es la RED DE SEGURIDAD; el reloj puntual es el servicio externo,
+#  que dispara este mismo workflow por la API a la hora configurada.
 # ===========================================================================
-name: 2. Cierre del dia
+name: 3. Cierre del dia
 
 on:
   schedule:
-    # Cada 30 min de 21:07 a 23:37 UTC (16:07-18:37 Peru) ...
-    - cron: "7,37 21-23 * * 1-5"
-    # ... y de 00:07 a 04:37 UTC del dia siguiente (19:07-23:37 Peru).
+    - cron: "7,37 20-23 * * 1-5"
     - cron: "7,37 0-4 * * 2-6"
-    # Minutos 7 y 37 a proposito: GitHub descarta tareas programadas en punto
-    # y a la media, que son las horas de mayor congestion.
-
   workflow_dispatch:
     inputs:
       criterio:
-        description: "Cuando se considera TERMINADA una tarjeta"
+        description: "Cuando cuenta como terminada"
         required: false
         default: "configurado"
         type: choice
-        options:
-          - configurado   # el de settings.py: checklist 100% marcado
-          - checklist     # todos los items del checklist marcados
-          - auto          # checklist completo O tarjeta marcada como completa
-          - marcada       # solo la marca de completa de Trello
+        options: [configurado, checklist, auto, marcada]
       dry_run:
-        description: "Solo mostrar que moveria, sin mover nada"
+        description: "Solo mostrar que haria, sin tocar nada"
         required: false
         default: false
         type: boolean
 
 concurrency:
-  group: cierre-del-dia
+  group: cierre
   cancel-in-progress: false
 
 permissions:
   contents: read
 
 jobs:
-  cierre-del-dia:
+  cierre:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Descargar el proyecto
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Preparar Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
 
-      - name: Instalar dependencias
-        run: pip install -r requirements.txt
+      - run: pip install -r requirements.txt
 
+      # El portero solo interviene en las corridas automaticas de GitHub.
+      # Un disparo externo o manual se ejecuta siempre, sin preguntar la hora.
       - name: Comprobar si toca ejecutar
         id: portero
         if: github.event_name == 'schedule'
@@ -70,7 +63,7 @@ jobs:
           DIAS_HABILES: ${{ vars.DIAS_HABILES }}
         run: python -m trello_auto.portero --tarea cierre
 
-      - name: Cerrar el dia
+      - name: Cierre del dia
         if: github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true'
         env:
           TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
@@ -82,15 +75,15 @@ jobs:
         run: |
           set -euo pipefail
           ARGS=()
-          # "configurado" (o vacio, en las corridas automaticas) = usar el de settings.py
-          if [ -n "${CRITERIO:-}" ] && [ "${CRITERIO}" != "configurado" ]; then
+          if [ -n "${CRITERIO:-}" ] && [ "$CRITERIO" != "configurado" ]; then
             ARGS+=(--criterio "$CRITERIO")
           fi
           if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
-          python -m trello_auto.cierre_del_dia ${ARGS[@]+"${ARGS[@]}"}
+          echo "python -m trello_auto.cierre ${ARGS[@]+"${ARGS[@]}"}"
+          python -m trello_auto.cierre ${ARGS[@]+"${ARGS[@]}"}
 
       - name: No tocaba ejecutar
         if: github.event_name == 'schedule' && steps.portero.outputs.ejecutar != 'true'
         run: |
           echo "Corrida omitida: ${{ steps.portero.outputs.motivo }}"
-          echo "Hora configurada para el cierre: ${{ steps.portero.outputs.hora }}"
+          echo "Hora configurada: ${{ steps.portero.outputs.hora }}"

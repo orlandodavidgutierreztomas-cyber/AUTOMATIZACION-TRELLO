@@ -1,0 +1,90 @@
+# ===========================================================================
+#  ROBOT 1 - Preparar tarjetas de manana
+# ---------------------------------------------------------------------------
+#  LA HORA NO SE CAMBIA AQUI. El cron de abajo solo despierta el proceso cada
+#  media hora; quien decide si de verdad toca ejecutar es el PORTERO, que lee
+#  la hora de configuracion.json.
+#  Para cambiarla: Actions -> "Configurar" -> Run workflow.
+#
+#  Los minutos 7 y 37 son a proposito: GitHub retrasa o descarta las tareas
+#  programadas en punto y a la media, que son las horas de mayor congestion.
+#  Este cron es la RED DE SEGURIDAD; el reloj puntual es el servicio externo,
+#  que dispara este mismo workflow por la API a la hora configurada.
+# ===========================================================================
+name: 1. Preparar tarjetas de manana
+
+on:
+  schedule:
+    - cron: "7,37 20-23 * * 1-5"
+    - cron: "7,37 0-4 * * 2-6"
+  workflow_dispatch:
+    inputs:
+      fecha:
+        description: 'Fecha a preparar: "manana", "hoy" o AAAA-MM-DD'
+        required: false
+        default: "manana"
+      fecha_fin:
+        description: "Fecha final del rango (opcional)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Solo mostrar que haria, sin tocar nada"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: preparar
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  preparar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      # El portero solo interviene en las corridas automaticas de GitHub.
+      # Un disparo externo o manual se ejecuta siempre, sin preguntar la hora.
+      - name: Comprobar si toca ejecutar
+        id: portero
+        if: github.event_name == 'schedule'
+        env:
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          HORA_PREPARAR: ${{ vars.HORA_PREPARAR }}
+          DIAS_HABILES: ${{ vars.DIAS_HABILES }}
+        run: python -m trello_auto.portero --tarea preparar
+
+      - name: Preparar tarjetas de manana
+        if: github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true'
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          BOARD_ID: ${{ vars.BOARD_ID }}
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          FECHA: ${{ inputs.fecha }}
+          FECHA_FIN: ${{ inputs.fecha_fin }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          ARGS=(--fecha "${FECHA:-manana}")
+          if [ -n "${FECHA_FIN:-}" ]; then ARGS+=(--fecha-fin "$FECHA_FIN"); fi
+          if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
+          echo "python -m trello_auto.preparar ${ARGS[@]+"${ARGS[@]}"}"
+          python -m trello_auto.preparar ${ARGS[@]+"${ARGS[@]}"}
+
+      - name: No tocaba ejecutar
+        if: github.event_name == 'schedule' && steps.portero.outputs.ejecutar != 'true'
+        run: |
+          echo "Corrida omitida: ${{ steps.portero.outputs.motivo }}"
+          echo "Hora configurada: ${{ steps.portero.outputs.hora }}"

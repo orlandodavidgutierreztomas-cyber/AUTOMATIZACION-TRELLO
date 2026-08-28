@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 ============================================================================
- CLIENTE DE LA API DE TRELLO  (compartido por los dos scripts)
+ CLIENTE DE LA API DE TRELLO  (compartido por todos los robots)
 ============================================================================
 Un solo lugar con las llamadas a Trello: reintentos ante cortes de red o
 limite de peticiones (429), y utilidades para encontrar listas por palabra
@@ -30,11 +30,6 @@ def normalizar(texto: str) -> str:
     t = unicodedata.normalize("NFKD", texto or "").encode("ascii", "ignore").decode()
     t = re.sub(r"[^A-Za-z0-9 ]", " ", t)
     return re.sub(r"\s+", " ", t).strip().upper()
-
-
-# Marca que declara plantilla a una tarjeta. Tolera "PLANTILLA", "PLANTILA"
-# (con una sola L) y sus plurales, ya normalizados a MAYUSCULAS sin simbolos.
-MARCA_PLANTILLA = re.compile(r"\bPLANTIL[A-Z]*\b")
 
 
 class ErrorTrello(RuntimeError):
@@ -86,9 +81,12 @@ class Trello:
                          {"fields": "name,idList,desc", "filter": "open"})
 
     def tarjetas_de_lista(self, list_id: str) -> list:
-        """Tarjetas de una lista, con sus checklists embebidos (1 sola llamada)."""
+        """Tarjetas de una lista, con sus checklists embebidos (1 sola llamada).
+
+        Trae el estado de cada item, que es lo que usan el cierre y el reporte.
+        """
         return self._req("GET", f"/lists/{list_id}/cards", {
-            "fields": "name,due,dueComplete",
+            "fields": "name,due,dueComplete,shortUrl,labels,idList",
             "checklists": "all",
             "checklist_fields": "name",
         })
@@ -113,6 +111,12 @@ class Trello:
         time.sleep(PAUSA_ESCRITURA)
         return r
 
+    def archivar(self, card_id: str):
+        """Archiva la tarjeta (en Trello, 'closed'). No la borra."""
+        r = self._req("PUT", f"/cards/{card_id}", {"closed": "true"})
+        time.sleep(PAUSA_ESCRITURA)
+        return r
+
 
 # ---------------------------------------------------------------------------
 # Utilidades sobre las listas del tablero
@@ -120,34 +124,34 @@ class Trello:
 def buscar_lista(listas: list, clave: str) -> str:
     """Id de la primera lista cuyo nombre CONTENGA la palabra clave (normalizada)."""
     k = normalizar(clave)
-    for l in listas:
-        if k and k in normalizar(l["name"]):
-            return l["id"]
+    for lst in listas:
+        if k and k in normalizar(lst["name"]):
+            return lst["id"]
     return None
 
 
 def nombre_de_lista(listas: list, list_id: str) -> str:
-    for l in listas:
-        if l["id"] == list_id:
-            return l["name"]
+    for lst in listas:
+        if lst["id"] == list_id:
+            return lst["name"]
     return "(desconocida)"
 
 
-def es_plantilla(nombre: str) -> bool:
-    """True si el NOMBRE de la tarjeta la declara plantilla.
+# ---------------------------------------------------------------------------
+# Plantillas
+# ---------------------------------------------------------------------------
+# Marca que declara plantilla a una tarjeta. Tolera "PLANTILLA", "PLANTILA"
+# (con una sola L) y sus plurales, ya normalizados a MAYUSCULAS sin simbolos.
+MARCA_PLANTILLA = re.compile(r"\bPLANTIL[A-Z]*\b")
 
-    Tolera las variantes reales que aparecen en un tablero de verdad:
-    "PLANTILLA", "PLANTILA" (con una sola L), "PLANTILLAS", con emojis,
-    guiones o dos puntos delante. Lo unico que importa es la palabra.
-    """
+
+def es_plantilla(nombre: str) -> bool:
+    """True si el NOMBRE de la tarjeta la declara plantilla."""
     return bool(MARCA_PLANTILLA.search(normalizar(nombre)))
 
 
 def actividad_de_plantilla(nombre: str) -> str:
-    """Nombre de la actividad que representa una plantilla.
-
-    Le quita la marca "PLANTILLA" y deja el resto normalizado, que es la
-    clave con la que se compara contra la actividad del cronograma.
+    """Nombre de la actividad que representa una plantilla, sin la marca.
 
     "PLANTILLA - ACERO INFERIOR EN ZAPATAS"  ->  "ACERO INFERIOR EN ZAPATAS"
     """
@@ -161,20 +165,16 @@ def construir_indice_plantillas(cards: list, listas: list = None,
 
     Una tarjeta cuenta como PLANTILLA si SU PROPIO NOMBRE lo dice. No depende
     del nombre de la lista donde viva: asi una errata en el encabezado de una
-    columna (p. ej. "PLANTILA" en vez de "PLANTILLA") no deja fuera a las
-    plantillas que contiene, y las listas se pueden reorganizar con libertad.
+    columna no deja fuera a las plantillas que contiene.
 
     Como apoyo, si se pasan `listas` y `clave_plantillas`, tambien se indexan
     las tarjetas que vivan en una lista marcada aunque su nombre no lo diga.
-
-    Todo se resuelve LEYENDO EL TABLERO EN VIVO: no hay ningun id escrito en
-    el codigo, asi que una plantilla nueva se usa sola en la corrida siguiente.
     """
     ids_lista_plantilla = set()
     if listas and clave_plantillas:
         clave = normalizar(clave_plantillas)
-        ids_lista_plantilla = {l["id"] for l in listas
-                               if clave and clave in normalizar(l["name"])}
+        ids_lista_plantilla = {lst["id"] for lst in listas
+                               if clave and clave in normalizar(lst["name"])}
 
     indice = {}
     for c in cards:
@@ -190,3 +190,54 @@ def construir_indice_plantillas(cards: list, listas: list = None,
                 "nombre": c["name"],
             }
     return indice
+
+
+# ---------------------------------------------------------------------------
+# Checklists: pendientes por responsable
+# ---------------------------------------------------------------------------
+def responsable_de_checklist(nombre_checklist: str, responsables: dict) -> str:
+    """Codigo del responsable dueno de un checklist, por su nombre.
+
+    Los checklists de cada plantilla se llaman "ESTRUCTURAS - ...",
+    "CALIDAD - ...", "CAMPO - ...". Devuelve 'EST', 'CAL', 'CAMP'... o None.
+    """
+    texto = normalizar(nombre_checklist)
+    for codigo, datos in responsables.items():
+        for clave in datos.get("claves") or []:
+            if normalizar(clave) in texto:
+                return codigo
+    return None
+
+
+def contar_checks(card: dict, responsables: dict) -> dict:
+    """Cuenta los items de checklist de una tarjeta.
+
+    Devuelve {'total':n, 'pendientes':n, 'por_responsable': {codigo: pendientes},
+    'sin_responsable': n}
+    """
+    total = pendientes = 0
+    por_responsable = {c: 0 for c in responsables}
+    sin_dueno = 0
+
+    for cl in card.get("checklists") or []:
+        codigo = responsable_de_checklist(cl.get("name", ""), responsables)
+        for item in cl.get("checkItems") or []:
+            total += 1
+            if str(item.get("state", "")).lower() != "complete":
+                pendientes += 1
+                if codigo:
+                    por_responsable[codigo] += 1
+                else:
+                    sin_dueno += 1
+
+    return {"total": total, "pendientes": pendientes,
+            "por_responsable": por_responsable, "sin_responsable": sin_dueno}
+
+
+def checklist_completo(card: dict) -> bool:
+    """True si la tarjeta tiene al menos un item y TODOS estan marcados."""
+    items = [i for cl in (card.get("checklists") or [])
+             for i in cl.get("checkItems") or []]
+    if not items:
+        return False
+    return all(str(i.get("state", "")).lower() == "complete" for i in items)

@@ -1,0 +1,160 @@
+{
+  "_ayuda": "Todo lo propio de ESTA obra vive aqui. El codigo Python es generico. Se edita desde Actions -> 'Configurar' (Run workflow), o a mano. Las credenciales NO van aqui: van en los Secrets del repositorio.",
+  "obra": {
+    "nombre": "CONSTRUCCION DE AULAS",
+    "tablero": "gzoZo6ip",
+    "zona_horaria": "America/Lima"
+  },
+  "cronograma": {
+    "_ayuda": "Como esta hecho tu Excel. fila_fechas y primera_fila_datos se cuentan como en Excel (la primera fila es la 1). columna_actividad es la letra de la columna.",
+    "archivo": "data/5__LPS_PLANNING_REV_9.xlsx",
+    "respaldo_json": "data/plan_obra.json",
+    "hoja": "01_MAESTRO",
+    "fila_fechas": 6,
+    "primera_fila_datos": 7,
+    "columna_actividad": "C",
+    "patron_sector": "^[12][A-Z]{2}\\d+$"
+  },
+  "jornada": {
+    "_ayuda": "Estas horas SE ESCRIBEN DENTRO de cada tarjeta de Trello. No ejecutan nada.",
+    "inicio": "07:00",
+    "fin": "17:00"
+  },
+  "relojes": {
+    "_ayuda": "Estas horas DESPIERTAN A CADA ROBOT. No aparecen en ninguna tarjeta. dias: 1=lunes ... 7=domingo.",
+    "preparar": {
+      "hora": "18:00",
+      "dias": "1-5"
+    },
+    "distribuir": {
+      "hora": "05:00",
+      "dias": "1-5"
+    },
+    "cierre": {
+      "hora": "18:00",
+      "dias": "1-5"
+    },
+    "reporte": {
+      "hora": "15:00",
+      "dias": "1-5"
+    },
+    "archivar": {
+      "hora": "21:00",
+      "dias": "1-5"
+    }
+  },
+  "ventana_minutos": 90,
+  "listas": {
+    "_ayuda": "Se buscan por PALABRA CLAVE: funcionan aunque la lista tenga emojis, acentos o espacios de mas.",
+    "espera": "ESPERA",
+    "por_cerrar": "T. POR CERRAR",
+    "culminado": "CULMINADO",
+    "no_cumplidas": "NO CUMPLIDAS"
+  },
+  "familias": {
+    "_ayuda": "Cada familia agrupa actividades y dice a que lista del dia van. 'claves' son las palabras que se buscan en el nombre de la actividad. La familia con 'por_defecto': true recoge todo lo que no case con ninguna clave.",
+    "Acero": {
+      "lista": "T. DEL DIA ACERO",
+      "claves": [
+        "ACERO",
+        "ESTRIBO"
+      ]
+    },
+    "Encofrado": {
+      "lista": "T. DEL DIA ENCOFRADO",
+      "claves": [
+        "ENCOFRADO",
+        "DESENCOFRADO"
+      ]
+    },
+    "Concreto": {
+      "lista": "T. DEL DIA CONCRETO",
+      "claves": [
+        "CONCRETO",
+        "MORTERO",
+        "TARRAJEO",
+        "CIELORASO"
+      ]
+    },
+    "Trazo": {
+      "lista": "T. DEL DIA VARIOS",
+      "claves": [
+        "TRAZO",
+        "REPLANTEO"
+      ]
+    },
+    "Relleno": {
+      "lista": "T. DEL DIA VARIOS",
+      "claves": [
+        "RELLENO",
+        "AFIRMADO"
+      ]
+    },
+    "Excavacion": {
+      "lista": "T. DEL DIA VARIOS",
+      "claves": [
+        "EXCAVACION"
+      ]
+    },
+    "Varios": {
+      "lista": "T. DEL DIA VARIOS",
+      "claves": [],
+      "por_defecto": true
+    }
+  },
+  "responsables": {
+    "_ayuda": "Cada plantilla lleva un checklist por responsable. Se reconoce por las palabras 'claves' dentro del NOMBRE del checklist. El 'codigo' es el nombre de la columna en el reporte.",
+    "EST": {
+      "nombre": "Estructuras",
+      "claves": [
+        "ESTRUCTURAS"
+      ]
+    },
+    "CAL": {
+      "nombre": "Calidad",
+      "claves": [
+        "CALIDAD"
+      ]
+    },
+    "CAMP": {
+      "nombre": "Campo",
+      "claves": [
+        "CAMPO"
+      ]
+    },
+    "AMB": {
+      "nombre": "Ambiental",
+      "claves": [
+        "AMBIENTAL",
+        "AMBIENTE"
+      ]
+    },
+    "BIM": {
+      "nombre": "BIM",
+      "claves": [
+        "BIM"
+      ]
+    },
+    "SSOMA": {
+      "nombre": "Seguridad",
+      "claves": [
+        "SSOMA",
+        "SEGURIDAD"
+      ]
+    }
+  },
+  "plantillas": {
+    "_ayuda": "Una tarjeta es PLANTILLA si su nombre contiene esta marca. Tolera PLANTILLA, PLANTILA y plurales.",
+    "marca": "PLANTIL",
+    "copiar": "checklists,labels"
+  },
+  "cierre": {
+    "_ayuda": "criterio: 'checklist' (todos los items marcados) | 'auto' (checklist completo O tarjeta marcada) | 'marcada'.",
+    "criterio": "checklist"
+  },
+  "reportes": {
+    "carpeta": "reportes",
+    "historico": "reportes/cortes.csv",
+    "ultimo": "reportes/ultimo.csv"
+  }
+}
