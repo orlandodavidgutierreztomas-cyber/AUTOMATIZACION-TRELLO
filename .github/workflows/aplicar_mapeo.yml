@@ -1,0 +1,80 @@
+# ===========================================================================
+#  APLICAR MAPEO - lee el cuadro de verificacion y actualiza mapeo.json
+# ---------------------------------------------------------------------------
+#  EL CICLO COMPLETO:
+#    1. "Sincronizar" genera  mapeo/revisar_mapeo.xlsx
+#    2. Lo descargas (Code -> mapeo -> revisar_mapeo.xlsx -> Download)
+#    3. Lo revisas: en FAMILIA y LISTA DESTINO se ELIGE del desplegable,
+#       no se escribe. Las filas en ambar son las que piden atencion.
+#    4. Lo vuelves a subir a la misma ruta (Add file -> Upload files)
+#    5. Aprietas este boton.
+#
+#  Si algo no cuadra, falla con un mensaje claro y NO escribe nada: mejor no
+#  aplicar que aplicar a medias.
+#
+#  Si no habia nada que corregir, no hace falta hacer nada de esto.
+# ===========================================================================
+name: Aplicar mapeo revisado
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Solo mostrar que cambiaria, sin guardar"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: aplicar-mapeo
+
+permissions:
+  contents: write
+
+jobs:
+  aplicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Leer el cuadro y validar
+        id: aplicar
+        run: |
+          set -euo pipefail
+          ARGS=(--aplicar)
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS+=(--dry-run); fi
+          python -m trello_auto.revisar "${ARGS[@]}"
+
+      - name: Guardar el mapeo
+        if: inputs.dry_run != true
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- mapeo.json; then
+            echo "El mapeo no cambio."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add mapeo.json
+          git commit -m "Mapeo revisado: ${{ steps.aplicar.outputs.resumen }}"
+          git pull --rebase --autostash origin main
+          git push
+
+      - name: Resumen
+        run: |
+          {
+            echo "### Mapeo aplicado"
+            echo ""
+            echo "${{ steps.aplicar.outputs.resumen }}"
+            echo ""
+            echo "Desde la proxima corrida de **Preparar**, cada actividad ira"
+            echo "a la lista que acabas de elegir."
+          } >> "$GITHUB_STEP_SUMMARY"

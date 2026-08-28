@@ -232,3 +232,27 @@ def test_el_cierre_final_tiene_su_propio_reloj():
     assert hora_final > hora_gracia, (
         f"el cierre definitivo ({hora_final}) debe ir despues del fin de "
         f"jornada ({hora_gracia}), o el margen de gracia no existe")
+
+
+# --- el cuadro de verificacion del mapeo ------------------------------------
+def test_el_cuadro_solo_ofrece_opciones_validas(tmp_path, monkeypatch):
+    """Las opciones de los desplegables salen de la configuracion y del
+    tablero: no se puede elegir algo que no exista."""
+    from trello_auto import revisar
+    familias = revisar._opciones_familia()
+    assert set(familias) == set(ajustes.FAMILIAS)
+    listas = revisar._opciones_lista({"listas_del_tablero": ["🕖ESPERA"]})
+    assert "🕖ESPERA" in listas
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_de_familia(familia) in listas
+
+
+def test_el_cuadro_marca_lo_que_pide_atencion():
+    from trello_auto.revisar import _motivo_revision
+    descarte = ajustes.familia_por_defecto()
+    # Bien resuelta y con plantilla: no hay que mirarla
+    assert _motivo_revision({"familia": "Acero", "tiene_plantilla": True}) == ""
+    # Cayo en el descarte: hay que decidirla
+    assert "descarte" in _motivo_revision({"familia": descarte, "tiene_plantilla": True})
+    # Sin plantilla: sale con el checklist generico
+    assert "plantilla" in _motivo_revision({"familia": "Acero", "tiene_plantilla": False})

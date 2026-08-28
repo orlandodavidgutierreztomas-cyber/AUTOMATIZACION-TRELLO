@@ -200,6 +200,29 @@ Hace tres cosas y hace el commit por ti:
 Lo que no case con ninguna palabra clave cae en la familia de descarte
 (`Varios`), nunca se queda sin destino ni se acumula donde no debe.
 
+### El cuadro de verificación
+
+Revisar el mapeo escribiendo dentro de un JSON es pedir una errata: un acento de
+más y esa actividad deja de encontrar su lista, sin que nadie se entere. Por eso
+Sincronizar genera además **`mapeo/revisar_mapeo.xlsx`**, un cuadro donde **no se
+escribe: se elige**.
+
+| Paso | Qué haces |
+|---|---|
+| 1 | Sincronizar genera el cuadro |
+| 2 | Lo descargas desde el repo (`mapeo/` → Download) |
+| 3 | Revisas. `FAMILIA` y `LISTA DESTINO` son desplegables con las opciones válidas — las familias de tu configuración y los **nombres reales de las listas de tu tablero** |
+| 4 | Lo vuelves a subir a la misma ruta |
+| 5 | **Actions → "Aplicar mapeo revisado" → Run workflow** |
+
+Las filas que piden atención salen **marcadas en ámbar**, con el motivo en la
+columna `REVISAR` ("cayó en el descarte", "sin plantilla"), para que no tengas que
+mirar las 75 una por una. Si no hay nada que corregir, no hace falta hacer nada.
+
+El paso 5 **valida antes de escribir**: si algo no cuadra, falla con un mensaje
+claro y no toca `mapeo.json`. Mejor no aplicar que aplicar a medias. Tiene su
+`dry_run` para ver los cambios antes de confirmarlos.
+
 ---
 
 ## 🚀 Puesta en marcha
@@ -238,6 +261,8 @@ python -m trello_auto.cierre --fase final --dry-run   # cierre definitivo
 python -m trello_auto.reporte --alcance todo
 python -m trello_auto.archivar --dry-run
 python -m trello_auto.sincronizar
+python -m trello_auto.revisar --generar
+python -m trello_auto.revisar --aplicar --dry-run
 python -m trello_auto.configurar --ver
 python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
 ```
@@ -246,7 +271,7 @@ python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 48 pruebas, ninguna toca Trello
+pytest -q                          # 50 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
@@ -264,7 +289,8 @@ ruff check trello_auto tests
 | `trello_auto/horario.py` | Zonas horarias, conversiones y el portero |
 | `trello_auto/preparar.py` … `archivar.py` | Los seis robots |
 | `trello_auto/reporte.py` · `tablero.py` | El corte y el dashboard web |
-| `trello_auto/sincronizar.py` · `configurar.py` | Los dos botones de gestión |
+| `trello_auto/sincronizar.py` · `configurar.py` · `revisar.py` | Los botones de gestión |
+| `mapeo/revisar_mapeo.xlsx` | El cuadro de verificación, con desplegables |
 | `data/` | El cronograma y su respaldo |
 | `reportes/` | Los cortes acumulados |
 | `dashboard/` | El Excel y el dashboard web |

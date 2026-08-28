@@ -162,6 +162,13 @@ def main() -> int:
             json.dumps(mapeo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"\n   Escrito: {ajustes.ARCHIVO_MAPEO.name}")
 
+        # --- 5. El cuadro de verificacion ---------------------------------
+        # Para revisar el mapeo eligiendo de un desplegable, sin escribir a
+        # mano dentro del JSON (donde una errata pasa desapercibida).
+        from .revisar import generar as generar_cuadro
+        print("\n5) Cuadro de verificacion")
+        generar_cuadro()
+
     print("\n" + "=" * 74)
     print(" Sincronizado.")
     print("=" * 74)
