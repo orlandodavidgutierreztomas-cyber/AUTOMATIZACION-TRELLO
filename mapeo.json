@@ -1,6 +1,21 @@
 {
   "_ayuda": "Una fila por actividad del cronograma. 'familia' agrupa para el reporte y 'lista' dice a que lista del dia va la tarjeta. Llega pre-rellenado por palabras clave: corrige solo lo que este mal, y se respetara en las proximas sincronizaciones. 'tiene_plantilla' es informativo: dice si esa actividad ya tiene su tarjeta PLANTILLA en el tablero.",
-  "listas_del_tablero": [],
+  "listas_del_tablero": [
+    "🕖ESPERA",
+    "T. DEL DÍA ACERO-                                       🟦🟦🟦🟦🟦",
+    "T. DEL DÍA ENCOFRADO-🟧🟧🟧🟧",
+    "T. DEL DÍA CONCRETO Y MORTERO- 🟩🟩🟩🟩🟩🟩🟩🟩",
+    "T. DEL DÍA VARIOS-⬛⬛⬛⬛⬛",
+    "T.  POR CERRAR 🆘🆘🆘🆘🆘🆘🆘🆘🆘",
+    "🧰 RECURSOS — ENLACES — APOYO",
+    "CULMINADO    🎯🎯🎯",
+    "T.  NO CUMPLIDAS 🆘🆘🆘🆘🆘🆘🆘🆘🆘",
+    "PLANTILLA. EST_ACE_Y_ENCO",
+    "PLANTILLA_CONCRETO",
+    "📐 PLANTILA. TRAZO Y REPLANTEO",
+    "PLANTILLA_ENCOFRADO",
+    "PLANTILLA_VARIOS"
+  ],
   "familias_disponibles": [
     "Acero",
     "Encofrado",
@@ -93,7 +108,7 @@
       "familia": "Acero",
       "lista": "T. DEL DIA ACERO",
       "veces_en_el_plan": 30,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "CONCRETO CONTRAPISO": {
       "actividad": "CONCRETO CONTRAPISO",
@@ -107,7 +122,7 @@
       "familia": "Concreto",
       "lista": "T. DEL DIA CONCRETO",
       "veces_en_el_plan": 30,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "CONCRETO EN COLUMNETAS": {
       "actividad": "CONCRETO EN COLUMNETAS",
@@ -142,7 +157,7 @@
       "familia": "Encofrado",
       "lista": "T. DEL DIA ENCOFRADO",
       "veces_en_el_plan": 30,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ENCOFRADO DE COLUMNETAS": {
       "actividad": "ENCOFRADO DE COLUMNETAS",
@@ -226,7 +241,7 @@
       "familia": "Trazo",
       "lista": "T. DEL DIA VARIOS",
       "veces_en_el_plan": 30,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "VENTAS": {
       "actividad": "VENTAS",
@@ -303,91 +318,91 @@
       "familia": "Acero",
       "lista": "T. DEL DIA ACERO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ACERO INFERIOR EN ZAPATAS": {
       "actividad": "ACERO INFERIOR EN ZAPATAS",
       "familia": "Acero",
       "lista": "T. DEL DIA ACERO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ACERO SUPERIOR EN ZAPATAS": {
       "actividad": "ACERO SUPERIOR EN ZAPATAS",
       "familia": "Acero",
       "lista": "T. DEL DIA ACERO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES": {
       "actividad": "ACERO VERTICAL DE COLUMNAS Y ESTRIBOS PARCIALES",
       "familia": "Acero",
       "lista": "T. DEL DIA ACERO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "CONCRETO DE ZAPATA Y VIGA DE CIMENTACION": {
       "actividad": "CONCRETO DE ZAPATA Y VIGA DE CIMENTACIÓN",
       "familia": "Concreto",
       "lista": "T. DEL DIA CONCRETO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "CONCRETO EN FALSA ZAPATA": {
       "actividad": "CONCRETO EN FALSA ZAPATA",
       "familia": "Concreto",
       "lista": "T. DEL DIA CONCRETO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ENCOFRADO DE FALSA ZAPATA": {
       "actividad": "ENCOFRADO DE FALSA ZAPATA",
       "familia": "Encofrado",
       "lista": "T. DEL DIA ENCOFRADO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACION": {
       "actividad": "ENCOFRADO DE ZAPATA Y VIGA DE CIMENTACIÓN",
       "familia": "Encofrado",
       "lista": "T. DEL DIA ENCOFRADO",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "EXCAVACION DE CIMENTACIONES": {
       "actividad": "EXCAVACIÓN DE CIMENTACIONES",
       "familia": "Excavacion",
       "lista": "T. DEL DIA VARIOS",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA": {
       "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE FALSA ZAPATA",
       "familia": "Relleno",
       "lista": "T. DEL DIA VARIOS",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA": {
       "actividad": "RELLENO CON AFIRMADO COMPACTADO HASTA NIVEL DE ZAPATA",
       "familia": "Relleno",
       "lista": "T. DEL DIA VARIOS",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES": {
       "actividad": "TRAZO Y REPLANTEO DE ZAPATAS Y ELEMENTOS VERTICALES",
       "familia": "Trazo",
       "lista": "T. DEL DIA VARIOS",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "TRAZO Y REPLANTEO PARA EXCAVACION DE CIMENTACIONES": {
       "actividad": "TRAZO Y REPLANTEO PARA EXCAVACIÓN DE CIMENTACIONES",
       "familia": "Trazo",
       "lista": "T. DEL DIA VARIOS",
       "veces_en_el_plan": 17,
-      "tiene_plantilla": false
+      "tiene_plantilla": true
     },
     "ACERO DE LOSA": {
       "actividad": "ACERO DE LOSA",
