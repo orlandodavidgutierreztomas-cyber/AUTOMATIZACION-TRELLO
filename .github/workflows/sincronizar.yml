@@ -57,13 +57,13 @@ jobs:
         if: inputs.dry_run != true
         run: |
           set -euo pipefail
-          if git diff --quiet -- mapeo.json data/; then
+          if git diff --quiet -- mapeo.json data/ docs/; then
             echo "Nada cambio."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add mapeo.json data/
+          git add mapeo.json data/ docs/
           git commit -m "Sincronizacion del cronograma y el tablero"
           git pull --rebase --autostash origin main
           git push

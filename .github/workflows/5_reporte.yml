@@ -82,13 +82,13 @@ jobs:
         if: (github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true') && inputs.dry_run != true
         run: |
           set -euo pipefail
-          if git diff --quiet -- reportes/; then
+          if git diff --quiet -- reportes/ docs/; then
             echo "El corte no cambio nada."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reportes/
+          git add reportes/ docs/
           git commit -m "Corte de control $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase --autostash origin main
           git push
