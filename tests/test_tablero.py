@@ -284,3 +284,44 @@ def test_las_barras_no_revientan_sin_datos():
     # Con datos, la mayor ocupa el 100% de su pista
     html = barras([("Acero", 10), ("Concreto", 5)])
     assert "width:100.0%" in html and "width:50.0%" in html
+
+
+# --- cambiar una actividad sin descargar nada -------------------------------
+ACTIVIDADES_EJEMPLO = {
+    "ACERO INFERIOR EN ZAPATAS": {"actividad": "ACERO INFERIOR EN ZAPATAS",
+                                  "familia": "Acero", "lista": "T. DEL DIA ACERO"},
+    "ACERO SUPERIOR EN ZAPATAS": {"actividad": "ACERO SUPERIOR EN ZAPATAS",
+                                  "familia": "Acero", "lista": "T. DEL DIA ACERO"},
+    "EXCAVACION DE CIMENTACIONES": {"actividad": "EXCAVACIÓN DE CIMENTACIONES",
+                                    "familia": "Excavacion",
+                                    "lista": "T. DEL DIA VARIOS"},
+}
+
+
+def test_buscar_actividad_acepta_un_trozo_del_nombre():
+    from trello_auto.revisar import buscar_actividad
+    clave, ayuda = buscar_actividad("acero inferior", ACTIVIDADES_EJEMPLO)
+    assert clave == "ACERO INFERIOR EN ZAPATAS" and ayuda is None
+    # Y no depende de los acentos ni de las mayusculas
+    clave, _ = buscar_actividad("excavación de cimentaciones", ACTIVIDADES_EJEMPLO)
+    assert clave == "EXCAVACION DE CIMENTACIONES"
+
+
+def test_buscar_actividad_avisa_si_es_ambiguo():
+    """Mejor no cambiar nada que cambiar la actividad equivocada."""
+    from trello_auto.revisar import buscar_actividad
+    clave, ayuda = buscar_actividad("acero", ACTIVIDADES_EJEMPLO)
+    assert clave is None
+    assert "2 actividades" in ayuda
+
+
+def test_buscar_actividad_sugiere_cuando_no_encuentra():
+    from trello_auto.revisar import buscar_actividad
+    clave, ayuda = buscar_actividad("acero inferiar en zapatas", ACTIVIDADES_EJEMPLO)
+    assert clave is None
+    assert "ACERO INFERIOR EN ZAPATAS" in ayuda    # la sugiere pese a la errata
+
+
+def test_buscar_actividad_con_texto_vacio():
+    from trello_auto.revisar import buscar_actividad
+    assert buscar_actividad("", ACTIVIDADES_EJEMPLO)[0] is None

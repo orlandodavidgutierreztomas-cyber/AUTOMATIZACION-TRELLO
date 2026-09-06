@@ -107,9 +107,23 @@ margen para marcar), archivado a las 22:00.
 **Actions → "Configurar" → Run workflow.** Escribes solo lo que quieras cambiar,
 el resto lo dejas en blanco. El workflow valida, guarda y hace el commit.
 
-Se puede cambiar: las dos horas de la jornada, las cinco horas de los robots,
-los días hábiles, la zona horaria, el criterio de cierre y **la forma del Excel**
-(hoja, fila de fechas, columna de actividades).
+Se puede cambiar: las dos horas de la jornada, las seis horas de los robots, los
+días hábiles, la zona horaria, el criterio de cierre, **la forma del Excel**
+(hoja, fila de fechas, columna de actividades) y **el tablero de destino**.
+
+### Cambiar de tablero
+
+El tablero no está en el código: es `obra.tablero`, el id corto que va después de
+`/b/` en la URL de Trello. Para trabajar sobre otra pizarra, pon ese id en el campo
+**TABLERO** de "Configurar" y listo — el espacio de trabajo da igual, basta con que
+tus credenciales tengan acceso.
+
+Después de cambiar de tablero, corre **Sincronizar**: hay que releer las listas y
+las plantillas de la pizarra nueva.
+
+> Esto **cambia** de tablero, no añade uno. Para llevar dos obras a la vez lo
+> limpio es un repositorio por obra: cada una con su cronograma, sus horas y su
+> mapeo. Copiar el repo y cambiar `configuracion.json` es todo lo que hace falta.
 
 ### Los dos relojes
 

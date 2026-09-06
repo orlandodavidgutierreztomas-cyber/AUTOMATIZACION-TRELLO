@@ -379,6 +379,113 @@ def generar_vista() -> str:
     return ruta
 
 
+# ---------------------------------------------------------------------------
+# Cambiar UNA actividad, desde el boton de GitHub — sin descargar nada
+# ---------------------------------------------------------------------------
+def buscar_actividad(texto: str, actividades: dict) -> tuple:
+    """Encuentra la actividad que se quiso decir.
+
+    No exige escribirla exacta: acepta un trozo ("acero inferior"), ignora
+    acentos y mayusculas, y si aun asi no da, sugiere las mas parecidas en vez
+    de aplicar un cambio equivocado.
+
+    Devuelve (clave, None) si acerto, o (None, mensaje_de_ayuda) si no.
+    """
+    import difflib
+
+    from .trello import normalizar
+
+    buscado = normalizar(texto)
+    if not buscado:
+        return None, "No escribiste ninguna actividad."
+
+    if buscado in actividades:                       # exacta
+        return buscado, None
+
+    contienen = [c for c in actividades if buscado in c]
+    if len(contienen) == 1:                          # una sola la contiene
+        return contienen[0], None
+    if len(contienen) > 1:
+        nombres = [actividades[c]["actividad"] for c in contienen[:8]]
+        detalle = "; ".join(nombres)
+        return None, (f"{texto!r} encaja con {len(contienen)} actividades. "
+                      f"Se mas concreto: {detalle}")
+
+    parecidas = difflib.get_close_matches(buscado, list(actividades), n=5, cutoff=0.45)
+    if parecidas:
+        nombres = [actividades[c]["actividad"] for c in parecidas]
+        detalle = "; ".join(nombres)
+        return None, (f"No encontre {texto!r}. Quiza querias: {detalle}")
+    return None, (f"No encontre {texto!r} en el cronograma. Mira la lista "
+                  f"completa en la pagina 'Mapeo de actividades'.")
+
+
+def cambiar_una(texto_actividad: str, familia: str = "", lista: str = "",
+                dry_run: bool = False) -> int:
+    """Cambia la familia y/o la lista de UNA actividad, sin descargar nada.
+
+    Es la via rapida para las dos o tres excepciones que uno encuentra al
+    revisar. Para muchos cambios de golpe sigue siendo mejor el cuadro Excel.
+    """
+    mapeo = json.loads(ajustes.ARCHIVO_MAPEO.read_text(encoding="utf-8"))
+    actividades = mapeo.get("actividades") or {}
+    if not actividades:
+        raise SystemExit("ERROR: mapeo.json esta vacio. Corre 'Sincronizar' primero.")
+
+    clave, ayuda = buscar_actividad(texto_actividad, actividades)
+    if not clave:
+        print(f"ERROR: {ayuda}", file=sys.stderr)
+        return 1
+
+    fila = actividades[clave]
+    familia = (familia or "").strip()
+    lista = (lista or "").strip()
+
+    if familia and familia not in _opciones_familia():
+        print(f"ERROR: la familia {familia!r} no existe. Validas: "
+              f"{', '.join(_opciones_familia())}", file=sys.stderr)
+        return 1
+    if lista and lista not in _opciones_lista(mapeo):
+        print(f"ERROR: la lista {lista!r} no existe en el tablero.", file=sys.stderr)
+        return 1
+
+    # Si solo se cambia la familia, la lista se ajusta sola a la de esa familia
+    if familia and not lista:
+        lista = ajustes.lista_de_familia(familia)
+
+    print(f"Actividad: {fila['actividad']}")
+    cambios = []
+    if familia and familia != fila.get("familia"):
+        cambios.append(f"  familia: {fila.get('familia')}  ->  {familia}")
+        fila["familia"] = familia
+    if lista and lista != fila.get("lista"):
+        cambios.append(f"  lista:   {fila.get('lista')}  ->  {lista}")
+        fila["lista"] = lista
+
+    if not cambios:
+        print("  (ya estaba asi; no hay nada que cambiar)")
+        resumen = "sin cambios"
+    else:
+        for linea in cambios:
+            print(linea)
+        resumen = f"{fila['actividad']} -> {fila['familia']}"
+        if not dry_run:
+            ajustes.ARCHIVO_MAPEO.write_text(
+                json.dumps(mapeo, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8")
+            print(f"\nEscrito: {ajustes.ARCHIVO_MAPEO.name}")
+            generar_vista()
+
+    if dry_run:
+        print("\n(DRY-RUN: no se escribio nada.)")
+
+    salida = os.environ.get("GITHUB_OUTPUT")
+    if salida:
+        with open(salida, "a", encoding="utf-8") as f:
+            f.write(f"resumen={resumen}\n")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Cuadro de verificacion del mapeo, en Excel con desplegables.")
@@ -387,13 +494,27 @@ def main() -> int:
                        help="Crea el cuadro a partir de mapeo.json.")
     grupo.add_argument("--aplicar", action="store_true",
                        help="Lee el cuadro revisado y actualiza mapeo.json.")
+    grupo.add_argument("--vista", action="store_true",
+                       help="Regenera solo la pagina web del mapeo.")
+    grupo.add_argument("--cambiar", metavar="ACTIVIDAD", default=None,
+                       help="Cambia UNA actividad (acepta un trozo del nombre).")
+    ap.add_argument("--familia", default=None, help="Con --cambiar: familia nueva.")
+    ap.add_argument("--lista", default=None, help="Con --cambiar: lista destino nueva.")
     ap.add_argument("--dry-run", action="store_true",
-                    help="Con --aplicar: muestra los cambios sin escribir.")
+                    help="Muestra los cambios sin escribir nada.")
     args = ap.parse_args()
 
     if args.generar:
         generar()
         return 0
+    if args.vista:
+        generar_vista()
+        return 0
+    if args.cambiar:
+        return cambiar_una(args.cambiar,
+                           args.familia or os.environ.get("FAMILIA", ""),
+                           args.lista or os.environ.get("LISTA", ""),
+                           args.dry_run)
     return aplicar(args.dry_run)
 
 

@@ -146,14 +146,42 @@ def main() -> int:
           f"({nuevas} nuevas, {conservadas} ya estaban)")
     print(f"   con plantilla en el tablero: {con_plantilla} de {len(actividades)}")
 
-    sin_plantilla = [v["actividad"] for v in actividades.values()
-                     if not v["tiene_plantilla"]]
-    if sin_plantilla and plantillas:
-        print(f"\n   Actividades SIN plantilla ({len(sin_plantilla)}):")
-        for nombre in sin_plantilla[:12]:
-            print(f"     · {nombre}")
-        if len(sin_plantilla) > 12:
-            print(f"     ... y {len(sin_plantilla) - 12} mas")
+    # --- Diagnostico del emparejamiento -----------------------------------
+    if not (ajustes.TRELLO_KEY and ajustes.TRELLO_TOKEN):
+        print("\n   ATENCION: no se leyo el tablero, asi que 'tiene_plantilla'")
+        print("   sale en NO para todo. Eso NO significa que te falten")
+        print("   plantillas: significa que nadie las miro. Corre esto desde")
+        print("   GitHub (Actions -> Sincronizar), donde estan los Secrets.")
+    else:
+        sin_plantilla = [v["actividad"] for v in actividades.values()
+                         if not v["tiene_plantilla"]]
+        if sin_plantilla:
+            print(f"\n   Actividades SIN plantilla ({len(sin_plantilla)}):")
+            for nombre in sin_plantilla[:12]:
+                print(f"     · {nombre}")
+            if len(sin_plantilla) > 12:
+                print(f"     ... y {len(sin_plantilla) - 12} mas")
+
+        # Plantillas que existen en el tablero pero no casan con ninguna
+        # actividad del cronograma: casi siempre es una errata en el nombre
+        # de la tarjeta plantilla. Es el aviso mas util de todo el proceso.
+        claves_plan = set(actividades)
+        huerfanas = [(clave, datos["nombre"]) for clave, datos in plantillas.items()
+                     if clave not in claves_plan]
+        if huerfanas:
+            print(f"\n   ⚠ PLANTILLAS QUE NO CASAN CON NINGUNA ACTIVIDAD "
+                  f"({len(huerfanas)}):")
+            print("     Estas tarjetas existen en tu tablero pero su nombre no")
+            print("     coincide con ninguna actividad del cronograma, asi que")
+            print("     NO SE USAN. Suele ser una palabra de mas o de menos.")
+            import difflib
+            for clave, nombre in huerfanas[:10]:
+                print(f"     · {nombre}")
+                parecidas = difflib.get_close_matches(clave, claves_plan, n=1, cutoff=0.6)
+                if parecidas:
+                    print(f"         ¿querias decir?  {actividades[parecidas[0]]['actividad']}")
+            if len(huerfanas) > 10:
+                print(f"     ... y {len(huerfanas) - 10} mas")
 
     if args.dry_run:
         print(f"\n   (DRY-RUN) no escribo {ajustes.ARCHIVO_MAPEO.name}")

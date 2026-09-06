@@ -76,6 +76,10 @@ on:
         description: 'Zona horaria de la obra (ej. "America/Lima")'
         required: false
         default: ""
+      tablero:
+        description: "TABLERO · id corto de Trello (lo que va despues de /b/ en la URL)"
+        required: false
+        default: ""
 
 concurrency:
   group: configurar
@@ -112,6 +116,7 @@ jobs:
           COLUMNA_ACTIVIDAD: ${{ inputs.columna_actividad }}
           PRIMERA_FILA_DATOS: ${{ inputs.primera_fila_datos }}
           TZ_OBRA: ${{ inputs.tz }}
+          BOARD_ID: ${{ inputs.tablero }}
         run: python -m trello_auto.configurar
 
       - name: Confirmar el cambio en el repositorio
