@@ -162,12 +162,23 @@ def main() -> int:
             json.dumps(mapeo, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f"\n   Escrito: {ajustes.ARCHIVO_MAPEO.name}")
 
-        # --- 5. El cuadro de verificacion ---------------------------------
-        # Para revisar el mapeo eligiendo de un desplegable, sin escribir a
-        # mano dentro del JSON (donde una errata pasa desapercibida).
+        # --- 5. Como se revisa el mapeo -----------------------------------
+        # El cuadro Excel es para CORREGIR (se elige de un desplegable, no se
+        # escribe). La vista web es para MIRAR: dice si hay algo que corregir
+        # sin que nadie tenga que descargar nada.
         from .revisar import generar as generar_cuadro
-        print("\n5) Cuadro de verificacion")
-        generar_cuadro()
+        from .revisar import generar_vista
+        print("\n5) Como revisar el mapeo")
+        try:
+            generar_cuadro()
+        except PermissionError:
+            # Pasa cuando alguien tiene el cuadro abierto en Excel. No es
+            # motivo para tirar toda la sincronizacion: lo demas ya se hizo.
+            print("   AVISO: no pude escribir el cuadro Excel porque esta "
+                  "abierto.\n   Cierralo y corre esto otra vez si quieres "
+                  "regenerarlo.")
+        print()
+        generar_vista()
 
     print("\n" + "=" * 74)
     print(" Sincronizado.")

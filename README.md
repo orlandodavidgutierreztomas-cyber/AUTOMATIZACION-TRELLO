@@ -146,17 +146,39 @@ Produce tres cosas:
 |---|---|
 | `reportes/ultimo.csv` | El corte de ahora. Es lo que lee tu Excel |
 | `reportes/cortes.csv` | El histórico de todos los cortes: la película, no la foto |
-| `dashboard/index.html` | Dashboard web autocontenido |
+| `docs/index.html` | Dashboard web (lo que publica GitHub Pages) |
 
-### El dashboard web
+### 🌐 Verlo en el navegador, sin descargar nada
 
-Un solo archivo, con los datos dentro. Se puede publicar en GitHub Pages, verlo
-desde el celular, descargarlo, mandarlo por correo o abrirlo sin conexión — y
-sigue funcionando aunque el repositorio pase a privado.
+Todo lo visual se publica con **GitHub Pages** desde la carpeta `docs/`:
+
+| Página | Qué es |
+|---|---|
+| `index.html` | El dashboard del corte |
+| `mapeo.html` | El mapeo de actividades, para ver si hay algo que corregir |
+| `DASHBOARD_CONTROL.xlsx` | El Excel, descargable |
+
+**Activarlo (una vez):** repo → **Settings** → **Pages** → *Source*:
+**Deploy from a branch** → rama `main`, carpeta `/docs` → Save.
+
+A los dos minutos tienes una URL fija:
+
+```
+https://TU_USUARIO.github.io/TU_REPO/            → el dashboard
+https://TU_USUARIO.github.io/TU_REPO/mapeo.html  → el mapeo
+```
+
+Y ya no hay que descargar ni subir nada para **mirar**: cada corrida del
+reporte regenera la página y la URL muestra el último corte. Funciona igual
+desde el celular.
+
+Las páginas son **autocontenidas**: los datos van dentro del propio archivo y no
+piden nada por internet. Así también se pueden descargar, mandar por correo o
+abrir sin conexión, y siguen funcionando aunque el repositorio pase a privado.
 
 ### El dashboard de Excel
 
-`dashboard/DASHBOARD_CONTROL.xlsx` conserva tus gráficos y tablas de apoyo, con
+`docs/DASHBOARD_CONTROL.xlsx` conserva tus gráficos y tablas de apoyo, con
 tres arreglos para que aguante la automatización:
 
 - **Sin límite de filas.** Antes las fórmulas llegaban a la 201 y el corte 202
@@ -200,29 +222,6 @@ Hace tres cosas y hace el commit por ti:
 Lo que no case con ninguna palabra clave cae en la familia de descarte
 (`Varios`), nunca se queda sin destino ni se acumula donde no debe.
 
-### El cuadro de verificación
-
-Revisar el mapeo escribiendo dentro de un JSON es pedir una errata: un acento de
-más y esa actividad deja de encontrar su lista, sin que nadie se entere. Por eso
-Sincronizar genera además **`mapeo/revisar_mapeo.xlsx`**, un cuadro donde **no se
-escribe: se elige**.
-
-| Paso | Qué haces |
-|---|---|
-| 1 | Sincronizar genera el cuadro |
-| 2 | Lo descargas desde el repo (`mapeo/` → Download) |
-| 3 | Revisas. `FAMILIA` y `LISTA DESTINO` son desplegables con las opciones válidas — las familias de tu configuración y los **nombres reales de las listas de tu tablero** |
-| 4 | Lo vuelves a subir a la misma ruta |
-| 5 | **Actions → "Aplicar mapeo revisado" → Run workflow** |
-
-Las filas que piden atención salen **marcadas en ámbar**, con el motivo en la
-columna `REVISAR` ("cayó en el descarte", "sin plantilla"), para que no tengas que
-mirar las 75 una por una. Si no hay nada que corregir, no hace falta hacer nada.
-
-El paso 5 **valida antes de escribir**: si algo no cuadra, falla con un mensaje
-claro y no toca `mapeo.json`. Mejor no aplicar que aplicar a medias. Tiene su
-`dry_run` para ver los cambios antes de confirmarlos.
-
 ---
 
 ## 🚀 Puesta en marcha
@@ -261,8 +260,6 @@ python -m trello_auto.cierre --fase final --dry-run   # cierre definitivo
 python -m trello_auto.reporte --alcance todo
 python -m trello_auto.archivar --dry-run
 python -m trello_auto.sincronizar
-python -m trello_auto.revisar --generar
-python -m trello_auto.revisar --aplicar --dry-run
 python -m trello_auto.configurar --ver
 python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
 ```
@@ -271,7 +268,7 @@ python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 50 pruebas, ninguna toca Trello
+pytest -q                          # 48 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
@@ -289,11 +286,10 @@ ruff check trello_auto tests
 | `trello_auto/horario.py` | Zonas horarias, conversiones y el portero |
 | `trello_auto/preparar.py` … `archivar.py` | Los seis robots |
 | `trello_auto/reporte.py` · `tablero.py` | El corte y el dashboard web |
-| `trello_auto/sincronizar.py` · `configurar.py` · `revisar.py` | Los botones de gestión |
-| `mapeo/revisar_mapeo.xlsx` | El cuadro de verificación, con desplegables |
+| `trello_auto/sincronizar.py` · `configurar.py` | Los dos botones de gestión |
 | `data/` | El cronograma y su respaldo |
 | `reportes/` | Los cortes acumulados |
-| `dashboard/` | El Excel y el dashboard web |
+| `docs/` | Lo que publica GitHub Pages: dashboard, mapeo y el Excel |
 
 ---
 

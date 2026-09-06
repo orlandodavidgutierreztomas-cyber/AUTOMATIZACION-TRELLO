@@ -256,3 +256,31 @@ def test_el_cuadro_marca_lo_que_pide_atencion():
     assert "descarte" in _motivo_revision({"familia": descarte, "tiene_plantilla": True})
     # Sin plantilla: sale con el checklist generico
     assert "plantilla" in _motivo_revision({"familia": "Acero", "tiene_plantilla": False})
+
+
+# --- las paginas web --------------------------------------------------------
+def test_las_paginas_escapan_lo_que_viene_de_fuera():
+    """Nombres de tarjeta y de actividad llegan de Trello y del Excel: si no se
+    escapan, un caracter suelto rompe la pagina."""
+    from trello_auto.web import e
+    assert e("<script>alert(1)</script>") == "&lt;script&gt;alert(1)&lt;/script&gt;"
+    assert e('T. DEL DÍA "ACERO" & CIA') == "T. DEL DÍA &quot;ACERO&quot; &amp; CIA"
+    assert e(None) == ""
+
+
+def test_la_navegacion_enlaza_las_dos_paginas():
+    from trello_auto.web import PAGINAS, navegacion
+    html = navegacion("index.html")
+    for archivo, _ in PAGINAS:
+        assert f'href="{archivo}"' in html
+    assert 'class="activo"' in html          # marca en cual estas
+    assert "DASHBOARD_CONTROL.xlsx" in html  # y deja bajar el Excel
+
+
+def test_las_barras_no_revientan_sin_datos():
+    from trello_auto.web import barras
+    assert "Nada que mostrar" in barras([])
+    assert "Nada que mostrar" in barras([("Acero", 0), ("Concreto", 0)])
+    # Con datos, la mayor ocupa el 100% de su pista
+    html = barras([("Acero", 10), ("Concreto", 5)])
+    assert "width:100.0%" in html and "width:50.0%" in html

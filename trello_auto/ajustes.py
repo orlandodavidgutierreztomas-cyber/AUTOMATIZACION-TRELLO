@@ -176,6 +176,11 @@ CARPETA_REPORTES = RAIZ / dato("reportes.carpeta", "reportes")
 ARCHIVO_HISTORICO = RAIZ / dato("reportes.historico", "reportes/cortes.csv")
 ARCHIVO_ULTIMO = RAIZ / dato("reportes.ultimo", "reportes/ultimo.csv")
 
+# ---------------------------------------------------------------------------
+# WEB — lo que publica GitHub Pages
+# ---------------------------------------------------------------------------
+CARPETA_WEB = RAIZ / dato("web.carpeta", "docs")
+
 
 # ---------------------------------------------------------------------------
 # MAPEO actividad -> familia / lista  (mapeo.json, generado por "Sincronizar")

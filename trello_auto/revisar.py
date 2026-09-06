@@ -288,6 +288,97 @@ def aplicar(dry_run: bool = False) -> int:
     return 0
 
 
+# ---------------------------------------------------------------------------
+# Vista web del mapeo — para MIRAR sin descargar nada
+# ---------------------------------------------------------------------------
+def generar_vista() -> str:
+    """Escribe docs/mapeo.html: el mapeo entero, de un vistazo.
+
+    Sirve para SABER si hay algo que corregir sin bajarse el Excel. Solo
+    cuando de verdad hay que cambiar algo se hace la vuelta completa
+    (descargar el cuadro, elegir, subir, aplicar).
+    """
+    from .web import barras, e, escribir, kpi, pagina
+
+    mapeo = json.loads(ajustes.ARCHIVO_MAPEO.read_text(encoding="utf-8"))
+    actividades = mapeo.get("actividades") or {}
+    filas = sorted(actividades.values(),
+                   key=lambda d: (bool(d.get("tiene_plantilla")),
+                                  d.get("familia", ""), d.get("actividad", "")))
+
+    total = len(filas)
+    con_plantilla = sum(1 for d in filas if d.get("tiene_plantilla"))
+    descarte = ajustes.familia_por_defecto()
+    en_descarte = sum(1 for d in filas if d.get("familia") == descarte)
+    por_revisar = sum(1 for d in filas if _motivo_revision(d))
+    tareas = sum(d.get("veces_en_el_plan", 0) for d in filas)
+
+    kpis = (
+        kpi(total, "Actividades del plan", f"{tareas} tareas en el cronograma")
+        + kpi(f"{con_plantilla}/{total}", "Con plantilla",
+              "las demas salen con checklist generico",
+              "ok" if total and con_plantilla == total else "aviso")
+        + kpi(en_descarte, f"En la familia '{descarte}'",
+              "sin familia propia asignada", "aviso" if en_descarte else "ok")
+        + kpi(por_revisar, "Filas por revisar", "marcadas en ambar",
+              "aviso" if por_revisar else "ok")
+    )
+
+    familias = {}
+    for d in filas:
+        clave = d.get("familia", "?")
+        familias[clave] = familias.get(clave, 0) + 1
+
+    cabecera = ["Actividad", "Familia", "Lista destino", "Plantilla",
+                "Veces en el plan", "Revisar"]
+    th = "".join(f"<th>{e(c)}</th>" for c in cabecera)
+    cuerpo = []
+    for d in filas:
+        motivo = _motivo_revision(d)
+        marca = "si" if d.get("tiene_plantilla") else "<b>NO</b>"
+        cuerpo.append(
+            f'<tr class="{"revisar" if motivo else ""}">'
+            f'<td class="act">{e(d.get("actividad"))}</td>'
+            f'<td><span class="pill">{e(d.get("familia"))}</span></td>'
+            f'<td>{e(d.get("lista"))}</td>'
+            f'<td class="n">{marca}</td>'
+            f'<td class="n">{e(d.get("veces_en_el_plan", 0))}</td>'
+            f'<td>{e(motivo)}</td></tr>')
+
+    nota = (
+        '<div class="nota"><b>Esta pagina es solo para mirar.</b> Si hay algo '
+        'que corregir: descarga <code>mapeo/revisar_mapeo.xlsx</code> del '
+        'repositorio, elige en los desplegables (no se escribe a mano), vuelve '
+        'a subirlo a la misma ruta y aprieta <b>«Aplicar mapeo revisado»</b> en '
+        'Actions. Si no hay ninguna fila en ambar, no hace falta hacer nada.</div>')
+
+    cuerpo_html = (
+        nota
+        + f'<div class="rejilla">{kpis}</div>'
+        + '<div class="paneles"><div class="tarjeta">'
+        + '<h2>Actividades por familia</h2>'
+        + barras(sorted(familias.items(), key=lambda x: -x[1]))
+        + '</div></div>'
+        + '<h2>Todas las actividades</h2>'
+        + f'<div class="tabla-caja"><table><thead><tr>{th}</tr></thead>'
+        + f'<tbody>{"".join(cuerpo)}</tbody></table></div>'
+    )
+
+    html = pagina(
+        "mapeo.html",
+        f"{ajustes.NOMBRE_OBRA} · mapeo de actividades",
+        f"{total} actividades del cronograma: a que familia pertenecen y a que "
+        f"lista del dia van",
+        cuerpo_html,
+        "Se regenera en cada sincronizacion. Las filas en ambar son las que "
+        "piden atencion.",
+    )
+    ruta = escribir("mapeo.html", html)
+    print(f"Vista del mapeo: {ruta}")
+    print(f"  {por_revisar} de {total} filas piden atencion")
+    return ruta
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Cuadro de verificacion del mapeo, en Excel con desplegables.")

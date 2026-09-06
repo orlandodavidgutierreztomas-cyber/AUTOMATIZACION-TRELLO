@@ -20,3 +20,4 @@ ignore = ["E741", "UP009"]  # UP009: mantenemos la cabecera utf-8 por claridad
 # tablero.py lleva el CSS del dashboard incrustado: sus lineas largas son
 # hojas de estilo, no codigo, y partirlas lo haria menos legible.
 "trello_auto/tablero.py" = ["E501"]
+"trello_auto/web.py" = ["E501"]

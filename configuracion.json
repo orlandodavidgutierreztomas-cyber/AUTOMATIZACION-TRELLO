@@ -160,5 +160,9 @@
     "carpeta": "reportes",
     "historico": "reportes/cortes.csv",
     "ultimo": "reportes/ultimo.csv"
+  },
+  "web": {
+    "_ayuda": "Carpeta que publica GitHub Pages. Settings -> Pages -> Deploy from a branch -> main -> /docs. Ahi se escriben el dashboard y la vista del mapeo, y desde ahi se descarga el Excel.",
+    "carpeta": "docs"
   }
 }

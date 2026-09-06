@@ -202,6 +202,10 @@ def main() -> int:
         print(f"\n Escrito: {ajustes.ARCHIVO_ULTIMO.name} ({len(filas)} filas)")
         print(f" Historico: {ajustes.ARCHIVO_HISTORICO.name} "
               f"({previas + len(filas)} filas en total)")
+
+        # El dashboard web, que es lo que publica GitHub Pages
+        from .tablero import generar
+        print(f" Dashboard: {generar(filas, corte, args.alcance)}")
     print("=" * 74)
     return 0
 
