@@ -106,6 +106,13 @@ class Trello:
         self._req("POST", f"/checklists/{checklist_id}/checkItems", {"name": texto})
         time.sleep(PAUSA_ESCRITURA)
 
+    def crear_lista(self, board_id: str, nombre: str, pos="bottom") -> dict:
+        """Crea una lista (columna) en el tablero."""
+        lst = self._req("POST", "/lists",
+                        {"idBoard": board_id, "name": nombre, "pos": pos})
+        time.sleep(PAUSA_ESCRITURA)
+        return lst
+
     def mover(self, card_id: str, list_id: str):
         r = self._req("PUT", f"/cards/{card_id}", {"idList": list_id})
         time.sleep(PAUSA_ESCRITURA)

@@ -177,6 +177,12 @@ def main() -> int:
               f"{a_pendiente} no cumplidas.{modo}")
         if total:
             print(f" PPC del dia (cumplimiento del plan): {ppc:.0f}%")
+        # El PPC solo sirve si se guarda: un numero suelto no dice nada, la
+        # serie de dias si. De aqui salen las graficas de tendencia.
+        if not args.dry_run and total:
+            from .historico import guardar_ppc
+            ruta = guardar_ppc(horario.hoy_local(), a_culminado, a_pendiente)
+            print(f" Anotado en {ruta}")
     print("=" * 74)
     return 0
 

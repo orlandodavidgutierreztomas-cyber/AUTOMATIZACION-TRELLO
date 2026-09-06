@@ -36,7 +36,7 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   cierre_final:
@@ -81,6 +81,21 @@ jobs:
           if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
           echo "python -m trello_auto.cierre ${ARGS[@]+"${ARGS[@]}"}"
           python -m trello_auto.cierre ${ARGS[@]+"${ARGS[@]}"}
+
+      - name: Guardar el PPC del dia
+        if: (github.event_name != 'schedule' || steps.portero.outputs.ejecutar == 'true') && inputs.dry_run != true
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- reportes/; then
+            echo "Sin PPC nuevo que guardar."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reportes/
+          git commit -m "PPC del dia $(date -u +%Y-%m-%d)"
+          git pull --rebase --autostash origin main
+          git push
 
       - name: No tocaba ejecutar
         if: github.event_name == 'schedule' && steps.portero.outputs.ejecutar != 'true'

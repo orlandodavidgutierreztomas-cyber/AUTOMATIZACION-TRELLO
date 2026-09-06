@@ -325,3 +325,71 @@ def test_buscar_actividad_sugiere_cuando_no_encuentra():
 def test_buscar_actividad_con_texto_vacio():
     from trello_auto.revisar import buscar_actividad
     assert buscar_actividad("", ACTIVIDADES_EJEMPLO)[0] is None
+
+
+# --- montar el tablero desde cero -------------------------------------------
+def test_las_listas_necesarias_cubren_todo_el_flujo():
+    from trello_auto.montar_tablero import LISTA_PLANTILLAS, listas_necesarias
+    nombres = [n for n, _ in listas_necesarias()]
+    # El recorrido completo de una tarjeta tiene que estar cubierto
+    assert ajustes.LISTA_ESPERA in nombres
+    assert ajustes.LISTA_POR_CERRAR in nombres
+    assert ajustes.LISTA_CULMINADO in nombres
+    assert ajustes.LISTA_NO_CUMPLIDAS in nombres
+    assert LISTA_PLANTILLAS in nombres
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_de_familia(familia) in nombres
+    # Sin repetidas: varias familias comparten la lista de varios
+    assert len(nombres) == len(set(nombres))
+
+
+def test_cada_responsable_configurado_tiene_items_genericos():
+    """Si se anade un responsable a la configuracion, hay que darle items."""
+    from trello_auto.montar_tablero import ITEMS_GENERICOS
+    for codigo in ajustes.CODIGOS_RESPONSABLE:
+        assert codigo in ITEMS_GENERICOS, f"falta el esqueleto de {codigo}"
+        assert ITEMS_GENERICOS[codigo], f"{codigo} no tiene ningun item"
+
+
+def test_la_plantilla_generada_se_reconoce_como_plantilla():
+    """La tarjeta que crea el montaje tiene que casar con su actividad."""
+    from trello_auto.trello import actividad_de_plantilla, es_plantilla
+    nombre = "PLANTILLA - ACERO INFERIOR EN ZAPATAS"
+    assert es_plantilla(nombre)
+    assert actividad_de_plantilla(nombre) == "ACERO INFERIOR EN ZAPATAS"
+
+
+# --- historico y graficas ---------------------------------------------------
+def test_el_ppc_semanal_es_acumulado_no_promedio(tmp_path, monkeypatch):
+    """Un dia con 2 tarjetas no puede pesar lo mismo que uno con 20."""
+    from datetime import date
+
+    from trello_auto import historico
+    monkeypatch.setattr(historico.ajustes, "CARPETA_REPORTES", tmp_path)
+
+    historico.guardar_ppc(date(2026, 9, 1), 2, 0)      # 100%, pero 2 tarjetas
+    historico.guardar_ppc(date(2026, 9, 2), 10, 10)    # 50%, con 20 tarjetas
+    semanal = historico.serie_ppc_semanal()
+    assert len(semanal) == 1
+    # Acumulado: 12 de 22 = 54.5%. El promedio simple daria 75%.
+    assert semanal[0][1] == 54.5
+
+
+def test_guardar_ppc_reemplaza_el_dia_no_lo_duplica(tmp_path, monkeypatch):
+    from datetime import date
+
+    from trello_auto import historico
+    monkeypatch.setattr(historico.ajustes, "CARPETA_REPORTES", tmp_path)
+
+    historico.guardar_ppc(date(2026, 9, 1), 5, 5)
+    historico.guardar_ppc(date(2026, 9, 1), 8, 2)      # el mismo dia, corregido
+    serie = historico.serie_ppc(0)
+    assert len(serie) == 1 and serie[0][1] == 80.0
+
+
+def test_la_grafica_avisa_cuando_no_hay_bastantes_datos():
+    from trello_auto.web import grafico_linea
+    assert "mas de un dato" in grafico_linea([])
+    assert "mas de un dato" in grafico_linea([("01/09", 50)])
+    svg = grafico_linea([("01/09", 50), ("02/09", 80)], "%", meta=85)
+    assert "<svg" in svg and "polyline" in svg and "meta 85%" in svg

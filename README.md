@@ -238,6 +238,29 @@ Lo que no case con ninguna palabra clave cae en la familia de descarte
 
 ---
 
+## 🏗 Arrancar una obra nueva: montar el tablero solo
+
+Con el cronograma subido y un tablero **en blanco**:
+**Actions → "Montar tablero desde el cronograma" → Run workflow.**
+
+Crea de una vez:
+
+- **Las columnas** que el sistema necesita, en el orden en que fluye el trabajo:
+  espera → una por familia → gracia → culminado → no cumplidas → plantillas.
+- **Una tarjeta PLANTILLA por cada actividad del Excel**, con un checklist por
+  responsable ya montado.
+
+Los ítems son **genéricos a propósito**. El objetivo no es acertar el protocolo
+de cada actividad —eso lo sabe la obra, no el programa— sino dejar el esqueleto
+puesto para que solo haya que rellenarlo. En vez de crear 75 tarjetas a mano con
+su estructura, editas 75 que ya existen y ya tienen la forma correcta.
+
+**Solo crea lo que falta.** Nada existente se toca, se renombra ni se borra, así
+que puedes correrlo cuando el cronograma incorpore actividades nuevas. Empieza
+con `dry_run` activado para ver la lista antes de crear nada.
+
+---
+
 ## 🚀 Puesta en marcha
 
 **1. Los Secrets.** Settings → Secrets and variables → Actions:

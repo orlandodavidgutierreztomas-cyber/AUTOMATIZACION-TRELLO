@@ -138,6 +138,101 @@ def barras(pares: list) -> str:
     return "".join(filas)
 
 
+def grafico_linea(puntos: list, unidad: str = "", meta: float = None,
+                  alto: int = 190) -> str:
+    """Grafica de linea en SVG puro, sin librerias ni internet.
+
+    `puntos` es [(etiqueta, valor)] en orden cronologico. Dibuja la linea, el
+    area bajo ella, un punto por dato y una linea de meta opcional (por
+    ejemplo el 85% de PPC al que aspira el equipo).
+
+    Se hace a mano en SVG a proposito: la pagina tiene que seguir siendo UN
+    archivo que funcione sin conexion y sin cargar nada de fuera.
+    """
+    if len(puntos) < 2:
+        return ('<div class="sub">Hara falta mas de un dato para ver la '
+                'tendencia. Vuelve cuando haya corrido un par de veces.</div>')
+
+    ancho, m_izq, m_der, m_arr, m_aba = 720, 42, 12, 14, 30
+    valores = [v for _, v in puntos]
+    tope = max(valores + ([meta] if meta else []))
+    tope = tope * 1.15 if tope else 1
+    suelo = 0
+
+    util_x = ancho - m_izq - m_der
+    util_y = alto - m_arr - m_aba
+
+    def x(i):
+        return m_izq + (i * util_x / (len(puntos) - 1))
+
+    def y(v):
+        return m_arr + util_y - ((v - suelo) / (tope - suelo) * util_y)
+
+    # Rejilla horizontal con sus rotulos
+    rejilla = []
+    for parte in range(5):
+        v = tope * parte / 4
+        yy = round(y(v), 1)
+        rejilla.append(
+            f'<line x1="{m_izq}" y1="{yy}" x2="{ancho - m_der}" y2="{yy}" '
+            f'stroke="currentColor" stroke-opacity=".12"/>'
+            f'<text x="{m_izq - 7}" y="{yy + 3.5}" text-anchor="end" '
+            f'font-size="10" fill="currentColor" fill-opacity=".55">{v:.0f}</text>')
+
+    if meta is not None:
+        ym = round(y(meta), 1)
+        rejilla.append(
+            f'<line x1="{m_izq}" y1="{ym}" x2="{ancho - m_der}" y2="{ym}" '
+            f'stroke="var(--ok)" stroke-width="1.5" stroke-dasharray="5 4" '
+            f'stroke-opacity=".8"/>'
+            f'<text x="{ancho - m_der}" y="{ym - 5}" text-anchor="end" '
+            f'font-size="10" fill="var(--ok)">meta {meta:.0f}{unidad}</text>')
+
+    linea = " ".join(f"{round(x(i), 1)},{round(y(v), 1)}"
+                     for i, (_, v) in enumerate(puntos))
+    area = (f"{m_izq},{round(y(suelo), 1)} {linea} "
+            f"{round(x(len(puntos) - 1), 1)},{round(y(suelo), 1)}")
+
+    marcas = []
+    for i, (etiqueta, v) in enumerate(puntos):
+        marcas.append(f'<circle cx="{round(x(i), 1)}" cy="{round(y(v), 1)}" r="3" '
+                      f'fill="var(--acento)"><title>{e(etiqueta)}: {v}{e(unidad)}'
+                      f'</title></circle>')
+
+    # Rotulos del eje X: solo los que caben, para que no se amontonen
+    paso = max(1, len(puntos) // 8)
+    ejex = []
+    for i, (etiqueta, _) in enumerate(puntos):
+        if i % paso == 0 or i == len(puntos) - 1:
+            ejex.append(f'<text x="{round(x(i), 1)}" y="{alto - 9}" '
+                        f'text-anchor="middle" font-size="10" fill="currentColor" '
+                        f'fill-opacity=".55">{e(etiqueta)}</text>')
+
+    return (
+        f'<svg viewBox="0 0 {ancho} {alto}" width="100%" height="{alto}" '
+        f'role="img" style="display:block">'
+        f'{"".join(rejilla)}'
+        f'<polygon points="{area}" fill="var(--acento)" fill-opacity=".10"/>'
+        f'<polyline points="{linea}" fill="none" stroke="var(--acento)" '
+        f'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
+        f'{"".join(marcas)}{"".join(ejex)}'
+        f'</svg>')
+
+
+def barra_progreso(porcentaje: float, rotulo: str = "", clase: str = "") -> str:
+    """Una barra de avance ancha, para el progreso general de la obra."""
+    p = max(0, min(100, porcentaje))
+    color = {"ok": "var(--ok)", "alerta": "var(--alerta)",
+             "aviso": "var(--aviso)"}.get(clase, "var(--acento)")
+    return (f'<div style="margin-bottom:10px">'
+            f'<div style="display:flex;justify-content:space-between;'
+            f'font-size:13px;margin-bottom:5px">'
+            f'<span>{e(rotulo)}</span><span class="num">{p:.1f}%</span></div>'
+            f'<div class="pista" style="height:13px">'
+            f'<span class="relleno" style="width:{p}%;background:{color}"></span>'
+            f'</div></div>')
+
+
 def pagina(archivo: str, titulo: str, subtitulo: str, cuerpo: str, pie: str) -> str:
     return f"""<!doctype html>
 <html lang="es">
