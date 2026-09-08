@@ -57,8 +57,8 @@ def columnas() -> list:
     return (["CORTE", "SECTOR / ZONA", "ACTIVIDAD", "FAMILIA", "VENCE"]
             + list(ajustes.CODIGOS_RESPONSABLE)
             + ["OTROS", "CHECKS PENDIENTES", "TOTAL CHECKS", "ANTIGUEDAD (dias)",
-               "CLAVE ORDEN", "LISTA TRELLO", "DIA DEL CORTE", "ESTADO",
-               "LINK TRELLO"])
+               "MARCADA", "CLAVE ORDEN", "LISTA TRELLO", "DIA DEL CORTE",
+               "ESTADO", "LINK TRELLO"])
 
 
 def dia_del_corte(vence, hoy) -> str:
@@ -93,6 +93,9 @@ def fila_de_tarjeta(card: dict, nombre_lista: str, estado: str,
         "CHECKS PENDIENTES": cuenta["pendientes"],
         "TOTAL CHECKS": cuenta["total"],
         "ANTIGUEDAD (dias)": antiguedad,
+        # La marca de "cumplida" de Trello. Importa porque, con el criterio
+        # por defecto, cierra la tarjeta aunque el checklist no este completo.
+        "MARCADA": "si" if card.get("dueComplete") else "",
         # Ordena por urgencia: mas pendientes primero, sin empates
         "CLAVE ORDEN": round(cuenta["pendientes"] + orden / 10000, 4),
         "LISTA TRELLO": nombre_lista,

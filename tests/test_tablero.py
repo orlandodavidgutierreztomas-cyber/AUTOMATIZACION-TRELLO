@@ -170,9 +170,21 @@ def test_checklist_completo():
     assert checklist_completo(_card()) is False
 
 
-def test_criterio_checklist_es_el_que_manda_por_defecto():
-    assert ajustes.CRITERIO_CIERRE == "checklist"
-    # Marcada pero con el checklist a medias: NO cuenta como terminada.
+def test_por_defecto_vale_cualquiera_de_las_dos_formas_de_cerrar():
+    """En obra hay actividades que no necesitan todos los checks: si el
+    responsable la marca como cumplida, esta cumplida."""
+    assert ajustes.CRITERIO_CIERRE == "auto"
+    # Marcada, aunque le falten items del checklist
+    assert esta_terminada(_card(marcada=True, items=["incomplete"]), "auto") is True
+    # O con el checklist completo, aunque nadie la haya marcado
+    assert esta_terminada(_card(items=["complete", "complete"]), "auto") is True
+    # Ni lo uno ni lo otro: no cumplio
+    assert esta_terminada(_card(items=["complete", "incomplete"]), "auto") is False
+    assert esta_terminada(_card(), "auto") is False
+
+
+def test_el_criterio_estricto_sigue_disponible():
+    """Quien quiera exigir el checklist completo sin excepciones lo tiene."""
     assert esta_terminada(_card(marcada=True, items=["incomplete"]), "checklist") is False
     assert esta_terminada(_card(items=["complete"]), "checklist") is True
 
@@ -579,3 +591,19 @@ def test_el_alcance_no_repite_listas():
     for alcance in ("dia", "no-cumplidas", "todo"):
         claves = [c for c, _e in listas_del_alcance(alcance)]
         assert len(claves) == len(set(claves)), f"alcance '{alcance}' repite listas"
+
+
+def test_el_reporte_registra_si_la_tarjeta_esta_marcada():
+    """Con el criterio por defecto la marca cierra la tarjeta, asi que hay que
+    poder ver cuales se cerraron asi y cuales por su checklist."""
+    from datetime import datetime, timedelta, timezone
+
+    from trello_auto.reporte import columnas, fila_de_tarjeta
+    assert "MARCADA" in columnas()
+
+    corte = datetime(2026, 9, 8, 15, 0, tzinfo=timezone(timedelta(hours=-5)))
+    card = {"id": "C", "name": "1CS1 - ACERO EN ZAPATAS - 08/09/2026",
+            "dueComplete": True, "checklists": [], "shortUrl": ""}
+    assert fila_de_tarjeta(card, "T. DEL DIA ACERO", "EN JUEGO", corte, 1)["MARCADA"] == "si"
+    card["dueComplete"] = False
+    assert fila_de_tarjeta(card, "T. DEL DIA ACERO", "EN JUEGO", corte, 1)["MARCADA"] == ""

@@ -22,13 +22,18 @@ injusto y ensuciaria la estadistica.
       checklist completo  ->  CULMINADO         <- alcanzo a marcar
       le falta algo       ->  T. NO CUMPLIDAS   <- ahora si, no se cumplio
 
-Manda el control de calidad, no la marca de "completa" de Trello: no basta
-con tildar la tarjeta, hay que haber marcado cada item.
+Una tarjeta cuenta como terminada por su control de calidad O por la marca de
+"cumplida" de Trello, lo que llegue primero (criterio "auto"). Quien quiera
+exigir el checklist completo sin excepciones tiene el criterio "checklist".
 
 CRITERIO (configuracion.json -> cierre.criterio)
-  "checklist" -> POR DEFECTO. Todos los items marcados.
-  "auto"      -> checklist completo O tarjeta marcada como completa.
-  "marcada"   -> solo la marca de completa de Trello.
+  "auto"      -> POR DEFECTO. Vale cualquiera de las dos formas de cerrar:
+                 el checklist completo O la tarjeta marcada como cumplida.
+                 Es lo razonable en obra: hay actividades que no necesitan
+                 todos los checks, y si el responsable la da por cumplida,
+                 esta cumplida.
+  "checklist" -> exige TODOS los items marcados, sin excepcion.
+  "marcada"   -> solo la marca de Trello, ignora los checklists.
 
 Ambas fases son IDEMPOTENTES: al terminar, las listas de origen quedan
 vacias; una segunda corrida no encuentra nada que mover.

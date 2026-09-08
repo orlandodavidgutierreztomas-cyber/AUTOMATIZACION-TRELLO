@@ -161,8 +161,8 @@
     "copiar": "checklists,labels"
   },
   "cierre": {
-    "_ayuda": "criterio: 'checklist' (todos los items marcados) | 'auto' (checklist completo O tarjeta marcada) | 'marcada'.",
-    "criterio": "checklist"
+    "_ayuda": "Cuando una tarjeta cuenta como TERMINADA. 'auto' (por defecto): vale cualquiera de las dos formas de cerrar, tener el checklist completo O estar marcada como cumplida en Trello. Es lo razonable en obra: hay actividades que no necesitan todos los checks, y si el responsable la da por cumplida, esta cumplida. 'checklist': exige TODOS los items marcados, sin excepcion. 'marcada': solo la marca de Trello, ignora los checklists.",
+    "criterio": "auto"
   },
   "reportes": {
     "carpeta": "reportes",

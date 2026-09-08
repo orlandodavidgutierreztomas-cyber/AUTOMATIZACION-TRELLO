@@ -27,7 +27,7 @@ def _tabla(filas: list) -> str:
 
     codigos = list(ajustes.CODIGOS_RESPONSABLE)
     cabecera = (["Sector", "Actividad", "Familia", "Vence"] + codigos
-                + ["Pend.", "Total", "Dias", "Lista", "Estado", ""])
+                + ["Pend.", "Total", "Dias", "Marcada", "Lista", "Estado", ""])
     th = "".join(f"<th>{e(c)}</th>" for c in cabecera)
 
     cuerpo = []
@@ -46,6 +46,7 @@ def _tabla(filas: list) -> str:
             f'<td class="n">{e(f["CHECKS PENDIENTES"])}</td>',
             f'<td class="n">{e(f["TOTAL CHECKS"])}</td>',
             f'<td{clase_dias}>{e(dias)}</td>',
+            f'<td class="n">{"✓" if f.get("MARCADA") else "·"}</td>',
             f'<td>{e(f["LISTA TRELLO"])}</td>',
             f'<td><span class="pill">{e(f["ESTADO"])}</span></td>',
         ]

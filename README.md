@@ -91,13 +91,20 @@ La fase 2 barre también las listas del día, por si la fase 1 no llegó a corre
 
 ### Cuándo cuenta como terminada
 
-Manda el **control de calidad**, no la marca de "completa" de Trello.
-
 | `cierre.criterio` | Terminada si… |
 |---|---|
-| `checklist` *(por defecto)* | **todos** los ítems de sus checklists están marcados |
-| `auto` | checklist completo **o** tarjeta marcada como completa |
-| `marcada` | solo la marca de Trello |
+| `auto` *(por defecto)* | tiene el checklist completo **o** está marcada como cumplida |
+| `checklist` | **todos** los ítems marcados, sin excepción |
+| `marcada` | solo la marca de Trello, ignora los checklists |
+
+El criterio por defecto es `auto` porque en obra hay actividades que no
+necesitan todos los checks: si el responsable la da por cumplida, está cumplida.
+El checklist deja de ser un obstáculo y pasa a ser lo que es — una ayuda para no
+olvidar nada.
+
+Quien prefiera exigir el control completo sin excepciones tiene `checklist`. El
+reporte trae una columna **MARCADA** para ver cuáles se cerraron por la marca y
+cuáles por su checklist.
 
 ---
 
@@ -431,7 +438,7 @@ Todos aceptan `--dry-run`: muestran qué harían sin tocar nada.
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 82 pruebas, ninguna toca Trello
+pytest -q                          # 84 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
