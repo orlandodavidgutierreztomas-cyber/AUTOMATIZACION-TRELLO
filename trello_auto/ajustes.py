@@ -152,8 +152,31 @@ def familia_por_defecto() -> str:
 
 
 def lista_de_familia(familia: str) -> str:
+    """Lista del DIA a la que va el trabajo de esa familia."""
     f = FAMILIAS.get(familia) or FAMILIAS.get(familia_por_defecto(), {})
     return f.get("lista", "")
+
+
+def lista_cierre_de_familia(familia: str) -> str:
+    """Lista de GRACIA de esa familia, donde espera lo que no se cerro.
+
+    Varias familias pueden compartirla (Encofrado y Concreto, por ejemplo).
+    Si la familia no define la suya, se usa la global de listas.por_cerrar.
+    """
+    f = FAMILIAS.get(familia) or FAMILIAS.get(familia_por_defecto(), {})
+    return f.get("lista_cierre") or LISTA_POR_CERRAR
+
+
+def listas_de_cierre() -> list:
+    """Todas las listas de gracia distintas que hay que barrer, sin repetir."""
+    vistas = []
+    for familia in FAMILIAS:
+        lista = lista_cierre_de_familia(familia)
+        if lista and lista not in vistas:
+            vistas.append(lista)
+    if LISTA_POR_CERRAR and LISTA_POR_CERRAR not in vistas:
+        vistas.append(LISTA_POR_CERRAR)
+    return vistas
 
 
 # ---------------------------------------------------------------------------

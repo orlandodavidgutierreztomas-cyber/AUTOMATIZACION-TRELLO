@@ -66,9 +66,10 @@ Cuando termina la jornada los especialistas siguen ocupados. Mandar al saco de
 y ensuciaría la estadística. Por eso el cierre no es un solo golpe:
 
 **Fase 1 — al fin de jornada.** Se recorren las listas del día. Lo que está
-completo va a `CULMINADO`; **lo pendiente va a `T. POR CERRAR`**, no a no
-cumplidas. Las listas del día quedan limpias y todo lo que falta queda a la
-vista, en un solo sitio.
+completo va a `CULMINADO`; **lo pendiente va a la lista de gracia de su
+familia**, no a no cumplidas. Cada familia tiene la suya —acero espera en la de
+acero, no en un saco común— y varias pueden compartirla, como encofrado y
+concreto. Se configura en `familias.<X>.lista_cierre`.
 
 **Fase 2 — el cierre definitivo, unas horas después.** Se barre la lista de
 gracia. Lo que alcanzaron a marcar durante el margen va a `CULMINADO`; lo que
@@ -235,6 +236,31 @@ Hace tres cosas y hace el commit por ti:
 
 Lo que no case con ninguna palabra clave cae en la familia de descarte
 (`Varios`), nunca se queda sin destino ni se acumula donde no debe.
+
+---
+
+## 🧹 Limpiar tarjetas duplicadas
+
+Cuando la obra avanza más rápido que el plan, el encargado adelanta tarjetas a
+mano y acaban existiendo dos o tres con el mismo nombre. Duplican el conteo del
+reporte y ensucian el tablero.
+
+**Actions → "Limpiar tarjetas duplicadas".** Agrupa por nombre, **conserva la que
+tiene trabajo** y archiva las copias vacías.
+
+Solo archiva una copia si cumple **todas** estas condiciones:
+
+- tiene otra con el mismo nombre que se queda,
+- **no** tiene ni un ítem de checklist marcado,
+- **no** tiene comentarios,
+- **no** tiene adjuntos.
+
+Si una copia tiene cualquier rastro de trabajo, se queda y te lo avisa: mejor un
+duplicado de más que borrar el trabajo de alguien. Y **archiva, no borra** — en
+Trello lo archivado se recupera desde el menú del tablero.
+
+Cuál sobrevive: la de más ítems marcados; a igualdad, la que tenga adjuntos o
+comentarios; a igualdad, la más antigua.
 
 ---
 

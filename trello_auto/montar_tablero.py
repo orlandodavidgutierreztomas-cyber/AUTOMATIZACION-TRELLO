@@ -103,8 +103,11 @@ def listas_necesarias() -> list:
         if lista and lista not in vistas:
             vistas.add(lista)
             necesarias.append((lista, f"trabajo del dia · {familia}"))
-    if ajustes.LISTA_POR_CERRAR:
-        necesarias.append((ajustes.LISTA_POR_CERRAR, "margen de gracia del cierre"))
+    for lista in ajustes.listas_de_cierre():
+        familias = [f for f in ajustes.FAMILIAS
+                    if ajustes.lista_cierre_de_familia(f) == lista]
+        detalle = ", ".join(familias) if familias else "resto"
+        necesarias.append((lista, f"margen de gracia · {detalle}"))
     necesarias.append((ajustes.LISTA_CULMINADO, "lo que cumplio"))
     necesarias.append((ajustes.LISTA_NO_CUMPLIDAS, "lo que no cumplio"))
     necesarias.append((LISTA_PLANTILLAS, "las plantillas de cada actividad"))

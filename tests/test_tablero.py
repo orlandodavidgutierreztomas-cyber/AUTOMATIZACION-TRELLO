@@ -197,16 +197,34 @@ def test_de_la_plantilla_se_copian_checklists_y_etiquetas():
 
 # --- el cierre en dos fases -------------------------------------------------
 def test_la_fase_de_gracia_solo_barre_las_listas_del_dia():
-    """En el fin de jornada NO se toca la lista de gracia: es el destino."""
+    """En el fin de jornada NO se tocan las listas de gracia: son el destino."""
     origenes = origenes_de_la_fase("gracia")
-    assert ajustes.LISTA_POR_CERRAR not in origenes
     for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_cierre_de_familia(familia) not in origenes
         assert ajustes.lista_de_familia(familia) in origenes
 
 
-def test_el_cierre_final_barre_primero_la_lista_de_gracia():
+def test_cada_familia_tiene_su_propia_lista_de_cierre():
+    """El margen de gracia no es un saco comun: acero espera en la suya."""
+    acero = ajustes.lista_cierre_de_familia("Acero")
+    varios = ajustes.lista_cierre_de_familia("Varios")
+    assert acero != varios
+    # Encofrado y Concreto comparten la suya, como en el tablero real
+    assert (ajustes.lista_cierre_de_familia("Encofrado")
+            == ajustes.lista_cierre_de_familia("Concreto"))
+    # Ninguna se queda sin destino
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_cierre_de_familia(familia)
+    # Y no se repiten al barrerlas
+    cierres = ajustes.listas_de_cierre()
+    assert len(cierres) == len(set(cierres))
+
+
+def test_el_cierre_final_barre_todas_las_listas_de_gracia():
     origenes = origenes_de_la_fase("final")
-    assert origenes[0] == ajustes.LISTA_POR_CERRAR
+    # Cada familia tiene su lista de gracia, y todas se barren
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_cierre_de_familia(familia) in origenes
     # Y tambien las del dia, por si la fase de gracia no llego a correr
     for familia in ajustes.FAMILIAS:
         assert ajustes.lista_de_familia(familia) in origenes
@@ -393,3 +411,47 @@ def test_la_grafica_avisa_cuando_no_hay_bastantes_datos():
     assert "mas de un dato" in grafico_linea([("01/09", 50)])
     svg = grafico_linea([("01/09", 50), ("02/09", 80)], "%", meta=85)
     assert "<svg" in svg and "polyline" in svg and "meta 85%" in svg
+
+
+# --- limpiar duplicadas -----------------------------------------------------
+def _dup(cid, nombre, marcados=0, items=0, comentarios=0, adjuntos=0, lista="L1"):
+    return {"id": cid, "name": nombre, "idList": lista,
+            "badges": {"checkItemsChecked": marcados, "checkItems": items,
+                       "comments": comentarios, "attachments": adjuntos}}
+
+
+def test_solo_se_agrupan_los_nombres_repetidos():
+    from trello_auto.limpiar_duplicadas import agrupar_duplicadas
+    cards = [_dup("a" * 24, "1CS1 - ACERO - 01/09/2026"),
+             _dup("b" * 24, "1CS1 — ACERO — 01/09/2026"),   # guion largo: es la misma
+             _dup("c" * 24, "1CS2 - ACERO - 01/09/2026")]
+    grupos = agrupar_duplicadas(cards)
+    assert len(grupos) == 1
+    assert len(next(iter(grupos.values()))) == 2
+
+
+def test_una_tarjeta_con_trabajo_nunca_esta_vacia():
+    from trello_auto.limpiar_duplicadas import esta_vacia
+    assert esta_vacia(_dup("a" * 24, "x")) is True
+    assert esta_vacia(_dup("a" * 24, "x", marcados=1)) is False
+    assert esta_vacia(_dup("a" * 24, "x", comentarios=1)) is False
+    assert esta_vacia(_dup("a" * 24, "x", adjuntos=1)) is False
+    # Tener items sin marcar no es trabajo: la plantilla los pone sola
+    assert esta_vacia(_dup("a" * 24, "x", items=12)) is True
+
+
+def test_sobrevive_la_que_tiene_mas_trabajo():
+    from trello_auto.limpiar_duplicadas import elegir_superviviente
+    vacia = _dup("6a8f0001" + "0" * 16, "x")
+    trabajada = _dup("6a8f0002" + "0" * 16, "x", marcados=7, items=12)
+    assert elegir_superviviente([vacia, trabajada])["id"] == trabajada["id"]
+    # Si ninguna tiene checks, gana la que tenga adjuntos
+    con_adjunto = _dup("6a8f0003" + "0" * 16, "x", adjuntos=2)
+    assert elegir_superviviente([vacia, con_adjunto])["id"] == con_adjunto["id"]
+
+
+def test_a_igualdad_sobrevive_la_mas_antigua():
+    from trello_auto.limpiar_duplicadas import elegir_superviviente
+    vieja = _dup("6a8f0001" + "0" * 16, "x")
+    nueva = _dup("6a9f0001" + "0" * 16, "x")
+    assert elegir_superviviente([nueva, vieja])["id"] == vieja["id"]

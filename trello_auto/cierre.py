@@ -48,6 +48,8 @@ import argparse
 import sys
 
 from . import ajustes, horario
+from .cronograma import destino_de
+from .distribuir import partes_del_nombre
 from .trello import Trello, buscar_lista, checklist_completo, contar_checks, nombre_de_lista
 
 CRITERIOS = ("checklist", "auto", "marcada")
@@ -80,10 +82,7 @@ def origenes_de_la_fase(fase: str) -> list:
         return listas_del_dia()
     # En el cierre definitivo se barre la lista de gracia y, por si acaso,
     # tambien las del dia: si la fase 1 no llego a correr, nada se queda atras.
-    origenes = []
-    if ajustes.LISTA_POR_CERRAR:
-        origenes.append(ajustes.LISTA_POR_CERRAR)
-    return origenes + listas_del_dia()
+    return ajustes.listas_de_cierre() + listas_del_dia()
 
 
 def main() -> int:
@@ -112,32 +111,55 @@ def main() -> int:
             f"Revisa configuracion.json -> listas.culminado."
         )
 
-    # A donde va lo que NO esta terminado, segun la fase
-    if args.fase == "gracia":
-        clave_pendiente = ajustes.LISTA_POR_CERRAR
-        rotulo_pendiente = "A GRACIA"
-    else:
-        clave_pendiente = ajustes.LISTA_NO_CUMPLIDAS
-        rotulo_pendiente = "NO CUMPLIDA"
+    # A donde va lo que NO esta terminado.
+    # En la fase de gracia depende de la FAMILIA de cada tarjeta: cada una
+    # espera en su propia lista de cierre, para que el tablero no mezcle acero
+    # con concreto. En la definitiva, todo va al mismo sitio: no cumplidas.
+    rotulo_pendiente = "A GRACIA" if args.fase == "gracia" else "NO CUMPLIDA"
 
-    id_pendiente = buscar_lista(listas, clave_pendiente) if clave_pendiente else None
-    if not id_pendiente:
+    id_no_cumplidas = buscar_lista(listas, ajustes.LISTA_NO_CUMPLIDAS)
+    if args.fase == "final" and not id_no_cumplidas:
         raise SystemExit(
-            f"ERROR: no encuentro la lista destino de lo pendiente: "
-            f"'{clave_pendiente}'.\n"
-            f"Revisa configuracion.json -> listas."
+            f"ERROR: no encuentro la lista '{ajustes.LISTA_NO_CUMPLIDAS}'.\n"
+            f"Revisa configuracion.json -> listas.no_cumplidas."
         )
+
+    if args.fase == "gracia":
+        faltan = [c for c in ajustes.listas_de_cierre() if not buscar_lista(listas, c)]
+        if faltan:
+            raise SystemExit(
+                "ERROR: faltan listas de gracia en el tablero:\n"
+                + "\n".join(f"  - {c}" for c in faltan)
+                + "\nCrealas en Trello (o con 'Montar tablero'), o corrige "
+                  "configuracion.json -> familias.<X>.lista_cierre."
+            )
+
+    cache_gracia = {}
+
+    def destino_pendiente(nombre_tarjeta):
+        """(id_destino, nombre_legible) de donde va esta tarjeta si no cerro."""
+        if args.fase == "final":
+            return id_no_cumplidas, ajustes.LISTA_NO_CUMPLIDAS
+        actividad = partes_del_nombre(nombre_tarjeta).get("actividad") or nombre_tarjeta
+        familia, _lista = destino_de(actividad)
+        clave = ajustes.lista_cierre_de_familia(familia)
+        if clave not in cache_gracia:
+            cache_gracia[clave] = buscar_lista(listas, clave)
+        return cache_gracia[clave], clave
 
     print("=" * 74)
     print(f" CIERRE ({args.fase.upper()}) - {horario.fecha_larga(horario.hoy_local())} "
           f"({ajustes.TZ_OBRA})")
     print(f" Criterio: {criterio}")
     if args.fase == "gracia":
-        print(f" Lo terminado va a '{ajustes.LISTA_CULMINADO}'; lo pendiente espera "
-              f"en '{clave_pendiente}'")
+        print(f" Lo terminado va a '{ajustes.LISTA_CULMINADO}'.")
+        print(" Lo pendiente espera en la lista de cierre DE SU FAMILIA:")
+        for familia in ajustes.FAMILIAS:
+            print(f"   {familia:12} -> {ajustes.lista_cierre_de_familia(familia)}")
         print(f" hasta el cierre definitivo de las {ajustes.hora_de('cierre_final')}.")
     else:
-        print(f" Cierre definitivo: lo que siga sin marcar pasa a '{clave_pendiente}'.")
+        print(f" Cierre definitivo: lo que siga sin marcar pasa a "
+              f"'{ajustes.LISTA_NO_CUMPLIDAS}'.")
     print("=" * 74)
 
     a_culminado = a_pendiente = 0
@@ -151,10 +173,16 @@ def main() -> int:
         for card in tarjetas:
             terminada = esta_terminada(card, criterio)
             cuenta = contar_checks(card, ajustes.RESPONSABLES)
-            destino = id_culminado if terminada else id_pendiente
+            if terminada:
+                destino, adonde = id_culminado, ajustes.LISTA_CULMINADO
+            else:
+                destino, adonde = destino_pendiente(card["name"])
             etiqueta = "CULMINADA" if terminada else rotulo_pendiente
             detalle = f"{cuenta['pendientes']}/{cuenta['total']} pendientes"
             print(f"  -> [{etiqueta:11}] {detalle:18} {card['name']}")
+            if not destino:
+                print(f"     ! sin lista destino ('{adonde}'), la dejo donde esta")
+                continue
             if not args.dry_run:
                 tr.mover(card["id"], destino)
             if terminada:

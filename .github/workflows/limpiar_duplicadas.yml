@@ -1,0 +1,65 @@
+# ===========================================================================
+#  LIMPIAR DUPLICADAS - quita las copias vacias, nunca el trabajo hecho
+# ---------------------------------------------------------------------------
+#  Cuando la obra avanza mas rapido que el plan, el encargado adelanta
+#  tarjetas a mano y acaban existiendo dos o tres con el mismo nombre.
+#  Duplican el conteo del reporte y ensucian el tablero.
+#
+#  Este robot conserva LA QUE TIENE TRABAJO y archiva las copias vacias.
+#  Solo archiva una copia si NO tiene ni un check marcado, ni comentarios,
+#  ni adjuntos. Si tiene cualquier rastro de trabajo, la deja y lo avisa:
+#  mejor un duplicado de mas que borrar el trabajo de alguien.
+#
+#  ARCHIVA, NO BORRA: en Trello lo archivado se recupera desde el menu del
+#  tablero.
+#
+#  Empieza siempre con dry_run para ver la lista.
+# ===========================================================================
+name: Limpiar tarjetas duplicadas
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Solo mostrar que archivaria, sin tocar nada (recomendado)"
+        required: false
+        default: true
+        type: boolean
+      incluir_plantillas:
+        description: "Revisar tambien las tarjetas PLANTILLA"
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: limpiar-duplicadas
+
+permissions:
+  contents: read
+
+jobs:
+  limpiar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Buscar y archivar duplicadas
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          BOARD_ID: ${{ vars.BOARD_ID }}
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS+=(--dry-run); fi
+          if [ "${{ inputs.incluir_plantillas }}" = "true" ]; then ARGS+=(--incluir-plantillas); fi
+          python -m trello_auto.limpiar_duplicadas ${ARGS[@]+"${ARGS[@]}"}
