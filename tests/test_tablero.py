@@ -607,3 +607,75 @@ def test_el_reporte_registra_si_la_tarjeta_esta_marcada():
     assert fila_de_tarjeta(card, "T. DEL DIA ACERO", "EN JUEGO", corte, 1)["MARCADA"] == "si"
     card["dueComplete"] = False
     assert fila_de_tarjeta(card, "T. DEL DIA ACERO", "EN JUEGO", corte, 1)["MARCADA"] == ""
+
+
+# --- el dashboard -----------------------------------------------------------
+def _fila(pend=0, total=10, dias=0, marcada=False, familia="Acero"):
+    return {"SECTOR / ZONA": "1CS1", "ACTIVIDAD": "ACERO EN ZAPATAS",
+            "FAMILIA": familia, "VENCE": "2026-09-08 18:30", "OTROS": 0,
+            "CHECKS PENDIENTES": pend, "TOTAL CHECKS": total,
+            "ANTIGUEDAD (dias)": dias, "MARCADA": "si" if marcada else "",
+            "CLAVE ORDEN": pend, "LISTA TRELLO": "T. DEL DIA",
+            "DIA DEL CORTE": "HOY", "ESTADO": "EN JUEGO", "LINK TRELLO": ""}
+
+
+def test_el_dashboard_cierra_igual_que_el_robot_del_cierre():
+    """Si el dashboard contara distinto que el cierre, mentiria."""
+    from trello_auto.tablero import _cerrada
+    assert _cerrada(_fila(pend=0)) is True                  # checklist completo
+    assert _cerrada(_fila(pend=5, marcada=True)) is True    # marcada como cumplida
+    assert _cerrada(_fila(pend=5)) is False
+    # Y coincide con el criterio "auto" del cierre
+    for pend, marcada in [(0, False), (5, True), (5, False)]:
+        card = _card(marcada=marcada,
+                     items=["complete"] * (10 - pend) + ["incomplete"] * pend)
+        assert _cerrada(_fila(pend=pend, marcada=marcada)) == \
+            esta_terminada(card, "auto")
+
+
+def test_el_panel_de_sin_cerrar_se_vacia_cuando_todo_cierra():
+    """Lo que pidio el usuario: si todo esta cerrado, el tablero queda limpio."""
+    from trello_auto.tablero import _sin_cerrar
+    assert "Todo cerrado" in _sin_cerrar([_fila(pend=0), _fila(pend=3, marcada=True)])
+    html = _sin_cerrar([_fila(pend=3, dias=2)])
+    assert "Todo cerrado" not in html
+    assert "1 atrasadas" in html
+
+
+def test_las_atrasadas_salen_primero():
+    from trello_auto.tablero import _sin_cerrar
+    html = _sin_cerrar([_fila(pend=1, dias=0), _fila(pend=1, dias=5, familia="Trazo"),
+                        _fila(pend=1, dias=2, familia="Concreto")])
+    # La de 5 dias debe aparecer antes que la de 2 y que la de hoy
+    assert html.index("5 dias") < html.index("2 dias") < html.index(">hoy<")
+
+
+def test_el_anillo_es_un_medidor_no_un_grafico_de_sectores():
+    """Una sola razon contra su tope: arco proporcional sobre su pista."""
+    from trello_auto.web import anillo
+    html = anillo(75, "cerradas")
+    assert "75%" in html
+    # Dos circulos: la pista y el arco. Nada de sectores.
+    assert html.count("<circle") == 2
+    # Y el estado va tambien en palabras, no solo en color
+    assert "meta" in html
+    assert "en meta" in anillo(90, "x")
+    assert "muy por debajo" in anillo(20, "x")
+
+
+def test_cada_familia_conserva_su_color():
+    """El color sigue a la entidad, no a su puesto en el ranking."""
+    from trello_auto.web import color_de
+    catalogo = list(ajustes.FAMILIAS)
+    colores = {f: color_de(f, catalogo) for f in catalogo}
+    assert len(set(colores.values())) == len(catalogo)   # ninguno repetido
+    # Reordenar el ranking no cambia el color de nadie
+    assert color_de("Acero", catalogo) == colores["Acero"]
+    assert color_de("Familia inventada", catalogo) == "var(--suave)"
+
+
+def test_la_barra_apilada_ignora_los_tramos_vacios():
+    from trello_auto.web import barra_apilada
+    html = barra_apilada([("Cerradas", 3, "var(--ok)"), ("En curso", 0, "var(--aviso)")])
+    assert "Cerradas" in html and "En curso" not in html
+    assert barra_apilada([("x", 0, "y")]) == ""

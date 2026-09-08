@@ -353,7 +353,7 @@ Settings → Pages → *Deploy from a branch* → `main` → `/docs`.
 
 | Página | Qué muestra |
 |---|---|
-| `index.html` | **Dashboard**: KPIs del corte, avance de obra, PPC diario y semanal, checks pendientes en el tiempo, desglose por responsable y familia, y la tabla completa con enlace a cada tarjeta |
+| `index.html` | **Dashboard**: anillo de avance del día, composición del corte, avance de obra, PPC diario y semanal, checks pendientes en el tiempo, desglose por responsable y familia, **panel de tarjetas sin cerrar** y la tabla completa |
 | `mapeo.html` | **Mapeo**: a qué familia y lista va cada actividad, y cuáles piden atención |
 | `tablero.html` | **Estado del tablero**: qué papel juega cada lista, cuáles no toca nadie y cuántas tarjetas quedarían atrapadas |
 
@@ -438,7 +438,7 @@ Todos aceptan `--dry-run`: muestran qué harían sin tocar nada.
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 84 pruebas, ninguna toca Trello
+pytest -q                          # 90 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 

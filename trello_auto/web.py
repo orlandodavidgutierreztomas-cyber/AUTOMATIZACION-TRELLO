@@ -25,14 +25,21 @@ from . import ajustes
 CSS = """
   :root {
     --fondo:#f5f6f8; --panel:#ffffff; --borde:#e3e6ea; --texto:#1b2733;
-    --suave:#65727f; --acento:#1f4e79; --ok:#1e7a4b; --alerta:#b3261e;
-    --aviso:#b06a00; --barra:#dfe4ea; --ambar:#fff3cd;
+    --suave:#65727f; --acento:#2a78d6; --barra:#e3e6ea; --ambar:#fff3cd;
+    /* Serie categorica en ORDEN FIJO. Nunca se cicla ni se reordena: el
+       color sigue a la familia, no a su posicion en el ranking. */
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+    --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+    /* Estados: reservados, nunca se usan como "serie 9" */
+    --ok:#0ca30c; --aviso:#fab219; --serio:#ec835a; --alerta:#d03b3b;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       --fondo:#12161b; --panel:#1a2027; --borde:#2b333d; --texto:#e7ecf2;
-      --suave:#9aa7b4; --acento:#7fb3e8; --ok:#5cc98d; --alerta:#ff8a80;
-      --aviso:#f0b45e; --barra:#2b333d; --ambar:#3a2f14;
+      --suave:#9aa7b4; --acento:#3987e5; --barra:#2b333d; --ambar:#3a2f14;
+      --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+      --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+      --ok:#0ca30c; --aviso:#fab219; --serio:#ec835a; --alerta:#d03b3b;
     }
   }
   * { box-sizing:border-box; }
@@ -91,6 +98,19 @@ CSS = """
   .vacio { padding:40px; text-align:center; color:var(--suave); }
   .nota { background:var(--panel); border:1px solid var(--borde); border-left:3px solid var(--aviso);
           border-radius:8px; padding:14px 16px; margin-bottom:20px; font-size:13.5px; }
+  .hero { display:flex; gap:26px; align-items:center; flex-wrap:wrap; }
+  .hero .cifra { font-size:52px; font-weight:650; letter-spacing:-.03em; line-height:1; }
+  .apilada { display:flex; height:26px; border-radius:6px; overflow:hidden; gap:2px; }
+  .apilada span { display:block; }
+  .leyenda { display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; font-size:13px;
+             color:var(--suave); }
+  .leyenda i { display:inline-block; width:10px; height:10px; border-radius:3px;
+               margin-right:6px; vertical-align:middle; }
+  .estado { display:inline-flex; align-items:center; gap:6px; font-size:13px;
+            font-weight:600; margin-top:10px; }
+  .estado .pto { width:9px; height:9px; border-radius:50%; display:inline-block; }
+  .limpio { text-align:center; padding:30px 20px; }
+  .limpio .marca { font-size:34px; line-height:1; margin-bottom:8px; }
 """
 
 PAGINAS = [
@@ -123,8 +143,13 @@ def kpi(valor, rotulo, pie="", clase="") -> str:
             f'<div class="r">{e(rotulo)}</div>{pie_html}</div>')
 
 
-def barras(pares: list) -> str:
-    """pares: [(rotulo, valor)] ya ordenado. Barras horizontales."""
+def barras(pares: list, colores: dict = None) -> str:
+    """Barras horizontales. `pares` es [(rotulo, valor)] ya ordenado.
+
+    Cada barra lleva SIEMPRE su rotulo y su valor a la vista: es lo que
+    permite usar la paleta completa en modo claro, donde tres de los tonos
+    quedan por debajo del contraste minimo y el color solo no bastaria.
+    """
     pares = [(r, v) for r, v in pares if v]
     if not pares:
         return '<div class="sub">Nada que mostrar.</div>'
@@ -132,15 +157,96 @@ def barras(pares: list) -> str:
     filas = []
     for rotulo, valor in pares:
         ancho = round(valor / tope * 100, 1) if tope else 0
+        color = (colores or {}).get(rotulo, "var(--acento)")
         filas.append(
             f'<div class="fila"><span>{e(rotulo)}</span>'
-            f'<span class="pista"><span class="relleno" style="width:{ancho}%"></span></span>'
+            f'<span class="pista"><span class="relleno" '
+            f'style="width:{ancho}%;background:{color}"></span></span>'
             f'<span class="num">{valor}</span></div>')
     return "".join(filas)
 
 
+# Orden FIJO de la serie categorica. El color sigue a la entidad, nunca a su
+# posicion en el ranking: si un filtro cambia el orden, cada familia conserva
+# el suyo. Nunca se cicla — pasado el octavo, se agrupa en "Otras".
+SERIES = [f"var(--s{i})" for i in range(1, 9)]
+
+
+def color_de(nombre: str, catalogo: list) -> str:
+    """Color fijo de una entidad segun su posicion en el catalogo."""
+    try:
+        i = list(catalogo).index(nombre)
+    except ValueError:
+        return "var(--suave)"
+    return SERIES[i] if i < len(SERIES) else "var(--suave)"
+
+
+def anillo(porcentaje: float, titulo: str, pie: str = "", tam: int = 168) -> str:
+    """Medidor radial: UNA razon contra un limite.
+
+    No es un grafico de sectores. Es un medidor: una sola magnitud sobre su
+    tope, con la pista en un tono claro del mismo color. El relleno lleva la
+    severidad, y va acompanado SIEMPRE de un rotulo que dice lo mismo con
+    palabras — el color nunca carga el significado solo.
+    """
+    p = max(0, min(100, porcentaje))
+    if p >= 85:
+        color, rotulo = "var(--ok)", "en meta"
+    elif p >= 60:
+        color, rotulo = "var(--aviso)", "por debajo de la meta"
+    else:
+        color, rotulo = "var(--alerta)", "muy por debajo de la meta"
+
+    r = tam / 2 - 13
+    circ = 2 * 3.14159265 * r
+    avance = circ * p / 100
+    c = tam / 2
+
+    return (
+        f'<div class="hero">'
+        f'<svg width="{tam}" height="{tam}" viewBox="0 0 {tam} {tam}" role="img" '
+        f'aria-label="{e(titulo)}: {p:.0f}%">'
+        # Pista: el mismo color, muy claro. Que se lea "cuanto falta".
+        f'<circle cx="{c}" cy="{c}" r="{r:.1f}" fill="none" stroke="{color}" '
+        f'stroke-opacity=".16" stroke-width="15"/>'
+        f'<circle cx="{c}" cy="{c}" r="{r:.1f}" fill="none" stroke="{color}" '
+        f'stroke-width="15" stroke-linecap="round" '
+        f'stroke-dasharray="{avance:.1f} {circ:.1f}" '
+        f'transform="rotate(-90 {c} {c})"/>'
+        f'<text x="{c}" y="{c + 3}" text-anchor="middle" font-size="30" '
+        f'font-weight="650" fill="currentColor">{p:.0f}%</text>'
+        f'<text x="{c}" y="{c + 24}" text-anchor="middle" font-size="11.5" '
+        f'fill="currentColor" fill-opacity=".6">{e(titulo)}</text>'
+        f'</svg>'
+        f'<div><div class="sub" style="max-width:280px">{pie}</div>'
+        f'<div class="estado" style="color:{color}">'
+        f'<span class="pto" style="background:{color}"></span>{e(rotulo)}</div>'
+        f'</div></div>')
+
+
+def barra_apilada(partes: list) -> str:
+    """Parte-de-un-todo en una barra horizontal, con su leyenda.
+
+    `partes` es [(rotulo, valor, color)]. Se usa esto y no un grafico de
+    sectores: comparar angulos es mas dificil que comparar longitudes, y con
+    valores parecidos un sector es directamente ilegible.
+    """
+    partes = [(r, v, c) for r, v, c in partes if v]
+    total = sum(v for _r, v, _c in partes)
+    if not total:
+        return ""
+    # Hueco de 2px entre segmentos: separa sin necesidad de bordes
+    tramos = "".join(
+        f'<span style="background:{c};width:{v / total * 100:.2f}%" '
+        f'title="{e(r)}: {v}"></span>' for r, v, c in partes)
+    leyenda = "".join(
+        f'<span><i style="background:{c}"></i>{e(r)} · <b>{v}</b></span>'
+        for r, v, c in partes)
+    return f'<div class="apilada">{tramos}</div><div class="leyenda">{leyenda}</div>'
+
+
 def grafico_linea(puntos: list, unidad: str = "", meta: float = None,
-                  alto: int = 190) -> str:
+                  alto: int = 190, color: str = "var(--acento)") -> str:
     """Grafica de linea en SVG puro, sin librerias ni internet.
 
     `puntos` es [(etiqueta, valor)] en orden cronologico. Dibuja la linea, el
@@ -197,7 +303,7 @@ def grafico_linea(puntos: list, unidad: str = "", meta: float = None,
     marcas = []
     for i, (etiqueta, v) in enumerate(puntos):
         marcas.append(f'<circle cx="{round(x(i), 1)}" cy="{round(y(v), 1)}" r="3" '
-                      f'fill="var(--acento)"><title>{e(etiqueta)}: {v}{e(unidad)}'
+                      f'fill="{color}"><title>{e(etiqueta)}: {v}{e(unidad)}'
                       f'</title></circle>')
 
     # Rotulos del eje X: solo los que caben, para que no se amontonen
@@ -213,8 +319,8 @@ def grafico_linea(puntos: list, unidad: str = "", meta: float = None,
         f'<svg viewBox="0 0 {ancho} {alto}" width="100%" height="{alto}" '
         f'role="img" style="display:block">'
         f'{"".join(rejilla)}'
-        f'<polygon points="{area}" fill="var(--acento)" fill-opacity=".10"/>'
-        f'<polyline points="{linea}" fill="none" stroke="var(--acento)" '
+        f'<polygon points="{area}" fill="{color}" fill-opacity=".10"/>'
+        f'<polyline points="{linea}" fill="none" stroke="{color}" '
         f'stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>'
         f'{"".join(marcas)}{"".join(ejex)}'
         f'</svg>')
