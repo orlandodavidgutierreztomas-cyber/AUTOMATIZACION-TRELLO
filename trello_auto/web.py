@@ -96,6 +96,7 @@ CSS = """
 PAGINAS = [
     ("index.html", "Control del dia"),
     ("mapeo.html", "Mapeo de actividades"),
+    ("tablero.html", "Estado del tablero"),
 ]
 
 

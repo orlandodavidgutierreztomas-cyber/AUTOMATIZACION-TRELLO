@@ -131,6 +131,7 @@ VENTANA_MIN = int(_env("VENTANA_MIN", dato("ventana_minutos", 90)))
 # LISTAS DEL TABLERO — se buscan por palabra clave
 # ---------------------------------------------------------------------------
 LISTA_ESPERA = _env("LISTA_ESPERA", dato("listas.espera", "ESPERA"))
+LISTA_PLANTILLAS = _env("LISTA_PLANTILLAS", dato("listas.plantillas", "PLANTILLAS"))
 LISTA_POR_CERRAR = _env("LISTA_POR_CERRAR", dato("listas.por_cerrar", ""))
 # ^ lista de GRACIA: donde esperan las tarjetas sin terminar entre el fin
 #   de jornada y el cierre definitivo.

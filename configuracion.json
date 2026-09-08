@@ -51,6 +51,7 @@
   "listas": {
     "_ayuda": "Se buscan por PALABRA CLAVE: funcionan aunque la lista tenga emojis, acentos o espacios de mas. 'por_cerrar' es la lista de gracia GLOBAL: solo se usa para las familias que no tengan la suya propia.",
     "espera": "ESPERA",
+    "plantillas": "PLANTILLAS",
     "por_cerrar": "T. POR CERRAR",
     "culminado": "CULMINADO",
     "no_cumplidas": "NO CUMPLIDAS"

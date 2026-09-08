@@ -347,7 +347,7 @@ def test_buscar_actividad_con_texto_vacio():
 
 # --- montar el tablero desde cero -------------------------------------------
 def test_las_listas_necesarias_cubren_todo_el_flujo():
-    from trello_auto.montar_tablero import LISTA_PLANTILLAS, listas_necesarias
+    from trello_auto.montar_tablero import listas_necesarias
     nombres = [n for n, _ in listas_necesarias()]
     # El recorrido completo de una tarjeta tiene que estar cubierto
     assert ajustes.LISTA_ESPERA in nombres
@@ -355,7 +355,7 @@ def test_las_listas_necesarias_cubren_todo_el_flujo():
         assert cierre in nombres
     assert ajustes.LISTA_CULMINADO in nombres
     assert ajustes.LISTA_NO_CUMPLIDAS in nombres
-    assert LISTA_PLANTILLAS in nombres
+    assert ajustes.LISTA_PLANTILLAS in nombres
     for familia in ajustes.FAMILIAS:
         assert ajustes.lista_de_familia(familia) in nombres
     # Sin repetidas: varias familias comparten la lista de varios
@@ -517,3 +517,45 @@ def test_el_montaje_crea_exactamente_las_listas_de_cierre_declaradas():
     # Y no se cuela ninguna lista de cierre que nadie use
     de_cierre = [n for n in creadas if "POR CERRAR" in n.upper()]
     assert sorted(de_cierre) == sorted(ajustes.listas_de_cierre())
+
+
+# --- estado del tablero: que lista hace que ---------------------------------
+def test_el_estado_senala_las_listas_que_nadie_toca():
+    """El caso real: al partir el cierre en tres, la vieja queda huerfana."""
+    from trello_auto.estado import analizar
+    listas = [
+        {"id": "L1", "name": "🕖ESPERA"},
+        {"id": "L2", "name": "T. DEL DÍA ACERO- 🟦"},
+        {"id": "L3", "name": "T. POR CERRAR - ACERO"},
+        {"id": "L4", "name": "T.  POR CERRAR 🆘"},          # la vieja, huerfana
+        {"id": "L5", "name": "🧰 RECURSOS"},                # nunca tuvo papel
+    ]
+    cards = [{"id": "c1", "idList": "L4", "name": "1CS1 - ACERO - 01/09/2026"}]
+    datos = analizar(listas, cards)
+    sin_uso = {f["nombre"] for f in datos["filas"] if f["sin_uso"]}
+    assert "T.  POR CERRAR 🆘" in sin_uso
+    assert "🧰 RECURSOS" in sin_uso
+    assert "T. POR CERRAR - ACERO" not in sin_uso
+    # Y cuenta las tarjetas que se quedarian atrapadas
+    atrapada = next(f for f in datos["filas"] if f["nombre"] == "T.  POR CERRAR 🆘")
+    assert atrapada["tarjetas"] == 1
+
+
+def test_el_estado_avisa_de_las_listas_que_faltan():
+    """Si la configuracion nombra una lista inexistente, hay que verlo antes
+    de que un robot se pare a mitad de una corrida."""
+    from trello_auto.estado import analizar
+    datos = analizar([{"id": "L1", "name": "🕖ESPERA"}], [])
+    claves_que_faltan = {clave for clave, _ in datos["faltan"]}
+    assert ajustes.LISTA_CULMINADO in claves_que_faltan
+    assert ajustes.LISTA_ESPERA not in claves_que_faltan   # esa si existe
+
+
+def test_una_lista_de_plantillas_antigua_no_cuenta_como_sin_uso():
+    """Las listas PLANTILLA_* de siempre siguen sirviendo aunque no esten
+    nombradas en la configuracion."""
+    from trello_auto.estado import analizar
+    listas = [{"id": "L1", "name": "PLANTILLA_CONCRETO"}]
+    cards = [{"id": "c1", "idList": "L1", "name": "PLANTILLA - CONCRETO EN ZAPATA"}]
+    fila = analizar(listas, cards)["filas"][0]
+    assert fila["sin_uso"] is False

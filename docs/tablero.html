@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CONSTRUCCION DE AULAS · estado del tablero</title>
+<style>
+  :root {
+    --fondo:#f5f6f8; --panel:#ffffff; --borde:#e3e6ea; --texto:#1b2733;
+    --suave:#65727f; --acento:#1f4e79; --ok:#1e7a4b; --alerta:#b3261e;
+    --aviso:#b06a00; --barra:#dfe4ea; --ambar:#fff3cd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --fondo:#12161b; --panel:#1a2027; --borde:#2b333d; --texto:#e7ecf2;
+      --suave:#9aa7b4; --acento:#7fb3e8; --ok:#5cc98d; --alerta:#ff8a80;
+      --aviso:#f0b45e; --barra:#2b333d; --ambar:#3a2f14;
+    }
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; padding:24px; background:var(--fondo); color:var(--texto);
+    font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  .envoltura { max-width:1240px; margin:0 auto; }
+  nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:20px; }
+  nav a {
+    padding:6px 13px; border:1px solid var(--borde); border-radius:999px;
+    background:var(--panel); color:var(--suave); text-decoration:none; font-size:13.5px;
+  }
+  nav a:hover { color:var(--acento); border-color:var(--acento); }
+  nav a.activo { background:var(--acento); color:#fff; border-color:var(--acento); }
+  header { margin-bottom:22px; }
+  h1 { font-size:22px; margin:0 0 4px; letter-spacing:-.01em; }
+  .sub { color:var(--suave); font-size:13.5px; }
+  .rejilla { display:grid; gap:14px; margin-bottom:22px;
+             grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); }
+  .tarjeta { background:var(--panel); border:1px solid var(--borde);
+             border-radius:10px; padding:16px 18px; }
+  .kpi .n { font-size:30px; font-weight:650; letter-spacing:-.02em; }
+  .kpi .r { color:var(--suave); font-size:12.5px; text-transform:uppercase;
+            letter-spacing:.05em; margin-top:2px; }
+  .kpi .pie { font-size:12.5px; color:var(--suave); margin-top:6px; }
+  .alerta .n { color:var(--alerta); }
+  .ok .n { color:var(--ok); }
+  .aviso .n { color:var(--aviso); }
+  h2 { font-size:14px; text-transform:uppercase; letter-spacing:.06em;
+       color:var(--suave); margin:0 0 14px; font-weight:600; }
+  .paneles { display:grid; gap:14px; margin-bottom:22px;
+             grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+  .fila { display:grid; grid-template-columns:112px 1fr 46px; align-items:center;
+          gap:10px; margin-bottom:9px; font-size:13.5px; }
+  .pista { background:var(--barra); border-radius:4px; height:9px; overflow:hidden; }
+  .relleno { height:100%; border-radius:4px; background:var(--acento); }
+  .num { text-align:right; font-variant-numeric:tabular-nums; color:var(--suave); }
+  .tabla-caja { background:var(--panel); border:1px solid var(--borde);
+                border-radius:10px; overflow-x:auto; }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; }
+  th,td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--borde);
+          white-space:nowrap; }
+  th { color:var(--suave); font-weight:600; font-size:12px; text-transform:uppercase;
+       letter-spacing:.04em; position:sticky; top:0; background:var(--panel); }
+  tr:last-child td { border-bottom:none; }
+  tr.revisar td { background:var(--ambar); }
+  td.n { text-align:right; font-variant-numeric:tabular-nums; }
+  .act { white-space:normal; min-width:260px; }
+  .pill { display:inline-block; padding:1px 8px; border-radius:999px; font-size:11.5px;
+          border:1px solid var(--borde); color:var(--suave); }
+  .vieja { color:var(--alerta); font-weight:600; }
+  a { color:var(--acento); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  footer { margin-top:22px; color:var(--suave); font-size:12.5px; }
+  .vacio { padding:40px; text-align:center; color:var(--suave); }
+  .nota { background:var(--panel); border:1px solid var(--borde); border-left:3px solid var(--aviso);
+          border-radius:8px; padding:14px 16px; margin-bottom:20px; font-size:13.5px; }
+</style>
+</head>
+<body>
+<div class="envoltura">
+<nav><a href="index.html">Control del dia</a><a href="mapeo.html">Mapeo de actividades</a><a href="tablero.html" class="activo">Estado del tablero</a><a href="DASHBOARD_CONTROL.xlsx">Descargar Excel</a><a href="https://trello.com/b/gzoZo6ip" target="_blank" rel="noopener">Abrir el tablero</a></nav>
+<header>
+  <h1>CONSTRUCCION DE AULAS · estado del tablero</h1>
+  <div class="sub">Que hace cada lista, cuantas tarjetas tiene, y cuales no toca nadie</div>
+</header>
+<div class="nota"><b>Hay 14 tarjetas en listas que nadie mira.</b> Ningun robot las va a evaluar ni mover nunca. Sacalas a una lista con papel, o archiva esa columna en Trello.</div><div class="rejilla"><div class="tarjeta kpi "><div class="n">18</div><div class="r">Listas en el tablero</div><div class="pie">34 tarjetas abiertas</div></div><div class="tarjeta kpi "><div class="n">16</div><div class="r">Con papel en la automatizacion</div><div class="pie">alguna robot las toca</div></div><div class="tarjeta kpi aviso"><div class="n">2</div><div class="r">Sin uso</div><div class="pie">ningun robot las mira</div></div><div class="tarjeta kpi alerta"><div class="n">14</div><div class="r">Tarjetas atrapadas</div><div class="pie">en listas sin uso</div></div></div><h2>Todas las listas del tablero</h2><div class="tabla-caja"><table><thead><tr><th>Lista</th><th>Tarjetas</th><th>Papel en la automatizacion</th></tr></thead><tbody><tr><td class="act">🕖ESPERA</td><td class="n">0</td><td>Espera · donde nacen las tarjetas de manana</td></tr><tr><td class="act">T. DEL DÍA ACERO- 🟦🟦🟦</td><td class="n">0</td><td>Trabajo del dia · Acero</td></tr><tr><td class="act">T. DEL DÍA ENCOFRADO-🟧🟧</td><td class="n">0</td><td>Trabajo del dia · Encofrado</td></tr><tr><td class="act">T. DEL DÍA CONCRETO Y MORTERO- 🟩🟩</td><td class="n">0</td><td>Trabajo del dia · Concreto</td></tr><tr><td class="act">T. DEL DÍA VARIOS-⬛⬛</td><td class="n">0</td><td>Trabajo del dia · Trazo, Relleno, Excavacion, Varios</td></tr><tr><td class="act">T. POR CERRAR - ACERO</td><td class="n">0</td><td>Margen de gracia · Acero</td></tr><tr><td class="act">T. POR CERRAR - ENCOFRADO-CONCRETO</td><td class="n">0</td><td>Margen de gracia · Encofrado, Concreto</td></tr><tr><td class="act">T. POR CERRAR - VARIOS</td><td class="n">0</td><td>Margen de gracia · Trazo, Relleno, Excavacion, Varios</td></tr><tr class="revisar"><td class="act">T.  POR CERRAR 🆘🆘🆘</td><td class="n">11</td><td><b>SIN USO</b> — ningun robot la toca</td></tr><tr class="revisar"><td class="act">🧰 RECURSOS — ENLACES — APOYO</td><td class="n">3</td><td><b>SIN USO</b> — ningun robot la toca</td></tr><tr><td class="act">CULMINADO    🎯🎯🎯</td><td class="n">14</td><td>Culminado · lo que cumplio</td></tr><tr><td class="act">T.  NO CUMPLIDAS 🆘🆘🆘</td><td class="n">0</td><td>No cumplidas · lo que no cumplio</td></tr><tr><td class="act">PLANTILLA. EST_ACE_Y_ENCO</td><td class="n">1</td><td>Plantillas · (lista antigua, sigue sirviendo)</td></tr><tr><td class="act">PLANTILLA_CONCRETO</td><td class="n">1</td><td>Plantillas · (lista antigua, sigue sirviendo)</td></tr><tr><td class="act">📐 PLANTILA. TRAZO Y REPLANTEO</td><td class="n">1</td><td>Plantillas · (lista antigua, sigue sirviendo)</td></tr><tr><td class="act">PLANTILLA_ENCOFRADO</td><td class="n">1</td><td>Plantillas · (lista antigua, sigue sirviendo)</td></tr><tr><td class="act">PLANTILLA_VARIOS</td><td class="n">1</td><td>Plantillas · (lista antigua, sigue sirviendo)</td></tr><tr><td class="act">PLANTILLAS</td><td class="n">1</td><td>Plantillas · el molde de cada actividad</td></tr></tbody></table></div>
+<footer>Se regenera en cada sincronizacion. Las filas en ambar son listas que ningun robot mira.</footer>
+</div>
+</body>
+</html>

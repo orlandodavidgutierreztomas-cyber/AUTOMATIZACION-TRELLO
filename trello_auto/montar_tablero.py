@@ -44,9 +44,6 @@ from . import ajustes
 from .cronograma import actividades_distintas, destino_de, leer_excel_completo
 from .trello import Trello, buscar_lista, construir_indice_plantillas, normalizar
 
-# Lista de plantillas donde nacen las tarjetas nuevas
-LISTA_PLANTILLAS = "PLANTILLAS"
-
 # Items genericos por responsable. Son un ESQUELETO a rellenar, no un
 # protocolo: cada obra sabe que hay que verificar en cada actividad.
 ITEMS_GENERICOS = {
@@ -110,7 +107,7 @@ def listas_necesarias() -> list:
         necesarias.append((lista, f"margen de gracia · {detalle}"))
     necesarias.append((ajustes.LISTA_CULMINADO, "lo que cumplio"))
     necesarias.append((ajustes.LISTA_NO_CUMPLIDAS, "lo que no cumplio"))
-    necesarias.append((LISTA_PLANTILLAS, "las plantillas de cada actividad"))
+    necesarias.append((ajustes.LISTA_PLANTILLAS, "las plantillas de cada actividad"))
     return necesarias
 
 
@@ -136,10 +133,10 @@ def montar_plantillas(tr: Trello, listas: list, cards: list, dry_run: bool) -> t
     catalogo = actividades_distintas(plan)
     existentes = construir_indice_plantillas(cards, listas, ajustes.MARCA_PLANTILLA)
 
-    id_plantillas = buscar_lista(listas, LISTA_PLANTILLAS)
+    id_plantillas = buscar_lista(listas, ajustes.LISTA_PLANTILLAS)
     if not id_plantillas and not dry_run:
         raise SystemExit(
-            f"ERROR: no encuentro la lista '{LISTA_PLANTILLAS}'. "
+            f"ERROR: no encuentro la lista '{ajustes.LISTA_PLANTILLAS}'. "
             f"Corre antes la parte de columnas."
         )
 
@@ -221,7 +218,7 @@ def main() -> int:
         print(f" Listo: {listas_creadas} columnas y {plantillas_creadas} plantillas "
               f"creadas ({items} items de checklist).")
         if plantillas_creadas:
-            print(f"\n Las plantillas nuevas estan en la lista '{LISTA_PLANTILLAS}'")
+            print(f"\n Las plantillas nuevas estan en la lista '{ajustes.LISTA_PLANTILLAS}'")
             print(" con items GENERICOS. Reescribelos con el control de calidad")
             print(" real de cada actividad: eso es lo que copiara cada tarjeta")
             print(" del dia. Puedes hacerlo poco a poco, empezando por las")

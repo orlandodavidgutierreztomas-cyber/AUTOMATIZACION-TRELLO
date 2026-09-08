@@ -175,6 +175,7 @@ Produce tres cosas:
 | `reportes/ultimo.csv` | El corte de ahora. Es lo que lee tu Excel |
 | `reportes/cortes.csv` | El histórico de todos los cortes: la película, no la foto |
 | `docs/index.html` | Dashboard web (lo que publica GitHub Pages) |
+| `docs/tablero.html` | Estado del tablero: qué hace cada lista y cuáles no toca nadie |
 
 ### 🌐 Verlo en el navegador, sin descargar nada
 
@@ -184,6 +185,7 @@ Todo lo visual se publica con **GitHub Pages** desde la carpeta `docs/`:
 |---|---|
 | `index.html` | El dashboard del corte |
 | `mapeo.html` | El mapeo de actividades, para ver si hay algo que corregir |
+| `tablero.html` | El estado del tablero: qué papel juega cada lista |
 | `DASHBOARD_CONTROL.xlsx` | El Excel, descargable |
 
 **Activarlo (una vez):** repo → **Settings** → **Pages** → *Source*:
@@ -228,6 +230,23 @@ ninguno y no hay que volver a ejecutar nada.
 > Si el repositorio pasa a privado, ese enlace deja de responder sin credencial.
 > Para que el dashboard siga actualizándose solo, deja los reportes en un repo
 > público aparte y el código en el privado.
+
+---
+
+## 🔎 Estado del tablero
+
+`tablero.html` lee el tablero **entero** y dice, lista por lista, qué papel juega
+en la automatización y cuántas tarjetas tiene.
+
+Sirve para lo que pasa siempre que se reorganiza un tablero: partes el cierre en
+tres, renombras una columna, pruebas algo — y te quedas con listas que ya no toca
+nadie. Sus tarjetas se quedan ahí para siempre, sin que ningún robot las evalúe, y
+nada lo delata. Esta página las marca en ámbar y cuenta cuántas tarjetas hay
+atrapadas.
+
+Y avisa al revés también: si la configuración nombra una lista que **no existe**
+en el tablero, sale como `FALTA` — antes de que un robot se pare a mitad de una
+corrida.
 
 ---
 
