@@ -21,9 +21,9 @@ on:
       alcance:
         description: "Que tarjetas entran en el corte"
         required: false
-        default: "dia"
+        default: "todo"
         type: choice
-        options: [dia, no-cumplidas, todo]
+        options: [todo, dia, no-cumplidas]
       dry_run:
         description: "Solo mostrar que haria, sin tocar nada"
         required: false
@@ -73,7 +73,7 @@ jobs:
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
-          ARGS=(--alcance "${ALCANCE:-dia}")
+          ARGS=(--alcance "${ALCANCE:-todo}")
           if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
           echo "python -m trello_auto.reporte ${ARGS[@]+"${ARGS[@]}"}"
           python -m trello_auto.reporte ${ARGS[@]+"${ARGS[@]}"}

@@ -147,8 +147,8 @@ def acumular_historico(ruta, filas: list, cabecera: list, corte_txt: str):
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Genera el corte de control y lo deja en CSV para el dashboard.")
-    ap.add_argument("--alcance", default="dia", choices=list(ALCANCES),
-                    help="Que tarjetas entran en el corte (por defecto: dia).")
+    ap.add_argument("--alcance", default="todo", choices=list(ALCANCES),
+                    help="Que tarjetas entran en el corte (por defecto: todo).")
     ap.add_argument("--dry-run", action="store_true",
                     help="Muestra el corte por pantalla sin escribir los CSV.")
     args = ap.parse_args()

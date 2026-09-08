@@ -28,6 +28,7 @@ from .web import (
     grafico_linea,
     kpi,
     pagina,
+    seccion,
 )
 
 
@@ -77,46 +78,59 @@ def _cerrada(f: dict) -> bool:
     return f["CHECKS PENDIENTES"] == 0 or bool(f.get("MARCADA"))
 
 
-def _estado_del_dia(filas: list) -> str:
-    """El anillo de avance mas la composicion del dia, lado a lado."""
+AMBITOS = [
+    ("EN JUEGO", "Control del dia",
+     "Lo que esta ahora en las listas del dia: lo programado para hoy mas lo "
+     "que el encargado haya adelantado o repetido, sea de la fecha que sea.",
+     "var(--s1)"),
+    ("POR CERRAR", "Por cerrar",
+     "Lo que no cerro al fin de la jornada y espera en el margen de gracia "
+     "hasta el cierre definitivo. Todavia se puede salvar.",
+     "var(--aviso)"),
+    ("NO CUMPLIDA", "No cumplidas",
+     "La deuda: lo que llego al cierre definitivo sin cerrarse. Ya cuenta "
+     "como incumplimiento del plan.",
+     "var(--alerta)"),
+]
+
+
+def _resumen_ambito(filas: list, titulo: str) -> str:
+    """El anillo y la composicion de un ambito concreto."""
     if not filas:
         return ""
-
     cerradas = [f for f in filas if _cerrada(f)]
     atrasadas = [f for f in filas if not _cerrada(f) and f["ANTIGUEDAD (dias)"] >= 1]
     en_curso = [f for f in filas
                 if not _cerrada(f) and f["ANTIGUEDAD (dias)"] < 1]
     ratio = len(cerradas) / len(filas) * 100
 
-    pie = (f"<b>{len(cerradas)}</b> de <b>{len(filas)}</b> tarjetas del corte "
-           f"ya estan cerradas, por checklist completo o porque el responsable "
-           f"las marco como cumplidas.")
-
+    pie = (f"<b>{len(cerradas)}</b> de <b>{len(filas)}</b> cerradas, por "
+           f"checklist completo o porque el responsable las marco como "
+           f"cumplidas.")
     composicion = barra_apilada([
         ("Cerradas", len(cerradas), "var(--ok)"),
         ("En curso", len(en_curso), "var(--aviso)"),
         ("Atrasadas", len(atrasadas), "var(--alerta)"),
     ])
-
     return (
         '<div class="paneles">'
-        f'<div class="tarjeta"><h2>Avance del dia</h2>'
+        f'<div class="tarjeta"><h2>Avance · {e(titulo)}</h2>'
         f'{anillo(ratio, "cerradas", pie)}</div>'
-        f'<div class="tarjeta"><h2>Composicion del corte</h2>{composicion}'
-        f'<div class="sub" style="margin-top:14px">Atrasada = vencio antes de '
-        f'hoy y sigue sin cerrar.</div></div>'
+        f'<div class="tarjeta"><h2>Composicion</h2>{composicion}'
+        '<div class="sub" style="margin-top:14px">Atrasada = vencio antes de '
+        'hoy y sigue sin cerrar.</div></div>'
         '</div>')
 
 
-def _sin_cerrar(filas: list) -> str:
-    """Las que no se han cerrado, que son las que piden accion hoy."""
+def _sin_cerrar(filas: list, rotulo: str = "Sin cerrar") -> str:
+    """Las que no se han cerrado: la lista de lo que hay que empujar."""
     pendientes = [f for f in filas if not _cerrada(f)]
     if not pendientes:
         return ('<div class="tarjeta" style="margin-bottom:22px"><div class="limpio">'
                 '<div class="marca">✓</div>'
                 '<div><b>Todo cerrado.</b></div>'
                 '<div class="sub" style="margin-top:6px">No queda ninguna tarjeta '
-                'sin cerrar en este corte.</div></div></div>')
+                'sin cerrar aqui.</div></div></div>')
 
     # Las mas atrasadas primero; a igualdad, las que mas checks deben
     pendientes.sort(key=lambda f: (-f["ANTIGUEDAD (dias)"], -f["CHECKS PENDIENTES"]))
@@ -150,10 +164,10 @@ def _sin_cerrar(filas: list) -> str:
 
     resto = ("" if len(pendientes) <= 25 else
              f'<div class="sub" style="margin-top:10px">… y {len(pendientes) - 25} '
-             f'mas en la tabla de abajo.</div>')
+             f'mas en la tabla del final.</div>')
 
     return (
-        f'<h2>Sin cerrar · {len(pendientes)} tarjetas'
+        f'<h2>{e(rotulo)} · {len(pendientes)} tarjetas'
         + (f' · {atrasadas} atrasadas' if atrasadas else '')
         + '</h2>'
         + '<div class="tabla-caja"><table><thead><tr>'
@@ -238,33 +252,83 @@ def _tendencias() -> str:
 
 
 def generar(filas: list, corte: datetime, alcance: str) -> str:
-    """Escribe el dashboard y devuelve la ruta."""
+    """Escribe el dashboard y devuelve la ruta.
+
+    El orden de la pagina va de lo general a lo concreto, y luego por ambito:
+      1. Los cuatro numeros de cabecera, en orden de lectura natural.
+      2. Reparto entre ambitos.
+      3. CONTROL DEL DIA — lo que esta en juego ahora.
+      4. POR CERRAR — el margen de gracia.
+      5. NO CUMPLIDAS — la deuda.
+      6. CONTROL GENERAL — avance de obra, tendencias y desgloses.
+    """
     n = len(filas)
+    cerradas = [f for f in filas if _cerrada(f)]
+    sin_cerrar = [f for f in filas if not _cerrada(f)]
+    atrasadas = [f for f in sin_cerrar if f["ANTIGUEDAD (dias)"] >= 1]
     pendientes = sum(f["CHECKS PENDIENTES"] for f in filas)
     total = sum(f["TOTAL CHECKS"] for f in filas)
-    avance = (1 - pendientes / total) * 100 if total else 0
-    atrasadas = sum(1 for f in filas if f["ANTIGUEDAD (dias)"] >= 1)
 
+    # 1. Cabecera: cuantas hay -> cuantas cerradas -> cuantas faltan -> cuantas
+    #    van tarde. Se lee de izquierda a derecha como una frase.
     kpis = (
-        kpi(n, "Tarjetas en el corte",
-            f"{sum(1 for f in filas if _cerrada(f))} ya cerradas")
-        + kpi(pendientes, "Checks pendientes", f"de {total} en total",
-              "alerta" if pendientes else "ok")
-        + kpi(f"{avance:.0f}%", "Avance del control", "items de calidad marcados",
-              "ok" if avance >= 70 else "aviso")
-        + kpi(atrasadas, "Tarjetas atrasadas", "vencieron antes de hoy",
+        kpi(n, "Tarjetas abiertas", "en todo el corte")
+        + kpi(len(cerradas), "Cerradas",
+              f"{len(cerradas) / n * 100:.0f}% del corte" if n else "",
+              "ok" if n and len(cerradas) == n else "")
+        + kpi(len(sin_cerrar), "Sin cerrar",
+              f"{pendientes} checks pendientes de {total}",
+              "aviso" if sin_cerrar else "ok")
+        + kpi(len(atrasadas), "Atrasadas", "vencieron antes de hoy",
               "alerta" if atrasadas else "ok")
     )
+
+    # 2. Como se reparten entre los tres ambitos
+    por_ambito = {clave: [f for f in filas if f.get("ESTADO") == clave]
+                  for clave, _t, _q, _c in AMBITOS}
+    reparto = barra_apilada([
+        (titulo, len(por_ambito[clave]), color)
+        for clave, titulo, _q, color in AMBITOS])
+
+    cuerpo = [f'<div class="rejilla">{kpis}</div>']
+    if reparto:
+        cuerpo.append(
+            '<div class="tarjeta" style="margin-bottom:22px">'
+            '<h2>Donde esta cada tarjeta</h2>' + reparto + '</div>')
+
+    # 3, 4 y 5. Un bloque por ambito, solo si tiene tarjetas
+    for clave, titulo, que_es, color in AMBITOS:
+        del_ambito = por_ambito[clave]
+        if not del_ambito:
+            continue
+        cuerpo.append(seccion(titulo, que_es, f"{len(del_ambito)} tarjetas", color))
+        cuerpo.append(_resumen_ambito(del_ambito, titulo))
+        cuerpo.append(_sin_cerrar(del_ambito, f"Sin cerrar · {titulo}"))
+
+    # 6. Lo general
+    cuerpo.append(seccion(
+        "Control general",
+        "El acumulado de la obra y la evolucion en el tiempo, sin separar por "
+        "ambito."))
+    cuerpo.append(_avance_de_obra())
+    cuerpo.append(_tendencias())
 
     por_resp = []
     for codigo in ajustes.CODIGOS_RESPONSABLE:
         nombre = ajustes.RESPONSABLES[codigo].get("nombre", codigo)
         por_resp.append((nombre, sum(f.get(codigo, 0) for f in filas)))
     por_resp.sort(key=lambda x: -x[1])
+    colores_resp = {ajustes.RESPONSABLES[c].get("nombre", c):
+                    color_de(c, list(ajustes.CODIGOS_RESPONSABLE))
+                    for c in ajustes.CODIGOS_RESPONSABLE}
 
     familias = {}
+    sectores = {}
     for f in filas:
         familias[f["FAMILIA"]] = familias.get(f["FAMILIA"], 0) + f["CHECKS PENDIENTES"]
+        s = f["SECTOR / ZONA"] or "?"
+        sectores[s] = sectores.get(s, 0) + f["CHECKS PENDIENTES"]
+    top_sectores = sorted(sectores.items(), key=lambda x: -x[1])[:10]
 
     rangos = {"Vence hoy": 0, "Vencida 1 dia": 0, "Vencida mas de 1 dia": 0}
     for f in filas:
@@ -272,39 +336,37 @@ def generar(filas: list, corte: datetime, alcance: str) -> str:
         rangos["Vence hoy" if d == 0 else
                "Vencida 1 dia" if d == 1 else "Vencida mas de 1 dia"] += 1
 
-    cuerpo = (
-        f'<div class="rejilla">{kpis}</div>'
-        + _estado_del_dia(filas)
-        + _avance_de_obra()
-        + _tendencias()
-        + '<div class="paneles">'
+    cuerpo.append(
+        '<div class="paneles">'
         + '<div class="tarjeta"><h2>Checks pendientes por responsable</h2>'
-        + barras(por_resp, {n: color_de(c, list(ajustes.CODIGOS_RESPONSABLE))
-                            for c, n in [(c, ajustes.RESPONSABLES[c].get("nombre", c))
-                                         for c in ajustes.CODIGOS_RESPONSABLE]})
-        + '</div>'
+        + barras(por_resp, colores_resp)
+        + '<div class="sub" style="margin-top:10px">Quien concentra el trabajo '
+          'de control que falta.</div></div>'
         + '<div class="tarjeta"><h2>Checks pendientes por familia</h2>'
         + barras(sorted(familias.items(), key=lambda x: -x[1]),
                  {f: color_de(f, list(ajustes.FAMILIAS)) for f in familias})
         + '</div>'
-        + '</div>'
-        + '<div class="tarjeta" style="margin-bottom:22px">'
-        + '<h2>Antiguedad de las tarjetas</h2>'
+        + '<div class="tarjeta"><h2>Sectores con mas pendiente</h2>'
+        + barras(top_sectores)
+        + '<div class="sub" style="margin-top:10px">Los diez frentes donde se '
+          'acumula el control sin cerrar.</div></div>'
+        + '<div class="tarjeta"><h2>Antiguedad de las tarjetas</h2>'
         + barras(list(rangos.items()), {"Vence hoy": "var(--ok)",
                                         "Vencida 1 dia": "var(--serio)",
                                         "Vencida mas de 1 dia": "var(--alerta)"})
         + '</div>'
-        + _sin_cerrar(filas)
-        + f'<h2>Detalle de todas las tarjetas</h2>{_tabla(filas)}'
-    )
+        + '</div>')
+
+    cuerpo.append(f'<h2>Detalle de todas las tarjetas</h2>{_tabla(filas)}')
 
     html = pagina(
         "index.html",
         f"{ajustes.NOMBRE_OBRA} · control del dia",
         f"Corte del {e(corte.strftime('%d/%m/%Y %H:%M'))} · hora de obra "
         f"({e(ajustes.TZ_OBRA)}) · alcance: {e(alcance)}",
-        cuerpo,
-        "Se regenera en cada corrida del reporte. Los checks pendientes salen "
-        "de los items sin marcar de cada checklist de Trello.",
+        "".join(cuerpo),
+        "Se regenera en cada corrida del reporte. Una tarjeta cuenta como "
+        "cerrada igual que en el cierre: checklist completo o marcada como "
+        "cumplida.",
     )
     return escribir("index.html", html)

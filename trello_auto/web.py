@@ -42,6 +42,24 @@ CSS = """
       --ok:#0ca30c; --aviso:#fab219; --serio:#ec835a; --alerta:#d03b3b;
     }
   }
+  /* La eleccion del lector manda sobre la del sistema, en los dos sentidos:
+     oscuro en un equipo claro, y claro en un equipo oscuro. */
+  :root[data-theme="dark"] {
+    --fondo:#12161b; --panel:#1a2027; --borde:#2b333d; --texto:#e7ecf2;
+    --suave:#9aa7b4; --acento:#3987e5; --barra:#2b333d; --ambar:#3a2f14;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+    --ok:#0ca30c; --aviso:#fab219; --serio:#ec835a; --alerta:#d03b3b;
+  }
+  /* Semiclaro: para cuando el equipo esta en oscuro pero se quiere leer las
+     hojas con fondo claro, sin el blanco puro que deslumbra. */
+  :root[data-theme="suave"] {
+    --fondo:#eceae4; --panel:#f7f6f2; --borde:#d9d6cd; --texto:#23231f;
+    --suave:#5f5e57; --acento:#2a78d6; --barra:#dedbd2; --ambar:#f6ecc9;
+    --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+    --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+    --ok:#0ca30c; --aviso:#fab219; --serio:#ec835a; --alerta:#d03b3b;
+  }
   * { box-sizing:border-box; }
   body {
     margin:0; padding:24px; background:var(--fondo); color:var(--texto);
@@ -111,6 +129,20 @@ CSS = """
   .estado .pto { width:9px; height:9px; border-radius:50%; display:inline-block; }
   .limpio { text-align:center; padding:30px 20px; }
   .limpio .marca { font-size:34px; line-height:1; margin-bottom:8px; }
+  .temas { margin-left:auto; display:flex; gap:4px; align-items:center; }
+  .temas button {
+    font:inherit; font-size:12.5px; padding:5px 11px; cursor:pointer;
+    border:1px solid var(--borde); background:var(--panel); color:var(--suave);
+    border-radius:999px;
+  }
+  .temas button[aria-pressed="true"] {
+    background:var(--acento); color:#fff; border-color:var(--acento);
+  }
+  .seccion { margin:34px 0 18px; padding-top:20px; border-top:2px solid var(--borde); }
+  .seccion h3 { font-size:17px; margin:0 0 4px; letter-spacing:-.01em; }
+  .seccion .que { color:var(--suave); font-size:13.5px; }
+  .cinta { display:inline-block; font-size:11.5px; font-weight:600; padding:2px 9px;
+           border-radius:999px; margin-left:8px; vertical-align:middle; }
 """
 
 PAGINAS = [
@@ -125,6 +157,39 @@ def e(x) -> str:
     return html.escape(str(x if x is not None else ""))
 
 
+TEMAS = [
+    ("auto", "Auto"),
+    ("light", "Claro"),
+    ("suave", "Suave"),
+    ("dark", "Oscuro"),
+]
+
+# El selector de tema. "Auto" sigue al sistema; las otras tres mandan sobre el,
+# porque a veces el equipo esta en oscuro y aun asi se quiere leer las hojas
+# con fondo claro. La eleccion se recuerda en este navegador.
+SCRIPT_TEMA = """
+(function () {
+  var raiz = document.documentElement;
+  function aplicar(t) {
+    if (t === 'auto') { delete raiz.dataset.theme; } else { raiz.dataset.theme = t; }
+    var botones = document.querySelectorAll('.temas button');
+    for (var i = 0; i < botones.length; i++) {
+      botones[i].setAttribute('aria-pressed', botones[i].dataset.tema === t);
+    }
+  }
+  var guardado = 'auto';
+  try { guardado = localStorage.getItem('tema-obra') || 'auto'; } catch (e) {}
+  document.addEventListener('click', function (ev) {
+    var b = ev.target.closest && ev.target.closest('.temas button');
+    if (!b) return;
+    aplicar(b.dataset.tema);
+    try { localStorage.setItem('tema-obra', b.dataset.tema); } catch (e) {}
+  });
+  aplicar(guardado);
+})();
+"""
+
+
 def navegacion(actual: str) -> str:
     enlaces = []
     for archivo, rotulo in PAGINAS:
@@ -134,7 +199,23 @@ def navegacion(actual: str) -> str:
     if ajustes.BOARD_ID:
         enlaces.append(f'<a href="https://trello.com/b/{e(ajustes.BOARD_ID)}" '
                        f'target="_blank" rel="noopener">Abrir el tablero</a>')
-    return "<nav>" + "".join(enlaces) + "</nav>"
+
+    botones = "".join(
+        f'<button type="button" data-tema="{clave}" aria-pressed="false">{e(rotulo)}'
+        f'</button>' for clave, rotulo in TEMAS)
+    temas = f'<span class="temas" role="group" aria-label="Tema">{botones}</span>'
+
+    return "<nav>" + "".join(enlaces) + temas + "</nav>"
+
+
+def seccion(titulo: str, que_es: str, cinta: str = "", color: str = "") -> str:
+    """Encabezado de un ambito, para que se vea donde empieza cada cosa."""
+    marca = ""
+    if cinta:
+        marca = (f'<span class="cinta" style="background:{color};color:#fff">'
+                 f'{e(cinta)}</span>')
+    return (f'<div class="seccion"><h3>{e(titulo)}{marca}</h3>'
+            f'<div class="que">{e(que_es)}</div></div>')
 
 
 def kpi(valor, rotulo, pie="", clase="") -> str:
@@ -359,6 +440,7 @@ def pagina(archivo: str, titulo: str, subtitulo: str, cuerpo: str, pie: str) -> 
 {cuerpo}
 <footer>{pie}</footer>
 </div>
+<script>{SCRIPT_TEMA}</script>
 </body>
 </html>
 """

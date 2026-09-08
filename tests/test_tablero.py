@@ -679,3 +679,45 @@ def test_la_barra_apilada_ignora_los_tramos_vacios():
     html = barra_apilada([("Cerradas", 3, "var(--ok)"), ("En curso", 0, "var(--aviso)")])
     assert "Cerradas" in html and "En curso" not in html
     assert barra_apilada([("x", 0, "y")]) == ""
+
+
+# --- ambitos y tema ---------------------------------------------------------
+def test_los_ambitos_del_dashboard_coinciden_con_los_del_reporte():
+    """Si el reporte etiqueta un estado que el dashboard no conoce, esas
+    tarjetas desaparecerian de la pagina sin que nadie lo note."""
+    from trello_auto.reporte import listas_del_alcance
+    from trello_auto.tablero import AMBITOS
+    del_dashboard = {clave for clave, _t, _q, _c in AMBITOS}
+    del_reporte = {estado for _c, estado in listas_del_alcance("todo")}
+    assert del_reporte <= del_dashboard, del_reporte - del_dashboard
+
+
+def test_el_reporte_abarca_todo_por_defecto():
+    """El dashboard tiene tres ambitos: si el corte solo trajera el del dia,
+    dos secciones saldrian siempre vacias."""
+    import argparse
+
+    from trello_auto import reporte
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--alcance", default="todo")
+    assert ap.parse_args([]).alcance == "todo"
+    assert "todo" in reporte.ALCANCES
+
+
+def test_el_tema_se_puede_elegir_en_los_dos_sentidos():
+    """Oscuro en un equipo claro, y claro en un equipo oscuro."""
+    from trello_auto.web import CSS, TEMAS
+    claves = [c for c, _r in TEMAS]
+    assert claves == ["auto", "light", "suave", "dark"]
+    # Cada eleccion explicita tiene su bloque, o no haria nada
+    assert ':root[data-theme="dark"]' in CSS
+    assert ':root[data-theme="suave"]' in CSS
+    # Y el bloque del sistema cede ante una eleccion clara
+    assert ':root:not([data-theme="light"])' in CSS
+
+
+def test_la_seccion_lleva_titulo_y_explicacion():
+    from trello_auto.web import seccion
+    html = seccion("Por cerrar", "El margen de gracia", "5 tarjetas", "var(--aviso)")
+    assert "Por cerrar" in html and "margen de gracia" in html
+    assert "5 tarjetas" in html
