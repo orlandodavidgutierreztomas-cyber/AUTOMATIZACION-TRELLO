@@ -248,6 +248,20 @@ reporte y ensucian el tablero.
 **Actions → "Limpiar tarjetas duplicadas".** Agrupa por nombre, **conserva la que
 tiene trabajo** y archiva las copias vacías.
 
+**Duplicada = el nombre completo idéntico**: sector, actividad *y* fecha. No se
+compara por trozos, así que dos actividades parecidas nunca se confunden:
+
+| Par | ¿Duplicadas? |
+|---|---|
+| `1CS1 - ACERO DE ZAPATA` vs `1CS1 - ACERO DE COLUMNA` | **No** — actividad distinta |
+| `1CS1 - ACERO EN ZAPATAS` vs `1CS1 - ACERO INFERIOR EN ZAPATAS` | **No** — aunque una contenga a la otra |
+| `1CS1 - ACERO DE ZAPATA` vs `1CS2 - ACERO DE ZAPATA` | **No** — sector distinto |
+| `1CS1 - ...  01/09` vs `1CS1 - ... 03/09` | **No** — son dos jornadas |
+| `1CS1 - ACERO DE CIMENTACION` vs `1CS1 — ACERO DE CIMENTACIÓN` | **Sí** — solo cambia el guion y la tilde |
+
+Lo único que se ignora al comparar son acentos, mayúsculas, emojis y el tipo de
+guion — precisamente lo que hace que dos tarjetas iguales *parezcan* distintas.
+
 Solo archiva una copia si cumple **todas** estas condiciones:
 
 - tiene otra con el mismo nombre que se queda,

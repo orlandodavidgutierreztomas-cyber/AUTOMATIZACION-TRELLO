@@ -455,3 +455,26 @@ def test_a_igualdad_sobrevive_la_mas_antigua():
     vieja = _dup("6a8f0001" + "0" * 16, "x")
     nueva = _dup("6a9f0001" + "0" * 16, "x")
     assert elegir_superviviente([nueva, vieja])["id"] == vieja["id"]
+
+
+@pytest.mark.parametrize("a, b, son_duplicadas", [
+    # Lo que preocupa: dos aceros distintos NO pueden confundirse
+    ("1CS1 - ACERO DE ZAPATA - 01/09/2026",
+     "1CS1 - ACERO DE COLUMNA - 01/09/2026", False),
+    # Mismo trabajo, sector distinto
+    ("1CS1 - ACERO DE ZAPATA - 01/09/2026",
+     "1CS2 - ACERO DE ZAPATA - 01/09/2026", False),
+    # Mismo trabajo y sector, otro dia: son dos jornadas, no una copia
+    ("1CS1 - ACERO DE ZAPATA - 01/09/2026",
+     "1CS1 - ACERO DE ZAPATA - 03/09/2026", False),
+    # Una actividad que contiene a la otra tampoco se confunde
+    ("1CS1 - ACERO EN ZAPATAS - 01/09/2026",
+     "1CS1 - ACERO INFERIOR EN ZAPATAS - 01/09/2026", False),
+    # La duplicada de verdad: solo cambia el guion o los acentos
+    ("1CS1 - ACERO DE CIMENTACION - 01/09/2026",
+     "1CS1 — ACERO DE CIMENTACIÓN — 01/09/2026", True),
+])
+def test_solo_se_agrupa_lo_que_es_exactamente_la_misma_tarjeta(a, b, son_duplicadas):
+    from trello_auto.limpiar_duplicadas import agrupar_duplicadas
+    grupos = agrupar_duplicadas([_dup("a" * 24, a), _dup("b" * 24, b)])
+    assert bool(grupos) is son_duplicadas

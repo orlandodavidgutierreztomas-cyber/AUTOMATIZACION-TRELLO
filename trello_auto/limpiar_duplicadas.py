@@ -112,6 +112,9 @@ def main() -> int:
     print("=" * 74)
     print(f" LIMPIAR DUPLICADAS - {ajustes.NOMBRE_OBRA}")
     print(f" {len(cards)} tarjetas abiertas en el tablero")
+    print(" Duplicada = MISMO NOMBRE COMPLETO (sector, actividad y fecha).")
+    print(" 'ACERO DE ZAPATA' y 'ACERO DE COLUMNA' NUNCA se agrupan; tampoco")
+    print(" dos sectores distintos ni dos dias distintos.")
     print(" Solo se archiva una copia si NO tiene checks marcados, ni")
     print(" comentarios, ni adjuntos. Archivar no borra: se recupera desde")
     print(" el menu del tablero.")
@@ -142,13 +145,15 @@ def main() -> int:
             tc = _trabajo(card)
             donde = nombre_de_lista(listas, card.get("idList"))
             if not esta_vacia(card):
-                print(f"  PROTEGIDA {tc['marcados']}/{tc['items']} marcados, "
+                print(f"  PROTEGIDA {card['name']}")
+                print(f"            {tc['marcados']}/{tc['items']} marcados, "
                       f"{tc['comentarios']} comentarios, {tc['adjuntos']} adjuntos "
                       f"· {donde}")
                 print("            tiene trabajo hecho: NO la toco.")
                 protegidas += 1
                 continue
-            print(f"  archivo   vacia · {donde}")
+            print(f"  archivo   {card['name']}")
+            print(f"            vacia · {donde}")
             if not args.dry_run:
                 tr.archivar(card["id"])
             archivadas += 1
