@@ -559,3 +559,23 @@ def test_una_lista_de_plantillas_antigua_no_cuenta_como_sin_uso():
     cards = [{"id": "c1", "idList": "L1", "name": "PLANTILLA - CONCRETO EN ZAPATA"}]
     fila = analizar(listas, cards)["filas"][0]
     assert fila["sin_uso"] is False
+
+
+# --- coherencia entre robots ------------------------------------------------
+def test_el_reporte_mira_las_mismas_listas_que_barre_el_cierre():
+    """Si el cierre evalua una lista, el reporte tiene que contarla: si no,
+    habria trabajo en juego que no aparece en ningun indicador."""
+    from trello_auto.reporte import listas_del_alcance
+    del_reporte = {clave for clave, _estado in listas_del_alcance("dia")}
+    for cierre in ajustes.listas_de_cierre():
+        assert cierre in del_reporte, f"el reporte no mira '{cierre}'"
+    for familia in ajustes.FAMILIAS:
+        assert ajustes.lista_de_familia(familia) in del_reporte
+
+
+def test_el_alcance_no_repite_listas():
+    """Varias familias comparten lista: no puede contarse dos veces."""
+    from trello_auto.reporte import listas_del_alcance
+    for alcance in ("dia", "no-cumplidas", "todo"):
+        claves = [c for c, _e in listas_del_alcance(alcance)]
+        assert len(claves) == len(set(claves)), f"alcance '{alcance}' repite listas"

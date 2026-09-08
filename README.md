@@ -2,18 +2,34 @@
 
 [![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
 
-Seis robots que llevan solos el tablero de una obra: leen el cronograma
-(Last Planner), crean las tarjetas del día copiando tus plantillas de control
-de calidad, las reparten, evalúan al cierre quién cumplió, sacan el reporte y
-archivan lo terminado.
+Seis robots que llevan solos el tablero de una obra: leen el cronograma, crean
+las tarjetas del día copiando tus plantillas de control de calidad, las
+reparten, evalúan al cierre quién cumplió, sacan el reporte y archivan lo
+terminado.
 
 Todo corre en **GitHub Actions**: gratis, en la nube, sin depender de ninguna
 computadora encendida.
 
-> **Nada de esta obra está escrito en el código.** Todo lo particular —la forma
-> del Excel, las horas, las listas del tablero, las familias de trabajo— vive en
-> `configuracion.json` y `mapeo.json`, y se edita **desde el navegador**.
-> Para llevar el sistema a otra obra no se toca una línea de Python.
+> **Nada de esta obra está escrito en el código.** El horario, la forma del
+> Excel, los nombres de las listas, las familias de trabajo, los responsables y
+> hasta qué tablero se usa viven en `configuracion.json` y `mapeo.json`, y se
+> editan **desde el navegador**. Llevarlo a otra obra no exige tocar una línea
+> de Python.
+
+---
+
+## Índice
+
+- [El ciclo de un día](#el-ciclo-de-un-día)
+- [Cómo empareja cada tarjeta con su plantilla](#cómo-empareja-cada-tarjeta-con-su-plantilla)
+- [El cierre en dos fases](#el-cierre-en-dos-fases)
+- [**Elegir el tablero**](#-elegir-el-tablero) ← si tienes varios
+- [**Llevarlo a otra obra**](#-llevarlo-a-otra-obra) ← guía completa
+- [**Todos los parámetros**](#-todos-los-parámetros) ← referencia
+- [Las horas y los relojes](#-las-horas-y-los-relojes)
+- [Las páginas web](#-las-páginas-web)
+- [Los botones de mantenimiento](#-los-botones-de-mantenimiento)
+- [Desde tu PC](#-desde-tu-pc)
 
 ---
 
@@ -23,79 +39,61 @@ computadora encendida.
 |---|---|---|---|
 | 1 | **Preparar** | la tarde anterior | Lee el cronograma de **mañana** y crea las tarjetas en `ESPERA`, copiando la plantilla de cada actividad |
 | 2 | **Distribuir** | de madrugada | Vacía `ESPERA` repartiendo cada tarjeta a su lista del día según su familia |
-| 3 | **Cierre (gracia)** | al terminar la jornada | Completo → `CULMINADO`; pendiente → `T. POR CERRAR` |
-| 4 | **Cierre definitivo** | unas horas después | Lo que alcanzó a marcarse → `CULMINADO`; el resto → `NO CUMPLIDAS` |
-| 5 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y escribe el corte |
+| 3 | **Cierre (gracia)** | al terminar la jornada | Completo → `CULMINADO`; pendiente → la lista de gracia de su familia |
+| 4 | **Cierre definitivo** | unas horas después | Lo que alcanzó a marcarse → `CULMINADO`; el resto → `NO CUMPLIDAS`. Anota el PPC |
+| 5 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y publica el dashboard |
 | 6 | **Archivar** | al final del día | Archiva lo culminado y deja el tablero limpio |
 
-Preparar la víspera es lo que hace que el tablero de hoy no se ensucie con lo
-de mañana, y que si el cronograma trae una sorpresa haya toda la tarde para verla.
+Preparar la víspera es lo que hace que el tablero de hoy no se ensucie con lo de
+mañana, y que si el cronograma trae una sorpresa haya toda la tarde para verla.
 
-**Todos son idempotentes**: si un robot corre dos veces, la segunda no duplica
-ni rehace nada. Eso permite tener dos relojes sin riesgo.
+**Todos son idempotentes**: si un robot corre dos veces, la segunda no duplica ni
+rehace nada. Eso permite tener dos relojes apuntando a la misma hora sin riesgo.
 
 ---
 
 ## Cómo empareja cada tarjeta con su plantilla
 
 1. Del cronograma sale la actividad: `ACERO INFERIOR EN ZAPATAS`.
-2. Busca en el tablero una tarjeta que **lleve la palabra PLANTILLA en su nombre**
-   y se llame igual: `PLANTILLA — ACERO INFERIOR EN ZAPATAS`.
-3. La **duplica**: se lleva su descripción, todos sus checklists con sus ítems, y
-   sus etiquetas. Le pone nombre `SECTOR — ACTIVIDAD — DD/MM/AAAA` y el horario
+2. Busca en el tablero una tarjeta que **lleve la palabra PLANTILLA en su
+   nombre** y se llame igual: `PLANTILLA — ACERO INFERIOR EN ZAPATAS`.
+3. La **duplica**: se lleva su descripción, todos sus checklists con sus ítems y
+   sus etiquetas. Le pone nombre `SECTOR - ACTIVIDAD - DD/MM/AAAA` y el horario
    de la jornada.
 
 Una tarjeta es plantilla **por su propio nombre**, viva en la lista que viva. Así
 una errata en el encabezado de una columna (`PLANTILA` con una sola L) no deja
 fuera a las plantillas que contiene. Tolera `PLANTILLA`, `PLANTILA`, plurales,
-emojis y guiones. La comparación ignora acentos, símbolos y mayúsculas.
+emojis y guiones; la comparación ignora acentos, símbolos y mayúsculas.
 
 **Consecuencia práctica:** todo lo que quieras que lleven las tarjetas —ítems de
-calidad, etiquetas, el texto de la descripción— se edita **en la plantilla, dentro
-de Trello**, y rige al día siguiente. Sin tocar código ni subir nada.
+calidad, etiquetas, el texto de la descripción— se edita **en la plantilla,
+dentro de Trello**, y rige al día siguiente. Sin tocar código ni subir nada.
 
 Si una actividad todavía no tiene plantilla, la tarjeta se crea igual con una
 descripción generada, para no dejarla fuera del plan.
 
 ---
 
-## El cierre va en dos fases, con margen de gracia
+## El cierre en dos fases
 
-Cuando termina la jornada los especialistas siguen ocupados. Mandar al saco de
-"no cumplidas" una tarjeta a la que solo le faltaba marcar un ítem sería injusto
-y ensuciaría la estadística. Por eso el cierre no es un solo golpe:
+Cuando termina la jornada los especialistas siguen ocupados. Mandar a *no
+cumplidas* una tarjeta a la que solo le faltaba marcar un ítem sería injusto y
+ensuciaría la estadística. Por eso el cierre no es un solo golpe:
 
-**Fase 1 — al fin de jornada.** Se recorren las listas del día. Lo que está
-completo va a `CULMINADO`; **lo pendiente va a la lista de gracia de su
-familia**, no a no cumplidas.
+**Fase 1 — al fin de jornada.** Lo completo va a `CULMINADO`; **lo pendiente va a
+la lista de gracia de su familia**. Las listas del día quedan limpias.
 
-Cuántas listas de gracia hay lo decides tú, en `familias.<X>.lista_cierre`. Por
-defecto son tres —acero por un lado, encofrado y concreto juntos, y el resto—,
-que es lo que crea "Montar tablero" y lo que barre el cierre definitivo:
+**Fase 2 — el cierre definitivo.** Lo que alcanzaron a marcar va a `CULMINADO`;
+lo que sigue sin marcar, a `NO CUMPLIDAS`. Ahí se calcula y se anota el PPC.
 
-```
-Acero                              → T. POR CERRAR - ACERO
-Encofrado, Concreto                → T. POR CERRAR - ENCOFRADO-CONCRETO
-Trazo, Relleno, Excavación, Varios → T. POR CERRAR - VARIOS
-```
+La fase 2 barre también las listas del día, por si la fase 1 no llegó a correr.
 
-**¿Prefieres una sola?** Pon el mismo nombre en todas las familias y ya está:
-se crea una y se barre una. **¿Una por familia?** Dale a cada una un nombre
-distinto. Lo que se crea y lo que se barre salen siempre de la misma
-configuración, así que no pueden descuadrarse.
-
-**Fase 2 — el cierre definitivo, unas horas después.** Se barre la lista de
-gracia. Lo que alcanzaron a marcar durante el margen va a `CULMINADO`; lo que
-sigue sin marcar, ahora sí, a `T. NO CUMPLIDAS`. Ahí se calcula el PPC del día.
-
-La fase 2 barre también las listas del día, por si la fase 1 no llegó a correr:
-así nada se queda atrás.
-
-## Cuándo cuenta como terminada
+### Cuándo cuenta como terminada
 
 Manda el **control de calidad**, no la marca de "completa" de Trello.
 
-| Criterio | Terminada si… |
+| `cierre.criterio` | Terminada si… |
 |---|---|
 | `checklist` *(por defecto)* | **todos** los ítems de sus checklists están marcados |
 | `auto` | checklist completo **o** tarjeta marcada como completa |
@@ -103,41 +101,226 @@ Manda el **control de calidad**, no la marca de "completa" de Trello.
 
 ---
 
-## 🕐 Las dos clases de hora
+## 🎯 Elegir el tablero
 
-Es la confusión más fácil de tener, y conviene tenerla clara:
+Si tienes diez tableros, el sistema trabaja sobre **uno**: el que diga
+`obra.tablero`. Es el **id corto**, lo que va después de `/b/` en la URL.
+
+```
+https://trello.com/b/gzoZo6ip/aulas-control-diario
+                     ^^^^^^^^
+                     esto es lo que va en obra.tablero
+```
+
+**Para cambiarlo:** Actions → **Configurar** → *Run workflow* → campo **TABLERO**.
+No importa en qué espacio de trabajo esté; basta con que tus credenciales de
+Trello tengan acceso a él.
+
+**Después de cambiar de tablero, corre siempre `Sincronizar`.** Hay que releer
+las listas y las plantillas de la pizarra nueva: el mapeo anterior apunta a
+listas que allí quizá no existen.
+
+**Para comprobar que apuntas al correcto**, mira la página *Estado del tablero*:
+te dice qué listas encontró y cuáles faltan. Si ves varias `FALTA`, estás sobre
+el tablero equivocado.
+
+> **Un repositorio = un tablero.** Para llevar dos obras a la vez, duplica el
+> repositorio: cada una con su cronograma, sus horas y su mapeo, sin
+> interferirse. Cambiar `obra.tablero` **cambia** de tablero, no añade uno.
+
+---
+
+## 🚚 Llevarlo a otra obra
+
+La guía completa, en orden.
+
+### 1. Copia el repositorio
+
+Úsalo como plantilla o clónalo. Lo que cambiarás son dos archivos de
+configuración y el Excel; el código queda igual.
+
+### 2. Pon tus credenciales
+
+Settings → Secrets and variables → Actions → *New repository secret*:
+
+| Secret | De dónde sale |
+|---|---|
+| `TRELLO_KEY` | <https://trello.com/power-ups/admin> → tu API Key |
+| `TRELLO_TOKEN` | el enlace "Token" de esa misma página |
+
+⚠ El **token se muestra una sola vez**. Si no lo guardas, hay que generar otro.
+Y una vez dentro de un Secret **nadie puede volver a leerlo**, ni tú: es
+justamente lo que lo hace un secreto.
+
+### 3. Sube el cronograma
+
+Ponlo en `data/` y dile al sistema qué forma tiene. El Excel debe tener **una
+fila con las fechas** y **una columna con el nombre de cada actividad**; en el
+cruce, el código del sector que trabaja ese día:
+
+```
+                  ...  |  26/08  |  27/08  |  28/08  |   <- fila_fechas
+ ACERO EN ZAPATAS      |  1CS11  |  1CS12  |         |
+ ENCOFRADO DE ZAPATA   |         |  1CS15  |  1CS16  |
+ ^ columna_actividad
+```
+
+En **Configurar** ajustas `hoja`, `fila_fechas`, `columna_actividad` y
+`primera_fila_datos`. Si tus sectores no se parecen a `1CS6` / `2PS13`, cambia
+también `cronograma.patron_sector` en `configuracion.json`.
+
+### 4. Define las familias de trabajo
+
+En `configuracion.json → familias`. Cada una agrupa actividades por palabras
+clave y dice a qué listas van:
+
+```json
+"Acero": {
+  "lista": "T. DEL DIA ACERO",
+  "lista_cierre": "T. POR CERRAR - ACERO",
+  "claves": ["ACERO", "ESTRIBO"]
+}
+```
+
+**El orden importa**: gana la primera que case. Por eso `Trazo` va antes que
+`Excavacion`, y así "TRAZO Y REPLANTEO PARA EXCAVACIÓN" cuenta como Trazo.
+
+La familia con `"por_defecto": true` recoge lo que no case con nada, para que
+ninguna actividad se quede sin destino.
+
+### 5. Define los responsables
+
+En `configuracion.json → responsables`. Cada plantilla lleva **un checklist por
+responsable**, y se reconocen por palabras clave en el nombre del checklist:
+
+```json
+"CAL": { "nombre": "Calidad", "claves": ["CALIDAD"] }
+```
+
+El código (`CAL`) es el nombre de la columna en el reporte y en el dashboard.
+
+### 6. Monta el tablero
+
+Con un tablero en blanco: Actions → **Montar tablero desde el cronograma**. Crea
+las columnas y una plantilla genérica por actividad. Empieza con `dry_run: true`
+para ver la lista antes de crear nada.
+
+### 7. Sincroniza y revisa
+
+Actions → **Sincronizar**. Lee el Excel y el tablero, y genera el mapeo
+pre-rellenado más las tres páginas web. Revisa el mapeo y corrige lo que haga
+falta.
+
+### 8. Ajusta las horas
+
+Actions → **Configurar**: las seis horas de los robots y las dos de la jornada.
+
+### 9. Publica el dashboard
+
+Settings → Pages → *Deploy from a branch* → `main` → `/docs`.
+
+---
+
+## 📋 Todos los parámetros
+
+Todo se resuelve por prioridad: **variable de entorno** → **`configuracion.json`**
+→ **`config.py`** (solo en tu PC) → valor por defecto.
+
+### Obra
+
+| Parámetro | Por defecto | Qué es |
+|---|---|---|
+| `obra.nombre` | — | Sale en los títulos de las páginas |
+| `obra.tablero` | — | **Id corto del tablero de Trello** |
+| `obra.zona_horaria` | `America/Lima` | Todo el reloj se calcula aquí |
+
+### Cronograma — la forma de tu Excel
+
+| Parámetro | Por defecto | Qué es |
+|---|---|---|
+| `cronograma.archivo` | `data/…xlsx` | Ruta del Excel |
+| `cronograma.respaldo_json` | `data/plan_obra.json` | Respaldo; se usa si falta el Excel |
+| `cronograma.hoja` | `01_MAESTRO` | Nombre de la hoja |
+| `cronograma.fila_fechas` | `6` | Fila de las fechas (se cuenta como en Excel) |
+| `cronograma.primera_fila_datos` | `7` | Primera fila con actividades |
+| `cronograma.columna_actividad` | `C` | Letra de la columna |
+| `cronograma.patron_sector` | `^[12][A-Z]{2}\d+$` | Cómo se reconoce un código de sector |
+
+### Jornada — se escribe DENTRO de cada tarjeta
+
+| Parámetro | Por defecto | Qué es |
+|---|---|---|
+| `jornada.inicio` | `07:00` | Hora de inicio de la tarjeta |
+| `jornada.fin` | `17:00` | Vencimiento de la tarjeta |
+
+### Relojes — despiertan a cada robot
+
+| Parámetro | Por defecto | Qué es |
+|---|---|---|
+| `relojes.preparar.hora` | `18:00` | Crea las de mañana |
+| `relojes.distribuir.hora` | `05:00` | Reparte a las listas del día |
+| `relojes.cierre.hora` | `18:00` | Fin de jornada → gracia |
+| `relojes.cierre_final.hora` | `21:00` | Cierre definitivo → no cumplidas |
+| `relojes.reporte.hora` | `15:00` | Corte de control |
+| `relojes.archivar.hora` | `21:00` | Archiva lo culminado |
+| `relojes.<robot>.dias` | `1-5` | 1 = lunes … 7 = domingo |
+| `ventana_minutos` | `90` | Tolerancia del portero |
+
+### Listas del tablero
+
+Se buscan **por palabra clave**: funcionan aunque la lista tenga emojis, acentos
+o espacios de más. `T. DEL DIA ACERO` encuentra `T. DEL DÍA ACERO- 🟦🟦🟦`.
+
+| Parámetro | Por defecto | Qué es |
+|---|---|---|
+| `listas.espera` | `ESPERA` | Donde nacen las tarjetas de mañana |
+| `listas.plantillas` | `PLANTILLAS` | Donde el montaje crea las plantillas |
+| `listas.por_cerrar` | `T. POR CERRAR` | Gracia **global**: solo para familias sin la suya |
+| `listas.culminado` | `CULMINADO` | Lo que cumplió |
+| `listas.no_cumplidas` | `NO CUMPLIDAS` | Lo que no cumplió |
+
+### Familias, responsables, plantillas y cierre
+
+| Parámetro | Por defecto | Qué es |
+|---|---|---|
+| `familias.<X>.lista` | — | Lista del día de esa familia |
+| `familias.<X>.lista_cierre` | — | Su lista de gracia (varias pueden compartirla) |
+| `familias.<X>.claves` | — | Palabras que se buscan en la actividad |
+| `familias.<X>.por_defecto` | — | `true` en la familia de descarte |
+| `responsables.<COD>.nombre` | — | Nombre legible |
+| `responsables.<COD>.claves` | — | Palabras que identifican su checklist |
+| `plantillas.marca` | `PLANTIL` | Qué palabra declara plantilla a una tarjeta |
+| `plantillas.copiar` | `checklists,labels` | Qué partes se copian de la plantilla |
+| `cierre.criterio` | `checklist` | `checklist` · `auto` · `marcada` |
+
+> En `plantillas.copiar` puedes añadir `members`, `attachments`, `comments`,
+> `stickers` o `all`. **No pongas `due` ni `start`**: las fechas las calcula el
+> robot con el horario del día, no se heredan de la plantilla.
+
+### Cuántas listas de cierre quieres
+
+Sale de lo que declaren las familias. Lo que se **crea** y lo que se **barre**
+salen de la misma fuente, así que no pueden descuadrarse:
+
+| Lo que quieras | Qué haces |
+|---|---|
+| Una por grupo *(por defecto)* | Acero por un lado, encofrado y concreto juntos, el resto |
+| **Una sola** | El mismo nombre en todas las familias |
+| Una por familia | Un nombre distinto en cada una |
+
+---
+
+## 🕐 Las horas y los relojes
+
+Hay **dos clases de hora** y conviene no confundirlas:
 
 **JORNADA** — se escribe **dentro** de cada tarjeta. Es el `Vencimiento` que ve
 el equipo en Trello. No ejecuta nada.
 
 **RELOJES** — despiertan a cada robot. No aparecen en ninguna tarjeta.
 
-Un horario que funciona: jornada hasta las 18:30, cierre de gracia a las 18:30
-(lo pendiente pasa a esperar), cierre definitivo a las 21:00 (tres horas de
-margen para marcar), archivado a las 22:00.
-
-### Cambiarlas sin tocar el código
-
-**Actions → "Configurar" → Run workflow.** Escribes solo lo que quieras cambiar,
-el resto lo dejas en blanco. El workflow valida, guarda y hace el commit.
-
-Se puede cambiar: las dos horas de la jornada, las seis horas de los robots, los
-días hábiles, la zona horaria, el criterio de cierre, **la forma del Excel**
-(hoja, fila de fechas, columna de actividades) y **el tablero de destino**.
-
-### Cambiar de tablero
-
-El tablero no está en el código: es `obra.tablero`, el id corto que va después de
-`/b/` en la URL de Trello. Para trabajar sobre otra pizarra, pon ese id en el campo
-**TABLERO** de "Configurar" y listo — el espacio de trabajo da igual, basta con que
-tus credenciales tengan acceso.
-
-Después de cambiar de tablero, corre **Sincronizar**: hay que releer las listas y
-las plantillas de la pizarra nueva.
-
-> Esto **cambia** de tablero, no añade uno. Para llevar dos obras a la vez lo
-> limpio es un repositorio por obra: cada una con su cronograma, sus horas y su
-> mapeo. Copiar el repo y cambiar `configuracion.json` es todo lo que hace falta.
+Un horario que funciona: jornada hasta 18:30, cierre de gracia 18:30, cierre
+definitivo 21:00 (tres horas de margen para marcar), archivado 22:00.
 
 ### Los dos relojes
 
@@ -150,212 +333,78 @@ programadas. Por eso hay dos relojes apuntando a la misma hora:
   el trabajo hecho y no repite nada.
 
 Los cron están en los minutos **7 y 37**, nunca en punto ni a la media: son las
-horas de mayor congestión y GitHub descarta citas ahí. Y el "portero"
-(`trello_auto/portero.py`) deja pasar solo las citas dentro de una ventana de
-90 minutos desde la hora configurada, así que perder una cita no cuesta el día.
+horas de mayor congestión y GitHub descarta citas ahí. El portero
+(`trello_auto/portero.py`) deja pasar solo las citas dentro de una ventana de 90
+minutos desde la hora configurada, así que perder una cita no cuesta el día.
 
 ---
 
-## 📊 El reporte y los dos dashboards
+## 🌐 Las páginas web
 
-El reporte **solo lee**: puedes correrlo a mediodía, a las tres y antes del
-cierre. Cada corrida es un **corte** con su fecha y hora, y los cortes se
-acumulan. Repetir un corte en el mismo minuto lo reemplaza, no lo duplica.
+Se publican con **GitHub Pages** desde `docs/`. Actívalo una vez en
+Settings → Pages → *Deploy from a branch* → `main` → `/docs`.
 
-```
---alcance dia            las listas del día (lo que está en juego hoy)
---alcance no-cumplidas   la deuda acumulada
---alcance todo           las dos cosas
-```
-
-Produce tres cosas:
-
-| Archivo | Para qué |
+| Página | Qué muestra |
 |---|---|
-| `reportes/ultimo.csv` | El corte de ahora. Es lo que lee tu Excel |
-| `reportes/cortes.csv` | El histórico de todos los cortes: la película, no la foto |
-| `docs/index.html` | Dashboard web (lo que publica GitHub Pages) |
-| `docs/tablero.html` | Estado del tablero: qué hace cada lista y cuáles no toca nadie |
+| `index.html` | **Dashboard**: KPIs del corte, avance de obra, PPC diario y semanal, checks pendientes en el tiempo, desglose por responsable y familia, y la tabla completa con enlace a cada tarjeta |
+| `mapeo.html` | **Mapeo**: a qué familia y lista va cada actividad, y cuáles piden atención |
+| `tablero.html` | **Estado del tablero**: qué papel juega cada lista, cuáles no toca nadie y cuántas tarjetas quedarían atrapadas |
 
-### 🌐 Verlo en el navegador, sin descargar nada
-
-Todo lo visual se publica con **GitHub Pages** desde la carpeta `docs/`:
-
-| Página | Qué es |
-|---|---|
-| `index.html` | El dashboard del corte |
-| `mapeo.html` | El mapeo de actividades, para ver si hay algo que corregir |
-| `tablero.html` | El estado del tablero: qué papel juega cada lista |
-| `DASHBOARD_CONTROL.xlsx` | El Excel, descargable |
-
-**Activarlo (una vez):** repo → **Settings** → **Pages** → *Source*:
-**Deploy from a branch** → rama `main`, carpeta `/docs` → Save.
-
-A los dos minutos tienes una URL fija:
-
-```
-https://TU_USUARIO.github.io/TU_REPO/            → el dashboard
-https://TU_USUARIO.github.io/TU_REPO/mapeo.html  → el mapeo
-```
-
-Y ya no hay que descargar ni subir nada para **mirar**: cada corrida del
-reporte regenera la página y la URL muestra el último corte. Funciona igual
-desde el celular.
-
-Las páginas son **autocontenidas**: los datos van dentro del propio archivo y no
-piden nada por internet. Así también se pueden descargar, mandar por correo o
-abrir sin conexión, y siguen funcionando aunque el repositorio pase a privado.
+Son **autocontenidas**: los datos van dentro del archivo y no piden nada por
+internet. Se pueden descargar, mandar por correo o abrir sin conexión, y siguen
+funcionando aunque el repositorio pase a privado.
 
 ### El dashboard de Excel
 
-`docs/DASHBOARD_CONTROL.xlsx` conserva tus gráficos y tablas de apoyo, con
-tres arreglos para que aguante la automatización:
+`docs/DASHBOARD_CONTROL.xlsx` conserva tus gráficos y tablas de apoyo.
+**Conectarlo (una vez):** Datos → Obtener datos → Desde web → la URL en bruto de
+`reportes/ultimo.csv` → cárgalo sobre la hoja `DATOS`. Después: **Actualizar
+todo**.
 
-- **Sin límite de filas.** Antes las fórmulas llegaban a la 201 y el corte 202
-  desaparecía en silencio. Ahora llegan a la 5000.
-- **La fecha de corte se calcula sola** (`DASHBOARD!F3`). Antes estaba escrita a
-  mano: si el reporte era de las tres de la tarde y F3 decía las siete de la
-  mañana, todas las antigüedades salían mal sin avisar.
-- **Las familias vienen de la configuración**, no escritas a mano.
-
-**Conectarlo (una vez):** Datos → Obtener datos → Desde web → pega la URL del
-`ultimo.csv` en bruto → cárgalo sobre la hoja `DATOS`. Después, cada vez que
-quieras datos frescos: **Actualizar todo**.
-
-Y esto resuelve lo de la PC apagada: el reporte siempre se guarda, tu PC no
-tiene que estar encendida ni recibir nada. Cuando la prendas y actualices, se
-trae **todos los cortes que se hicieron mientras estuvo apagada**. No se pierde
-ninguno y no hay que volver a ejecutar nada.
-
-> Si el repositorio pasa a privado, ese enlace deja de responder sin credencial.
-> Para que el dashboard siga actualizándose solo, deja los reportes en un repo
-> público aparte y el código en el privado.
+Tu PC apagada no pierde nada: cuando la prendas y actualices, se trae **todos los
+cortes** que se hicieron mientras tanto.
 
 ---
 
-## 🔎 Estado del tablero
+## 🔧 Los botones de mantenimiento
 
-`tablero.html` lee el tablero **entero** y dice, lista por lista, qué papel juega
-en la automatización y cuántas tarjetas tiene.
+| Botón | Para qué |
+|---|---|
+| **Configurar** | Cambia horas, forma del Excel, criterio de cierre y tablero |
+| **Sincronizar** | Relee el Excel y el tablero; regenera mapeo, respaldo y las tres páginas |
+| **Cambiar una actividad del mapeo** | Corrige una actividad suelta sin descargar nada |
+| **Aplicar mapeo revisado** | Aplica el cuadro Excel con desplegables, para cambios masivos |
+| **Montar tablero** | Crea columnas y plantillas genéricas desde el cronograma |
+| **Limpiar duplicadas** | Archiva copias vacías; nunca las que tienen trabajo |
 
-Sirve para lo que pasa siempre que se reorganiza un tablero: partes el cierre en
-tres, renombras una columna, pruebas algo — y te quedas con listas que ya no toca
-nadie. Sus tarjetas se quedan ahí para siempre, sin que ningún robot las evalúe, y
-nada lo delata. Esta página las marca en ámbar y cuenta cuántas tarjetas hay
-atrapadas.
+### El cuadro de verificación del mapeo
 
-Y avisa al revés también: si la configuración nombra una lista que **no existe**
-en el tablero, sale como `FALTA` — antes de que un robot se pare a mitad de una
-corrida.
+Revisar el mapeo escribiendo dentro de un JSON es pedir una errata. Por eso
+Sincronizar genera `mapeo/revisar_mapeo.xlsx`, donde **no se escribe: se elige**.
+`FAMILIA` y `LISTA DESTINO` son desplegables con las opciones válidas, sacadas de
+tu configuración y de los nombres reales de tus listas. Las filas que piden
+atención salen en **ámbar**.
 
----
+Para *saber* si hace falta corregir algo no descargues nada: mira `mapeo.html`.
 
-## 🔄 Sincronizar
+Y para una corrección suelta, el botón **Cambiar una actividad** acepta un trozo
+del nombre (`acero inferior` basta) y, si es ambiguo o no existe, **sugiere en
+vez de aplicar un cambio equivocado**.
 
-**Actions → "Sincronizar cronograma y tablero" → Run workflow.** Apriétalo
-cuando subas una revisión nueva del Excel o crees plantillas o listas en Trello.
-
-Hace tres cosas y hace el commit por ti:
-
-1. Saca del Excel **todas las actividades distintas**.
-2. Vuelca el plan entero a `data/plan_obra.json`. Es el **respaldo**: si algún
-   día el Excel falta o se corrompe, los robots siguen corriendo con ese archivo.
-3. Lee el tablero y escribe `mapeo.json`, que dice a qué familia y a qué lista va
-   cada actividad. Llega **pre-rellenado** por palabras clave —para no mapear
-   decenas de actividades a mano— y **lo que corrijas se respeta** en las
-   sincronizaciones siguientes. También te deja a la vista los nombres reales de
-   tus listas, para que elijas de lo que existe.
-
-Lo que no case con ninguna palabra clave cae en la familia de descarte
-(`Varios`), nunca se queda sin destino ni se acumula donde no debe.
-
----
-
-## 🧹 Limpiar tarjetas duplicadas
-
-Cuando la obra avanza más rápido que el plan, el encargado adelanta tarjetas a
-mano y acaban existiendo dos o tres con el mismo nombre. Duplican el conteo del
-reporte y ensucian el tablero.
-
-**Actions → "Limpiar tarjetas duplicadas".** Agrupa por nombre, **conserva la que
-tiene trabajo** y archiva las copias vacías.
+### Limpiar duplicadas
 
 **Duplicada = el nombre completo idéntico**: sector, actividad *y* fecha. No se
-compara por trozos, así que dos actividades parecidas nunca se confunden:
+compara por trozos, así que `ACERO DE ZAPATA` y `ACERO DE COLUMNA` nunca se
+confunden. Lo único que se ignora son acentos, mayúsculas, emojis y el tipo de
+guion — justo lo que hace que dos tarjetas iguales *parezcan* distintas.
 
-| Par | ¿Duplicadas? |
-|---|---|
-| `1CS1 - ACERO DE ZAPATA` vs `1CS1 - ACERO DE COLUMNA` | **No** — actividad distinta |
-| `1CS1 - ACERO EN ZAPATAS` vs `1CS1 - ACERO INFERIOR EN ZAPATAS` | **No** — aunque una contenga a la otra |
-| `1CS1 - ACERO DE ZAPATA` vs `1CS2 - ACERO DE ZAPATA` | **No** — sector distinto |
-| `1CS1 - ...  01/09` vs `1CS1 - ... 03/09` | **No** — son dos jornadas |
-| `1CS1 - ACERO DE CIMENTACION` vs `1CS1 — ACERO DE CIMENTACIÓN` | **Sí** — solo cambia el guion y la tilde |
-
-Lo único que se ignora al comparar son acentos, mayúsculas, emojis y el tipo de
-guion — precisamente lo que hace que dos tarjetas iguales *parezcan* distintas.
-
-Solo archiva una copia si cumple **todas** estas condiciones:
-
-- tiene otra con el mismo nombre que se queda,
-- **no** tiene ni un ítem de checklist marcado,
-- **no** tiene comentarios,
-- **no** tiene adjuntos.
-
-Si una copia tiene cualquier rastro de trabajo, se queda y te lo avisa: mejor un
-duplicado de más que borrar el trabajo de alguien. Y **archiva, no borra** — en
-Trello lo archivado se recupera desde el menú del tablero.
-
-Cuál sobrevive: la de más ítems marcados; a igualdad, la que tenga adjuntos o
-comentarios; a igualdad, la más antigua.
+Solo archiva una copia si **no** tiene ni un check marcado, ni comentarios, ni
+adjuntos. Y **archiva, no borra**: en Trello se recupera desde el menú del
+tablero.
 
 ---
 
-## 🏗 Arrancar una obra nueva: montar el tablero solo
-
-Con el cronograma subido y un tablero **en blanco**:
-**Actions → "Montar tablero desde el cronograma" → Run workflow.**
-
-Crea de una vez:
-
-- **Las columnas** que el sistema necesita, en el orden en que fluye el trabajo:
-  espera → una por familia → **una lista de gracia por grupo de familias** →
-  culminado → no cumplidas → plantillas.
-- **Una tarjeta PLANTILLA por cada actividad del Excel**, con un checklist por
-  responsable ya montado.
-
-Los ítems son **genéricos a propósito**. El objetivo no es acertar el protocolo
-de cada actividad —eso lo sabe la obra, no el programa— sino dejar el esqueleto
-puesto para que solo haya que rellenarlo. En vez de crear 75 tarjetas a mano con
-su estructura, editas 75 que ya existen y ya tienen la forma correcta.
-
-**Solo crea lo que falta.** Nada existente se toca, se renombra ni se borra, así
-que puedes correrlo cuando el cronograma incorpore actividades nuevas. Empieza
-con `dry_run` activado para ver la lista antes de crear nada.
-
----
-
-## 🚀 Puesta en marcha
-
-**1. Los Secrets.** Settings → Secrets and variables → Actions:
-
-| Nombre | Valor |
-|---|---|
-| `TRELLO_KEY` | tu API Key |
-| `TRELLO_TOKEN` | tu Token |
-
-Se obtienen gratis en <https://trello.com/power-ups/admin>.
-
-**2. Sube tu Excel** a `data/` y ajusta `configuracion.json → cronograma` con la
-forma que tenga (o hazlo desde el botón "Configurar").
-
-**3. Sincroniza** una vez, para generar el mapeo y el respaldo.
-
-**4. Prueba en seco.** Cada robot tiene `dry_run` en su formulario: muestra qué
-haría sin tocar nada.
-
----
-
-## 💻 Desde tu PC (opcional)
+## 💻 Desde tu PC
 
 ```bash
 pip install -r requirements.txt
@@ -366,19 +415,23 @@ cp config.example.py config.py     # y pon tus credenciales
 python -m trello_auto.preparar --fecha manana --dry-run
 python -m trello_auto.distribuir --dry-run
 python -m trello_auto.cierre --dry-run                 # fase de gracia
-python -m trello_auto.cierre --fase final --dry-run   # cierre definitivo
+python -m trello_auto.cierre --fase final --dry-run    # cierre definitivo
 python -m trello_auto.reporte --alcance todo
 python -m trello_auto.archivar --dry-run
+python -m trello_auto.limpiar_duplicadas --dry-run
+python -m trello_auto.montar_tablero --dry-run
 python -m trello_auto.sincronizar
 python -m trello_auto.configurar --ver
-python -m trello_auto.configurar --hora-cierre 19:00 --jornada-fin 18:30
+python -m trello_auto.revisar --vista
 ```
+
+Todos aceptan `--dry-run`: muestran qué harían sin tocar nada.
 
 ### Pruebas
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 48 pruebas, ninguna toca Trello
+pytest -q                          # 82 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
@@ -388,27 +441,29 @@ ruff check trello_auto tests
 
 | Ruta | Qué es |
 |---|---|
-| `configuracion.json` | **Toda la obra.** Horas, listas, familias, responsables, forma del Excel |
-| `mapeo.json` | Actividad → familia → lista destino. Lo genera "Sincronizar" |
+| `configuracion.json` | **Toda la obra**: horas, listas, familias, responsables, Excel |
+| `mapeo.json` | Actividad → familia → lista destino. Lo genera Sincronizar |
 | `trello_auto/ajustes.py` | Lee la configuración y la resuelve por prioridad |
-| `trello_auto/cronograma.py` | Lee el Excel (o el respaldo JSON) y clasifica |
+| `trello_auto/cronograma.py` | Lee el Excel (o el respaldo) y clasifica |
 | `trello_auto/trello.py` | Cliente de la API, plantillas y conteo de checklists |
 | `trello_auto/horario.py` | Zonas horarias, conversiones y el portero |
 | `trello_auto/preparar.py` … `archivar.py` | Los seis robots |
-| `trello_auto/reporte.py` · `tablero.py` | El corte y el dashboard web |
-| `trello_auto/sincronizar.py` · `configurar.py` | Los dos botones de gestión |
+| `trello_auto/reporte.py` · `tablero.py` · `web.py` | El corte y las páginas |
+| `trello_auto/historico.py` | PPC y series de tendencia |
+| `trello_auto/estado.py` | Qué papel juega cada lista del tablero |
+| `trello_auto/sincronizar.py` · `configurar.py` · `revisar.py` | Los botones |
+| `trello_auto/montar_tablero.py` · `limpiar_duplicadas.py` | Mantenimiento |
 | `data/` | El cronograma y su respaldo |
-| `reportes/` | Los cortes acumulados |
-| `docs/` | Lo que publica GitHub Pages: dashboard, mapeo y el Excel |
+| `reportes/` | Los cortes acumulados y el PPC diario |
+| `docs/` | Lo que publica GitHub Pages |
 
 ---
 
 ## Próximos pasos
 
 - **Las plantillas que faltan.** Cada actividad sin plantilla sale sin su control
-  de calidad real. `mapeo.json` te dice exactamente cuáles faltan.
-- **PPC semanal.** El cierre ya calcula el cumplimiento del día; falta acumularlo
-  por semana, que es *la* métrica del Last Planner.
+  de calidad real. `mapeo.html` te dice cuáles.
 - **Causas de no cumplimiento.** Saber *por qué* no se cumplió cierra el ciclo de
-  mejora. Se puede capturar con una etiqueta y contarlo en el reporte.
+  mejora del Last Planner. Se puede capturar con una etiqueta y contarlo.
 - **Responsable por cuadrilla**, desde la columna OPER/OFIC del Excel.
+- **El cron externo**, para que los relojes sean puntuales.

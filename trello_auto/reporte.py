@@ -113,8 +113,11 @@ def listas_del_alcance(alcance: str) -> list:
             lista = ajustes.lista_de_familia(familia)
             if lista and all(lista != c for c, _ in objetivo):
                 objetivo.append((lista, "EN JUEGO"))
-        if ajustes.LISTA_POR_CERRAR:
-            objetivo.append((ajustes.LISTA_POR_CERRAR, "POR CERRAR"))
+        # Las listas de gracia, sean una o varias: ahi espera lo que no cerro
+        # al fin de jornada, y sigue estando en juego hasta el cierre final.
+        for lista in ajustes.listas_de_cierre():
+            if all(lista != c for c, _ in objetivo):
+                objetivo.append((lista, "POR CERRAR"))
     if alcance in ("no-cumplidas", "todo"):
         objetivo.append((ajustes.LISTA_NO_CUMPLIDAS, "NO CUMPLIDA"))
     return objetivo
