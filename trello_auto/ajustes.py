@@ -168,14 +168,21 @@ def lista_cierre_de_familia(familia: str) -> str:
 
 
 def listas_de_cierre() -> list:
-    """Todas las listas de gracia distintas que hay que barrer, sin repetir."""
+    """Las listas de gracia que el tablero necesita de verdad, sin repetir.
+
+    Sale de lo que declaren las familias, nada mas. Si cada una tiene la suya
+    salen varias; si todas apuntan al mismo nombre sale una sola; y si ninguna
+    declara la suya, sale unicamente la global (listas.por_cerrar).
+
+    Es lo que decide tanto que listas crea "Montar tablero" como cuales barre
+    el cierre definitivo: las dos cosas se mueven juntas al cambiar la
+    configuracion, sin tocar el codigo.
+    """
     vistas = []
     for familia in FAMILIAS:
         lista = lista_cierre_de_familia(familia)
         if lista and lista not in vistas:
             vistas.append(lista)
-    if LISTA_POR_CERRAR and LISTA_POR_CERRAR not in vistas:
-        vistas.append(LISTA_POR_CERRAR)
     return vistas
 
 

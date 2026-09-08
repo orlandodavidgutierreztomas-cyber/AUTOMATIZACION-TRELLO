@@ -351,7 +351,8 @@ def test_las_listas_necesarias_cubren_todo_el_flujo():
     nombres = [n for n, _ in listas_necesarias()]
     # El recorrido completo de una tarjeta tiene que estar cubierto
     assert ajustes.LISTA_ESPERA in nombres
-    assert ajustes.LISTA_POR_CERRAR in nombres
+    for cierre in ajustes.listas_de_cierre():
+        assert cierre in nombres
     assert ajustes.LISTA_CULMINADO in nombres
     assert ajustes.LISTA_NO_CUMPLIDAS in nombres
     assert LISTA_PLANTILLAS in nombres
@@ -478,3 +479,41 @@ def test_solo_se_agrupa_lo_que_es_exactamente_la_misma_tarjeta(a, b, son_duplica
     from trello_auto.limpiar_duplicadas import agrupar_duplicadas
     grupos = agrupar_duplicadas([_dup("a" * 24, a), _dup("b" * 24, b)])
     assert bool(grupos) is son_duplicadas
+
+
+# --- cuantas listas de cierre se crean, segun como se configure -------------
+def test_por_defecto_hay_una_lista_de_cierre_por_grupo_de_familias():
+    """Lo normal: acero por un lado, encofrado y concreto juntos, el resto."""
+    cierres = ajustes.listas_de_cierre()
+    assert len(cierres) == 3
+    # Ninguna sobra: todas las declara alguna familia
+    declaradas = {ajustes.lista_cierre_de_familia(f) for f in ajustes.FAMILIAS}
+    assert set(cierres) == declaradas
+
+
+def test_se_puede_configurar_un_unico_cierre(monkeypatch):
+    """Si se prefiere una sola lista, basta con apuntar todas las familias
+    al mismo nombre: el sistema crea una y barre una."""
+    unica = {f: dict(d, lista_cierre="T. POR CERRAR")
+             for f, d in ajustes.FAMILIAS.items()}
+    monkeypatch.setattr(ajustes, "FAMILIAS", unica)
+    assert ajustes.listas_de_cierre() == ["T. POR CERRAR"]
+
+
+def test_sin_lista_cierre_propia_se_usa_la_global(monkeypatch):
+    """Y si ninguna familia declara la suya, se cae a listas.por_cerrar."""
+    sin_cierre = {f: {k: v for k, v in d.items() if k != "lista_cierre"}
+                  for f, d in ajustes.FAMILIAS.items()}
+    monkeypatch.setattr(ajustes, "FAMILIAS", sin_cierre)
+    assert ajustes.listas_de_cierre() == [ajustes.LISTA_POR_CERRAR]
+
+
+def test_el_montaje_crea_exactamente_las_listas_de_cierre_declaradas():
+    """Lo que se crea y lo que se barre tienen que ser lo mismo."""
+    from trello_auto.montar_tablero import listas_necesarias
+    creadas = [n for n, _ in listas_necesarias()]
+    for cierre in ajustes.listas_de_cierre():
+        assert cierre in creadas
+    # Y no se cuela ninguna lista de cierre que nadie use
+    de_cierre = [n for n in creadas if "POR CERRAR" in n.upper()]
+    assert sorted(de_cierre) == sorted(ajustes.listas_de_cierre())

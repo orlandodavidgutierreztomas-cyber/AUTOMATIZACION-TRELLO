@@ -67,9 +67,22 @@ y ensuciaría la estadística. Por eso el cierre no es un solo golpe:
 
 **Fase 1 — al fin de jornada.** Se recorren las listas del día. Lo que está
 completo va a `CULMINADO`; **lo pendiente va a la lista de gracia de su
-familia**, no a no cumplidas. Cada familia tiene la suya —acero espera en la de
-acero, no en un saco común— y varias pueden compartirla, como encofrado y
-concreto. Se configura en `familias.<X>.lista_cierre`.
+familia**, no a no cumplidas.
+
+Cuántas listas de gracia hay lo decides tú, en `familias.<X>.lista_cierre`. Por
+defecto son tres —acero por un lado, encofrado y concreto juntos, y el resto—,
+que es lo que crea "Montar tablero" y lo que barre el cierre definitivo:
+
+```
+Acero                              → T. POR CERRAR - ACERO
+Encofrado, Concreto                → T. POR CERRAR - ENCOFRADO-CONCRETO
+Trazo, Relleno, Excavación, Varios → T. POR CERRAR - VARIOS
+```
+
+**¿Prefieres una sola?** Pon el mismo nombre en todas las familias y ya está:
+se crea una y se barre una. **¿Una por familia?** Dale a cada una un nombre
+distinto. Lo que se crea y lo que se barre salen siempre de la misma
+configuración, así que no pueden descuadrarse.
 
 **Fase 2 — el cierre definitivo, unas horas después.** Se barre la lista de
 gracia. Lo que alcanzaron a marcar durante el margen va a `CULMINADO`; lo que
@@ -286,7 +299,8 @@ Con el cronograma subido y un tablero **en blanco**:
 Crea de una vez:
 
 - **Las columnas** que el sistema necesita, en el orden en que fluye el trabajo:
-  espera → una por familia → gracia → culminado → no cumplidas → plantillas.
+  espera → una por familia → **una lista de gracia por grupo de familias** →
+  culminado → no cumplidas → plantillas.
 - **Una tarjeta PLANTILLA por cada actividad del Excel**, con un checklist por
   responsable ya montado.
 
