@@ -39,10 +39,10 @@ computadora encendida.
 |---|---|---|---|
 | 1 | **Preparar** | la tarde anterior | Lee el cronograma de **mañana** y crea las tarjetas en `ESPERA`, copiando la plantilla de cada actividad |
 | 2 | **Distribuir** | de madrugada | Vacía `ESPERA` repartiendo cada tarjeta a su lista del día según su familia |
-| 3 | **Cierre (gracia)** | al terminar la jornada | Completo → `CULMINADO`; pendiente → la lista de gracia de su familia |
+| 3 | **Cierre (gracia)** | al terminar la jornada | Completo → `CULMINADO`; pendiente → la lista **por cerrar** de su familia |
 | 4 | **Cierre definitivo** | unas horas después | Lo que alcanzó a marcarse → `CULMINADO`; el resto **se queda por cerrar**, para reprogramarse |
 | 5 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y publica el dashboard |
-| 6 | **Archivar** | al final del día | Archiva lo culminado y deja el tablero limpio |
+| 6 | **Archivar** | al final del día | Archiva **solo lo culminado**; lo que sigue abierto se queda a la vista |
 
 Preparar la víspera es lo que hace que el tablero de hoy no se ensucie con lo de
 mañana, y que si el cronograma trae una sorpresa haya toda la tarde para verla.
@@ -426,14 +426,65 @@ Solo archiva una copia si **no** tiene ni un check marcado, ni comentarios, ni
 adjuntos. Y **archiva, no borra**: en Trello se recupera desde el menú del
 tablero.
 
+### Reubicar tarjetas de una lista
+
+Vacía una columna repartiendo cada tarjeta a la lista de **por cerrar** de su
+familia, y archiva la columna si se lo pides. Se hizo para retirar la vieja
+`NO CUMPLIDAS`, pero sirve para cualquier columna heredada de otro tablero.
+
+| Campo | Qué poner |
+|---|---|
+| `desde` | Palabra clave de la columna a vaciar (ej. `NO CUMPLIDAS`) |
+| `dry_run` | **Empieza siempre en `true`**: te enseña el reparto sin mover nada |
+| `archivar_lista` | `true` para archivar la columna cuando quede vacía |
+| `a_lista` | Vacío = repartir por familia. Con un nombre, todo va a esa lista |
+
+`a_lista` es el que sirve para **deshacer**: si algo se cerró antes de tiempo,
+lo devuelves con `desde: CULMINADO` y `a_lista: T. POR CERRAR - ACERO`. En los
+dos sentidos, y sin abrir tarjeta por tarjeta.
+
+Es idempotente: la tarjeta que ya está en su destino ni se toca. Y nada se
+borra — la tarjeta conserva descripción, checklists, etiquetas, comentarios e
+historial, y una lista archivada se recupera desde *Más → Listas archivadas*.
+
 ---
 
 ## 💻 Desde tu PC
 
+**Esto es opcional. No hace falta para que la obra funcione.** Todo corre solo
+en GitHub, con los Secrets que ya pusiste ahí. Esta sección es para el día que
+quieras probar algo en tu computadora antes de soltarlo en el tablero real.
+
+### ¿Qué es `config.py` y por qué habría que configurarlo?
+
+`config.py` **existe solo en tu computadora**. Es el sustituto local de los
+Secrets de GitHub, y nada más.
+
+El programa busca la clave y el token de Trello en este orden:
+
+1. **Variables de entorno** ← es lo que le llega desde los Secrets, en GitHub
+2. **`config.py`** ← solo existe en tu PC
+3. Si no encuentra ninguna de las dos, se detiene y te lo dice
+
+En GitHub siempre gana el paso 1, así que **`config.py` nunca se usa allí**.
+De hecho `.gitignore` lo bloquea: no se sube nunca, para que tus credenciales
+no acaben publicadas en el repositorio.
+
+Por eso, si trabajas solo con los botones de GitHub, **no tienes que configurar
+nada en tu PC**. Solo lo necesitas si vas a correr los scripts localmente, y en
+ese caso son dos datos:
+
 ```bash
 pip install -r requirements.txt
-cp config.example.py config.py     # y pon tus credenciales
+cp config.example.py config.py     # y pon dentro TRELLO_KEY y TRELLO_TOKEN
 ```
+
+Los sacas de <https://trello.com/power-ups/admin> — son los mismos que ya
+guardaste como Secrets. Todo lo demás (el tablero, las familias, las horas) sale
+de `configuracion.json`, que sí está en el repositorio y es igual en los dos
+sitios.
+
+### Los comandos
 
 ```bash
 python -m trello_auto.preparar --fecha manana --dry-run
@@ -456,7 +507,7 @@ Todos aceptan `--dry-run`: muestran qué harían sin tocar nada.
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 94 pruebas, ninguna toca Trello
+pytest -q                          # 160 pruebas, ninguna toca Trello
 ruff check trello_auto tests
 ```
 
