@@ -143,15 +143,31 @@ CSS = """
   .seccion .que { color:var(--suave); font-size:13.5px; }
   [hidden] { display:none !important; }
   .bloque-tabla { margin-bottom:4px; }
-  .filtros { display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-             margin-bottom:12px; }
-  .filtros label { font-size:12.5px; color:var(--suave); display:flex;
-                   align-items:center; gap:6px; }
-  .filtros select {
-    font:inherit; font-size:13px; padding:5px 9px; border-radius:7px;
-    border:1px solid var(--borde); background:var(--panel); color:var(--texto);
+  /* El filtro vive en la propia cabecera de la columna: un boton pequeno
+     que despliega los valores de esa columna. */
+  th .filtro { position:relative; display:inline-block; margin-left:5px; }
+  th .filtro > button {
+    font:inherit; font-size:11px; line-height:1; cursor:pointer; padding:2px 5px;
+    border:1px solid var(--borde); border-radius:5px; color:var(--suave);
+    background:var(--panel);
   }
-  .filtros .cuenta { font-size:12.5px; color:var(--suave); margin-left:auto; }
+  th .filtro > button:hover { color:var(--acento); border-color:var(--acento); }
+  th .filtro > button.activo {
+    background:var(--acento); color:#fff; border-color:var(--acento);
+  }
+  th .filtro .menu {
+    position:absolute; z-index:5; top:calc(100% + 5px); left:0; min-width:170px;
+    background:var(--panel); border:1px solid var(--borde); border-radius:9px;
+    padding:5px; box-shadow:0 8px 24px rgba(0,0,0,.16);
+  }
+  th .filtro .menu button {
+    display:block; width:100%; text-align:left; font:inherit; font-size:13px;
+    text-transform:none; letter-spacing:0; color:var(--texto); cursor:pointer;
+    background:none; border:0; border-radius:6px; padding:6px 9px;
+  }
+  th .filtro .menu button:hover { background:var(--barra); }
+  th .filtro .menu button[aria-checked="true"] { color:var(--acento); font-weight:600; }
+  .cuenta { font-size:12.5px; color:var(--suave); margin-top:9px; }
   tr.desplegable { cursor:pointer; }
   tr.desplegable:hover td { background:var(--barra); }
   .flecha { display:inline-block; width:14px; color:var(--suave);
@@ -238,21 +254,30 @@ def navegacion(actual: str) -> str:
 # conexion: no hay servidor al que preguntar ni libreria que cargar.
 SCRIPT_TABLA = """
 (function () {
+  function cerrarMenus(salvo) {
+    var abiertos = document.querySelectorAll('th .filtro > button[aria-expanded="true"]');
+    for (var i = 0; i < abiertos.length; i++) {
+      if (abiertos[i] === salvo) { continue; }
+      abiertos[i].setAttribute('aria-expanded', 'false');
+      abiertos[i].parentNode.querySelector('.menu').hidden = true;
+    }
+  }
+
   function filtrar(caja) {
-    var selects = caja.querySelectorAll('.filtros select');
+    var filtros = caja.querySelectorAll('th .filtro');
     var criterios = {};
-    for (var i = 0; i < selects.length; i++) {
-      if (selects[i].value) { criterios[selects[i].dataset.campo] = selects[i].value; }
+    for (var i = 0; i < filtros.length; i++) {
+      var valor = filtros[i].dataset.valor || '';
+      if (valor) { criterios[filtros[i].dataset.campo] = valor; }
     }
     var filas = caja.querySelectorAll('tbody tr.desplegable');
     var vistas = 0;
     for (var j = 0; j < filas.length; j++) {
       var fila = filas[j], ok = true;
       for (var campo in criterios) {
-        var valor = fila.dataset[campo] || '';
-        // El campo de responsables lleva varios valores separados por coma
-        var lista = valor.split('|');
-        if (lista.indexOf(criterios[campo]) === -1) { ok = false; break; }
+        // Un campo puede llevar varios valores, separados por barra
+        var suyos = (fila.dataset[campo] || '').split('|');
+        if (suyos.indexOf(criterios[campo]) === -1) { ok = false; break; }
       }
       fila.hidden = !ok;
       var detalle = fila.nextElementSibling;
@@ -269,45 +294,64 @@ SCRIPT_TABLA = """
     }
   }
 
-  document.addEventListener('change', function (ev) {
-    var sel = ev.target.closest && ev.target.closest('.filtros select');
-    if (sel) { filtrar(sel.closest('.bloque-tabla')); }
-  });
-
   document.addEventListener('click', function (ev) {
+    var abrir = ev.target.closest && ev.target.closest('th .filtro > button');
+    if (abrir) {
+      var abierto = abrir.getAttribute('aria-expanded') === 'true';
+      cerrarMenus(abrir);
+      abrir.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+      abrir.parentNode.querySelector('.menu').hidden = abierto;
+      return;
+    }
+
+    var opcion = ev.target.closest && ev.target.closest('th .filtro .menu button');
+    if (opcion) {
+      var filtro = opcion.closest('.filtro');
+      var hermanas = filtro.querySelectorAll('.menu button');
+      for (var i = 0; i < hermanas.length; i++) {
+        hermanas[i].setAttribute('aria-checked', hermanas[i] === opcion ? 'true' : 'false');
+      }
+      filtro.dataset.valor = opcion.dataset.valor || '';
+      var boton = filtro.querySelector('button');
+      boton.classList.toggle('activo', !!filtro.dataset.valor);
+      boton.setAttribute('aria-expanded', 'false');
+      filtro.querySelector('.menu').hidden = true;
+      filtrar(filtro.closest('.bloque-tabla'));
+      return;
+    }
+
+    cerrarMenus(null);
+
     if (ev.target.closest('a')) { return; }
     var fila = ev.target.closest && ev.target.closest('tr.desplegable');
     if (!fila) { return; }
-    var abierto = fila.getAttribute('aria-expanded') === 'true';
-    fila.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+    var expandido = fila.getAttribute('aria-expanded') === 'true';
+    fila.setAttribute('aria-expanded', expandido ? 'false' : 'true');
     var detalle = fila.nextElementSibling;
     if (detalle && detalle.classList.contains('detalle')) {
-      detalle.hidden = abierto;
+      detalle.hidden = expandido;
     }
   });
 })();
 """
 
 
-def filtros(campos: list, total: int) -> str:
-    """Una fila de desplegables sobre la tabla.
+def filtro_columna(campo: str, opciones: list) -> str:
+    """El botoncito de filtro que va DENTRO de la cabecera de una columna.
 
-    `campos` es [(campo, rotulo, [opciones])]. Solo se dibuja el desplegable
-    que tenga mas de una opcion: filtrar por algo que no varia no sirve.
+    Devuelve cadena vacia si la columna no tiene mas de un valor distinto:
+    filtrar por algo que no varia solo estorba.
     """
-    piezas = []
-    for campo, rotulo, opciones in campos:
-        opciones = [o for o in opciones if o]
-        if len(opciones) < 2:
-            continue
-        items = "".join(f'<option value="{e(o)}">{e(o)}</option>' for o in opciones)
-        piezas.append(
-            f'<label>{e(rotulo)}<select data-campo="{e(campo)}">'
-            f'<option value="">todas</option>{items}</select></label>')
-    if not piezas:
+    opciones = [o for o in dict.fromkeys(opciones) if o]
+    if len(opciones) < 2:
         return ""
-    return (f'<div class="filtros">{"".join(piezas)}'
-            f'<span class="cuenta">{total} tarjetas</span></div>')
+    items = ['<button type="button" data-valor="" aria-checked="true">Todas</button>']
+    items += [f'<button type="button" data-valor="{e(o)}" aria-checked="false">'
+              f'{e(o)}</button>' for o in opciones]
+    return (f'<span class="filtro" data-campo="{e(campo)}" data-valor="">'
+            f'<button type="button" aria-expanded="false" '
+            f'aria-label="Filtrar por {e(campo)}">▾</button>'
+            f'<div class="menu" hidden>{"".join(items)}</div></span>')
 
 
 def seccion(titulo: str, que_es: str, cinta: str = "", color: str = "") -> str:

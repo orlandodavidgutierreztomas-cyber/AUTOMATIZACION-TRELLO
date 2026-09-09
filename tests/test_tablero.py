@@ -657,13 +657,14 @@ def test_las_atrasadas_salen_primero():
 
 
 def test_la_tabla_trae_filtro_de_familia():
-    """Lo que pidio el usuario: poder quedarse solo con encofrados o aceros."""
+    """Lo que pidio el usuario: el boton va en la cabecera Familia."""
     from trello_auto.tablero import _sin_cerrar
     html = _sin_cerrar([_fila(pend=1, familia="Encofrado"),
                         _fila(pend=1, familia="Acero")])
-    assert 'data-campo="familia"' in html
-    assert '<option value="Encofrado">' in html
-    assert '<option value="Acero">' in html
+    # El desplegable cuelga de la cabecera, no de una barra aparte
+    assert '<th>Familia<span class="filtro" data-campo="familia"' in html
+    assert 'data-valor="Encofrado"' in html
+    assert 'data-valor="Acero"' in html
     # Y cada fila declara la suya, que es de lo que tira el filtro
     assert 'data-familia="Encofrado"' in html
 
@@ -672,7 +673,8 @@ def test_no_se_pinta_un_filtro_de_una_sola_opcion():
     """Un desplegable con una sola familia no filtra nada: estorba."""
     from trello_auto.tablero import _sin_cerrar
     html = _sin_cerrar([_fila(pend=1, familia="Acero"), _fila(pend=2, familia="Acero")])
-    assert 'data-campo="familia"' not in html
+    assert 'class="filtro"' not in html
+    assert "<th>Familia</th>" in html
 
 
 def test_la_antiguedad_lleva_la_fecha_al_lado_sin_ano():

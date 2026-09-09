@@ -25,7 +25,7 @@ from .web import (
     color_de,
     e,
     escribir,
-    filtros,
+    filtro_columna,
     grafico_linea,
     kpi,
     pagina,
@@ -233,29 +233,20 @@ def _sin_cerrar(filas: list, rotulo: str = "Sin cerrar") -> str:
             f'<tr class="detalle" hidden><td colspan="6">{_desglose(f)}</td></tr>')
 
     caja = f"tabla-{abs(hash(rotulo)) % 100000}"
-    sel = filtros([
-        ("familia", "Familia", sorted({f["FAMILIA"] for f in pendientes})),
-        ("edad", "Antiguedad", [t for t in ("hoy", "1 dia")
-                                if any(_edad(f["ANTIGUEDAD (dias)"])[1] == t
-                                       for f in pendientes)]
-         + sorted({_edad(f["ANTIGUEDAD (dias)"])[1] for f in pendientes
-                   if f["ANTIGUEDAD (dias)"] >= 2},
-                  key=lambda x: int(x.split()[0]))),
-        ("resp", "Responsable",
-         [ajustes.RESPONSABLES[c].get("nombre", c) for c in codigos
-          if any(f.get(c) for f in pendientes)]),
-    ], len(pendientes))
+    filtro = filtro_columna("familia", sorted({f["FAMILIA"] for f in pendientes}))
 
     return (
         f'<h2>{e(rotulo)} · {len(pendientes)} tarjetas'
         + (f' · {atrasadas} atrasadas' if atrasadas else '')
         + '</h2>'
-        + f'<div class="bloque-tabla" id="{caja}">{sel}'
+        + f'<div class="bloque-tabla" id="{caja}">'
         + '<div class="tabla-caja"><table><thead><tr>'
-        + '<th>Sector</th><th>Actividad</th><th>Familia</th><th>Antiguedad</th>'
-        + '<th>Pend.</th><th>Quien debe marcar</th>'
-        + f'</tr></thead><tbody>{"".join(cuerpo)}</tbody></table></div></div>'
-        + '<div class="sub" style="margin-top:10px">Toca una fila para ver '
+        + '<th>Sector</th><th>Actividad</th>'
+        + f'<th>Familia{filtro}</th>'
+        + '<th>Antiguedad</th><th>Pend.</th><th>Quien debe marcar</th>'
+        + f'</tr></thead><tbody>{"".join(cuerpo)}</tbody></table></div>'
+        + f'<div class="cuenta">{len(pendientes)} tarjetas</div></div>'
+        + '<div class="sub" style="margin-top:6px">Toca una fila para ver '
           'cuantos checks debe cada responsable.</div>'
         + '<div style="height:22px"></div>')
 
