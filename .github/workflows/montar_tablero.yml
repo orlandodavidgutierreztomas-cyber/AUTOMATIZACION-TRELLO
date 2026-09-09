@@ -66,10 +66,21 @@ jobs:
             solo-plantillas) ARGS+=(--solo-plantillas) ;;
           esac
           if [ "${{ inputs.dry_run }}" = "true" ]; then ARGS+=(--dry-run); fi
-          python -m trello_auto.montar_tablero ${ARGS[@]+"${ARGS[@]}"}
+          python -m trello_auto.montar_tablero ${ARGS[@]+"${ARGS[@]}"} 2>&1 | tee salida.txt
+
+      - name: Que paso
+        if: always()
+        run: |
+          {
+            echo "### Montar tablero"
+            echo ""
+            echo '```'
+            tail -n 40 salida.txt 2>/dev/null || echo "(sin salida)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Siguiente paso
-        if: inputs.dry_run != true
+        if: success() && inputs.dry_run != true
         run: |
           {
             echo "### Tablero montado"

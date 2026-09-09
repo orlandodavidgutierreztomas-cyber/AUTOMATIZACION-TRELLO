@@ -137,6 +137,15 @@ https://trello.com/b/gzoZo6ip/aulas-control-diario
                      esto es lo que va en obra.tablero
 ```
 
+**Puedes pegar la URL entera.** El sistema se queda con el código él solo, así
+que las tres formas valen y dan lo mismo:
+
+| Lo que pegas | Lo que guarda |
+|---|---|
+| `https://trello.com/b/gzoZo6ip/aulas-control-diario` | `gzoZo6ip` |
+| `gzoZo6ip/aulas-control-diario` | `gzoZo6ip` |
+| `gzoZo6ip` | `gzoZo6ip` |
+
 **Para cambiarlo:** Actions → **Configurar** → *Run workflow* → campo **TABLERO**.
 No importa en qué espacio de trabajo esté; basta con que tus credenciales de
 Trello tengan acceso a él.

@@ -820,3 +820,37 @@ def test_ninguna_tarjeta_desaparece_del_tablero_por_su_estado(tmp_path, monkeypa
                                 "todo")).read_text(encoding="utf-8")
     assert "Donde esta cada tarjeta" in html
     assert "ACERO EN ZAPATAS" in html
+
+
+# --- el codigo del tablero --------------------------------------------------
+@pytest.mark.parametrize("pegado", [
+    "https://trello.com/b/gzoZo6ip/aulas-control-diario",
+    "https://trello.com/b/gzoZo6ip/aulas-control-diario/",
+    "http://trello.com/b/gzoZo6ip/aulas-control-diario",
+    "trello.com/b/gzoZo6ip/aulas",
+    "gzoZo6ip/aulas-control-diario",
+    "gzoZo6ip",
+    "  gzoZo6ip  ",
+])
+def test_vale_pegar_la_url_del_tablero(pegado):
+    """Lo natural es copiar la barra del navegador. Pegar la URL entera era la
+    equivocacion facil, y Trello no avisa: responde un 404 seco."""
+    from trello_auto.ajustes import codigo_de_tablero
+    assert codigo_de_tablero(pegado) == "gzoZo6ip"
+
+
+def test_el_tablero_configurado_es_un_codigo_no_una_url():
+    """Si en el JSON quedara pegada media URL, todos los robots fallarian."""
+    from trello_auto.ajustes import codigo_de_tablero
+    assert ajustes.BOARD_ID
+    assert codigo_de_tablero(ajustes.BOARD_ID) == ajustes.BOARD_ID
+    assert ajustes.BOARD_ID.isalnum(), (
+        f"obra.tablero deberia ser solo el codigo, y es {ajustes.BOARD_ID!r}")
+
+
+def test_configurar_limpia_la_url_antes_de_guardarla():
+    from trello_auto.configurar import validar
+    assert validar("https://trello.com/b/LzqD0qZh/prueba", "tablero") == "LzqD0qZh"
+    assert validar("LzqD0qZh/prueba", "tablero") == "LzqD0qZh"
+    with pytest.raises(ValueError):
+        validar("no es un tablero", "tablero")

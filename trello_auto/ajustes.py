@@ -86,7 +86,35 @@ TRELLO_TOKEN = _env("TRELLO_TOKEN")
 # OBRA
 # ---------------------------------------------------------------------------
 NOMBRE_OBRA = _env("NOMBRE_OBRA", dato("obra.nombre", "OBRA"))
-BOARD_ID = _env("BOARD_ID", dato("obra.tablero"))
+
+
+def codigo_de_tablero(valor) -> str:
+    """Saca el codigo del tablero de lo que sea que hayan pegado.
+
+    Lo natural es copiar la URL de la barra del navegador, asi que se aceptan
+    las tres formas y todas dan lo mismo:
+
+        https://trello.com/b/gzoZo6ip/aulas-control-diario  ->  gzoZo6ip
+        gzoZo6ip/aulas-control-diario                       ->  gzoZo6ip
+        gzoZo6ip                                            ->  gzoZo6ip
+
+    Pegar la URL entera era la equivocacion facil, y la API de Trello no
+    avisa: responde un 404 seco.
+    """
+    if not valor:
+        return valor
+    texto = str(valor).strip().strip("/")
+    if "trello.com" in texto:
+        # .../b/<codigo>/<nombre-bonito>  o  .../c/<codigo>/...
+        partes = texto.split("trello.com/", 1)[1].split("/")
+        if partes and partes[0] in ("b", "c") and len(partes) > 1:
+            return partes[1]
+        return partes[0] if partes else texto
+    # "codigo/nombre-bonito" -> el codigo es lo de delante de la barra
+    return texto.split("/")[0].split("?")[0]
+
+
+BOARD_ID = codigo_de_tablero(_env("BOARD_ID", dato("obra.tablero")))
 TZ_OBRA = _env("TZ_OBRA", dato("obra.zona_horaria", "America/Lima"))
 
 # ---------------------------------------------------------------------------
@@ -232,7 +260,9 @@ def exigir_credenciales():
         )
     if not BOARD_ID:
         raise SystemExit(
-            "ERROR: falta el tablero. Ponlo en configuracion.json -> obra.tablero."
+            "ERROR: falta el tablero. Ponlo en configuracion.json -> "
+            "obra.tablero, o con el boton 'Configurar'. "
+            "Vale la URL entera del tablero."
         )
 
 

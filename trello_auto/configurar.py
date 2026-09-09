@@ -55,7 +55,7 @@ CAMPOS = [
     ("hora_archivar", "HORA_ARCHIVAR", "relojes.archivar.hora", "hora"),
     ("dias", "DIAS_HABILES", "relojes.*.dias", "dias"),
     ("tz", "TZ_OBRA", "obra.zona_horaria", "tz"),
-    ("tablero", "BOARD_ID", "obra.tablero", "texto"),
+    ("tablero", "BOARD_ID", "obra.tablero", "tablero"),
     ("hoja", "HOJA", "cronograma.hoja", "texto"),
     ("fila_fechas", "FILA_FECHAS", "cronograma.fila_fechas", "entero"),
     ("primera_fila_datos", "PRIMERA_FILA_DATOS", "cronograma.primera_fila_datos", "entero"),
@@ -92,6 +92,15 @@ def validar(valor: str, tipo: str):
         if not v.isalpha():
             raise ValueError(f"Columna invalida: {valor!r}. Usa una letra como 'C'.")
         return v
+    if tipo == "tablero":
+        # Se acepta la URL entera; se guarda solo el codigo
+        from .ajustes import codigo_de_tablero
+        codigo = codigo_de_tablero(valor)
+        if not codigo or not codigo.isalnum():
+            raise ValueError(
+                f"Tablero invalido: {valor!r}. Pega la URL del tablero "
+                f"(https://trello.com/b/XXXXXXXX/...) o solo su codigo.")
+        return codigo
     if tipo == "criterio":
         v = valor.lower()
         if v not in ("checklist", "auto", "marcada"):
