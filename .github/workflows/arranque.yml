@@ -1,0 +1,102 @@
+# ===========================================================================
+#  ARRANQUE - que parte de la obra ya estaba hecha antes de entrar el sistema
+# ---------------------------------------------------------------------------
+#  El sistema casi nunca arranca el primer dia de obra. Cuando se pone en
+#  marcha, el cronograma ya tiene cientos de actividades con fecha pasada, y
+#  muchas estan hechas: la obra avanzo, pero el sistema no lo vio.
+#
+#  Si nadie se lo dice, el avance sale en 0% con medio primer piso levantado,
+#  y el cumplimiento del Last Planner queda falseado desde el primer dia.
+#
+#  Esto se declara UNA VEZ, al empezar. Se puede corregir cuantas veces haga
+#  falta: reemplaza el punto de partida, nunca lo suma dos veces.
+#
+#  Corre primero con dry_run para ver cuantas tareas hay antes del arranque.
+# ===========================================================================
+name: Arranque de la obra
+
+on:
+  workflow_dispatch:
+    inputs:
+      hechas:
+        description: "Cuanto de lo anterior al arranque ya estaba hecho"
+        required: true
+        default: "ver"
+        type: choice
+        options: [ver, todas, ninguna, hasta]
+      hasta:
+        description: "Con 'hasta': estaba hecho lo anterior a esta fecha (AAAA-MM-DD)"
+        required: false
+        default: ""
+      numero:
+        description: "O la cifra exacta de tareas hechas (deja 'hechas' en ver)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Solo mostrar, sin anotar nada (recomendado la 1a vez)"
+        required: false
+        default: true
+        type: boolean
+
+concurrency:
+  group: tablero-${{ github.repository }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  arranque:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Declarar el arranque
+        env:
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          HECHAS: ${{ inputs.hechas }}
+          HASTA: ${{ inputs.hasta }}
+          NUMERO: ${{ inputs.numero }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ -n "${NUMERO:-}" ]; then
+            ARGS+=(--hechas "$NUMERO")
+          elif [ "${HECHAS:-ver}" != "ver" ]; then
+            ARGS+=(--hechas "$HECHAS")
+          else
+            ARGS+=(--ver)
+          fi
+          if [ -n "${HASTA:-}" ]; then ARGS+=(--hasta "$HASTA"); fi
+          if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
+          python -m trello_auto.arranque "${ARGS[@]}" 2>&1 | tee salida.txt
+
+      - name: Que paso
+        if: always()
+        run: |
+          {
+            echo "### Arranque de la obra"
+            echo ""
+            echo '```'
+            tail -n 40 salida.txt 2>/dev/null || echo "(sin salida)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Guardar el punto de partida
+        if: success() && inputs.dry_run != true
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reportes/culminadas.csv
+          git diff --staged --quiet || git commit -m "Arranque de obra declarado"
+          git push

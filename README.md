@@ -24,6 +24,7 @@ computadora encendida.
 - [Cómo empareja cada tarjeta con su plantilla](#cómo-empareja-cada-tarjeta-con-su-plantilla)
 - [El cierre en dos fases](#el-cierre-en-dos-fases)
 - [**Elegir el tablero**](#-elegir-el-tablero) ← si tienes varios
+- [**La obra ya venía avanzada**](#-la-obra-ya-venía-avanzada) ← al empezar
 - [**Llevarlo a otra obra**](#-llevarlo-a-otra-obra) ← guía completa
 - [**Todos los parámetros**](#-todos-los-parámetros) ← referencia
 - [Las horas y los relojes](#-las-horas-y-los-relojes)
@@ -161,6 +162,41 @@ el tablero equivocado.
 > **Un repositorio = un tablero.** Para llevar dos obras a la vez, duplica el
 > repositorio: cada una con su cronograma, sus horas y su mapeo, sin
 > interferirse. Cambiar `obra.tablero` **cambia** de tablero, no añade uno.
+
+---
+
+## 🏁 La obra ya venía avanzada
+
+El sistema casi nunca arranca el primer día de obra. Cuando se pone en marcha,
+el cronograma ya tiene cientos de actividades con fecha pasada, y muchas están
+hechas: la obra avanzó, pero el sistema no lo vio.
+
+Si nadie se lo dice, el dashboard mostraría **0% de avance** con medio primer
+piso levantado, y el cumplimiento del Last Planner quedaría falseado desde el
+primer día.
+
+**Se declara una vez**, con el botón **Arranque de la obra**:
+
+1. Pon la fecha en `obra.arranque` (vacío = hoy). Es el día en que el sistema
+   toma el control; lo anterior es historia que no vio.
+2. Corre el botón con `hechas: ver` para saber cuántas tareas hay antes de esa
+   fecha. En esta obra son **277 de 1447**.
+3. Vuelve a correrlo diciendo cuántas ya estaban hechas:
+
+| Respuesta | Cuándo |
+|---|---|
+| `todas` | La obra viene al día y el sistema entra hoy |
+| `ninguna` | El plan empieza de cero |
+| `hasta` + una fecha | Estaba hecho lo anterior a esa fecha; lo de en medio quedó pendiente. **Es el caso real cuando la obra viene con retraso** |
+| un número | La cifra exacta, si la sabes de tu propio control |
+
+Eso queda anotado como **punto de partida** en `reportes/culminadas.csv`. A
+partir de ahí el sistema sigue solo: cada cierre suma lo culminado del día.
+
+El dashboard lo dice por separado —«de esas, 145 ya estaban hechas al arrancar y
+23 se han cerrado con el sistema»— para que nadie le atribuya a los robots un
+avance que ya venía hecho. Se puede corregir cuantas veces haga falta:
+**reemplaza** el punto de partida, nunca lo suma dos veces.
 
 ---
 
@@ -389,9 +425,14 @@ funcionando aunque el repositorio pase a privado.
 
 ### Los datos en bruto
 
-Debajo del dashboard hay lo mismo en crudo, por si alguien quiere llevarlo a
-su propia hoja: `reportes/ultimo.csv` es el corte de ahora y
-`reportes/cortes.csv` el histórico acumulado.
+| Archivo | Qué es |
+|---|---|
+| `reportes/ultimo.csv` | La foto del tablero ahora: una fila por tarjeta. Lo lee el dashboard y **se reemplaza en cada corte** |
+| `reportes/culminadas.csv` | Cuántas tarjetas se culminaron cada día. Es la **memoria del avance**, y de ahí sale la gráfica de tendencia |
+
+Del pasado solo se guarda lo cumplido, porque es lo único que hace falta para
+el avance: lo que sigue abierto ya se ve en el tablero y en el bloque *Por
+cerrar* del dashboard.
 
 ---
 
@@ -405,6 +446,8 @@ su propia hoja: `reportes/ultimo.csv` es el corte de ahora y
 | **Aplicar mapeo revisado** | Aplica el cuadro Excel con desplegables, para cambios masivos |
 | **Montar tablero** | Crea columnas y plantillas genéricas desde el cronograma |
 | **Limpiar duplicadas** | Archiva copias vacías; nunca las que tienen trabajo |
+| **Reubicar tarjetas de una lista** | Vacía una columna repartiendo por familia; sirve también para deshacer |
+| **Arranque de la obra** | Declara qué parte ya estaba hecha antes de entrar el sistema |
 
 ### El cuadro de verificación del mapeo
 
@@ -501,6 +544,7 @@ python -m trello_auto.archivar --dry-run
 python -m trello_auto.limpiar_duplicadas --dry-run
 python -m trello_auto.reubicar --desde "NO CUMPLIDAS" --dry-run
 python -m trello_auto.montar_tablero --dry-run
+python -m trello_auto.arranque --ver
 python -m trello_auto.sincronizar
 python -m trello_auto.configurar --ver
 python -m trello_auto.revisar --vista
@@ -508,12 +552,11 @@ python -m trello_auto.revisar --vista
 
 Todos aceptan `--dry-run`: muestran qué harían sin tocar nada.
 
-### Pruebas
+### Revisar el codigo
 
 ```bash
 pip install -r requirements-dev.txt
-pytest -q                          # 160 pruebas, ninguna toca Trello
-ruff check trello_auto tests
+ruff check trello_auto
 ```
 
 ---
@@ -531,11 +574,12 @@ ruff check trello_auto tests
 | `trello_auto/preparar.py` … `archivar.py` | Los seis robots |
 | `trello_auto/reporte.py` · `tablero.py` · `web.py` | El corte y las páginas |
 | `trello_auto/historico.py` | Culminadas por día y series de tendencia |
+| `trello_auto/arranque.py` | Lo que ya estaba hecho antes de entrar el sistema |
 | `trello_auto/estado.py` | Qué papel juega cada lista del tablero |
 | `trello_auto/sincronizar.py` · `configurar.py` · `revisar.py` | Los botones |
 | `trello_auto/montar_tablero.py` · `limpiar_duplicadas.py` · `reubicar.py` | Mantenimiento |
 | `data/` | El cronograma y su respaldo |
-| `reportes/` | Los cortes acumulados y las culminadas por día |
+| `reportes/` | La foto de ahora y las culminadas por día |
 | `docs/` | Lo que publica GitHub Pages |
 
 ---

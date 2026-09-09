@@ -13,19 +13,17 @@ Seguridad) y escribe un CSV con una fila por tarjeta.
 
 Cada corrida es un CORTE con su fecha y hora. Puedes hacer los que quieras
 al dia -a mediodia, a las tres, antes del cierre-: SOLO LEE, nunca escribe
-en Trello. Los cortes se van acumulando en el historico, asi que del CSV
-sale tanto la foto de ahora como la pelicula de como evoluciona el pendiente.
+en Trello, y cada corte REEMPLAZA al anterior.
+
+No se guarda la foto de cada corte. Del pasado lo que importa es el avance y
+el cumplimiento, y eso lo lleva el cierre en reportes/culminadas.csv.
 
 ALCANCE (--alcance)
   dia   Las listas del dia            (lo programado y lo que se adelanto)
   todo  Ademas, las de "por cerrar"   (lo que quedo abierto y se reprograma)
 
 SALIDA
-  reportes/ultimo.csv   solo este corte (el que lee tu dashboard)
-  reportes/cortes.csv   historico acumulado de todos los cortes
-
-Repetir un corte en el mismo minuto lo REEMPLAZA en el historico, no lo
-duplica: el CSV nunca cuenta dos veces lo mismo.
+  reportes/ultimo.csv   el corte de ahora (el que lee tu dashboard)
 
 USO
 ---
@@ -130,16 +128,6 @@ def escribir_csv(ruta, filas: list, cabecera: list):
         w.writerows(filas)
 
 
-def acumular_historico(ruta, filas: list, cabecera: list, corte_txt: str):
-    """Anade el corte al historico, reemplazandolo si ya estaba."""
-    previas = []
-    if os.path.exists(ruta):
-        with open(ruta, encoding="utf-8-sig", newline="") as f:
-            previas = [r for r in csv.DictReader(f) if r.get("CORTE") != corte_txt]
-    escribir_csv(ruta, previas + filas, cabecera)
-    return len(previas)
-
-
 def main() -> int:
     ap = argparse.ArgumentParser(
         description="Genera el corte de control y lo deja en CSV para el dashboard.")
@@ -200,10 +188,7 @@ def main() -> int:
         print("\n (DRY-RUN: no se escribio ningun archivo.)")
     else:
         escribir_csv(ajustes.ARCHIVO_ULTIMO, filas, cabecera)
-        previas = acumular_historico(ajustes.ARCHIVO_HISTORICO, filas, cabecera, corte_txt)
         print(f"\n Escrito: {ajustes.ARCHIVO_ULTIMO.name} ({len(filas)} filas)")
-        print(f" Historico: {ajustes.ARCHIVO_HISTORICO.name} "
-              f"({previas + len(filas)} filas en total)")
 
         # El dashboard web, que es lo que publica GitHub Pages
         from .tablero import generar

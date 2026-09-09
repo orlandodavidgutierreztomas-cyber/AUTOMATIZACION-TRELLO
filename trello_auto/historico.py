@@ -17,11 +17,12 @@ Para eso hay que guardar lo que pasa cada dia. Aqui viven los dos registros:
                        termina no se archiva, se reprograma, y sigue vivo en
                        su lista de por cerrar hasta que se haga.
 
-  reportes/cortes.csv  Todos los cortes del reporte, con una fila por tarjeta.
-                       De ahi sale la evolucion del pendiente dentro del dia.
+Se REEMPLAZA por fecha, nunca se duplica: repetir el cierre de un dia
+corrige la cifra en vez de sumarla dos veces.
 
-Los dos se REEMPLAZAN por clave, nunca se duplican: repetir un cierre o un
-corte del mismo momento sobreescribe esa fila en vez de anadir otra.
+No se guarda la foto entera del tablero en cada corte. Lo que hay que ver es
+el AVANCE y el CUMPLIMIENTO, y para eso basta con lo culminado: lo que esta
+abierto ahora mismo ya se ve en el tablero y en el dashboard del dia.
 ============================================================================
 """
 
@@ -37,7 +38,7 @@ COLUMNAS_DIA = ["FECHA", "CULMINADAS"]
 
 
 def _ruta_dia():
-    return ajustes.CARPETA_REPORTES / "culminadas.csv"
+    return ajustes.ARCHIVO_CULMINADAS
 
 
 def _leer_csv(ruta) -> list:
@@ -109,36 +110,20 @@ def avance_de_obra() -> dict:
     programadas_a_hoy = sum(1 for t in plan if (t.get("fecha") or "") <= hoy.isoformat())
     culminadas = sum(c for _f, c in serie_culminadas(0))
 
+    # Lo que ya estaba hecho antes de que el sistema entrara. Se declara una
+    # vez con el robot 'arranque' y va dentro de las culminadas, pero se
+    # informa aparte: no lo hicieron los robots, y quien lea el dashboard
+    # tiene que poder distinguirlo.
+    from .arranque import punto_de_partida
+    partida = punto_de_partida()
+
     return {
         "total_plan": total_plan,
         "programadas_a_hoy": programadas_a_hoy,
         "culminadas": culminadas,
+        "punto_de_partida": partida,
+        "culminadas_con_el_sistema": culminadas - partida,
         "avance_real": round(culminadas / total_plan * 100, 1) if total_plan else 0,
         "avance_previsto": round(programadas_a_hoy / total_plan * 100, 1) if total_plan else 0,
         "desvio": culminadas - programadas_a_hoy,
     }
-
-
-# ---------------------------------------------------------------------------
-# Cortes — la evolucion del pendiente
-# ---------------------------------------------------------------------------
-def serie_pendientes(cortes: int = 20) -> list:
-    """[(etiqueta_corte, checks_pendientes, tarjetas)] de los ultimos cortes."""
-    filas = _leer_csv(ajustes.ARCHIVO_HISTORICO)
-    grupos = {}
-    for f in filas:
-        corte = f.get("CORTE")
-        if not corte:
-            continue
-        acumulado = grupos.setdefault(corte, {"pend": 0, "n": 0})
-        try:
-            acumulado["pend"] += int(f.get("CHECKS PENDIENTES") or 0)
-        except ValueError:
-            pass
-        acumulado["n"] += 1
-
-    salida = []
-    for corte in sorted(grupos):
-        etiqueta = corte[5:16].replace("-", "/") if len(corte) >= 16 else corte
-        salida.append((etiqueta, grupos[corte]["pend"], grupos[corte]["n"]))
-    return salida[-cortes:] if cortes else salida

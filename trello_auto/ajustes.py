@@ -233,8 +233,11 @@ CRITERIO_CIERRE = str(_env("CRITERIO_CIERRE", dato("cierre.criterio", "checklist
 # REPORTES
 # ---------------------------------------------------------------------------
 CARPETA_REPORTES = RAIZ / dato("reportes.carpeta", "reportes")
-ARCHIVO_HISTORICO = RAIZ / dato("reportes.historico", "reportes/cortes.csv")
 ARCHIVO_ULTIMO = RAIZ / dato("reportes.ultimo", "reportes/ultimo.csv")
+# La memoria de la obra: cuantas tarjetas se culminaron cada dia. Es lo unico
+# del pasado que se guarda, porque es lo unico que hace falta para el avance
+# y el cumplimiento; lo que sigue abierto ya se ve en el tablero.
+ARCHIVO_CULMINADAS = RAIZ / dato("reportes.culminadas", "reportes/culminadas.csv")
 
 # ---------------------------------------------------------------------------
 # WEB — lo que publica GitHub Pages

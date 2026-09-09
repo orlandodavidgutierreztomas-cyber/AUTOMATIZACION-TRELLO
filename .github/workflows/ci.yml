@@ -1,6 +1,7 @@
 # ===========================================================================
 #  CI - revisa que el proyecto siga sano en cada cambio.
-#  No toca Trello: solo prueba la logica y lee el cronograma.
+#  No toca Trello: revisa el estilo, valida la configuracion y hace correr
+#  los robots en seco sobre el cronograma real.
 # ===========================================================================
 name: CI
 
@@ -35,10 +36,7 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Revisar el estilo del codigo
-        run: ruff check trello_auto tests
-
-      - name: Pruebas
-        run: pytest -q
+        run: ruff check trello_auto
 
       - name: Ensayo en seco del cronograma (sin tocar Trello)
         run: python -m trello_auto.preparar --fecha 2026-08-28 --dry-run

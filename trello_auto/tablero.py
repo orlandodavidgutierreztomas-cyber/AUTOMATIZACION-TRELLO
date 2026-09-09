@@ -273,12 +273,30 @@ def _avance_de_obra() -> str:
                          f'Previsto por el plan a dia de hoy · '
                          f'{a["programadas_a_hoy"]} tareas', "")
         + f'<div class="sub" style="margin-top:10px">{e(estado)}</div>'
+        + _origen_del_avance(a)
         + '</div>')
+
+
+def _origen_del_avance(a: dict) -> str:
+    """De donde sale lo ejecutado: lo que ya venia hecho y lo que se cerro aqui.
+
+    Sin esta linea, quien lea el dashboard le atribuye al sistema un avance
+    que en buena parte ya estaba hecho antes de que existiera.
+    """
+    partida = a.get("punto_de_partida") or 0
+    if not partida:
+        return ('<div class="sub" style="margin-top:4px">Todo lo ejecutado se '
+                'cerro con el sistema. Si la obra ya venia avanzada al '
+                'empezar, declaralo con el boton <b>Arranque</b>.</div>')
+    return (f'<div class="sub" style="margin-top:4px">De esas, '
+            f'<b>{e(partida)}</b> ya estaban hechas al arrancar y '
+            f'<b>{e(a.get("culminadas_con_el_sistema", 0))}</b> se han '
+            f'cerrado con el sistema.</div>')
 
 
 def _tendencias() -> str:
     """Las graficas que solo tienen sentido con varios dias acumulados."""
-    from .historico import serie_culminadas, serie_pendientes
+    from .historico import serie_culminadas
 
     paneles = []
 
@@ -293,20 +311,10 @@ def _tendencias() -> str:
             f'{sum(c for _d, c in culminadas)} en los ultimos '
             f'{len(culminadas)} dias de cierre.</div></div>')
 
-    pendientes = serie_pendientes(20)
-    if len(pendientes) >= 2:
-        paneles.append(
-            '<div class="tarjeta"><h2>Checks pendientes en el tiempo</h2>'
-            + grafico_linea([(et, v) for et, v, _n in pendientes], color="var(--s2)")
-            + '<div class="sub" style="margin-top:8px">Cada punto es un corte '
-            'del reporte. Si la linea baja, el control se esta poniendo al '
-            'dia.</div></div>')
-
     if not paneles:
-        return ('<div class="nota">Las graficas de tendencia apareceran solas '
-                'en cuanto haya varios dias de datos: las <b>culminadas</b> se '
-                'anotan en cada cierre definitivo, y los <b>checks '
-                'pendientes</b> en cada corrida del reporte.</div>')
+        return ('<div class="nota">La grafica de tendencia aparecera sola en '
+                'cuanto haya varios dias de datos: las <b>culminadas</b> se '
+                'anotan en cada cierre definitivo.</div>')
 
     return f'<div class="paneles">{"".join(paneles)}</div>'
 

@@ -1,9 +1,11 @@
 {
   "_ayuda": "Todo lo propio de ESTA obra vive aqui. El codigo Python es generico. Se edita desde Actions -> 'Configurar' (Run workflow), o a mano. Las credenciales NO van aqui: van en los Secrets del repositorio.",
   "obra": {
+    "_ayuda": "tablero: vale la URL entera (https://trello.com/b/XXXXXXXX/...) o solo su codigo. arranque: el dia en que el sistema toma el control de la obra; lo anterior a esa fecha es historia que el sistema no vio, y se declara una vez con el boton 'Arranque'. Vacio = hoy.",
     "nombre": "CONSTRUCCION DE AULAS",
     "tablero": "LzqD0qZh",
-    "zona_horaria": "America/Lima"
+    "zona_horaria": "America/Lima",
+    "arranque": ""
   },
   "cronograma": {
     "_ayuda": "Como esta hecho tu Excel. fila_fechas y primera_fila_datos se cuentan como en Excel (la primera fila es la 1). columna_actividad es la letra de la columna.",
@@ -164,12 +166,13 @@
     "criterio": "auto"
   },
   "reportes": {
+    "_ayuda": "ultimo.csv es la foto del tablero ahora, la que lee el dashboard, y se reemplaza en cada corte. culminadas.csv lleva cuantas tarjetas se culminaron cada dia: es la memoria del avance, y de ahi salen las graficas.",
     "carpeta": "reportes",
-    "historico": "reportes/cortes.csv",
-    "ultimo": "reportes/ultimo.csv"
+    "ultimo": "reportes/ultimo.csv",
+    "culminadas": "reportes/culminadas.csv"
   },
   "web": {
-    "_ayuda": "Carpeta que publica GitHub Pages. Settings -> Pages -> Deploy from a branch -> main -> /docs. Ahi se escriben el dashboard y la vista del mapeo, y desde ahi se descarga el Excel.",
+    "_ayuda": "Carpeta que publica GitHub Pages. Settings -> Pages -> Deploy from a branch -> main -> /docs. Ahi se escriben el dashboard, la vista del mapeo y el estado del tablero.",
     "carpeta": "docs"
   }
 }
