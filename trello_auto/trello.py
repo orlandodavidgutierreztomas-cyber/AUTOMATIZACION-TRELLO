@@ -60,6 +60,13 @@ class Trello:
                 if r.status_code >= 500:                 # error temporal de Trello
                     time.sleep(2 ** intento)
                     continue
+                if 400 <= r.status_code < 500:
+                    # Culpa nuestra: reintentar no arregla nada. Y Trello
+                    # explica el motivo en el cuerpo ("invalid value for
+                    # idBoard"), asi que se enseña en vez de esconderlo.
+                    raise ErrorTrello(
+                        f"Trello rechazo {metodo} {path} "
+                        f"({r.status_code}): {r.text.strip()[:300]}")
                 r.raise_for_status()
                 return r.json() if r.text else None
             except requests.RequestException as e:
@@ -68,6 +75,30 @@ class Trello:
         raise ErrorTrello(
             f"Trello no respondio a {metodo} {path} tras {REINTENTOS} intentos: {ultimo_error}"
         )
+
+    # -- identidad del tablero ---------------------------------------------
+    def id_de_tablero(self, clave: str) -> str:
+        """El id LARGO del tablero (24 caracteres), a partir de lo que sea.
+
+        Trello tiene dos identificadores para el mismo tablero: el corto de la
+        URL ('gzoZo6ip') y el largo interno ('6a8d0919b526b14a46f722e1').
+
+        Para LEER da igual: el corto va en la ruta y Trello lo resuelve. Pero
+        cuando el tablero viaja como PARAMETRO -crear una lista manda
+        'idBoard'- solo vale el largo, y con el corto responde un 400 sin
+        explicar nada. De ahi que 'Montar tablero' leyera bien el tablero y
+        fallara justo al crear la primera columna.
+
+        Se resuelve una sola vez y se guarda.
+        """
+        if len(clave) == 24:
+            return clave
+        if not hasattr(self, "_ids_tablero"):
+            self._ids_tablero = {}
+        if clave not in self._ids_tablero:
+            datos = self._req("GET", f"/boards/{clave}", {"fields": "id"})
+            self._ids_tablero[clave] = datos["id"]
+        return self._ids_tablero[clave]
 
     # -- lectura -----------------------------------------------------------
     def listas(self, board_id: str) -> list:
@@ -107,9 +138,14 @@ class Trello:
         time.sleep(PAUSA_ESCRITURA)
 
     def crear_lista(self, board_id: str, nombre: str, pos="bottom") -> dict:
-        """Crea una lista (columna) en el tablero."""
+        """Crea una lista (columna) en el tablero.
+
+        Aqui el tablero viaja como parametro, asi que hace falta su id largo:
+        ver id_de_tablero().
+        """
         lst = self._req("POST", "/lists",
-                        {"idBoard": board_id, "name": nombre, "pos": pos})
+                        {"idBoard": self.id_de_tablero(board_id),
+                         "name": nombre, "pos": pos})
         time.sleep(PAUSA_ESCRITURA)
         return lst
 
