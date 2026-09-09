@@ -342,9 +342,16 @@ def generar(filas: list, corte: datetime, alcance: str) -> str:
               "alerta" if atrasadas else "ok")
     )
 
-    # 2. Como se reparten entre los tres ambitos
-    por_ambito = {clave: [f for f in filas if f.get("ESTADO") == clave]
-                  for clave, _t, _q, _c in AMBITOS}
+    # 2. Como se reparten entre los ambitos. Una fila con un estado que ya no
+    # existe (un corte viejo, una lista retirada) cae en "por cerrar": es
+    # trabajo abierto, y desaparecer del tablero seria peor que estar mal
+    # clasificada.
+    claves = [c for c, _t, _q, _c in AMBITOS]
+    refugio = claves[-1]
+    por_ambito = {clave: [] for clave in claves}
+    for f in filas:
+        estado = f.get("ESTADO")
+        por_ambito[estado if estado in por_ambito else refugio].append(f)
     reparto = barra_apilada([
         (titulo, len(por_ambito[clave]), color)
         for clave, titulo, _q, color in AMBITOS])

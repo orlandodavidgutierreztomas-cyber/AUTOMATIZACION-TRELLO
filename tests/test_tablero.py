@@ -5,6 +5,8 @@ Ninguna toca la red: todas trabajan sobre datos de ejemplo copiados del
 tablero real.
 """
 
+import pathlib
+
 import pytest
 
 from trello_auto import ajustes, horario
@@ -800,3 +802,21 @@ def test_reubicar_reparte_a_listas_que_existen_en_el_tablero():
                    "1CS7 - EXCAVACION DE CIMENTACIONES"):
         _familia, clave = destino_de_tarjeta(nombre)
         assert buscar_lista(LISTAS, clave), f"no existe la lista '{clave}'"
+
+
+def test_ninguna_tarjeta_desaparece_del_tablero_por_su_estado(tmp_path, monkeypatch):
+    """Un corte viejo trae estados que ya no existen (la lista retirada de
+    'no cumplidas', por ejemplo). Esa tarjeta sigue siendo trabajo abierto:
+    tiene que verse, aunque sea en el ambito de refugio."""
+    from datetime import datetime
+
+    from trello_auto import tablero
+    from trello_auto.tablero import generar
+    monkeypatch.setattr(tablero.ajustes, "CARPETA_WEB", tmp_path)
+
+    fila = _fila(pend=4, dias=3)
+    fila["ESTADO"] = "NO CUMPLIDA"          # un estado ya retirado
+    html = pathlib.Path(generar([fila], datetime(2026, 9, 8, 19, 0),
+                                "todo")).read_text(encoding="utf-8")
+    assert "Donde esta cada tarjeta" in html
+    assert "ACERO EN ZAPATAS" in html
