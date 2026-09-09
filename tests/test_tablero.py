@@ -307,7 +307,7 @@ def test_la_navegacion_enlaza_las_dos_paginas():
     for archivo, _ in PAGINAS:
         assert f'href="{archivo}"' in html
     assert 'class="activo"' in html          # marca en cual estas
-    assert "DASHBOARD_CONTROL.xlsx" in html  # y deja bajar el Excel
+    assert "DASHBOARD_CONTROL.xlsx" not in html  # el Excel se retiro
 
 
 def test_las_barras_no_revientan_sin_datos():

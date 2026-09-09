@@ -387,15 +387,11 @@ Son **autocontenidas**: los datos van dentro del archivo y no piden nada por
 internet. Se pueden descargar, mandar por correo o abrir sin conexión, y siguen
 funcionando aunque el repositorio pase a privado.
 
-### El dashboard de Excel
+### Los datos en bruto
 
-`docs/DASHBOARD_CONTROL.xlsx` conserva tus gráficos y tablas de apoyo.
-**Conectarlo (una vez):** Datos → Obtener datos → Desde web → la URL en bruto de
-`reportes/ultimo.csv` → cárgalo sobre la hoja `DATOS`. Después: **Actualizar
-todo**.
-
-Tu PC apagada no pierde nada: cuando la prendas y actualices, se trae **todos los
-cortes** que se hicieron mientras tanto.
+Debajo del dashboard hay lo mismo en crudo, por si alguien quiere llevarlo a
+su propia hoja: `reportes/ultimo.csv` es el corte de ahora y
+`reportes/cortes.csv` el histórico acumulado.
 
 ---
 

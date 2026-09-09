@@ -236,7 +236,6 @@ def navegacion(actual: str) -> str:
     for archivo, rotulo in PAGINAS:
         clase = ' class="activo"' if archivo == actual else ""
         enlaces.append(f'<a href="{archivo}"{clase}>{e(rotulo)}</a>')
-    enlaces.append('<a href="DASHBOARD_CONTROL.xlsx">Descargar Excel</a>')
     if ajustes.BOARD_ID:
         enlaces.append(f'<a href="https://trello.com/b/{e(ajustes.BOARD_ID)}" '
                        f'target="_blank" rel="noopener">Abrir el tablero</a>')
