@@ -141,6 +141,31 @@ CSS = """
   .seccion { margin:34px 0 18px; padding-top:20px; border-top:2px solid var(--borde); }
   .seccion h3 { font-size:17px; margin:0 0 4px; letter-spacing:-.01em; }
   .seccion .que { color:var(--suave); font-size:13.5px; }
+  [hidden] { display:none !important; }
+  .bloque-tabla { margin-bottom:4px; }
+  .filtros { display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+             margin-bottom:12px; }
+  .filtros label { font-size:12.5px; color:var(--suave); display:flex;
+                   align-items:center; gap:6px; }
+  .filtros select {
+    font:inherit; font-size:13px; padding:5px 9px; border-radius:7px;
+    border:1px solid var(--borde); background:var(--panel); color:var(--texto);
+  }
+  .filtros .cuenta { font-size:12.5px; color:var(--suave); margin-left:auto; }
+  tr.desplegable { cursor:pointer; }
+  tr.desplegable:hover td { background:var(--barra); }
+  .flecha { display:inline-block; width:14px; color:var(--suave);
+            transition:transform .15s; }
+  tr[aria-expanded="true"] .flecha { transform:rotate(90deg); }
+  tr.detalle > td { background:var(--fondo); padding:0; }
+  .desglose { padding:14px 18px; display:flex; gap:26px; flex-wrap:wrap;
+              align-items:flex-start; }
+  .desglose .quien { display:grid; grid-template-columns:auto 1fr auto;
+                     gap:6px 12px; align-items:center; font-size:13px;
+                     min-width:280px; }
+  .desglose .quien .pto { width:9px; height:9px; border-radius:3px; }
+  .desglose .quien b { font-variant-numeric:tabular-nums; }
+  .desglose .listo { color:var(--ok); font-size:13px; }
   .cinta { display:inline-block; font-size:11.5px; font-weight:600; padding:2px 9px;
            border-radius:999px; margin-left:8px; vertical-align:middle; }
 """
@@ -206,6 +231,83 @@ def navegacion(actual: str) -> str:
     temas = f'<span class="temas" role="group" aria-label="Tema">{botones}</span>'
 
     return "<nav>" + "".join(enlaces) + temas + "</nav>"
+
+
+# Filtrado de las tablas y despliegue del detalle de cada tarjeta.
+# Va en la propia pagina para que siga siendo UN archivo que funciona sin
+# conexion: no hay servidor al que preguntar ni libreria que cargar.
+SCRIPT_TABLA = """
+(function () {
+  function filtrar(caja) {
+    var selects = caja.querySelectorAll('.filtros select');
+    var criterios = {};
+    for (var i = 0; i < selects.length; i++) {
+      if (selects[i].value) { criterios[selects[i].dataset.campo] = selects[i].value; }
+    }
+    var filas = caja.querySelectorAll('tbody tr.desplegable');
+    var vistas = 0;
+    for (var j = 0; j < filas.length; j++) {
+      var fila = filas[j], ok = true;
+      for (var campo in criterios) {
+        var valor = fila.dataset[campo] || '';
+        // El campo de responsables lleva varios valores separados por coma
+        var lista = valor.split('|');
+        if (lista.indexOf(criterios[campo]) === -1) { ok = false; break; }
+      }
+      fila.hidden = !ok;
+      var detalle = fila.nextElementSibling;
+      if (detalle && detalle.classList.contains('detalle')) {
+        detalle.hidden = !ok || fila.getAttribute('aria-expanded') !== 'true';
+      }
+      if (ok) { vistas++; }
+    }
+    var cuenta = caja.querySelector('.cuenta');
+    if (cuenta) {
+      cuenta.textContent = vistas === filas.length
+        ? filas.length + ' tarjetas'
+        : vistas + ' de ' + filas.length + ' tarjetas';
+    }
+  }
+
+  document.addEventListener('change', function (ev) {
+    var sel = ev.target.closest && ev.target.closest('.filtros select');
+    if (sel) { filtrar(sel.closest('.bloque-tabla')); }
+  });
+
+  document.addEventListener('click', function (ev) {
+    if (ev.target.closest('a')) { return; }
+    var fila = ev.target.closest && ev.target.closest('tr.desplegable');
+    if (!fila) { return; }
+    var abierto = fila.getAttribute('aria-expanded') === 'true';
+    fila.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+    var detalle = fila.nextElementSibling;
+    if (detalle && detalle.classList.contains('detalle')) {
+      detalle.hidden = abierto;
+    }
+  });
+})();
+"""
+
+
+def filtros(campos: list, total: int) -> str:
+    """Una fila de desplegables sobre la tabla.
+
+    `campos` es [(campo, rotulo, [opciones])]. Solo se dibuja el desplegable
+    que tenga mas de una opcion: filtrar por algo que no varia no sirve.
+    """
+    piezas = []
+    for campo, rotulo, opciones in campos:
+        opciones = [o for o in opciones if o]
+        if len(opciones) < 2:
+            continue
+        items = "".join(f'<option value="{e(o)}">{e(o)}</option>' for o in opciones)
+        piezas.append(
+            f'<label>{e(rotulo)}<select data-campo="{e(campo)}">'
+            f'<option value="">todas</option>{items}</select></label>')
+    if not piezas:
+        return ""
+    return (f'<div class="filtros">{"".join(piezas)}'
+            f'<span class="cuenta">{total} tarjetas</span></div>')
 
 
 def seccion(titulo: str, que_es: str, cinta: str = "", color: str = "") -> str:
@@ -440,7 +542,7 @@ def pagina(archivo: str, titulo: str, subtitulo: str, cuerpo: str, pie: str) -> 
 {cuerpo}
 <footer>{pie}</footer>
 </div>
-<script>{SCRIPT_TEMA}</script>
+<script>{SCRIPT_TEMA}{SCRIPT_TABLA}</script>
 </body>
 </html>
 """

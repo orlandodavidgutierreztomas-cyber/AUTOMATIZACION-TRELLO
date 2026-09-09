@@ -25,6 +25,7 @@ from .web import (
     color_de,
     e,
     escribir,
+    filtros,
     grafico_linea,
     kpi,
     pagina,
@@ -122,8 +123,76 @@ def _resumen_ambito(filas: list, titulo: str) -> str:
         '</div>')
 
 
+def _edad(dias: int) -> tuple:
+    """(color, texto) de la antiguedad. Rojo para lo que lleva dias parado."""
+    if dias >= 2:
+        return "var(--alerta)", f"{dias} dias"
+    if dias == 1:
+        return "var(--serio)", "1 dia"
+    return "var(--aviso)", "hoy"
+
+
+def _dia_mes(vence: str) -> str:
+    """'2026-09-08 18:30' -> '08/09'. El año sobra: siempre es el de la obra."""
+    try:
+        aaaa, mm, dd = vence.split(" ")[0].split("-")
+        return f"{dd}/{mm}"
+    except (ValueError, AttributeError):
+        return ""
+
+
+def _desglose(f: dict) -> str:
+    """Cuantos checks debe cada responsable en esta tarjeta.
+
+    Es lo que se ve al desplegar la fila: en vez de mandar a Trello para
+    averiguarlo, el dato esta aqui mismo.
+    """
+    codigos = list(ajustes.CODIGOS_RESPONSABLE)
+    lineas = []
+    for codigo in codigos:
+        faltan = f.get(codigo) or 0
+        if not faltan:
+            continue
+        nombre = ajustes.RESPONSABLES[codigo].get("nombre", codigo)
+        color = color_de(codigo, codigos)
+        lineas.append(
+            f'<span class="pto" style="background:{color}"></span>'
+            f'<span>{e(nombre)}</span><b>{faltan}</b>')
+    otros = f.get("OTROS") or 0
+    if otros:
+        lineas.append('<span class="pto" style="background:var(--suave)"></span>'
+                      f'<span>Sin responsable asignado</span><b>{otros}</b>')
+
+    if lineas:
+        cuerpo = (f'<div class="quien">{"".join(lineas)}</div>'
+                  f'<div class="sub">De {e(f["TOTAL CHECKS"])} items de control, '
+                  f'faltan <b>{e(f["CHECKS PENDIENTES"])}</b>. Vence el '
+                  f'{e(_dia_mes(f["VENCE"]))}.</div>')
+    else:
+        cuerpo = ('<div class="listo">Sin checks pendientes: la tarjeta esta '
+                  'a la espera de que alguien la marque como cumplida.</div>')
+
+    enlace = f.get("LINK TRELLO")
+    boton = (f'<div><a href="{e(enlace)}" target="_blank" rel="noopener">'
+             f'Abrir en Trello →</a></div>' if enlace else "")
+    return f'<div class="desglose">{cuerpo}{boton}</div>'
+
+
+def _quienes(nombres: list) -> str:
+    """Nombres en la celda, pero sin que la fila se haga kilometrica."""
+    if not nombres:
+        return "—"
+    if len(nombres) <= 2:
+        return e(", ".join(nombres))
+    return f'{e(", ".join(nombres[:2]))} <span class="sub">+{len(nombres) - 2}</span>'
+
+
 def _sin_cerrar(filas: list, rotulo: str = "Sin cerrar") -> str:
-    """Las que no se han cerrado: la lista de lo que hay que empujar."""
+    """Las que no se han cerrado: la lista de lo que hay que empujar.
+
+    Cada fila se despliega para ver cuantos checks debe cada responsable, y
+    la tabla trae filtros por familia, antiguedad y responsable.
+    """
     pendientes = [f for f in filas if not _cerrada(f)]
     if not pendientes:
         return ('<div class="tarjeta" style="margin-bottom:22px"><div class="limpio">'
@@ -135,45 +204,59 @@ def _sin_cerrar(filas: list, rotulo: str = "Sin cerrar") -> str:
     # Las mas atrasadas primero; a igualdad, las que mas checks deben
     pendientes.sort(key=lambda f: (-f["ANTIGUEDAD (dias)"], -f["CHECKS PENDIENTES"]))
     atrasadas = sum(1 for f in pendientes if f["ANTIGUEDAD (dias)"] >= 1)
+    codigos = list(ajustes.CODIGOS_RESPONSABLE)
 
-    filas_html = []
-    for f in pendientes[:25]:
+    cuerpo = []
+    for f in pendientes:
         dias = f["ANTIGUEDAD (dias)"]
-        if dias >= 2:
-            color, texto = "var(--alerta)", f"{dias} dias"
-        elif dias == 1:
-            color, texto = "var(--serio)", "1 dia"
-        else:
-            color, texto = "var(--aviso)", "hoy"
-        quien = [ajustes.RESPONSABLES[c].get("nombre", c)
-                 for c in ajustes.CODIGOS_RESPONSABLE if f.get(c)]
-        enlace = f["LINK TRELLO"]
-        filas_html.append(
-            f'<tr><td>{e(f["SECTOR / ZONA"])}</td>'
+        color, texto = _edad(dias)
+        fecha = _dia_mes(f["VENCE"])
+        deben = [ajustes.RESPONSABLES[c].get("nombre", c)
+                 for c in codigos if f.get(c)]
+
+        cuerpo.append(
+            f'<tr class="desplegable" aria-expanded="false" '
+            f'data-familia="{e(f["FAMILIA"])}" data-edad="{e(texto)}" '
+            f'data-resp="{e("|".join(deben))}">'
+            f'<td><span class="flecha">›</span> {e(f["SECTOR / ZONA"])}</td>'
             f'<td class="act">{e(f["ACTIVIDAD"])}</td>'
             f'<td><span class="pill" style="border-color:'
             f'{color_de(f["FAMILIA"], list(ajustes.FAMILIAS))}">'
             f'{e(f["FAMILIA"])}</span></td>'
             f'<td><span class="estado" style="color:{color};margin:0">'
-            f'<span class="pto" style="background:{color}"></span>{texto}</span></td>'
+            f'<span class="pto" style="background:{color}"></span>{texto}'
+            + (f' <span style="opacity:.75">({e(fecha)})</span>' if fecha else "")
+            + '</span></td>'
             f'<td class="n">{e(f["CHECKS PENDIENTES"])}/{e(f["TOTAL CHECKS"])}</td>'
-            f'<td>{e(", ".join(quien)) or "—"}</td>'
-            + (f'<td><a href="{e(enlace)}" target="_blank" rel="noopener">abrir</a></td>'
-               if enlace else "<td></td>")
-            + '</tr>')
+            f'<td>{_quienes(deben)}</td>'
+            '</tr>'
+            f'<tr class="detalle" hidden><td colspan="6">{_desglose(f)}</td></tr>')
 
-    resto = ("" if len(pendientes) <= 25 else
-             f'<div class="sub" style="margin-top:10px">… y {len(pendientes) - 25} '
-             f'mas en la tabla del final.</div>')
+    caja = f"tabla-{abs(hash(rotulo)) % 100000}"
+    sel = filtros([
+        ("familia", "Familia", sorted({f["FAMILIA"] for f in pendientes})),
+        ("edad", "Antiguedad", [t for t in ("hoy", "1 dia")
+                                if any(_edad(f["ANTIGUEDAD (dias)"])[1] == t
+                                       for f in pendientes)]
+         + sorted({_edad(f["ANTIGUEDAD (dias)"])[1] for f in pendientes
+                   if f["ANTIGUEDAD (dias)"] >= 2},
+                  key=lambda x: int(x.split()[0]))),
+        ("resp", "Responsable",
+         [ajustes.RESPONSABLES[c].get("nombre", c) for c in codigos
+          if any(f.get(c) for f in pendientes)]),
+    ], len(pendientes))
 
     return (
         f'<h2>{e(rotulo)} · {len(pendientes)} tarjetas'
         + (f' · {atrasadas} atrasadas' if atrasadas else '')
         + '</h2>'
+        + f'<div class="bloque-tabla" id="{caja}">{sel}'
         + '<div class="tabla-caja"><table><thead><tr>'
         + '<th>Sector</th><th>Actividad</th><th>Familia</th><th>Antiguedad</th>'
-        + '<th>Pend.</th><th>Quien debe marcar</th><th></th>'
-        + f'</tr></thead><tbody>{"".join(filas_html)}</tbody></table></div>{resto}'
+        + '<th>Pend.</th><th>Quien debe marcar</th>'
+        + f'</tr></thead><tbody>{"".join(cuerpo)}</tbody></table></div></div>'
+        + '<div class="sub" style="margin-top:10px">Toca una fila para ver '
+          'cuantos checks debe cada responsable.</div>'
         + '<div style="height:22px"></div>')
 
 

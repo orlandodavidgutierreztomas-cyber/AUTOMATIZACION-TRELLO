@@ -642,12 +642,61 @@ def test_el_panel_de_sin_cerrar_se_vacia_cuando_todo_cierra():
     assert "1 atrasadas" in html
 
 
+def _cuerpo(html: str) -> str:
+    """Solo las filas: los desplegables de filtro repiten los mismos textos."""
+    return html[html.index("<tbody>"):]
+
+
 def test_las_atrasadas_salen_primero():
     from trello_auto.tablero import _sin_cerrar
-    html = _sin_cerrar([_fila(pend=1, dias=0), _fila(pend=1, dias=5, familia="Trazo"),
-                        _fila(pend=1, dias=2, familia="Concreto")])
+    cuerpo = _cuerpo(_sin_cerrar([
+        _fila(pend=1, dias=0), _fila(pend=1, dias=5, familia="Trazo"),
+        _fila(pend=1, dias=2, familia="Concreto")]))
     # La de 5 dias debe aparecer antes que la de 2 y que la de hoy
-    assert html.index("5 dias") < html.index("2 dias") < html.index(">hoy<")
+    assert cuerpo.index("5 dias") < cuerpo.index("2 dias") < cuerpo.index("hoy")
+
+
+def test_la_tabla_trae_filtro_de_familia():
+    """Lo que pidio el usuario: poder quedarse solo con encofrados o aceros."""
+    from trello_auto.tablero import _sin_cerrar
+    html = _sin_cerrar([_fila(pend=1, familia="Encofrado"),
+                        _fila(pend=1, familia="Acero")])
+    assert 'data-campo="familia"' in html
+    assert '<option value="Encofrado">' in html
+    assert '<option value="Acero">' in html
+    # Y cada fila declara la suya, que es de lo que tira el filtro
+    assert 'data-familia="Encofrado"' in html
+
+
+def test_no_se_pinta_un_filtro_de_una_sola_opcion():
+    """Un desplegable con una sola familia no filtra nada: estorba."""
+    from trello_auto.tablero import _sin_cerrar
+    html = _sin_cerrar([_fila(pend=1, familia="Acero"), _fila(pend=2, familia="Acero")])
+    assert 'data-campo="familia"' not in html
+
+
+def test_la_antiguedad_lleva_la_fecha_al_lado_sin_ano():
+    """Dia y mes entre parentesis; el ano sobra, siempre es el de la obra."""
+    from trello_auto.tablero import _sin_cerrar
+    fila = _fila(pend=1, dias=0)
+    fila["VENCE"] = "2026-09-08 18:30"
+    cuerpo = _cuerpo(_sin_cerrar([fila]))
+    assert "(08/09)" in cuerpo
+    assert "2026" not in cuerpo
+
+
+def test_la_fila_se_despliega_con_lo_que_debe_cada_responsable():
+    """En vez de mandar a Trello, el detalle esta en la propia pagina."""
+    from trello_auto.tablero import _sin_cerrar
+    fila = _fila(pend=4)
+    fila["EST"], fila["CAL"], fila["OTROS"] = 3, 1, 0
+    fila["LINK TRELLO"] = "https://trello.com/c/abc"
+    html = _sin_cerrar([fila])
+    assert 'class="desplegable"' in html
+    assert 'class="detalle"' in html
+    assert "Estructuras" in html and "Calidad" in html
+    # Y el enlace a Trello sigue existiendo, pero dentro del despliegue
+    assert "Abrir en Trello" in html
 
 
 def test_el_anillo_es_un_medidor_no_un_grafico_de_sectores():
