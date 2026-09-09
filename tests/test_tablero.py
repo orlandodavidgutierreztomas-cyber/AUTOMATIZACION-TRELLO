@@ -29,8 +29,10 @@ LISTAS = [
     {"id": "L3", "name": "T. DEL DÍA CONCRETO Y MORTERO- 🟩🟩🟩"},
     {"id": "L4", "name": "T. DEL DÍA VARIOS-⬛⬛⬛⬛⬛"},
     {"id": "L5", "name": "T.  POR CERRAR 🆘🆘🆘"},
+    {"id": "L5a", "name": "T. POR CERRAR - ACERO"},
+    {"id": "L5b", "name": "T. POR CERRAR - ENCOFRADO-CONCRETO"},
+    {"id": "L5c", "name": "T. POR CERRAR - VARIOS"},
     {"id": "L6", "name": "CULMINADO    🎯🎯🎯"},
-    {"id": "L7", "name": "T.  NO CUMPLIDAS 🆘🆘🆘"},
     {"id": "L8", "name": "📐 PLANTILA. TRAZO Y REPLANTEO"},   # errata real: una sola L
     {"id": "L9", "name": "PLANTILLA_CONCRETO"},
 ]
@@ -47,7 +49,6 @@ def test_normalizar_quita_emojis_y_acentos():
     ("T. DEL DIA CONCRETO", "L3"),
     ("T. POR CERRAR", "L5"),
     ("CULMINADO", "L6"),
-    ("NO CUMPLIDAS", "L7"),
     ("LISTA QUE NO EXISTE", None),
 ])
 def test_buscar_lista_por_palabra_clave(clave, esperado):
@@ -57,7 +58,7 @@ def test_buscar_lista_por_palabra_clave(clave, esperado):
 def test_todas_las_listas_configuradas_existen_en_el_tablero():
     """Si alguien renombra una lista, esta prueba lo delata."""
     for clave in (ajustes.LISTA_ESPERA, ajustes.LISTA_CULMINADO,
-                  ajustes.LISTA_NO_CUMPLIDAS, ajustes.LISTA_POR_CERRAR):
+                  ajustes.LISTA_POR_CERRAR):
         assert buscar_lista(LISTAS, clave), f"no encuentro '{clave}'"
     for familia in ajustes.FAMILIAS:
         lista = ajustes.lista_de_familia(familia)
@@ -366,12 +367,14 @@ def test_las_listas_necesarias_cubren_todo_el_flujo():
     for cierre in ajustes.listas_de_cierre():
         assert cierre in nombres
     assert ajustes.LISTA_CULMINADO in nombres
-    assert ajustes.LISTA_NO_CUMPLIDAS in nombres
     assert ajustes.LISTA_PLANTILLAS in nombres
     for familia in ajustes.FAMILIAS:
         assert ajustes.lista_de_familia(familia) in nombres
     # Sin repetidas: varias familias comparten la lista de varios
     assert len(nombres) == len(set(nombres))
+    # Y NO se crea una lista de "no cumplidas": lo que no termina se
+    # reprograma desde su lista de por cerrar, no se aparta en un saco.
+    assert not any("NO CUMPLID" in n.upper() for n in nombres)
 
 
 def test_cada_responsable_configurado_tiene_items_genericos():
@@ -391,31 +394,30 @@ def test_la_plantilla_generada_se_reconoce_como_plantilla():
 
 
 # --- historico y graficas ---------------------------------------------------
-def test_el_ppc_semanal_es_acumulado_no_promedio(tmp_path, monkeypatch):
-    """Un dia con 2 tarjetas no puede pesar lo mismo que uno con 20."""
+def test_guardar_cierre_reemplaza_el_dia_no_lo_duplica(tmp_path, monkeypatch):
+    """Repetir el cierre del mismo dia corrige la cifra, no la suma dos veces."""
     from datetime import date
 
     from trello_auto import historico
     monkeypatch.setattr(historico.ajustes, "CARPETA_REPORTES", tmp_path)
 
-    historico.guardar_ppc(date(2026, 9, 1), 2, 0)      # 100%, pero 2 tarjetas
-    historico.guardar_ppc(date(2026, 9, 2), 10, 10)    # 50%, con 20 tarjetas
-    semanal = historico.serie_ppc_semanal()
-    assert len(semanal) == 1
-    # Acumulado: 12 de 22 = 54.5%. El promedio simple daria 75%.
-    assert semanal[0][1] == 54.5
+    historico.guardar_cierre(date(2026, 9, 1), 5)
+    historico.guardar_cierre(date(2026, 9, 1), 8)      # el mismo dia, corregido
+    serie = historico.serie_culminadas(0)
+    assert len(serie) == 1 and serie[0] == (date(2026, 9, 1), 8)
 
 
-def test_guardar_ppc_reemplaza_el_dia_no_lo_duplica(tmp_path, monkeypatch):
+def test_el_historico_no_guarda_nada_de_no_cumplidas(tmp_path, monkeypatch):
+    """Solo se anota lo culminado: lo que no termina se reprograma."""
     from datetime import date
 
     from trello_auto import historico
     monkeypatch.setattr(historico.ajustes, "CARPETA_REPORTES", tmp_path)
 
-    historico.guardar_ppc(date(2026, 9, 1), 5, 5)
-    historico.guardar_ppc(date(2026, 9, 1), 8, 2)      # el mismo dia, corregido
-    serie = historico.serie_ppc(0)
-    assert len(serie) == 1 and serie[0][1] == 80.0
+    historico.guardar_cierre(date(2026, 9, 1), 5)
+    escrito = (tmp_path / "culminadas.csv").read_text(encoding="utf-8-sig")
+    assert "NO CUMPLIDAS" not in escrito
+    assert historico.COLUMNAS_DIA == ["FECHA", "CULMINADAS"]
 
 
 def test_la_grafica_avisa_cuando_no_hay_bastantes_datos():
@@ -578,7 +580,7 @@ def test_el_reporte_mira_las_mismas_listas_que_barre_el_cierre():
     """Si el cierre evalua una lista, el reporte tiene que contarla: si no,
     habria trabajo en juego que no aparece en ningun indicador."""
     from trello_auto.reporte import listas_del_alcance
-    del_reporte = {clave for clave, _estado in listas_del_alcance("dia")}
+    del_reporte = {clave for clave, _estado in listas_del_alcance("todo")}
     for cierre in ajustes.listas_de_cierre():
         assert cierre in del_reporte, f"el reporte no mira '{cierre}'"
     for familia in ajustes.FAMILIAS:
@@ -588,7 +590,7 @@ def test_el_reporte_mira_las_mismas_listas_que_barre_el_cierre():
 def test_el_alcance_no_repite_listas():
     """Varias familias comparten lista: no puede contarse dos veces."""
     from trello_auto.reporte import listas_del_alcance
-    for alcance in ("dia", "no-cumplidas", "todo"):
+    for alcance in ("dia", "todo"):
         claves = [c for c, _e in listas_del_alcance(alcance)]
         assert len(claves) == len(set(claves)), f"alcance '{alcance}' repite listas"
 
@@ -772,3 +774,29 @@ def test_la_seccion_lleva_titulo_y_explicacion():
     html = seccion("Por cerrar", "El margen de gracia", "5 tarjetas", "var(--aviso)")
     assert "Por cerrar" in html and "margen de gracia" in html
     assert "5 tarjetas" in html
+
+
+# --- reubicar: retirar una columna sin perder trabajo ------------------------
+@pytest.mark.parametrize("nombre, esperada", [
+    ("1CS4 - ACERO SUPERIOR EN ZAPATAS - 27/08/2026", "Acero"),
+    ("1CS3 - ENCOFRADO DE FALSA ZAPATA - 27/08/2026", "Encofrado"),
+    ("1CS13 - CONCRETO EN FALSA ZAPATA - 27/08/2026", "Concreto"),
+    ("1CS7 - TRAZO Y REPLANTEO PARA EXCAVACION - 27/08/2026", "Trazo"),
+    ("1CS2 - RELLENO CON AFIRMADO COMPACTADO - 27/08/2026", "Relleno"),
+])
+def test_reubicar_manda_cada_tarjeta_a_la_lista_de_su_familia(nombre, esperada):
+    """Al retirar una columna, el trabajo no se amontona: se reparte."""
+    from trello_auto.reubicar import destino_de_tarjeta
+    familia, clave = destino_de_tarjeta(nombre)
+    assert familia == esperada
+    assert clave == ajustes.lista_cierre_de_familia(esperada)
+
+
+def test_reubicar_reparte_a_listas_que_existen_en_el_tablero():
+    """Si el destino no existiera, el trabajo se quedaria en el limbo."""
+    from trello_auto.reubicar import destino_de_tarjeta
+    for nombre in ("1CS4 - ACERO SUPERIOR EN ZAPATAS",
+                   "1CS3 - ENCOFRADO DE FALSA ZAPATA",
+                   "1CS7 - EXCAVACION DE CIMENTACIONES"):
+        _familia, clave = destino_de_tarjeta(nombre)
+        assert buscar_lista(LISTAS, clave), f"no existe la lista '{clave}'"

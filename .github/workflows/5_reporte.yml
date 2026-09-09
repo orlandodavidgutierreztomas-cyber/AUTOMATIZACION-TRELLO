@@ -23,7 +23,7 @@ on:
         required: false
         default: "todo"
         type: choice
-        options: [todo, dia, no-cumplidas]
+        options: [todo, dia]
       dry_run:
         description: "Solo mostrar que haria, sin tocar nada"
         required: false

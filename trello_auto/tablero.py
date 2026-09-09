@@ -85,13 +85,9 @@ AMBITOS = [
      "que el encargado haya adelantado o repetido, sea de la fecha que sea.",
      "var(--s1)"),
     ("POR CERRAR", "Por cerrar",
-     "Lo que no cerro al fin de la jornada y espera en el margen de gracia "
-     "hasta el cierre definitivo. Todavia se puede salvar.",
+     "Lo que no cerro al fin de la jornada. Se queda aqui, a la vista, hasta "
+     "que se termine o se reprograme: no se archiva como incumplida.",
      "var(--aviso)"),
-    ("NO CUMPLIDA", "No cumplidas",
-     "La deuda: lo que llego al cierre definitivo sin cerrarse. Ya cuenta "
-     "como incumplimiento del plan.",
-     "var(--alerta)"),
 ]
 
 
@@ -282,30 +278,20 @@ def _avance_de_obra() -> str:
 
 def _tendencias() -> str:
     """Las graficas que solo tienen sentido con varios dias acumulados."""
-    from .historico import serie_pendientes, serie_ppc, serie_ppc_semanal
+    from .historico import serie_culminadas, serie_pendientes
 
     paneles = []
 
-    diario = serie_ppc(30)
-    if diario:
-        puntos = [(f"{d:%d/%m}", p) for d, p, _c, _t in diario]
-        ultimo = diario[-1]
+    culminadas = serie_culminadas(30)
+    if len(culminadas) >= 2:
         paneles.append(
-            '<div class="tarjeta"><h2>PPC diario · cumplimiento del plan</h2>'
-            + grafico_linea(puntos, "%", meta=85, color="var(--s1)")
+            '<div class="tarjeta"><h2>Tarjetas culminadas por dia</h2>'
+            + grafico_linea([(f"{d:%d/%m}", c) for d, c in culminadas],
+                            color="var(--s1)")
             + f'<div class="sub" style="margin-top:8px">Ultimo cierre: '
-            f'{ultimo[2]} de {ultimo[3]} tarjetas culminadas '
-            f'({ultimo[1]:.0f}%).</div></div>')
-
-    semanal = serie_ppc_semanal(12)
-    if len(semanal) >= 2:
-        paneles.append(
-            '<div class="tarjeta"><h2>PPC semanal</h2>'
-            + grafico_linea([(et, p) for et, p, _c, _t in semanal], "%", meta=85,
-                            color="var(--s7)")
-            + '<div class="sub" style="margin-top:8px">Acumulado de cada semana, '
-            'no el promedio de los dias: un dia con 2 tarjetas no puede pesar '
-            'lo mismo que uno con 20.</div></div>')
+            f'{culminadas[-1][1]} tarjetas culminadas. Acumulado de '
+            f'{sum(c for _d, c in culminadas)} en los ultimos '
+            f'{len(culminadas)} dias de cierre.</div></div>')
 
     pendientes = serie_pendientes(20)
     if len(pendientes) >= 2:
@@ -318,9 +304,9 @@ def _tendencias() -> str:
 
     if not paneles:
         return ('<div class="nota">Las graficas de tendencia apareceran solas '
-                'en cuanto haya varios dias de datos: el <b>PPC</b> se anota en '
-                'cada cierre definitivo, y los <b>checks pendientes</b> en cada '
-                'corrida del reporte.</div>')
+                'en cuanto haya varios dias de datos: las <b>culminadas</b> se '
+                'anotan en cada cierre definitivo, y los <b>checks '
+                'pendientes</b> en cada corrida del reporte.</div>')
 
     return f'<div class="paneles">{"".join(paneles)}</div>'
 
@@ -332,9 +318,8 @@ def generar(filas: list, corte: datetime, alcance: str) -> str:
       1. Los cuatro numeros de cabecera, en orden de lectura natural.
       2. Reparto entre ambitos.
       3. CONTROL DEL DIA — lo que esta en juego ahora.
-      4. POR CERRAR — el margen de gracia.
-      5. NO CUMPLIDAS — la deuda.
-      6. CONTROL GENERAL — avance de obra, tendencias y desgloses.
+      4. POR CERRAR — lo que quedo abierto y hay que reprogramar.
+      5. CONTROL GENERAL — avance de obra, tendencias y desgloses.
     """
     n = len(filas)
     cerradas = [f for f in filas if _cerrada(f)]

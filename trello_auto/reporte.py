@@ -17,9 +17,8 @@ en Trello. Los cortes se van acumulando en el historico, asi que del CSV
 sale tanto la foto de ahora como la pelicula de como evoluciona el pendiente.
 
 ALCANCE (--alcance)
-  dia           Las listas del dia + "por cerrar"  (lo que esta en juego hoy)
-  no-cumplidas  La lista de no cumplidas           (la deuda acumulada)
-  todo          Las dos cosas
+  dia   Las listas del dia            (lo programado y lo que se adelanto)
+  todo  Ademas, las de "por cerrar"   (lo que quedo abierto y se reprograma)
 
 SALIDA
   reportes/ultimo.csv   solo este corte (el que lee tu dashboard)
@@ -31,7 +30,6 @@ duplica: el CSV nunca cuenta dos veces lo mismo.
 USO
 ---
     python -m trello_auto.reporte
-    python -m trello_auto.reporte --alcance no-cumplidas
     python -m trello_auto.reporte --alcance todo
 ============================================================================
 """
@@ -49,7 +47,7 @@ from .cronograma import destino_de
 from .distribuir import partes_del_nombre
 from .trello import Trello, buscar_lista, contar_checks
 
-ALCANCES = ("dia", "no-cumplidas", "todo")
+ALCANCES = ("dia", "todo")
 
 
 def columnas() -> list:
@@ -111,18 +109,16 @@ def fila_de_tarjeta(card: dict, nombre_lista: str, estado: str,
 def listas_del_alcance(alcance: str) -> list:
     """[(clave_de_lista, estado)] segun el alcance pedido."""
     objetivo = []
-    if alcance in ("dia", "todo"):
-        for familia in ajustes.FAMILIAS:
-            lista = ajustes.lista_de_familia(familia)
-            if lista and all(lista != c for c, _ in objetivo):
-                objetivo.append((lista, "EN JUEGO"))
-        # Las listas de gracia, sean una o varias: ahi espera lo que no cerro
-        # al fin de jornada, y sigue estando en juego hasta el cierre final.
+    for familia in ajustes.FAMILIAS:
+        lista = ajustes.lista_de_familia(familia)
+        if lista and all(lista != c for c, _ in objetivo):
+            objetivo.append((lista, "EN JUEGO"))
+    if alcance == "todo":
+        # Las listas de por cerrar, sean una o varias: ahi queda lo que no
+        # cerro al fin de jornada, esperando a terminarse o reprogramarse.
         for lista in ajustes.listas_de_cierre():
             if all(lista != c for c, _ in objetivo):
                 objetivo.append((lista, "POR CERRAR"))
-    if alcance in ("no-cumplidas", "todo"):
-        objetivo.append((ajustes.LISTA_NO_CUMPLIDAS, "NO CUMPLIDA"))
     return objetivo
 
 
@@ -148,7 +144,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(
         description="Genera el corte de control y lo deja en CSV para el dashboard.")
     ap.add_argument("--alcance", default="todo", choices=list(ALCANCES),
-                    help="Que tarjetas entran en el corte (por defecto: todo).")
+                    help="Que listas entran en el corte (por defecto: todo).")
     ap.add_argument("--dry-run", action="store_true",
                     help="Muestra el corte por pantalla sin escribir los CSV.")
     args = ap.parse_args()

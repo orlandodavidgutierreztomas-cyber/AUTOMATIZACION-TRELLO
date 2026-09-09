@@ -19,11 +19,6 @@ on:
     - cron: "7,37 22-23 * * 1-5"
   workflow_dispatch:
     inputs:
-      incluir_no_cumplidas:
-        description: "Archivar tambien las no cumplidas"
-        required: false
-        default: false
-        type: boolean
       antiguedad:
         description: "Archivar solo lo vencido hace N dias o mas (vacio = todo)"
         required: false
@@ -73,13 +68,11 @@ jobs:
           TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
           BOARD_ID: ${{ vars.BOARD_ID }}
           TZ_OBRA: ${{ vars.TZ_OBRA }}
-          INCLUIR: ${{ inputs.incluir_no_cumplidas }}
           ANTIGUEDAD: ${{ inputs.antiguedad }}
           DRY_RUN: ${{ inputs.dry_run }}
         run: |
           set -euo pipefail
           ARGS=()
-          if [ "${INCLUIR:-}" = "true" ]; then ARGS+=(--incluir-no-cumplidas); fi
           if [ -n "${ANTIGUEDAD:-}" ]; then ARGS+=(--antiguedad "$ANTIGUEDAD"); fi
           if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
           echo "python -m trello_auto.archivar ${ARGS[@]+"${ARGS[@]}"}"

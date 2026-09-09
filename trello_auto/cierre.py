@@ -7,7 +7,7 @@
 
 EL CIERRE VA EN DOS FASES, con un margen de gracia en medio. La razon es
 practica: cuando termina la jornada los especialistas siguen ocupados, y
-mandar al saco de "no cumplidas" una tarjeta que solo faltaba marcar seria
+dar por perdida una tarjeta a la que solo le faltaba marcarse seria
 injusto y ensuciaria la estadistica.
 
   FASE 1 — "gracia"  (a la hora de fin de jornada)
@@ -20,7 +20,13 @@ injusto y ensuciaria la estadistica.
   FASE 2 — "final"  (unas horas despues, cierre definitivo del dia)
     Recorre la lista de gracia (y las del dia, por si algo llego tarde):
       checklist completo  ->  CULMINADO         <- alcanzo a marcar
-      le falta algo       ->  T. NO CUMPLIDAS   <- ahora si, no se cumplio
+      le falta algo       ->  se queda donde esta
+
+NO HAY LISTA DE "NO CUMPLIDAS", y es a proposito. En Last Planner el trabajo
+que no se termino no se archiva: se REPROGRAMA. Mandarlo a un saco aparte
+obligaria a sacarlo de ahi a mano, tarjeta por tarjeta, para volver a
+meterlo en la programacion. Asi que lo que no cierra se queda en la lista de
+por cerrar de su familia, a la vista, hasta que se termine o se reprograme.
 
 Una tarjeta cuenta como terminada por su control de calidad O por la marca de
 "cumplida" de Trello, lo que llegue primero (criterio "auto"). Quien quiera
@@ -116,35 +122,25 @@ def main() -> int:
             f"Revisa configuracion.json -> listas.culminado."
         )
 
-    # A donde va lo que NO esta terminado.
-    # En la fase de gracia depende de la FAMILIA de cada tarjeta: cada una
-    # espera en su propia lista de cierre, para que el tablero no mezcle acero
-    # con concreto. En la definitiva, todo va al mismo sitio: no cumplidas.
-    rotulo_pendiente = "A GRACIA" if args.fase == "gracia" else "NO CUMPLIDA"
+    # A donde va lo que NO esta terminado: a la lista de por cerrar de su
+    # FAMILIA, para que el tablero no mezcle acero con concreto. Es el mismo
+    # destino en las dos fases; en la definitiva, la que ya estaba ahi
+    # simplemente se queda, lista para reprogramarse.
+    rotulo_pendiente = "A GRACIA" if args.fase == "gracia" else "SIGUE ABIERTA"
 
-    id_no_cumplidas = buscar_lista(listas, ajustes.LISTA_NO_CUMPLIDAS)
-    if args.fase == "final" and not id_no_cumplidas:
+    faltan = [c for c in ajustes.listas_de_cierre() if not buscar_lista(listas, c)]
+    if faltan:
         raise SystemExit(
-            f"ERROR: no encuentro la lista '{ajustes.LISTA_NO_CUMPLIDAS}'.\n"
-            f"Revisa configuracion.json -> listas.no_cumplidas."
+            "ERROR: faltan listas de por cerrar en el tablero:\n"
+            + "\n".join(f"  - {c}" for c in faltan)
+            + "\nCrealas en Trello (o con 'Montar tablero'), o corrige "
+              "configuracion.json -> familias.<X>.lista_cierre."
         )
-
-    if args.fase == "gracia":
-        faltan = [c for c in ajustes.listas_de_cierre() if not buscar_lista(listas, c)]
-        if faltan:
-            raise SystemExit(
-                "ERROR: faltan listas de gracia en el tablero:\n"
-                + "\n".join(f"  - {c}" for c in faltan)
-                + "\nCrealas en Trello (o con 'Montar tablero'), o corrige "
-                  "configuracion.json -> familias.<X>.lista_cierre."
-            )
 
     cache_gracia = {}
 
     def destino_pendiente(nombre_tarjeta):
         """(id_destino, nombre_legible) de donde va esta tarjeta si no cerro."""
-        if args.fase == "final":
-            return id_no_cumplidas, ajustes.LISTA_NO_CUMPLIDAS
         actividad = partes_del_nombre(nombre_tarjeta).get("actividad") or nombre_tarjeta
         familia, _lista = destino_de(actividad)
         clave = ajustes.lista_cierre_de_familia(familia)
@@ -163,8 +159,9 @@ def main() -> int:
             print(f"   {familia:12} -> {ajustes.lista_cierre_de_familia(familia)}")
         print(f" hasta el cierre definitivo de las {ajustes.hora_de('cierre_final')}.")
     else:
-        print(f" Cierre definitivo: lo que siga sin marcar pasa a "
-              f"'{ajustes.LISTA_NO_CUMPLIDAS}'.")
+        print(" Cierre definitivo: se rescata lo que alcanzaron a marcar tarde.")
+        print(" Lo que siga sin marcar SE QUEDA en su lista de por cerrar,")
+        print(" para reprogramarlo. Nada se archiva como 'no cumplido'.")
     print("=" * 74)
 
     a_culminado = a_pendiente = 0
@@ -184,9 +181,12 @@ def main() -> int:
                 destino, adonde = destino_pendiente(card["name"])
             etiqueta = "CULMINADA" if terminada else rotulo_pendiente
             detalle = f"{cuenta['pendientes']}/{cuenta['total']} pendientes"
-            print(f"  -> [{etiqueta:11}] {detalle:18} {card['name']}")
+            print(f"  -> [{etiqueta:13}] {detalle:18} {card['name']}")
             if not destino:
                 print(f"     ! sin lista destino ('{adonde}'), la dejo donde esta")
+                continue
+            if card.get("idList") == destino:
+                # Ya esta donde le toca: no la toco y no la cuento dos veces
                 continue
             if not args.dry_run:
                 tr.mover(card["id"], destino)
@@ -195,7 +195,6 @@ def main() -> int:
             else:
                 a_pendiente += 1
 
-    total = a_culminado + a_pendiente
     modo = "  (DRY-RUN: no se movio nada)" if args.dry_run else ""
     print("\n" + "=" * 74)
     if args.fase == "gracia":
@@ -205,17 +204,17 @@ def main() -> int:
             print(f" Esas {a_pendiente} todavia se pueden salvar marcando su checklist "
                   f"antes de las {ajustes.hora_de('cierre_final')}.")
     else:
-        ppc = (a_culminado / total * 100) if total else 0
-        print(f" Cierre definitivo: {a_culminado} culminadas, "
-              f"{a_pendiente} no cumplidas.{modo}")
-        if total:
-            print(f" PPC del dia (cumplimiento del plan): {ppc:.0f}%")
-        # El PPC solo sirve si se guarda: un numero suelto no dice nada, la
-        # serie de dias si. De aqui salen las graficas de tendencia.
-        if not args.dry_run and total:
-            from .historico import guardar_ppc
-            ruta = guardar_ppc(horario.hoy_local(), a_culminado, a_pendiente)
-            print(f" Anotado en {ruta}")
+        print(f" Cierre definitivo: {a_culminado} rescatadas al final.{modo}")
+        print(" El resto sigue en su lista de por cerrar, para reprogramarse.")
+        # Lo culminado del dia si se anota: de esa serie sale el avance de
+        # obra. Se cuenta lo que HAY en CULMINADO, no lo que movio esta
+        # corrida, para que repetir el cierre no sume dos veces. Vale porque
+        # 'archivar' vacia esa lista cada noche, despues de este paso.
+        if not args.dry_run:
+            from .historico import guardar_cierre
+            culminadas_hoy = len(tr.tarjetas_de_lista(id_culminado))
+            ruta = guardar_cierre(horario.hoy_local(), culminadas_hoy)
+            print(f" {culminadas_hoy} culminadas hoy. Anotado en {ruta}")
     print("=" * 74)
     return 0
 

@@ -124,6 +124,13 @@ class Trello:
         time.sleep(PAUSA_ESCRITURA)
         return r
 
+    def archivar_lista(self, list_id: str):
+        """Archiva la lista entera. Tampoco borra: se recupera desde el menu
+        del tablero (Mas -> Listas archivadas)."""
+        r = self._req("PUT", f"/lists/{list_id}", {"closed": "true"})
+        time.sleep(PAUSA_ESCRITURA)
+        return r
+
 
 # ---------------------------------------------------------------------------
 # Utilidades sobre las listas del tablero

@@ -10,9 +10,12 @@ cumplimiento mejora semana a semana, si el avance sigue el plan.
 
 Para eso hay que guardar lo que pasa cada dia. Aqui viven los dos registros:
 
-  reportes/ppc.csv     Una fila por dia de cierre: cuantas tarjetas se
-                       culminaron y cuantas no. De ahi sale el PPC (Percent
-                       Plan Complete), la metrica central del sistema.
+  reportes/culminadas.csv  Una fila por dia de cierre: cuantas tarjetas se
+                       culminaron. De ahi sale el avance de obra.
+
+                       No se anota lo "no cumplido": el trabajo que no
+                       termina no se archiva, se reprograma, y sigue vivo en
+                       su lista de por cerrar hasta que se haga.
 
   reportes/cortes.csv  Todos los cortes del reporte, con una fila por tarjeta.
                        De ahi sale la evolucion del pendiente dentro del dia.
@@ -26,15 +29,15 @@ from __future__ import annotations
 
 import csv
 import os
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 
 from . import ajustes
 
-COLUMNAS_PPC = ["FECHA", "CULMINADAS", "NO CUMPLIDAS", "TOTAL", "PPC"]
+COLUMNAS_DIA = ["FECHA", "CULMINADAS"]
 
 
-def _ruta_ppc():
-    return ajustes.CARPETA_REPORTES / "ppc.csv"
+def _ruta_dia():
+    return ajustes.CARPETA_REPORTES / "culminadas.csv"
 
 
 def _leer_csv(ruta) -> list:
@@ -53,66 +56,30 @@ def _escribir_csv(ruta, filas, columnas):
 
 
 # ---------------------------------------------------------------------------
-# PPC — el cumplimiento del plan, dia a dia
+# Culminadas por dia — de aqui sale el avance de obra
 # ---------------------------------------------------------------------------
-def guardar_ppc(dia: date, culminadas: int, no_cumplidas: int) -> str:
-    """Anota el resultado del cierre de un dia. Reemplaza si ya estaba."""
-    total = culminadas + no_cumplidas
-    fila = {
-        "FECHA": dia.isoformat(),
-        "CULMINADAS": culminadas,
-        "NO CUMPLIDAS": no_cumplidas,
-        "TOTAL": total,
-        "PPC": round(culminadas / total * 100, 1) if total else 0,
-    }
-    ruta = _ruta_ppc()
+def guardar_cierre(dia: date, culminadas: int) -> str:
+    """Anota cuantas tarjetas se culminaron ese dia. Reemplaza si ya estaba."""
+    fila = {"FECHA": dia.isoformat(), "CULMINADAS": culminadas}
+    ruta = _ruta_dia()
     previas = [f for f in _leer_csv(ruta) if f.get("FECHA") != fila["FECHA"]]
     previas.append(fila)
     previas.sort(key=lambda f: f.get("FECHA", ""))
-    _escribir_csv(ruta, previas, COLUMNAS_PPC)
+    _escribir_csv(ruta, previas, COLUMNAS_DIA)
     return str(ruta)
 
 
-def serie_ppc(dias: int = 30) -> list:
-    """[(fecha, ppc, culminadas, total)] de los ultimos dias con cierre."""
-    filas = _leer_csv(_ruta_ppc())
+def serie_culminadas(dias: int = 30) -> list:
+    """[(fecha, culminadas)] de los ultimos dias con cierre."""
     serie = []
-    for f in filas:
+    for f in _leer_csv(_ruta_dia()):
         try:
-            serie.append((
-                date.fromisoformat(f["FECHA"]),
-                float(f.get("PPC") or 0),
-                int(f.get("CULMINADAS") or 0),
-                int(f.get("TOTAL") or 0),
-            ))
+            serie.append((date.fromisoformat(f["FECHA"]),
+                          int(f.get("CULMINADAS") or 0)))
         except (ValueError, KeyError):
             continue
     serie.sort(key=lambda x: x[0])
     return serie[-dias:] if dias else serie
-
-
-def serie_ppc_semanal(semanas: int = 12) -> list:
-    """[(etiqueta, ppc, culminadas, total)] agrupado por semana ISO.
-
-    El PPC semanal no es el promedio de los diarios: es el acumulado de la
-    semana (culminadas totales / planificadas totales). Un dia con 2 tarjetas
-    no puede pesar lo mismo que uno con 20.
-    """
-    grupos = {}
-    for dia, _ppc, culminadas, total in serie_ppc(0):
-        anio, semana, _ = dia.isocalendar()
-        clave = (anio, semana)
-        acumulado = grupos.setdefault(clave, {"c": 0, "t": 0, "desde": dia})
-        acumulado["c"] += culminadas
-        acumulado["t"] += total
-        acumulado["desde"] = min(acumulado["desde"], dia)
-
-    salida = []
-    for (_anio, semana), datos in sorted(grupos.items()):
-        lunes = datos["desde"] - timedelta(days=datos["desde"].weekday())
-        ppc = round(datos["c"] / datos["t"] * 100, 1) if datos["t"] else 0
-        salida.append((f"S{semana} · {lunes:%d/%m}", ppc, datos["c"], datos["t"]))
-    return salida[-semanas:] if semanas else salida
 
 
 def avance_de_obra() -> dict:
@@ -140,7 +107,7 @@ def avance_de_obra() -> dict:
         pass
 
     programadas_a_hoy = sum(1 for t in plan if (t.get("fecha") or "") <= hoy.isoformat())
-    culminadas = sum(c for _f, _p, c, _t in serie_ppc(0))
+    culminadas = sum(c for _f, c in serie_culminadas(0))
 
     return {
         "total_plan": total_plan,

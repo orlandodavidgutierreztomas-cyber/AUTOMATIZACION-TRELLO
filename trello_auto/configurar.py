@@ -18,7 +18,7 @@ QUE SE PUEDE CAMBIAR
 
   Horas de los robots   --hora-preparar 18:00    --hora-distribuir 05:00
                         --hora-cierre 18:30      (fin de jornada: a gracia)
-                        --hora-cierre-final 21:00 (definitivo: a no cumplidas)
+                        --hora-cierre-final 21:00 (rescata lo marcado tarde)
                         --hora-reporte 15:00     --hora-archivar 22:00
     (despiertan a cada automatizacion; no salen en ninguna tarjeta)
 

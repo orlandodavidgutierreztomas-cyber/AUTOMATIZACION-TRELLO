@@ -1,0 +1,82 @@
+# ===========================================================================
+#  REUBICAR - retira una columna del tablero sin perder trabajo
+# ---------------------------------------------------------------------------
+#  Vacia una lista repartiendo cada tarjeta a la lista de POR CERRAR de su
+#  familia, y luego archiva la lista vacia si se pide.
+#
+#  Se hizo para retirar la vieja columna de "no cumplidas": ese trabajo no
+#  estaba terminado, asi que no se podia archivar. Habia que devolverlo a la
+#  lista de por cerrar de su familia para poder REPROGRAMARLO, que es lo que
+#  manda el Last Planner.
+#
+#  NADA SE BORRA. La tarjeta conserva descripcion, checklists, etiquetas,
+#  comentarios e historial. La lista archivada se recupera desde el menu del
+#  tablero: Mas -> Listas archivadas.
+#
+#  Empieza siempre con dry_run para ver el reparto antes de moverlo.
+# ===========================================================================
+name: Reubicar tarjetas de una lista
+
+on:
+  workflow_dispatch:
+    inputs:
+      desde:
+        description: "Palabra clave de la lista que se quiere vaciar (ej: NO CUMPLIDAS)"
+        required: true
+      archivar_lista:
+        description: "Archivar la lista cuando quede vacia"
+        required: false
+        default: false
+        type: boolean
+      a_lista:
+        description: "Mandar TODO a esta lista (vacio = repartir por familia)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Solo mostrar el reparto, sin mover nada (recomendado)"
+        required: false
+        default: true
+        type: boolean
+
+concurrency:
+  group: tablero-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  reubicar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Reubicar
+        env:
+          TRELLO_KEY: ${{ secrets.TRELLO_KEY }}
+          TRELLO_TOKEN: ${{ secrets.TRELLO_TOKEN }}
+          BOARD_ID: ${{ vars.BOARD_ID }}
+          TZ_OBRA: ${{ vars.TZ_OBRA }}
+          DESDE: ${{ inputs.desde }}
+          A_LISTA: ${{ inputs.a_lista }}
+          ARCHIVAR: ${{ inputs.archivar_lista }}
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: |
+          set -euo pipefail
+          ARGS=(--desde "$DESDE")
+          if [ -n "${A_LISTA:-}" ]; then ARGS+=(--a-lista "$A_LISTA"); fi
+          if [ "${ARCHIVAR:-}" = "true" ]; then ARGS+=(--archivar-lista); fi
+          if [ "${DRY_RUN:-}" = "true" ]; then ARGS+=(--dry-run); fi
+          python -m trello_auto.reubicar "${ARGS[@]}" | tee salida.txt
+
+      - name: Resumen
+        if: always()
+        run: |
+          {
+            echo "### Reubicar \`${{ inputs.desde }}\`"
+            echo ""
+            echo '```'
+            tail -n 40 salida.txt 2>/dev/null || echo "(sin salida)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

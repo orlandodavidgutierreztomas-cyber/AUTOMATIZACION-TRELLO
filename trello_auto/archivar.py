@@ -11,13 +11,13 @@ Al final del dia, archiva las tarjetas de la lista CULMINADO. Archivar en
 Trello no borra nada: las tarjetas quedan guardadas y se pueden recuperar
 desde el menu del tablero. Solo dejan de ocupar espacio a la vista.
 
-Por defecto NO toca las no cumplidas: quedan visibles para que al dia
-siguiente se vea que quedo pendiente y se decida que hacer con ello.
+SOLO archiva lo culminado. Lo que quedo abierto se queda en su lista de por
+cerrar, a la vista: en Last Planner el trabajo que no termina no se guarda,
+se REPROGRAMA, y para reprogramarlo hay que poder verlo.
 
-  --incluir-no-cumplidas   archiva tambien esa lista
   --antiguedad N           archiva solo lo que vencio hace N dias o mas
-                           (util para dar unos dias de margen antes de
-                           guardar lo no cumplido)
+                           (util para dejar unos dias de margen antes de
+                           guardar lo culminado)
 
 Es IDEMPOTENTE: solo ve tarjetas abiertas, asi que lo ya archivado se ignora.
 
@@ -25,7 +25,7 @@ USO
 ---
     python -m trello_auto.archivar
     python -m trello_auto.archivar --dry-run
-    python -m trello_auto.archivar --incluir-no-cumplidas --antiguedad 7
+    python -m trello_auto.archivar --antiguedad 7
 ============================================================================
 """
 
@@ -43,8 +43,6 @@ def main() -> int:
         description="Archiva las tarjetas culminadas para dejar el tablero limpio.")
     ap.add_argument("--dry-run", action="store_true",
                     help="No archiva nada; solo muestra que haria.")
-    ap.add_argument("--incluir-no-cumplidas", action="store_true",
-                    help="Archiva tambien la lista de no cumplidas.")
     ap.add_argument("--antiguedad", type=int, default=0,
                     help="Archiva solo lo vencido hace N dias o mas (por defecto 0: todo).")
     args = ap.parse_args()
@@ -53,9 +51,9 @@ def main() -> int:
     tr = Trello(ajustes.TRELLO_KEY, ajustes.TRELLO_TOKEN)
     listas = tr.listas(ajustes.BOARD_ID)
 
+    # Solo lo culminado. Lo que quedo abierto NO se archiva: se reprograma,
+    # y para eso tiene que seguir a la vista en su lista de por cerrar.
     objetivo = [ajustes.LISTA_CULMINADO]
-    if args.incluir_no_cumplidas:
-        objetivo.append(ajustes.LISTA_NO_CUMPLIDAS)
 
     hoy = horario.hoy_local()
     print("=" * 74)

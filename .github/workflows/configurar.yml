@@ -35,7 +35,7 @@ on:
         required: false
         default: ""
       hora_cierre_final:
-        description: "ROBOT 4 · cierre definitivo, lo pendiente pasa a no cumplidas (HH:MM)"
+        description: "ROBOT 4 · cierre definitivo, rescata lo marcado tarde (HH:MM)"
         required: false
         default: ""
       hora_reporte:

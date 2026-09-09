@@ -41,7 +41,6 @@ def papeles_configurados() -> list:
         detalle = ", ".join(familias) if familias else "todas"
         papeles.append((lista, "Margen de gracia · " + detalle))
     papeles.append((ajustes.LISTA_CULMINADO, "Culminado · lo que cumplio"))
-    papeles.append((ajustes.LISTA_NO_CUMPLIDAS, "No cumplidas · lo que no cumplio"))
     papeles.append((ajustes.LISTA_PLANTILLAS, "Plantillas · el molde de cada actividad"))
     return papeles
 

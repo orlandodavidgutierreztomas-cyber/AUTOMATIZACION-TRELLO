@@ -21,7 +21,7 @@
     "fin": "17:00"
   },
   "relojes": {
-    "_ayuda": "Estas horas DESPIERTAN A CADA ROBOT. No aparecen en ninguna tarjeta. dias: 1=lunes ... 7=domingo. El cierre va en DOS FASES: a la hora de 'cierre' lo pendiente pasa a la lista de gracia (T. POR CERRAR) y a la de 'cierre_final' lo que siga sin marcar pasa a NO CUMPLIDAS.",
+    "_ayuda": "Estas horas DESPIERTAN A CADA ROBOT. No aparecen en ninguna tarjeta. dias: 1=lunes ... 7=domingo. El cierre va en DOS FASES: a la hora de 'cierre' lo pendiente pasa a la lista de por cerrar de su familia, y a la de 'cierre_final' se rescata lo que alcanzaron a marcar tarde. Lo que siga abierto SE QUEDA ahi para reprogramarse: no existe lista de 'no cumplidas'.",
     "preparar": {
       "hora": "18:00",
       "dias": "1-5"
@@ -49,15 +49,14 @@
   },
   "ventana_minutos": 90,
   "listas": {
-    "_ayuda": "Se buscan por PALABRA CLAVE: funcionan aunque la lista tenga emojis, acentos o espacios de mas. 'por_cerrar' es la lista de gracia GLOBAL: solo se usa para las familias que no tengan la suya propia.",
+    "_ayuda": "Se buscan por PALABRA CLAVE: funcionan aunque la lista tenga emojis, acentos o espacios de mas. 'por_cerrar' es la lista GLOBAL de por cerrar: solo se usa para las familias que no tengan la suya propia. Ahi se queda lo que no termino, para reprogramarlo.",
     "espera": "ESPERA",
     "plantillas": "PLANTILLAS",
     "por_cerrar": "T. POR CERRAR",
-    "culminado": "CULMINADO",
-    "no_cumplidas": "NO CUMPLIDAS"
+    "culminado": "CULMINADO"
   },
   "familias": {
-    "_ayuda": "Cada familia agrupa actividades. 'lista' es la lista del dia a la que van sus tarjetas; 'lista_cierre' es su lista de margen de gracia al cierre (varias familias pueden compartirla, como Encofrado y Concreto). Si se deja vacia, se usa la global de listas.por_cerrar. 'claves' son las palabras que se buscan en el nombre de la actividad. La familia con 'por_defecto': true recoge lo que no case con ninguna clave.",
+    "_ayuda": "Cada familia agrupa actividades. 'lista' es la lista del dia a la que van sus tarjetas; 'lista_cierre' es su lista de por cerrar (varias familias pueden compartirla, como Encofrado y Concreto). Si se deja vacia, se usa la global de listas.por_cerrar. 'claves' son las palabras que se buscan en el nombre de la actividad. La familia con 'por_defecto': true recoge lo que no case con ninguna clave.",
     "Acero": {
       "lista": "T. DEL DIA ACERO",
       "lista_cierre": "T. POR CERRAR - ACERO",

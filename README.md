@@ -40,7 +40,7 @@ computadora encendida.
 | 1 | **Preparar** | la tarde anterior | Lee el cronograma de **mañana** y crea las tarjetas en `ESPERA`, copiando la plantilla de cada actividad |
 | 2 | **Distribuir** | de madrugada | Vacía `ESPERA` repartiendo cada tarjeta a su lista del día según su familia |
 | 3 | **Cierre (gracia)** | al terminar la jornada | Completo → `CULMINADO`; pendiente → la lista de gracia de su familia |
-| 4 | **Cierre definitivo** | unas horas después | Lo que alcanzó a marcarse → `CULMINADO`; el resto → `NO CUMPLIDAS`. Anota el PPC |
+| 4 | **Cierre definitivo** | unas horas después | Lo que alcanzó a marcarse → `CULMINADO`; el resto **se queda por cerrar**, para reprogramarse |
 | 5 | **Reporte** | a demanda, o a su hora | Cuenta los checks pendientes por responsable y publica el dashboard |
 | 6 | **Archivar** | al final del día | Archiva lo culminado y deja el tablero limpio |
 
@@ -77,17 +77,35 @@ descripción generada, para no dejarla fuera del plan.
 
 ## El cierre en dos fases
 
-Cuando termina la jornada los especialistas siguen ocupados. Mandar a *no
-cumplidas* una tarjeta a la que solo le faltaba marcar un ítem sería injusto y
-ensuciaría la estadística. Por eso el cierre no es un solo golpe:
+Cuando termina la jornada los especialistas siguen ocupados. Dar por perdida una
+tarjeta a la que solo le faltaba marcar un ítem sería injusto. Por eso el cierre
+no es un solo golpe:
 
 **Fase 1 — al fin de jornada.** Lo completo va a `CULMINADO`; **lo pendiente va a
-la lista de gracia de su familia**. Las listas del día quedan limpias.
+la lista de por cerrar de su familia**. Las listas del día quedan limpias.
 
-**Fase 2 — el cierre definitivo.** Lo que alcanzaron a marcar va a `CULMINADO`;
-lo que sigue sin marcar, a `NO CUMPLIDAS`. Ahí se calcula y se anota el PPC.
+**Fase 2 — el cierre definitivo.** Lo que alcanzaron a marcar va a `CULMINADO`.
+Lo que sigue sin marcar **se queda donde está**.
 
 La fase 2 barre también las listas del día, por si la fase 1 no llegó a correr.
+
+### No hay lista de «no cumplidas», y es a propósito
+
+En Last Planner el trabajo que no se terminó **no se archiva: se reprograma**.
+Con treinta actividades al día, mandarlas a un saco aparte obligaría a sacarlas
+de ahí a mano, una por una, para volver a meterlas en la programación.
+
+Así que lo que no cierra se queda **a la vista, en la lista de por cerrar de su
+familia**, hasta que se termine o se reprograme. `Archivar` no la toca: solo
+guarda lo culminado. El dashboard la sigue mostrando en el bloque *Por cerrar*,
+con su antigüedad, para que se vea cuántos días lleva abierta.
+
+**Para retirar una columna heredada** (por ejemplo, la vieja `NO CUMPLIDAS` de
+un tablero anterior) está el botón **Reubicar tarjetas de una lista**: reparte
+cada tarjeta a la lista de por cerrar de su familia y archiva la columna vacía.
+No borra nada — la tarjeta conserva checklists, etiquetas, comentarios e
+historial, y la lista archivada se recupera desde *Más → Listas archivadas*.
+Córrelo primero con `dry_run` para ver el reparto.
 
 ### Cuándo cuenta como terminada
 
@@ -267,7 +285,7 @@ Todo se resuelve por prioridad: **variable de entorno** → **`configuracion.jso
 | `relojes.preparar.hora` | `18:00` | Crea las de mañana |
 | `relojes.distribuir.hora` | `05:00` | Reparte a las listas del día |
 | `relojes.cierre.hora` | `18:00` | Fin de jornada → gracia |
-| `relojes.cierre_final.hora` | `21:00` | Cierre definitivo → no cumplidas |
+| `relojes.cierre_final.hora` | `21:00` | Cierre definitivo: rescata lo marcado tarde |
 | `relojes.reporte.hora` | `15:00` | Corte de control |
 | `relojes.archivar.hora` | `21:00` | Archiva lo culminado |
 | `relojes.<robot>.dias` | `1-5` | 1 = lunes … 7 = domingo |
@@ -282,9 +300,8 @@ o espacios de más. `T. DEL DIA ACERO` encuentra `T. DEL DÍA ACERO- 🟦🟦�
 |---|---|---|
 | `listas.espera` | `ESPERA` | Donde nacen las tarjetas de mañana |
 | `listas.plantillas` | `PLANTILLAS` | Donde el montaje crea las plantillas |
-| `listas.por_cerrar` | `T. POR CERRAR` | Gracia **global**: solo para familias sin la suya |
+| `listas.por_cerrar` | `T. POR CERRAR` | Por cerrar **global**: solo para familias sin la suya |
 | `listas.culminado` | `CULMINADO` | Lo que cumplió |
-| `listas.no_cumplidas` | `NO CUMPLIDAS` | Lo que no cumplió |
 
 ### Familias, responsables, plantillas y cierre
 
@@ -353,7 +370,7 @@ Settings → Pages → *Deploy from a branch* → `main` → `/docs`.
 
 | Página | Qué muestra |
 |---|---|
-| `index.html` | **Dashboard**: resumen, y luego un bloque por ámbito (día · por cerrar · no cumplidas) con su anillo y sus pendientes, más el control general con avance de obra, PPC y desgloses |
+| `index.html` | **Dashboard**: resumen, y luego un bloque por ámbito (día · por cerrar) con su anillo y sus pendientes, más el control general con avance de obra, tendencias y desgloses |
 | `mapeo.html` | **Mapeo**: a qué familia y lista va cada actividad, y cuáles piden atención |
 | `tablero.html` | **Estado del tablero**: qué papel juega cada lista, cuáles no toca nadie y cuántas tarjetas quedarían atrapadas |
 
@@ -426,6 +443,7 @@ python -m trello_auto.cierre --fase final --dry-run    # cierre definitivo
 python -m trello_auto.reporte --alcance todo
 python -m trello_auto.archivar --dry-run
 python -m trello_auto.limpiar_duplicadas --dry-run
+python -m trello_auto.reubicar --desde "NO CUMPLIDAS" --dry-run
 python -m trello_auto.montar_tablero --dry-run
 python -m trello_auto.sincronizar
 python -m trello_auto.configurar --ver
@@ -456,12 +474,12 @@ ruff check trello_auto tests
 | `trello_auto/horario.py` | Zonas horarias, conversiones y el portero |
 | `trello_auto/preparar.py` … `archivar.py` | Los seis robots |
 | `trello_auto/reporte.py` · `tablero.py` · `web.py` | El corte y las páginas |
-| `trello_auto/historico.py` | PPC y series de tendencia |
+| `trello_auto/historico.py` | Culminadas por día y series de tendencia |
 | `trello_auto/estado.py` | Qué papel juega cada lista del tablero |
 | `trello_auto/sincronizar.py` · `configurar.py` · `revisar.py` | Los botones |
-| `trello_auto/montar_tablero.py` · `limpiar_duplicadas.py` | Mantenimiento |
+| `trello_auto/montar_tablero.py` · `limpiar_duplicadas.py` · `reubicar.py` | Mantenimiento |
 | `data/` | El cronograma y su respaldo |
-| `reportes/` | Los cortes acumulados y el PPC diario |
+| `reportes/` | Los cortes acumulados y las culminadas por día |
 | `docs/` | Lo que publica GitHub Pages |
 
 ---

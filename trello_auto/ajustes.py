@@ -136,7 +136,8 @@ LISTA_POR_CERRAR = _env("LISTA_POR_CERRAR", dato("listas.por_cerrar", ""))
 # ^ lista de GRACIA: donde esperan las tarjetas sin terminar entre el fin
 #   de jornada y el cierre definitivo.
 LISTA_CULMINADO = _env("LISTA_CULMINADO", dato("listas.culminado", "CULMINADO"))
-LISTA_NO_CUMPLIDAS = _env("LISTA_NO_CUMPLIDAS", dato("listas.no_cumplidas", "NO CUMPLIDAS"))
+# No hay lista de "no cumplidas": lo que no termina no se archiva, se
+# reprograma, y se queda en la lista de por cerrar de su familia.
 
 # ---------------------------------------------------------------------------
 # FAMILIAS DE TRABAJO — agrupan actividades y deciden la lista del día

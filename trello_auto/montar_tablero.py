@@ -10,7 +10,7 @@ subido, este robot construye todo lo que hace falta:
 
   1. LAS COLUMNAS. Crea las listas que el sistema necesita y que todavia no
      existan: la de espera, una por familia de trabajo, la de gracia, la de
-     culminado y la de no cumplidas. En el orden en que fluye el trabajo.
+     culminado. En el orden en que fluye el trabajo.
 
   2. LAS PLANTILLAS. Una tarjeta PLANTILLA por cada actividad del cronograma
      que no tenga la suya, con un checklist por responsable ya montado. Los
@@ -106,7 +106,6 @@ def listas_necesarias() -> list:
         detalle = ", ".join(familias) if familias else "resto"
         necesarias.append((lista, f"margen de gracia · {detalle}"))
     necesarias.append((ajustes.LISTA_CULMINADO, "lo que cumplio"))
-    necesarias.append((ajustes.LISTA_NO_CUMPLIDAS, "lo que no cumplio"))
     necesarias.append((ajustes.LISTA_PLANTILLAS, "las plantillas de cada actividad"))
     return necesarias
 
