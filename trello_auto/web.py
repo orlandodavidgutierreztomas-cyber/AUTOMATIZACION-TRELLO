@@ -168,6 +168,11 @@ CSS = """
   th .filtro .menu button:hover { background:var(--barra); }
   th .filtro .menu button[aria-checked="true"] { color:var(--acento); font-weight:600; }
   .cuenta { font-size:12.5px; color:var(--suave); margin-top:9px; }
+  .frescura { display:inline-block; padding:1px 9px; border-radius:999px;
+              font-size:12px; border:1px solid var(--borde); color:var(--suave);
+              margin-left:6px; vertical-align:middle; }
+  .frescura.rancia { border-color:var(--alerta); color:var(--alerta);
+                     font-weight:600; }
   tr.desplegable { cursor:pointer; }
   tr.desplegable:hover td { background:var(--barra); }
   .flecha { display:inline-block; width:14px; color:var(--suave);
@@ -251,6 +256,41 @@ def navegacion(actual: str) -> str:
 # Filtrado de las tablas y despliegue del detalle de cada tarjeta.
 # Va en la propia pagina para que siga siendo UN archivo que funciona sin
 # conexion: no hay servidor al que preguntar ni libreria que cargar.
+SCRIPT_FRESCURA = """
+(function () {
+  // GitHub Pages guarda la pagina 10 minutos, y el navegador otro tanto. Sin
+  // esto, una version vieja se ve identica a una recien hecha y parece que el
+  // reporte no corrio. Aqui se dice en voz alta cuanto tiempo tiene.
+  var marca = document.querySelector('[data-generada]');
+  if (!marca) { return; }
+  var hecha = new Date(marca.dataset.generada);
+  if (isNaN(hecha)) { return; }
+
+  function pintar() {
+    var min = Math.floor((Date.now() - hecha) / 60000);
+    var texto, viejo = false;
+    if (min < 1) { texto = 'recien actualizado'; }
+    else if (min < 60) { texto = 'hace ' + min + ' min'; }
+    else if (min < 60 * 24) {
+      var h = Math.floor(min / 60);
+      texto = 'hace ' + h + (h === 1 ? ' hora' : ' horas');
+      viejo = h >= 12;
+    } else {
+      var d = Math.floor(min / 1440);
+      texto = 'hace ' + d + (d === 1 ? ' dia' : ' dias');
+      viejo = true;
+    }
+    marca.textContent = texto;
+    marca.className = viejo ? 'frescura rancia' : 'frescura';
+    marca.title = viejo
+      ? 'Puede que estes viendo una copia guardada. Recarga con Ctrl+Shift+R.'
+      : '';
+  }
+  pintar();
+  setInterval(pintar, 60000);
+})();
+"""
+
 SCRIPT_TABLA = """
 (function () {
   function cerrarMenus(salvo) {
@@ -585,7 +625,7 @@ def pagina(archivo: str, titulo: str, subtitulo: str, cuerpo: str, pie: str) -> 
 {cuerpo}
 <footer>{pie}</footer>
 </div>
-<script>{SCRIPT_TEMA}{SCRIPT_TABLA}</script>
+<script>{SCRIPT_TEMA}{SCRIPT_TABLA}{SCRIPT_FRESCURA}</script>
 </body>
 </html>
 """

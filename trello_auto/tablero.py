@@ -33,6 +33,22 @@ from .web import (
 )
 
 
+def _iso_utc(corte: datetime) -> str:
+    """El corte en UTC, para que el navegador calcule su antiguedad.
+
+    El corte viene en hora de obra. Si no trae zona, se le pone la de la obra
+    antes de pasarlo a UTC: si no, un navegador en otro huso lo leeria mal.
+    """
+    from datetime import UTC
+
+    from . import horario
+    try:
+        con_zona = corte if corte.tzinfo else corte.replace(tzinfo=horario.zona())
+        return con_zona.astimezone(UTC).isoformat()
+    except Exception:
+        return corte.isoformat()
+
+
 def _tabla(filas: list) -> str:
     if not filas:
         return ('<div class="tabla-caja"><div class="vacio">'
@@ -437,7 +453,10 @@ def generar(filas: list, corte: datetime, alcance: str) -> str:
         "index.html",
         f"{ajustes.NOMBRE_OBRA} · control del dia",
         f"Corte del {e(corte.strftime('%d/%m/%Y %H:%M'))} · hora de obra "
-        f"({e(ajustes.TZ_OBRA)}) · alcance: {e(alcance)}",
+        f"({e(ajustes.TZ_OBRA)}) · alcance: {e(alcance)}"
+        # Cuanto tiempo tiene la pagina, calculado en el navegador. Sin esto,
+        # una copia guardada por la cache se ve igual que una recien hecha.
+        f'<span class="frescura" data-generada="{e(_iso_utc(corte))}">·</span>',
         "".join(cuerpo),
         "Se regenera en cada corrida del reporte. Una tarjeta cuenta como "
         "cerrada igual que en el cierre: checklist completo o marcada como "
